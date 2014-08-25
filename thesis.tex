@@ -1,0 +1,51 @@
+\documentclass[bachelor]{iisthesis}
+%           or master (bachelor or master is required)
+
+% These two packages are highly recommended:
+\usepackage[T1]{fontenc} % make non-ASCII characters cut&pastable in PDF
+\usepackage{lmodern}     % easiest way to get outline fonts with T1 encoding
+
+% \usepackage[ngerman]{babel}     % if the thesis is written in German
+\usepackage{listings}
+
+\title{Robot Simulation and Motion Planning}
+\author{Martin Griesser}
+\supervisor{Emre Ugur, PhD\\Univ.-Prof. Dr. Justus Piater, PhD}
+%\supervisor{Firstname1 Lastname1\\ Firstname2 Lastname2}
+
+\begin{document}
+\maketitle
+
+\chapternn{Abstract}
+This document explains how to write IIS theses using the \LaTeXe\space `\uibkclass' class\footnote{version \uibkversion\space, released on \uibkreleased.}, which is itself based on the \LaTeXe\space `book' class and is intended for compiling with pdflatex. This document does not tell you how to structure your thesis.
+
+\chapternn{Acknowledgements}
+Thank you to the friendly members of the IIS Team.
+
+\tableofcontents
+\listoffigures
+\listoftables
+\uibkdeclaration
+\label{chap:declare}
+
+% Introduction
+\input{introduction}
+% Simulation
+\input{robot_simulation}
+% Motion planning first part
+%\input{motion_planning}
+% Motion planning practical part
+\input{pick_place_tasks}
+% Observations, measurements, test results
+%\input{observations}
+% Conclusion, possible further work, open questions
+%\input{conclusion}
+
+%\bibliography{refs}% Remember to compile the bibliography using bibtex.
+
+%\appendix% Start your appendices with this command.
+% Implementation details, documentations...
+%\input{appendix_a}
+%\input{appendix_b}
+
+\end{document}

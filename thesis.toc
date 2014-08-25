@@ -1,0 +1,36 @@
+\contentsline {chapter}{Abstract}{i}{chapter*.1}
+\contentsline {chapter}{Acknowledgements}{iii}{chapter*.2}
+\contentsline {chapter}{Contents}{v}{section*.3}
+\contentsline {chapter}{List of Figures}{vii}{section*.5}
+\contentsline {chapter}{List of Tables}{ix}{section*.7}
+\contentsline {chapter}{Declaration}{xi}{chapter*.9}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}IIS-Lab Robot Setup}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}The Robot Operating System(ROS)}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}Project Targets}{3}{section.1.3}
+\contentsline {chapter}{\numberline {2}Robot simulation}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Overview}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}Choosing a suitable simulation platform}{5}{section.2.2}
+\contentsline {section}{\numberline {2.3}The Virtual Robot Experimentation Platform(V-Rep)}{6}{section.2.3}
+\contentsline {section}{\numberline {2.4}Dynamic simulations in V-REP}{6}{section.2.4}
+\contentsline {section}{\numberline {2.5}Designing the simulation scene}{7}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Modelling the Schunk SDH gripper}{7}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Putting the pieces together}{8}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Configuring the collision detection module}{9}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}Configuring the IK calculation module}{10}{subsection.2.5.4}
+\contentsline {section}{\numberline {2.6}Implementation of the ROS control interface}{10}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Overview}{10}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Plugin Architecture}{11}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}Identifying simulation components in the scene}{13}{subsection.2.6.3}
+\contentsline {subsection}{\numberline {2.6.4}Creating startup launch file}{13}{subsection.2.6.4}
+\contentsline {subsection}{\numberline {2.6.5}Documentation and usage examples}{14}{subsection.2.6.5}
+\contentsline {chapter}{\numberline {3}Pick and place}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}Overview}{15}{section.3.1}
+\contentsline {section}{\numberline {3.2}Pick and place tasks in MoveIt}{17}{section.3.2}
+\contentsline {section}{\numberline {3.3}Implementation of the benchmark task}{18}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Creating the environment}{19}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Generating possible grasps}{19}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Planning and executing the pickup}{20}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Planning and executing the placement}{20}{subsection.3.3.4}
+\contentsline {section}{\numberline {3.4}Executing the benchmark task}{21}{section.3.4}
+\contentsline {section}{\numberline {3.5}Observations}{22}{section.3.5}

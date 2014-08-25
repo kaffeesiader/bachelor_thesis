@@ -1,0 +1,36 @@
+\BOOKMARK [0][-]{chapter*.1}{Abstract}{}
+\BOOKMARK [0][-]{chapter*.2}{Acknowledgements}{}
+\BOOKMARK [0][-]{section*.3}{Contents}{}
+\BOOKMARK [0][-]{section*.5}{List of Figures}{}
+\BOOKMARK [0][-]{section*.7}{List of Tables}{}
+\BOOKMARK [0][-]{chapter*.9}{Declaration}{}
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}
+\BOOKMARK [1][-]{section.1.1}{IIS-Lab Robot Setup}{chapter.1}
+\BOOKMARK [1][-]{section.1.2}{The Robot Operating System\(ROS\)}{chapter.1}
+\BOOKMARK [1][-]{section.1.3}{Project Targets}{chapter.1}
+\BOOKMARK [0][-]{chapter.2}{Robot simulation}{}
+\BOOKMARK [1][-]{section.2.1}{Overview}{chapter.2}
+\BOOKMARK [1][-]{section.2.2}{Choosing a suitable simulation platform}{chapter.2}
+\BOOKMARK [1][-]{section.2.3}{The Virtual Robot Experimentation Platform\(V-Rep\)}{chapter.2}
+\BOOKMARK [1][-]{section.2.4}{Dynamic simulations in V-REP}{chapter.2}
+\BOOKMARK [1][-]{section.2.5}{Designing the simulation scene}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.5.1}{Modelling the Schunk SDH gripper}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.2}{Putting the pieces together}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.3}{Configuring the collision detection module}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.4}{Configuring the IK calculation module}{section.2.5}
+\BOOKMARK [1][-]{section.2.6}{Implementation of the ROS control interface}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.6.1}{Overview}{section.2.6}
+\BOOKMARK [2][-]{subsection.2.6.2}{Plugin Architecture}{section.2.6}
+\BOOKMARK [2][-]{subsection.2.6.3}{Identifying simulation components in the scene}{section.2.6}
+\BOOKMARK [2][-]{subsection.2.6.4}{Creating startup launch file}{section.2.6}
+\BOOKMARK [2][-]{subsection.2.6.5}{Documentation and usage examples}{section.2.6}
+\BOOKMARK [0][-]{chapter.3}{Pick and place}{}
+\BOOKMARK [1][-]{section.3.1}{Overview}{chapter.3}
+\BOOKMARK [1][-]{section.3.2}{Pick and place tasks in MoveIt}{chapter.3}
+\BOOKMARK [1][-]{section.3.3}{Implementation of the benchmark task}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.3.1}{Creating the environment}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.2}{Generating possible grasps}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.3}{Planning and executing the pickup}{section.3.3}
+\BOOKMARK [2][-]{subsection.3.3.4}{Planning and executing the placement}{section.3.3}
+\BOOKMARK [1][-]{section.3.4}{Executing the benchmark task}{chapter.3}
+\BOOKMARK [1][-]{section.3.5}{Observations}{chapter.3}

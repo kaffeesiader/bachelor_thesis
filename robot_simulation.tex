@@ -1,0 +1,274 @@
+%!TEX root = thesis.tex
+
+\chapter{Robot simulation}
+\label{chap:simulation}
+This chapter focuses on the simulation part of the thesis.
+
+\section{Overview}
+
+\section{Choosing a suitable simulation platform}
+The tasks executed on the robot are in the most cases variations of so called 'pick and place' tasks. An object gets picked up, lifted and placed somewhere else in the workspace. Therefore joint target positions are sent to the control interfaces of the various robot components and they execute the commanded motions if possible. The question, if the execution is possible at all and in that case with which velocity, is influenced by a number of physical parameters. The maximum effort of the motors in the joints is limited. If the force that acts upon a joint is higher than the maximum effort of the motor it will not be able to maintain its current position or to reach the desired target position. This can happen if the picked object is to heavy or if the robot collides with another immovable object in it's environment. The forces that act upon each single joint are influenced by a number of factors like the position within the kinematic chain of the robot, the summed weight of the robot components themselves and also the weight of a possible additional payload (TODO: show graphic of kinematic chain and maybe some kind of visualization of forces).
+
+The required solution should be able to provide a realistic simulation of those dynamic interactions. Therefore the simulation platform has to take use of a powerful physics engine. A physics engine is a software component, that is capable of computing parameters of physical processes and the dynamic properties of the involved objects. Examples for such engines are the Open Dynamics Engine (ODE) and Bullet physics. Some of the evaluated simulation platforms provide a number of different physics engines to choose.
+
+The candidates that have been taken into account were Gazebo, V-Rep, MORSE and OpenGRASP (provide links!!!). After some investigation only two of them had been evaluated in greater detail. Criteria for the selection had been:
+
+\begin{itemize}
+\item
+Which physics engine is used respectively is it possible to choose among various engines?
+\item
+Usability and stability
+\item
+Expandability
+\item
+Availability of required model components (arm model, gripper,...)
+\item
+Quality of the documentation
+\item
+Licence issues
+\end{itemize}
+
+Taking into account those criteria it went clear that V-Rep will be the simulation platform of choice. In some initial tests V-Rep seemed to be much more stable than Gazebo and the user interface is very intuitive. Another important point is that V-Rep ships with a fully functional model of the KUKA LWR4+ robot arm.
+
+\section{The Virtual Robot Experimentation Platform(V-Rep)}
+V-Rep is a powerful robot simulation platform, developed by Coppelia Robotics (www.coppeliarobotics.com). The current version provides the ability to choose from three configurable physics engines(ODE, Bullet, Vortex -- only trial version) for simulating dynamic processes. It also contains a very comfortable editor for modelling robot components and simulation scenes. In the shape-edit mode it is possible to edit and simplify meshes. This is very important because for simulating dynamic processes only simple shapes with a low count of vertices, edges and faces should be used to reduce complexity. The contained model browser has a rich set of different robot models, static objects and various sensors, ready to use. An additional feature is V-Rep's configurable collision calculation module that can be used to detect and visualize all kinds of collisions (self-collisions, collisions with the environment). The behaviour of the simulator is highly customizable via a rich programming API for C++ as well as the contained scripting language LUA(provide link!!!). V-Rep is no open source software but it provides a free licence for educational units and can therefore be used for research purposes. (TODO reference and citation of V-Rep paper!!!)
+
+\section{Dynamic simulations in V-REP}
+For a better understanding of the modelling process it is necessary to explain a few fundamental concepts about designing dynamic simulations in V-Rep. This section just covers those aspects that are important for the underlying project. A more detailed explanation can be found in the official V-Rep documentation(link!!!).
+
+Each simulation scene in V-Rep is composed from a number of models that are arranged within the environment. A model consists of various scene object, combined in a tree like structure to mimic the kinematic chain of a robot component. Each model has a dedicated model base and constitutes a sub-tree of the scene hierarchy. The model base is the root element of the model tree. There are existing various types of scene objects within V-Rep, but only those, which are important for the implementation will be explained here.
+
+\begin{itemize}
+\item \textbf{Shape} \\
+A shape is a 3 dimensional body. Shapes represent the visual parts as well as the dynamically enabled parts of the scene. It is necessary to distinguish between primitive shapes (Cylinder, Cuboid, Sphere, Plane and Disk) and complex shapes (triangle meshes). Primitive shapes are much easier to handle for the physics engine as there can happen a lot of optimization during dynamics calculations. Complex shapes usually look better and therefore they are used mainly as the visual part of the model and by the collision detection module. Various shapes can be combined to groups and therefore treated as one single object. Shapes can be defined as static or non-static objects. The position of a static object is fixed relative to it's parent node within the scene hierarchy and will not change during simulation. Non-static objects underlie gravity and will fall down if they are not constrained by a dynamically enabled joint or a force sensor connection. It is also necessary to distinguish between respondable and non-respondable shapes. Respondable shapes have a clearly defined mass and moment of inertia and therefore they create collision reactions when colliding with other respondable objects during simulation. Only respondable shapes are considered during dynamics calculation. Usually a model in V-Rep is composed of a visual part, consisting of complex shapes and a hidden part, consisting of groups of primitive shapes that are configured for the dynamics calculation. This issue will be covered again when explaining the creation of the hand model.
+
+\item \textbf{Joint} \\
+A joint is a flexible connection between two rigid parts of a robot. It has to be distinguished between revolute or prismatic joints with one degree of freedom and spherical joints with three degrees of freedom. In the arm and hand model only revolute joints are used. Joints can be passive or actuated by a motor (explain possible configuration parameters!!!). V-Rep provides various different joint modes, but only the torque/force mode and the IK mode are used within this project. (Maybe explain the two modes in greater detail...)
+
+\item \textbf{Vision sensor} \\
+States a simulated image capturing device. A vision sensor can capture images of the simulation scene, depending on it's configuration. It can deliver RGB image sequences as well as depth images. Vision sensors are used in the Kinect camera model.
+
+\item \textbf{Force sensor} \\
+A force sensor in V-Rep is a rigid connection between two dynamically simulated objects. The calculated forces and torques can be measured and visualized. It is also possible to define a maximum force the connection is able to bear. When this maximum value is exceeded, the connection will break.
+
+\item \textbf{Dummy} \\
+Dummies are the simplest scene objects at all but they provide some important functionality, especially for the various calculation modules of V-Rep. They can be understood as the origin of a named reference frame with a configurable position and orientation within the planning scene. Two dummies can be linked as 'tip-target' pairs to be used by the IK calculation module, or to follow a predefined path within the scene. The importance becomes more clear when the construction of the simulation scene will be explained. 
+
+\end{itemize}
+
+Groups of scene objects can be organized in collections and treated as one single entity. Collections play an important role in the collision detection module.
+
+Some words about calculation modules (collision detection module, IK calculation module).
+
+
+\section{Designing the simulation scene}
+This section explains in detail the structure of the simulation scene and the contained model components. Three types of robot models are used - the KUKA LWR3+ model, the Schunk SDH gripper model and the Kinect camera model. The arm and camera model are part of the V-Rep model browser but the gripper model had to be constructed from scratch.
+
+\subsection{Modelling the Schunk SDH gripper}
+
+The gripper has three fingers. One of them is fixed around the z-axis and cannot be rotated. Two fingers can be rotated 90° around the z-axis, but they are connected contrariwise. That means if one finger rotates to the left, the other one is rotated to the right for the same distance.
+The modelling process started with the search for suitable meshes for the rigid parts of the gripper. They have been found in the schunk\_description ROS package from the schunk\_sdh stack. Those meshes have been arranged according to the technical description. After placing the meshes the 8 joints have been added at the correct locations. It was important to determine the correct location and orientation for each single joint within the model to allow the correct movement of the fingers. This was achieved by using the shape edit mode and select the circle shaped area within the mesh, where the joint had to fit. From that selection a cylinder shape was extracted and the joint was then centered within this newly created cylinder. Those steps had to be repeated for all 8 joints. The placement process can be seen in Fig??? After placing all the joints and links within the scene, the model tree was adjusted to form the kinematic chain of the hand. The dynamic parameters of the joints were set according to the technical description. Those parameters include the joint limits, maximum velocity and maximum effort. As the root joints of the 2 fingers are connected, the setting of the second finger root is configured sightly different. The joint is operated in the 'dependent mode' and the dependency equation just mirrors the position of the connected joint.
+
+The meshes only form the visual part of the model as they are to complex to be used for dynamics calculations. So the shape of each link had to be approximated by groups of pure shapes. This has been achieved by executing the following steps for each single part of the model:
+
+- within the shape edit mode extract parts of the mesh that could be approximated by a primitive
+  shape (cuboid, cylinder), by selecting suitable groups of vertices
+- extract the corresponding shape by using this V-Rep editor functionality
+- repeat those steps until the most important parts of the link are approximated that way
+- group those primitive shapes to treat them as one single object
+- adjust the dynamic parameters (mass, material settings, inertial matrix)
+- adjust the local respondable mask
+- give the group the same name as the corresponding mesh, but with the '\_respondable' suffix
+- remove the extracted shapes from the current visibility layer because they are just used for the
+  dynamics calculations
+
+The extraction process is visualized in Fig???
+Dynamic parameters like mass and inertial matrix have been provided by Alex Rietzler. The predefined 'highFrictionMaterial' setting was used for each single part of the finger because that showed better results when picking up objects later on.
+
+The last steps of the modelling process were the adjustment of the model hierarchy. The root element is he respondable part of the wrist which is also defined as the model base. It is important to follow the V-Rep guidelines for designing dynamic simulations because if the hierarchy is wrong, the model will simply fall apart when starting the simulation (see corresponding chapter in the documentation for more information). Each non-static and respondable shape has to be connected to it's parent by a joint or a force sensor. The visual part of the link is always a child object of the corresponding respondable. That way, the kinematic chain of the gripper is formed.(TODO: insert images!!!)
+
+
+\subsection{Putting the pieces together}
+
+After finishing the modelling process of the gripper each necessary component was available to build up the simulation scene. Alex Rietzler had already created a mesh for the robot torso which was ready to use. The two robot arms where taken from the model browser and inserted into the scene. A dummy was placed at the bottom of each arm which will be used as the origin of the arms private reference frame. The exact translation of each arm was also already available so it had just to be configured. The grippers were placed on the tip of each arm. The correct rotation and offset was measured on the real counterpart and then configured accordingly. 
+
+The plate and the legs of the table are modelled as group of primitive cuboids in the correct size. The table was defined as respondable, which means it will produce a collision reaction if a robot component collides with it. But as it is a static object it will not show a reaction to such a collision because it's position is fixed within the scene. The chosen material setting is also the 'highFrictionMaterial' but that can easily be changed by modifying the dynamic properties of the table plate.
+
+The kinect camera model was also taken from the model browser. As it's position and orientation in the real world is not fixed and might change from time to time, it's position within the simulation scene is only an approximation to reflect the real world setting as good as possible. In the vision sensor settings, the option 'Ignore RGB info' was selected. A vision sensor usually produces two images, namely a color image and a depth image on each simulation pass. This generation process slows down the simulation and therefore skipping one of the two images brings a speedup.
+
+The origin of the overall reference frame is located on the upper left side of the table, indicated by a slightly green shimmering sphere. The position and orientation of the torso, the table and the two arms was were configured relative to this reference frame. A dummy object called 'ref\_frame\_origin' was placed at that location. Each position calculation later on will happen relative to that dummy. If it is necessary to move the origin to another location within the workspace this can simply be achieved by just moving that dummy to the required location.
+
+
+
+\subsection{Configuring the collision detection module}
+
+The solution should be able to detect and visualize possible accidental collisions of one of the robot components with their environment. It would also be good to have some kind of warning if one of the robot components comes dangerously close to an obstacle during a movement. Therefore a so called 'collision shield' is modelled around the two robot arms, to detect if the arm comes closer than approximately 5cm to an obstacle. To achieve that functionality, for each single link another shape had to be modelled that is slightly larger than the corresponding link and that only purpose is to be checked for collisions. The modelling process started at the second link of each robot arm and on each link the following steps had to be performed:
+
+- Copy the visible part of the robot link
+- Morph the copied object into a group of convex shapes (V-Rep editor functionality)
+- Ungroup the resulting shape and merge it into one single shape
+- Grow the resulting shape in x and y direction of it's own reference frame to receive a mesh that
+  is approximately 10cm larger than the original mesh but has the same height.
+- Adjust the outside color to make it green and nearly transparent
+- Rename the shape to the same name as the original shape, with the '\_col' suffix 
+- Make the new shape a sibling to the original one within the model tree
+- Define the new shape to be static and non-respondable.
+- Disable the 'collidable' flag on the shape. This behaviour will be overridden in the collection
+  settings later on when configuring the collision detection module
+
+The modelling process is visualized in Fig???.
+
+Basically there are two different types of possible collisions:
+
+- Soft collision - the collision shield hits another collidable object 
+  (no direct collision - only a collision warning)
+- Hard collision - a robot component directly hits another collidable object. This would also
+  be a collision in real world.
+
+The solution should be able to distinguish clearly between those two types of collisions. Therefore a number of so called collision objects have to be configured within V-Rep's collision detection module. Each collision objects checks for collisions between a collider against a collidee. Collider and collidee are single shapes or collections of shapes with the collidable flag set. For each arm two collision objects have to be set up - one for each collision type. The configuration is explained for the left arm but the steps for the right arm are similar. The first collision object is named 'left\_arm'. The collider is the collection called 'leftArm'. This collection contains the whole sub tree of the left arm, including the gripper, but excluding the elements of the left collision shield. The collidee are all other collidable entities within the scene. This collision object detects the hard collisions. This also makes clear, why the collidable flag is disabled on the parts of the collision shield because otherwise collisions with the shield would also be detected which would not be correct. The second collision object is called `left\_armShield'. The collider is the collection called `leftArmShield'. This collection is composed of the parts of the left collision shield and the whole subtree of the left gripper. This collection is defined to override the value of the collidable flag of the contained elements - this is important because as previously mentioned, the elements of the collision shield are defined as not collidable. The collidee of the current collision object is the collection called `exLeftArmShield'. This collection simply contains all other scene objects except those contained in the left arm's subtree. As mentioned before, the same configuration steps happened for the right arm. All collision objects are defined not to be handled explicitly. This means that V-Rep does not check for collisions automatically in each simulation pass. It has to be done manually and will be explained later on in the section about the control interface implementation. 
+
+\subsection{Configuring the IK calculation module}
+
+The IK calculation module can be used to define different IK groups to solve the inverse kinematics for the required robot components. This functionality is used for the Cartesian positioning 
+functionality of the ROS control interface. To define an IK group it is necessary to exactly define the kinematic chain of the robot component, starting at the base link up to the dedicated tip. The base link is the root element of the arm's model tree. The tip element is a dummy that is placed on the top end of the arm. That dummy must be a child element of the last link in the arm tree and it defines the reference frame that is used for Cartesian positioning. All the joints between the base and the tip, that are operated in IK mode will be taken into account by the IK calculation module. An additional dummy is used to define the target pose for IK calculation. Initially the pose of the target dummy is exactly the same as that from the tip dummy. When moving the target dummy to a new location, the IK calculation module tries to bring the tip dummy exactly to the same pose by setting the joint values of the manipulator accordingly, respecting the joint limits and the configured constraints and tolerances. More than one IK group can be defined for each manipulator. To improve performance three IK groups have been configured for each arm. The first one focuses on performance but the settings provide less stability. The second one is more or less the same configuration but with a little higher tolerance values. The third one is designed to increase stability especially for positions close to singularities. But that configuration is less performant and therefore it is only used if the other configurations have failed to find a solution. How those IK groups are used is explained in the ROS control interface section.
+
+\section{Implementation of the ROS control interface}
+
+\subsection{Overview}
+
+After finishing the modelling process it was necessary to find a proper way to control the robot components via a ROS control interface. The arm as well as the hand is controlled via a set of inbound and outbound ROS topics that allow to send commands to the underlying component or to receive state data from the component(joint states, sensor data,\ldots). Each simulated component should provide exactly the same interface as it's real counterpart.
+
+One problem is how each type of component can be clearly identified within the current simulation scene. A scene is a hierarchy of various scene objects, organized in a tree structure. As already explained, those objects can be shapes, joints, sensors or even only dummies. The scene content can be modified by the user. Maybe a gripper gets replaced by another component, an arm gets removed or an additional Kinect camera gets installed. The required solution should be able to react to changes in the current scene. Parts of the model hierarchy should be clearly identifiable as a specific simulation component. Each single part of a component should be identifiable (joints, sensors, dummies, IK groups, collision objects). Luckily V-Rep provides various extension points for programmers and is therefore highly customizable. 
+
+After some investigation about the possibilities the decision was made to create a simulator plugin, using the V-Rep regular API. This approach states the most flexible solution as this API provides more than 400 functions. A plugin is a compiled library file, written in C++ that has to follow some V-Rep specific naming conventions and must reside in the V-Rep working directory. The library file gets automatically loaded on V-Rep startup and runs in the main simulation thread. This means that it has to be programmed really carefully to avoid performance leaks during simulation. The plugin has to provide a clearly defined interface, consisting of 3 functions:
+
+- v\_RepStart - called on startup and can handle some initialization
+- v\_RepEnd - called before shutdown and can do some cleanup
+- v\_RepMessage - called very often during the whole V-Rep lifecycle and is therefore a very
+  performance critical method. Via this function V-Rep notifies the plugins about events like
+  start/end of simulation, simulation step, scene content change, scene switch, \ldots.
+  The plugin code can react to those events accordingly.
+
+
+\subsection{Plugin Architecture}
+The plugin code is organized as can be seen in Fig???.
+
+- SimulationComponent
+  A simulation component is a single, reusable part of the robot that can be used in different
+  environments. Each component provides it's own clearly defined control interface. A simulation
+  scene can contain various types of components. The SimulationComponent class is the abstract
+  base class for all simulation components. Currently there are existing two concrete implementations
+  -- the LWRArmComponent and the SchunkHandComponent. If the scenario should be extended and new
+  components are introduced it is necessary to create a subclass of SimulationComponent and provide
+  implementations for the abstract methods. Each SimulationComponent consists of two parts. The first 
+  one is a class that provides access to a concrete simulation component instance. The LWRArm class
+  for example stands for a KUKA LWR4+ arm model in the scene. This class provides full access to the
+  functionality of the underlying arm model.
+  
+  The second part is a controller class for the component instance. This controller encapsulates the
+  whole ROS interface to the simulation component and has to be a subclass of the abstract 
+  ComponentController class. On each simulation pass the controller publishes all the necessary
+  state data to it's various topics and sends incoming commands to the simulation component. The
+  names of the various provided topics are composed from the overall namespace, the defined unique
+  name of the component and the actual topic name. For example the joint control topic of the right
+  robot arm evaluates to `/simulation/right\_arm/joint\_control/move'
+  
+  On simulation start each SimulationComponent registers it's ComponentController at the ROSServer
+  and unregisters it on simulation end.
+  
+- ComponentContainer
+  This class represents the set of all identified simulation components in the current simulation
+  scene. On V-Rep startup an instance of ComponentContainer is created. Each time, the content of
+  the current simulation scene changes, the method `ComponentContainer::actualizeForSceneContent' 
+  is triggered. This method performs the following steps:
+  - It validates each currently registered SimulationComponent instance if it is still valid and
+    present in the scene.
+  - It traverses the whole scene hierarchy to identify newly created components
+  - If a new component is identified, a corresponding concrete instance of SimulationComponent 
+    is created and added to the container.
+  To identify a component it has to be marked by using V-Rep's custom developer data functionality.
+  Details are explained further on.
+  
+  The ComponentContainer gets notified about each simulation step. It then simply forwards that
+  message to all registered components. Those can then perform all necessary steps like triggering
+  collision checking or the IK calculation module.
+  
+- ROSServer
+  The ROSServer is a static class that encapsulates all ROS related functionality. It tries to 
+  initialize ROS on startup. If the connection to the master can be established it creates a
+  ROS NodeHandle for the `simulation' namespace. Otherwise it forces the plugin to unload, because
+  it is not able to work without a running roscore.
+  Each SimulationComponent registers it's ComponentController instance at the ROSServer. On 
+  simulation start it initializes the registered controllers with the maintained NodeHandle. The
+  ROSServer gets also notified about each simulation step and forces the controllers to handle the
+  received commands and publish all the necessary data.
+  On simulation end it forces the registered controllers to shutdown their publishers and 
+  subscribers.
+  
+- ComponentController
+  This is the abstract base class for all controllers. A ComponentController gets initialized by
+  the ROSServer on simulation start. Concrete implementations can use the provided NodeHandle to
+  create all the necessary publishers and subscribers. The update method is called by the ROSServer
+  on each simulation step and forces the controller to publish all the required data. On simulation
+  end the shutdown method is called by the ROSServer, forcing the controller to shutdown all 
+  publishers and subscribers.
+  
+- LWRArm
+  This class provides access to a correctly configured LWR arm model within the simulation scene.
+  To fullfill the requirements for the control interface, the arm has to be able to operate in joint
+  control mode and in inverse kinematics mode. Initially the arm starts in joint control mode. All 
+  the joints are switched to torque/force mode and accept target positions to be set. The simulated
+  PID controllers will try to move the joints to their designated target positions. 
+  
+  Switching to IK mode means to operate all the joints in IK mode and use the previously configured   
+  IK calculation module. Setting a target pose in Cartesian space means to bring the IK target dummy
+  into the required pose. The IK calculation module tries then to bring the linked IK tip dummy into
+  the same pose by commanding the robot arm's joints accordingly and satisfying the configured
+  constraints and precision settings. At the moment, three IK groups are configured for
+  each arm with different settings to achieve performant and stable solutions. Those groups are
+  sequentially called until one of them is successful. The configuration of the first group focuses
+  on performance but provides less stability. The last group uses a configuration that is slower but
+  provides more stability in positions closed to singularities. If none of the groups was successful
+  it will result in an error message on the console, otherwise the arm will start or continue to move
+  towards it's target pose. When initializing the LWRArmComponent, it will search for IK groups that 
+  are named the same as the arm and with consecutive numbering (left\_arm, left\_arm1,
+  left\_arm2,...).
+  That allows to reconfigure the IK calculation module and introduce additional IK groups without 
+  touching the plugin code. It is expected that at least one IK group is configured, otherwise
+  an error message is written to the console.
+  
+  The collision status of the arm is determined by using the configured collision detection module.
+  On each simulation step the collision group that is responsible for detecting direct collisions is 
+  handled first. If that one detects a collision, a direct hit is reported and it is not necessary
+  to handle the second group at all, because a direct hit always implies a hit with the shield as
+  well. Only if no direct hit was detected, the second group is handled. The outcome can be queried
+  as the current collision state of the arm. During initialization it is searched for a collision
+  group that has the same name as the arm, responsible for direct hit detection and a group that is
+  named with the naming pattern [arm\_nameShield], responsible for shield hit detection. If one or
+  both of the required groups cannot be detected, an error message on the console will be stated and
+  the collision detection functionality will not work as expected. Collision state is evaluated on 
+  each simulation time step.
+  
+  Additional items that have to be identified within the model tree are the 7 joints, the end
+  effector tip dummy, the IK target dummy and the force sensor on the last link of the arm. The
+  origin of the reference frame can be defined by creating a dummy object within the scene with
+  the special name 'ref\_frame\_origin'. If such a scene object is found, all Cartesian poses are
+  taken with respect to the reference frame of that object, otherwise the poses are interpreted
+  absolute within the world reference frame. All the necessary data that is published by the 
+  controller can be accessed via this class.
+  
+- LWRArmController
+  The LWRArmController provides the implementation of the Kukie interface. This interface is created
+  by Simon Hangl especially for the KUKA arms in the IIS Lab.
+  
+\subsection{Identifying simulation components in the scene}
+
+As each scene is a hierarchy of various types of scene objects there had to be found a way how to identify subtrees within this hierarchy that belong to known simulation components and should therefore be handeled by the plugin. One way would be to give each part a clearly defined, unique name and then search for those names within the scene. But than it would be necessary to hardcode the name of each single joint name and this is not a preferable solution for this problem. If somebody accidentally changes a name in the model tree then the solution is broken because the plugin looses connection to the underlying object and cannot control it any more. Here V-Rep's custom developer data functionality comes into play. It is possible to put auxiliary data segments to each single object in the scene.(TODO: show image of data segments) This data gets serialized together with the object and can be read programatically. Each data segment starts with a header number which is used to uniquely identify the data from a specific developer. The second element is an integer value that holds the length of the data segment and then comes the data itself. The format of the data can freely be chosen by the developer. It was decided to use string representations of key/value pairs, seperated by a colon (:). The key uniquely identifies the type of component (arm joint, hand joint, IK target dummy,...). The value segment can be used to provide additional data like for example the name of a joint. The left arm's model base for example is tagged with `2497,1:left\_arm'. This tag data item identifies that element as the model base of a LWRArmComponent with the name `left\_arm'. When actualizing for scene content change, the ComponentContainer traverses the scene hierarchy and looks for objects, that are tagged as known components. On success, it creates the specific instance with the object handle of the underlying scene object. During the initialization, the concrete SimulationComponent instance searches then the model subtree for all the necessary parts (joints, dummies, force sensors...). The implementations for the arm and the hand model provide feedback output on the console window about the success of this initialization process.
+
+\subsection{Creating startup launch file}
+
+Describe startup script, environmental variable (VREP\_PACKAGE\_PATH), launch file, how to use different simulation scenes.
+
+\subsection{Documentation and usage examples}
+Detailed documentation and implementation details should go into the Appendix
+

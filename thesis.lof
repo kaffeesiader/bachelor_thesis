@@ -1,0 +1,9 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Current setup in the IIS-Lab TODO: provide more recent image}}{2}{figure.1.1}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Stages of the pickup phase in the simulator}}{16}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Stages of the placement phase in the simulator}}{17}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Planning scene after inserting the collision objects}}{19}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Grasp poses, gripper approach and retreat}}{20}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Place locations, pre-place approach and post-place retreat}}{21}{figure.3.5}
