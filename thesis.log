@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  25 AUG 2014 10:44
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  25 AUG 2014 17:01
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -327,7 +327,7 @@ LaTeX Font Info:    Try loading font information for T1+lmss on input line 17.
  (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<Uni_LOGO_4c.pdf, id=83, 150.5625pt x 300.12125pt>
+<Uni_LOGO_4c.pdf, id=143, 150.5625pt x 300.12125pt>
 File: Uni_LOGO_4c.pdf Graphic file (type pdf)
  <use Uni_LOGO_4c.pdf>
 Overfull \vbox (158.71652pt too high) has occurred while \output is active []
@@ -377,20 +377,19 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 ] [3] [4
 
-] (./thesis.toc)
+] (./thesis.toc
+[5
+
+])
 \tf@toc=\write4
 \openout4 = `thesis.toc'.
 
-
-[5
-
-] [6
-
-] (./thesis.lof)
+ [6] (./thesis.lof)
 \tf@lof=\write5
 \openout5 = `thesis.lof'.
 
  [7
+
 
 ] [8
 
@@ -407,11 +406,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 ]
 (./introduction.tex
 Chapter 1.
-
-LaTeX Warning: Reference `chap:simulation' on page 1 undefined on input line 7.
-
-
-<images/robot_setup.jpg, id=194, 3276.24pt x 2457.18pt>
+<images/robot_setup.jpg, id=270, 3276.24pt x 2457.18pt>
 File: images/robot_setup.jpg Graphic file (type jpg)
 
 <use images/robot_setup.jpg>
@@ -433,12 +428,16 @@ e 37.
 ]
 Chapter 2.
 [5]
-Overfull \hbox (56.96983pt too wide) in paragraph at lines 34--35
-\T1/lmr/m/n/10.95 V-Rep is a pow-er-ful robot sim-u-la-tion plat-form, de-vel-o
-ped by Cop-pelia Robotics (www.coppeliarobotics.com).
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+
  []
 
-[6] [7] [8] [9] [10] [11] [12]) (./pick_place_tasks.tex [13] [14]
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
+
+ []
+
+[7] [8] [9] [10] [11] [12] [13]) (./pick_place_tasks.tex [14]
 Chapter 3.
 
 Underfull \hbox (badness 10000) in paragraph at lines 10--11
@@ -457,7 +456,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--19
 
  []
 
-<images/pickup.jpg, id=274, 568.94437pt x 327.15514pt>
+<images/pickup.jpg, id=354, 568.94437pt x 327.15514pt>
 File: images/pickup.jpg Graphic file (type jpg)
  <use images/pickup.jpg>
 Underfull \hbox (badness 10000) in paragraph at lines 29--30
@@ -465,7 +464,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--30
  []
 
 [16 <./images/pickup.jpg>]
-<images/placement.jpg, id=281, 568.94437pt x 327.15514pt>
+<images/placement.jpg, id=360, 568.94437pt x 327.15514pt>
 File: images/placement.jpg Graphic file (type jpg)
 
 <use images/placement.jpg>
@@ -488,78 +487,45 @@ LaTeX Font Info:    Try loading font information for T1+lmtt on input line 69.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<images/task_env.png, id=295, 979.40906pt x 560.0925pt>
+<images/task_env.png, id=371, 979.40906pt x 560.0925pt>
 File: images/task_env.png Graphic file (type png)
 
 <use images/task_env.png> [19 <./images/task_env.png (PNG copy)>]
-<images/grasp_stages.jpg, id=304, 1402.23875pt x 371.3875pt>
+<images/grasp_stages.jpg, id=377, 1402.23875pt x 371.3875pt>
 File: images/grasp_stages.jpg Graphic file (type jpg)
 
 <use images/grasp_stages.jpg> [20 <./images/grasp_stages.jpg>]
-<images/place_stages.jpg, id=312, 2040.62375pt x 482.80376pt>
+<images/place_stages.jpg, id=382, 2040.62375pt x 482.80376pt>
 File: images/place_stages.jpg Graphic file (type jpg)
 
 <use images/place_stages.jpg> [21 <./images/place_stages.jpg>])
 
 Package natbib Warning: There were undefined citations.
 
-[22] (./thesis.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[22] (./thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 6791 strings out of 495061
- 96145 string characters out of 1182621
- 171135 words of memory out of 3000000
- 9730 multiletter control sequences out of 15000+50000
+ 6804 strings out of 495061
+ 96346 string characters out of 1182621
+ 171179 words of memory out of 3000000
+ 9745 multiletter control sequences out of 15000+50000
  80617 words of font info for 52 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,9n,41p,2288b,370s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{figure.2.5} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.2.4} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.2.3} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.2.2} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.2.1} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.2.3.4} has been referenced but does not 
-exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.2.3.3} has been referenced but does not 
-exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.2.3.2} has been referenced but does not 
-exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.2.3.1} has been referenced but does not 
-exist, replaced by a fixed one
-
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvip
-s/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}</usr/sha
-re/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/
-lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/te
-xmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
-6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/
-type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></u
-sr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/share/texmf/fonts/type1/p
-ublic/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/sh
-are/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/publ
-ic/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on thesis.pdf (36 pages, 3242156 bytes).
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share
+/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
+-mathit.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texm
+f/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi
+10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/font
+s/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></u
+sr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/pub
+lic/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/shar
+e/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/l
+m/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/l
+mtt10.pfb>
+Output written on thesis.pdf (36 pages, 3271604 bytes).
 PDF statistics:
- 393 PDF objects out of 1000 (max. 8388607)
- 92 named destinations out of 1000 (max. 500000)
- 196 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 459 PDF objects out of 1000 (max. 8388607)
+ 90 named destinations out of 1000 (max. 500000)
+ 316 words of extra memory for PDF output out of 10000 (max. 10000000)
 
