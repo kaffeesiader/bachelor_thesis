@@ -1,48 +1,50 @@
-This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: thesis.aux
 The style file: plainnat.bst
-I found no \citation commands---while reading file thesis.aux
 Database file #1: refs.bib
-You've used 0 entries,
+Warning--empty journal in freese2013
+Warning--empty year in freese2013
+Warning--empty year in freese2013
+Warning--can't use both volume and number fields in quigley2009
+You've used 2 entries,
             2773 wiz_defined-function locations,
-            592 strings with 4828 characters,
-and the built_in function-call counts, 33 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 10
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+            602 strings with 5221 characters,
+and the built_in function-call counts, 1203 in all, are:
+= -- 84
+> -- 114
+< -- 1
++ -- 38
+- -- 36
+* -- 117
+:= -- 196
+add.period$ -- 5
+call.type$ -- 2
+change.case$ -- 18
+chr.to.int$ -- 2
+cite$ -- 8
+duplicate$ -- 44
+empty$ -- 73
+format.name$ -- 38
+if$ -- 232
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 0
-newline$ -- 8
-num.names$ -- 0
-pop$ -- 0
+missing$ -- 2
+newline$ -- 17
+num.names$ -- 8
+pop$ -- 45
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 16
 quote$ -- 0
-skip$ -- 1
+skip$ -- 34
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
+substring$ -- 4
+swap$ -- 4
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
-warning$ -- 0
-while$ -- 0
+type$ -- 22
+warning$ -- 4
+while$ -- 6
 width$ -- 0
-write$ -- 7
-(There was 1 error message)
+write$ -- 29
+(There were 4 warnings)
