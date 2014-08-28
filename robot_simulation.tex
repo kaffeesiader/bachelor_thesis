@@ -78,30 +78,64 @@ Groups of scene objects can be organized in collections and treated as one singl
 
 
 \section{Designing the simulation scene}
-This section explains in detail the structure of the simulation scene and the contained model components. Three types of robot models are used - the KUKA LWR3+ model, the Schunk SDH gripper model and the Kinect camera model. The arm and camera model are part of the V-Rep model browser but the gripper model had to be constructed from scratch.
+This section explains in detail the structure of the simulation scene and the contained model components. The setup contains three types of robot component - the Kuka LWR4+ robot arm, the Schunk SDH-2 gripper and the Kinect camera. For each one of them, a simulation model was required in order to be able to build up the scene. V-Rep ships with realistic and fully functional model for the Kuka arm and also for the Kinect camera. But as there is currently no model for the Schunk gripper available, it had to be created from scratch. The necessary steps of the modelling process are explained in the next section.
 
-\subsection{Modelling the Schunk SDH gripper}
+\subsection{Modelling the Schunk SDH-2 gripper}
 
-The gripper has three fingers. One of them is fixed around the z-axis and cannot be rotated. Two fingers can be rotated $90^\circ$ around the z-axis, but they are connected contrariwise. That means if one finger rotates to the left, the other one is rotated to the right for the same distance.
-The modelling process started with the search for suitable meshes for the rigid parts of the gripper. They have been found in the schunk\_description ROS package from the schunk\_sdh stack. Those meshes have been arranged according to the technical description. After placing the meshes the 8 joints have been added at the correct locations. It was important to determine the correct location and orientation for each single joint within the model to allow the correct movement of the fingers. This was achieved by using the shape edit mode and select the circle shaped area within the mesh, where the joint had to fit. From that selection a cylinder shape was extracted and the joint was then centered within this newly created cylinder. Those steps had to be repeated for all 8 joints. The placement process can be seen in Fig??? After placing all the joints and links within the scene, the model tree was adjusted to form the kinematic chain of the hand. The dynamic parameters of the joints were set according to the technical description. Those parameters include the joint limits, maximum velocity and maximum effort. As the root joints of the 2 fingers are connected, the setting of the second finger root is configured sightly different. The joint is operated in the 'dependent mode' and the dependency equation just mirrors the position of the connected joint.
+A model within a V-Rep simulation scene basically consists of three major parts. First there are the shapes that form the visual part of the model. Those shapes are triangle meshes for each single link of the robot component. Preferably they are not to complex, i.e. the amount of faces is not to high. The second part is formed by the joints that connect those shapes and allow to actuate the flexible parts of the model. The third part consists of the dynamically enabled parts of the model. Theese shapes form the body of the model, how it is seen by the physics engine. Those respondable parts are usually an approximation of the original meshes, composed from groups of primitive shapes. Those parts are very important as they make the model realistic and allow to interact with other respondable objects within the scene. Without them, the model would just move through other bodies as only respondable shapes are able to produce collision reactions. The steps, described within this section enclose the modelling of that three parts for the gripper model.\\
 
-The meshes only form the visual part of the model as they are to complex to be used for dynamics calculations. So the shape of each link had to be approximated by groups of pure shapes. This has been achieved by executing the following steps for each single part of the model:
+\begin{figure}[ht]
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/sdh_sheet.jpg}
+	\caption{Schunk SDH-2 gripper}
+	\label{fig:sdh_sheet}
+\end{figure}
+Figure\ref{fig:sdh_sheet} shows the Schunk SDH-2 hand. The gripper has 3 fingers, each one containing two modular joints. The joints located closer to the wrist are called the \emph{proximal} finger joints whereas the joints, actuating the finger tips are called the \emph{distal} finger joints. Two of the fingers can be rotated along their vertical axis but they are connected contrariwise. That means if one finger rotates to the left, the other one is rotated to the right for the same angle, actually adding one additional degree of freedom. Those two joints are called the \emph{pivoting} joints. The visual part of the hand model basically consists of 4 different shapes - the wrist, finger knuckles, finger links and finger tips. Suitable meshes were taken from the schunk\_description\footnote{http://wiki.ros.org/schunk\_description} ROS package and imported into the V-Rep robot editor. They have then been arranged according to the technical description. The next step was to insert and arrange the gripper joints on their appropriate places.
+\begin{figure}[t]
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/place_joint.jpg}
+	\caption{Placing a joint within the model}
+	\label{fig:place_jnt}
+\end{figure}
+Therefore it was important to determine the correct location and orientation for each single joint within the model to allow the correct movement of the fingers. This was achieved by using the \emph{shape edit mode} and select the cylinder shaped area within the mesh, where the joint has to fit. From that selection a cylinder was extracted and the joint was then centered within this newly created cylinder. Those steps had to be repeated for all 8 joints. The placement process can be seen in Figure\ref{fig:place_jnt}.
+\begin{figure}[b]
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/hand_tree.jpg}
+	\caption{Hierarchy of the gripper model}
+	\label{fig:hand_tree}
+\end{figure}
+The left image shows the extraction on the target area. On the right image, the joint is already placed on it's appropriate location.\\
 
-- within the shape edit mode extract parts of the mesh that could be approximated by a primitive
-  shape (cuboid, cylinder), by selecting suitable groups of vertices
-- extract the corresponding shape by using this V-Rep editor functionality
-- repeat those steps until the most important parts of the link are approximated that way
-- group those primitive shapes to treat them as one single object
-- adjust the dynamic parameters (mass, material settings, inertial matrix)
-- adjust the local respondable mask
-- give the group the same name as the corresponding mesh, but with the '\_respondable' suffix
-- remove the extracted shapes from the current visibility layer because they are just used for the
-  dynamics calculations
+After placing all the joints and links within the scene, the model tree was adjusted to form the kinematic chain of the hand as can be seen in Figure\ref{fig:hand_tree}. The dynamic parameters of the joints were set according to the technical description. Those parameters include the joint limits, maximum velocity and maximum effort. As the positions of the pivot joints are connected to each other, the configuration of the second finger's root joint looks sightly different. To achieve this mirroring behaviour the joint is operated in the \emph{dependent mode}, which means it's position \emph{depends} on the position of a connected joint and that dependency is expressed as \emph{dependency equation}. The configured equation just copies the actual position but the joint is operated in opposite rotational direction.\\
 
-The extraction process is visualized in Fig???
-Dynamic parameters like mass and inertial matrix have been provided by Alex Rietzler. The predefined 'highFrictionMaterial' setting was used for each single part of the finger because that showed better results when picking up objects later on.
+The meshes only form the visual part of the model, but they are to complex to be used for dynamics calculations. So the shape of each link had to be approximated by groups of primitive shapes. This was achieved by executing the following steps for each single part of the model:
+\begin{itemize}
+\item
+Within shape edit mode locate parts of the mesh that could be approximated by a primitive shape (cuboid, cylinder), by selecting suitable groups of vertices
+\item
+Extract the primitive shape by using the corresponding editor functionality
+\item
+Repeat those steps until the most important parts of the link are approximated that way
+\item
+Group those primitive shapes to treat them as one single object
+\item
+Adjust the dynamic parameters (mass, material settings, inertial matrix)
+\item
+Adjust the local respondable mask
+\item
+Give the group the same name as the corresponding mesh, but with the \emph{\_res} suffix
+\item
+Remove the extracted shapes from the current visibility layer because they are just used for dynamics calculations
+\end{itemize}
+\begin{figure}[ht]
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/extract_pure_shapes.jpg}
+	\caption{Process of approximating the original mesh with pure shapes}
+	\label{fig:ex_pure_shape}
+\end{figure}
+The extraction process is visualized in Figure\ref{fig:ex_pure_shape}. Dynamic parameters like mass and inertial matrix have been provided by Alex Rietzler. The predefined \emph{highFrictionMaterial} setting was used for each single part of the finger because that showed better results when picking up objects later on.\\
 
-The last steps of the modelling process were the adjustment of the model hierarchy. The root element is he respondable part of the wrist which is also defined as the model base. It is important to follow the V-Rep guidelines for designing dynamic simulations because if the hierarchy is wrong, the model will simply fall apart when starting the simulation (see corresponding chapter in the documentation for more information). Each non-static and respondable shape has to be connected to it's parent by a joint or a force sensor. The visual part of the link is always a child object of the corresponding respondable. That way, the kinematic chain of the gripper is formed.(TODO: insert images!!!)
+The last step of the modelling process was the adjustment of the model hierarchy. Root element of the hand model is the respondable part of the wrist which is also the dedicated model base. It is very important to follow the V-Rep guidelines for designing dynamic simulations because if the hierarchy is wrong, the model will simply fall apart when starting the simulation (detailed information can be found in the corresponding chapter\footnote{http://www.coppeliarobotics.com/helpFiles/en/designingDynamicSimulations.htm} of the V-Rep dodumentation). Each non-static and respondable shape has to be connected to it's parent by a joint or a force sensor. The visual part of the link is always a child object of it's corresponding respondable. That way, the kinematic chain of the gripper is formed.
 
 
 \subsection{Putting the pieces together}

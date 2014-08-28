@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  27 AUG 2014 08:58
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  28 AUG 2014 09:01
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -406,7 +406,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 ]
 (./introduction.tex
 Chapter 1.
-<images/robot_setup.jpg, id=275, 3276.24pt x 2457.18pt>
+<images/robot_setup.jpg, id=283, 3276.24pt x 2457.18pt>
 File: images/robot_setup.jpg Graphic file (type jpg)
 
 <use images/robot_setup.jpg>
@@ -433,7 +433,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 55--56
 
  []
 
-[7] [8] [9] [10] [11] [12] [13]) (./pick_place_tasks.tex [14] [15] [16
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
+ []
+
+[8] <images/sdh_sheet.jpg, id=342, 691.83469pt x 482.55281pt>
+File: images/sdh_sheet.jpg Graphic file (type jpg)
+
+<use images/sdh_sheet.jpg>
+<images/place_joint.jpg, id=345, 483.57846pt x 179.70493pt>
+File: images/place_joint.jpg Graphic file (type jpg)
+
+<use images/place_joint.jpg>
+<images/hand_tree.jpg, id=347, 911.405pt x 331.2375pt>
+File: images/hand_tree.jpg Graphic file (type jpg)
+
+<use images/hand_tree.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 93--108
+
+ []
+
+
+Underfull \vbox (badness 1466) has occurred while \output is active []
+
+ [9 <./images/sdh_sheet.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+
+ []
+
+[10 <./images/place_joint.jpg> <./images/hand_tree.jpg>]
+<images/extract_pure_shapes.jpg, id=358, 570.64198pt x 243.24432pt>
+File: images/extract_pure_shapes.jpg Graphic file (type jpg)
+
+<use images/extract_pure_shapes.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
+
+ []
+
+[11 <./images/extract_pure_shapes.jpg>] [12] [13] [14] [15] [16])
+(./pick_place_tasks.tex [17] [18
 
 ]
 Chapter 3.
@@ -447,20 +486,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
-[17]
+[19]
 Underfull \hbox (badness 10000) in paragraph at lines 18--19
 
  []
 
-<images/pickup.jpg, id=375, 568.94437pt x 327.15514pt>
+<images/pickup.jpg, id=401, 568.94437pt x 327.15514pt>
 File: images/pickup.jpg Graphic file (type jpg)
  <use images/pickup.jpg>
 Underfull \hbox (badness 10000) in paragraph at lines 29--30
 
  []
 
-[18 <./images/pickup.jpg>]
-<images/placement.jpg, id=381, 568.94437pt x 327.15514pt>
+[20 <./images/pickup.jpg>]
+<images/placement.jpg, id=407, 568.94437pt x 327.15514pt>
 File: images/placement.jpg Graphic file (type jpg)
 
 <use images/placement.jpg>
@@ -473,56 +512,55 @@ Underfull \hbox (badness 10000) in paragraph at lines 51--52
 
  []
 
-[19 <./images/placement.jpg>]
+[21 <./images/placement.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
 
-[20]
+[22]
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 69.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<images/task_env.png, id=391, 979.40906pt x 560.0925pt>
+<images/task_env.png, id=417, 979.40906pt x 560.0925pt>
 File: images/task_env.png Graphic file (type png)
 
-<use images/task_env.png> [21 <./images/task_env.png (PNG copy)>]
-<images/grasp_stages.jpg, id=397, 1402.23875pt x 371.3875pt>
+<use images/task_env.png> [23 <./images/task_env.png (PNG copy)>]
+<images/grasp_stages.jpg, id=424, 1402.23875pt x 371.3875pt>
 File: images/grasp_stages.jpg Graphic file (type jpg)
 
-<use images/grasp_stages.jpg> [22 <./images/grasp_stages.jpg>]
-<images/place_stages.jpg, id=402, 2040.62375pt x 482.80376pt>
+<use images/grasp_stages.jpg> [24 <./images/grasp_stages.jpg>]
+<images/place_stages.jpg, id=429, 2040.62375pt x 482.80376pt>
 File: images/place_stages.jpg Graphic file (type jpg)
 
-<use images/place_stages.jpg> [23 <./images/place_stages.jpg>]) [24]
-(./thesis.bbl) [25
+<use images/place_stages.jpg> [25 <./images/place_stages.jpg>]) [26]
+(./thesis.bbl) [27
 
 
 ] (./thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 6821 strings out of 495061
- 96560 string characters out of 1182621
- 171336 words of memory out of 3000000
- 9752 multiletter control sequences out of 15000+50000
+ 6853 strings out of 495061
+ 97210 string characters out of 1182621
+ 171588 words of memory out of 3000000
+ 9772 multiletter control sequences out of 15000+50000
  80617 words of font info for 52 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,9n,41p,2288b,370s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/te
-xmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm
-.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}</usr/share/texmf/fonts
-/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb>
-</usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type
-1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/sh
-are/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/l
-m/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf
-/fonts/type1/public/lm/lmro10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss1
-2.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/font
-s/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.p
-fb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/ty
-pe1/public/lm/lmtt10.pfb>
-Output written on thesis.pdf (39 pages, 3282396 bytes).
+xmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ma
+thit.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/f
+onts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.
+pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/
+share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public
+/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/l
+mss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texm
+f/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt
+10.pfb>
+Output written on thesis.pdf (41 pages, 3902331 bytes).
 PDF statistics:
- 494 PDF objects out of 1000 (max. 8388607)
- 97 named destinations out of 1000 (max. 500000)
- 324 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 516 PDF objects out of 1000 (max. 8388607)
+ 105 named destinations out of 1000 (max. 500000)
+ 344 words of extra memory for PDF output out of 10000 (max. 10000000)
 

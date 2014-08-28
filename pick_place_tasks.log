@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  21 AUG 2014 16:08
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  27 AUG 2014 13:50
 entering extended mode
  %&-line parsing enabled.
 **pick_place_tasks.tex
@@ -3779,7 +3779,7 @@ Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
 <write> ...eference `fig:pickup' on page \thepage 
                                                   \space undefined\on@line .
-l.20 ...tolerated any more. Figure\ref{fig:pickup}
+l.20 ...olerated any more. Figure \ref{fig:pickup}
                                                    shows the stages of the p...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3975,7 +3975,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.25 	\caption
-              {Stages of the placement phase in the simulator}
+              {Stages of the pickup phase in the simulator}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -3991,14 +3991,11 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no p in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no a in font nullfont!
+Missing character: There is no i in font nullfont!
 Missing character: There is no c in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no p in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no a in font nullfont!
@@ -4999,7 +4996,7 @@ Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
 <write> ...rence `fig:placement' on page \thepage 
                                                   \space undefined\on@line .
-l.33 ...e can be seen in Figure\ref{fig:placement}
+l.33 ... can be seen in Figure \ref{fig:placement}
                                                   .
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5080,7 +5077,7 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no ] in font nullfont!
 ! Undefined control sequence.
 l.37   	\includegraphics
-                        [width=0.75\textwidth]{images/pickup.jpg}
+                        [width=0.75\textwidth]{images/placement.jpg}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -5102,7 +5099,7 @@ Missing character: There is no 5 in font nullfont!
 <to be read again> 
                    ]
 l.37   	\includegraphics[width=0.75\textwidth]
-                                              {images/pickup.jpg}
+                                              {images/placement.jpg}
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
@@ -5111,7 +5108,7 @@ look up `weird error' in the index to The TeXbook.)
 <to be read again> 
                    ]
 l.37   	\includegraphics[width=0.75\textwidth]
-                                              {images/pickup.jpg}
+                                              {images/placement.jpg}
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
 I'll assume that you meant to say pt, for printer's points.
@@ -5128,11 +5125,14 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no / in font nullfont!
 Missing character: There is no p in font nullfont!
-Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
 Missing character: There is no c in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no . in font nullfont!
 Missing character: There is no j in font nullfont!
 Missing character: There is no p in font nullfont!

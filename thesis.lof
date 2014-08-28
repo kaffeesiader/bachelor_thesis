@@ -1,9 +1,13 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Current setup in the IIS-Lab TODO: provide more recent image}}{2}{figure.1.1}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Schunk SDH-2 gripper}}{9}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Placing a joint within the model}}{10}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Hierarchy of the gripper model}}{10}{figure.2.3}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Process of approximating the original mesh with pure shapes}}{11}{figure.2.4}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Stages of the pickup phase in the simulator}}{18}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Stages of the placement phase in the simulator}}{19}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Planning scene after inserting the collision objects}}{21}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Grasp poses, gripper approach and retreat}}{22}{figure.3.4}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Place locations, pre-place approach and post-place retreat}}{23}{figure.3.5}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Stages of the pickup phase in the simulator}}{20}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Stages of the placement phase in the simulator}}{21}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Planning scene after inserting the collision objects}}{23}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Grasp poses, gripper approach and retreat}}{24}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Place locations, pre-place approach and post-place retreat}}{25}{figure.3.5}

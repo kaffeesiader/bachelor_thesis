@@ -37,40 +37,48 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}The Virtual Robot Experimentation Platform(V-Rep)}{6}{section.2.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Dynamic simulations in V-REP}{7}{section.2.3}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Designing the simulation scene}{8}{section.2.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Modelling the Schunk SDH gripper}{8}{subsection.2.4.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Putting the pieces together}{9}{subsection.2.4.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Configuring the collision detection module}{10}{subsection.2.4.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Configuring the IK calculation module}{11}{subsection.2.4.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.5}Implementation of the ROS control interface}{11}{section.2.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Overview}{11}{subsection.2.5.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Plugin Architecture}{12}{subsection.2.5.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}Identifying simulation components in the scene}{14}{subsection.2.5.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.4}Creating startup launch file}{14}{subsection.2.5.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.5}Documentation and usage examples}{15}{subsection.2.5.5}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Pick and place}{17}{chapter.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Modelling the Schunk SDH-2 gripper}{9}{subsection.2.4.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Schunk SDH-2 gripper}}{9}{figure.2.1}}
+\newlabel{fig:sdh_sheet}{{2.1}{9}{Schunk SDH-2 gripper\relax }{figure.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Placing a joint within the model}}{10}{figure.2.2}}
+\newlabel{fig:place_jnt}{{2.2}{10}{Placing a joint within the model\relax }{figure.2.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Hierarchy of the gripper model}}{10}{figure.2.3}}
+\newlabel{fig:hand_tree}{{2.3}{10}{Hierarchy of the gripper model\relax }{figure.2.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Process of approximating the original mesh with pure shapes}}{11}{figure.2.4}}
+\newlabel{fig:ex_pure_shape}{{2.4}{11}{Process of approximating the original mesh with pure shapes\relax }{figure.2.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Putting the pieces together}{12}{subsection.2.4.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Configuring the collision detection module}{12}{subsection.2.4.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Configuring the IK calculation module}{13}{subsection.2.4.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Implementation of the ROS control interface}{14}{section.2.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Overview}{14}{subsection.2.5.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Plugin Architecture}{14}{subsection.2.5.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}Identifying simulation components in the scene}{16}{subsection.2.5.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.4}Creating startup launch file}{17}{subsection.2.5.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.5}Documentation and usage examples}{17}{subsection.2.5.5}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Pick and place}{19}{chapter.3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chap:pick_place}{{3}{17}{Pick and place\relax }{chapter.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Overview}{17}{section.3.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Stages of the pickup phase in the simulator}}{18}{figure.3.1}}
-\newlabel{fig:pickup}{{3.1}{18}{Stages of the pickup phase in the simulator\relax }{figure.3.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Stages of the placement phase in the simulator}}{19}{figure.3.2}}
-\newlabel{fig:placement}{{3.2}{19}{Stages of the placement phase in the simulator\relax }{figure.3.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Pick and place tasks in MoveIt}{19}{section.3.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Implementation of the benchmark task}{20}{section.3.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Creating the environment}{21}{subsection.3.3.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Planning scene after inserting the collision objects}}{21}{figure.3.3}}
-\newlabel{fig:task_env}{{3.3}{21}{Planning scene after inserting the collision objects\relax }{figure.3.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Generating possible grasps}{21}{subsection.3.3.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Grasp poses, gripper approach and retreat}}{22}{figure.3.4}}
-\newlabel{fig:grasp_stages}{{3.4}{22}{Grasp poses, gripper approach and retreat\relax }{figure.3.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Planning and executing the pickup}{22}{subsection.3.3.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}Planning and executing the placement}{22}{subsection.3.3.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Place locations, pre-place approach and post-place retreat}}{23}{figure.3.5}}
-\newlabel{fig:place_stages}{{3.5}{23}{Place locations, pre-place approach and post-place retreat\relax }{figure.3.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Executing the benchmark task}{23}{section.3.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Observations}{24}{section.3.5}}
+\newlabel{chap:pick_place}{{3}{19}{Pick and place\relax }{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Overview}{19}{section.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Stages of the pickup phase in the simulator}}{20}{figure.3.1}}
+\newlabel{fig:pickup}{{3.1}{20}{Stages of the pickup phase in the simulator\relax }{figure.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Stages of the placement phase in the simulator}}{21}{figure.3.2}}
+\newlabel{fig:placement}{{3.2}{21}{Stages of the placement phase in the simulator\relax }{figure.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Pick and place tasks in MoveIt}{21}{section.3.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Implementation of the benchmark task}{22}{section.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Creating the environment}{23}{subsection.3.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Planning scene after inserting the collision objects}}{23}{figure.3.3}}
+\newlabel{fig:task_env}{{3.3}{23}{Planning scene after inserting the collision objects\relax }{figure.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Generating possible grasps}{23}{subsection.3.3.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Grasp poses, gripper approach and retreat}}{24}{figure.3.4}}
+\newlabel{fig:grasp_stages}{{3.4}{24}{Grasp poses, gripper approach and retreat\relax }{figure.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Planning and executing the pickup}{24}{subsection.3.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}Planning and executing the placement}{24}{subsection.3.3.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Place locations, pre-place approach and post-place retreat}}{25}{figure.3.5}}
+\newlabel{fig:place_stages}{{3.5}{25}{Place locations, pre-place approach and post-place retreat\relax }{figure.3.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Executing the benchmark task}{25}{section.3.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Observations}{26}{section.3.5}}
 \bibdata{refs}
 \bibcite{freese2013}{{1}{}{{Freese et~al.}}{{Freese, Singh, Ozaki, and Matsuhira}}}
 \bibcite{quigley2009}{{2}{2009}{{Quigley et~al.}}{{Quigley, Conley, Gerkey, Faust, Foote, Leibs, Wheeler, and Ng}}}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{25}{section*.10}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{27}{section*.10}}
