@@ -58,7 +58,7 @@ Each simulation scene in V-Rep is composed from a number of models that are arra
 
 \begin{itemize}
 \item \textbf{Shape} \\
-A shape is a 3 dimensional body. Shapes represent the visual parts as well as the dynamically enabled parts of the scene. It is necessary to distinguish between primitive shapes (Cylinder, Cuboid, Sphere, Plane and Disk) and complex shapes (triangle meshes). Primitive shapes are much easier to handle for the physics engine as there can happen a lot of optimization during dynamics calculations. Complex shapes usually look better and therefore they are used mainly as the visual part of the model but also by the collision detection module. Various shapes can be combined to groups and therefore treated as one single object. Shapes can be defined as \emph{static} or \emph{non-static} objects. The position of a static object is fixed relative to it's parent node within the scene hierarchy and will not change during simulation. Non-static objects underlie gravity and will fall down if they are not constrained by a dynamically enabled joint or a force sensor connection. It is also necessary to distinguish between \emph{respondable} and \emph{non-respondable} shapes. Respondable shapes have a clearly defined mass and moment of inertia and therefore they create collision reactions when colliding with other respondable objects during simulation. Only respondable shapes are considered during dynamics calculation. Usually a model in V-Rep is composed of a visual part, consisting of complex shapes and a hidden part, consisting of groups of primitive shapes that are configured to be used for the dynamics calculations. This issue will be covered again when explaining the creation of the hand model.
+A shape is a 3 dimensional body. Shapes represent the visual parts as well as the dynamically enabled parts of the scene. It is necessary to distinguish between primitive shapes (Cylinder, Cuboid, Sphere, Plane and Disk) and complex shapes (triangle meshes). Primitive shapes are much easier to handle for the physics engine as there can happen a lot of optimization during dynamics calculations. Complex shapes usually look better and therefore they are used mainly as the visual part of the model but also by the collision detection module. Various shapes can be combined to groups and therefore treated as one single object. Shapes can be defined as \emph{static} or \emph{non-static} objects. The position of a static object is fixed relative to it's parent node within the scene hierarchy and will not change during simulation. Non-static objects underlie gravity and will fall down if they are not constrained by a dynamically enabled joint or a force sensor connection. It is also necessary to distinguish between \emph{respondable} and \emph{non-respondable} shapes. Respondable shapes have a clearly defined mass and moment of inertia and therefore they create collision reactions when colliding with other respondable objects during simulation. Only respondable shapes are considered during dynamics calculation. Usually a model in V-Rep is composed of a visual part, consisting of complex shapes and a hidden part, consisting of groups of primitive shapes that are configured to be used for the dynamics calculations. This issue will be covered again when explaining the creation of the hand model. Each shape also has some additional flags, defining special attributes used by the \emph{calculation modules}. The \emph{collidable} attribute states that a shape has to be considered during collision detection. The \emph{renderable} flag marks a shape to be recognized by a \emph{vision sensor}. There are more flags available but only those two were used within this project.
 
 \item \textbf{Joint} \\
 A joint is a flexible connection between two rigid parts of a robot. It has to be distinguished between revolute or prismatic joints with one degree of freedom and spherical joints with three degrees of freedom. In the arm and hand model only revolute joints are used. Joints can be passive or actuated by a motor. The motor settings include maximum force or torque and velocity limits. If the control loop is enabled then a desired target position for the joint can be set. The controller will then try to reach this position, based on it's PID settings while respecting the motor limits. It would also be possible to program a custom control loop for each joint but for the current project this is not necessary. Joints can be operated in various different modes. A joint in \emph{torque/force mode} is simulated, using the physics engine. This is the most realistic control mode. A joint in \emph{inverse kinematics mode} is controlled by the inverse kinematics calculation module and if additionally the option \emph{hybrid operation} is selected then the dynamic parameters of the joint are also taken into account. Operating a joint in \emph{dependent mode} means that it's position depends on the position of another joint within the scene. How this dependency looks like can be configured by setting a \emph{dependency equation}.
@@ -90,20 +90,25 @@ A model within a V-Rep simulation scene basically consists of three major parts.
 	\caption{Schunk SDH-2 gripper}
 	\label{fig:sdh_sheet}
 \end{figure}
-Figure\ref{fig:sdh_sheet} shows the Schunk SDH-2 hand. The gripper has 3 fingers, each one containing two modular joints. The joints located closer to the wrist are called the \emph{proximal} finger joints whereas the joints, actuating the finger tips are called the \emph{distal} finger joints. Two of the fingers can be rotated along their vertical axis but they are connected contrariwise. That means if one finger rotates to the left, the other one is rotated to the right for the same angle, actually adding one additional degree of freedom. Those two joints are called the \emph{pivoting} joints. The visual part of the hand model basically consists of 4 different shapes - the wrist, finger knuckles, finger links and finger tips. Suitable meshes were taken from the schunk\_description\footnote{http://wiki.ros.org/schunk\_description} ROS package and imported into the V-Rep robot editor. They have then been arranged according to the technical description. The next step was to insert and arrange the gripper joints on their appropriate places.
+
+Figure\ref{fig:sdh_sheet} shows the Schunk SDH-2 hand. The gripper has 3 fingers, each one containing two modular joints. The joints located closer to the wrist are called the \emph{proximal} finger joints whereas the joints, actuating the finger tips are called the \emph{distal} finger joints. Two of the fingers can be rotated along their vertical axis but they are connected contrariwise. That means if one finger rotates to the left, the other one is rotated to the right for the same angle, actually adding one additional degree of freedom. Those two joints are called the \emph{pivoting} joints. The visual part of the hand model basically consists of 4 different shapes - the wrist, finger knuckles, finger links and finger tips. Suitable meshes were taken from the schunk\_description\footnote{http://wiki.ros.org/schunk\_description} ROS package and imported into the V-Rep robot editor. They have then been arranged according to the technical description. The next step was to insert and arrange the gripper joints on their appropriate locations.
+
 \begin{figure}[t]
 	\centering
   	\includegraphics[width=1.0\textwidth]{images/place_joint.jpg}
 	\caption{Placing a joint within the model}
 	\label{fig:place_jnt}
 \end{figure}
-Therefore it was important to determine the correct location and orientation for each single joint within the model to allow the correct movement of the fingers. This was achieved by using the \emph{shape edit mode} and select the cylinder shaped area within the mesh, where the joint has to fit. From that selection a cylinder was extracted and the joint was then centered within this newly created cylinder. Those steps had to be repeated for all 8 joints. The placement process can be seen in Figure\ref{fig:place_jnt}.
+
+Therefore it was important to determine the correct position and orientation for each single joint within the model to allow the correct movement of the fingers. This was achieved by using the \emph{shape edit mode} and select the cylinder shaped area within the mesh, where the joint has to fit. From that selection a cylinder was extracted and the joint was then centred within this newly created cylinder. Those steps had to be repeated for all 8 joints. The placement process can be seen in Figure\ref{fig:place_jnt}.
+
 \begin{figure}[b]
 	\centering
   	\includegraphics[width=1.0\textwidth]{images/hand_tree.jpg}
-	\caption{Hierarchy of the gripper model}
+	\caption{Kinematic chain of the Schunk gripper}
 	\label{fig:hand_tree}
 \end{figure}
+
 The left image shows the extraction on the target area. On the right image, the joint is already placed on it's appropriate location.\\
 
 After placing all the joints and links within the scene, the model tree was adjusted to form the kinematic chain of the hand as can be seen in Figure\ref{fig:hand_tree}. The dynamic parameters of the joints were set according to the technical description. Those parameters include the joint limits, maximum velocity and maximum effort. As the positions of the pivot joints are connected to each other, the configuration of the second finger's root joint looks sightly different. To achieve this mirroring behaviour the joint is operated in the \emph{dependent mode}, which means it's position \emph{depends} on the position of a connected joint and that dependency is expressed as \emph{dependency equation}. The configured equation just copies the actual position but the joint is operated in opposite rotational direction.\\
@@ -138,44 +143,59 @@ The extraction process is visualized in Figure\ref{fig:ex_pure_shape}. Dynamic p
 The last step of the modelling process was the adjustment of the model hierarchy. Root element of the hand model is the respondable part of the wrist which is also the dedicated model base. It is very important to follow the V-Rep guidelines for designing dynamic simulations because if the hierarchy is wrong, the model will simply fall apart when starting the simulation (detailed information can be found in the corresponding chapter\footnote{http://www.coppeliarobotics.com/helpFiles/en/designingDynamicSimulations.htm} of the V-Rep dodumentation). Each non-static and respondable shape has to be connected to it's parent by a joint or a force sensor. The visual part of the link is always a child object of it's corresponding respondable. That way, the kinematic chain of the gripper is formed.
 
 
-\subsection{Putting the pieces together}
+\subsection{Assembling the scene}
 
-After finishing the modelling process of the gripper each necessary component was available to build up the simulation scene. Alex Rietzler had already created a mesh for the robot torso which was ready to use. The two robot arms where taken from the model browser and inserted into the scene. A dummy was placed at the bottom of each arm which will be used as the origin of the arms private reference frame. The exact translation of each arm was also already available so it had just to be configured. The grippers were placed on the tip of each arm. The correct rotation and offset was measured on the real counterpart and then configured accordingly. 
+\begin{figure}[ht]
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/simulation_scene.jpg}
+	\caption{Structure of the V-Rep simulation scene}
+	\label{fig:sim_scene}
+\end{figure}
 
-The plate and the legs of the table are modelled as group of primitive cuboids in the correct size. The table was defined as respondable, which means it will produce a collision reaction if a robot component collides with it. But as it is a static object it will not show a reaction to such a collision because it's position is fixed within the scene. The chosen material setting is also the 'highFrictionMaterial' but that can easily be changed by modifying the dynamic properties of the table plate.
+After finishing the gripper modelling process, each necessary component was available to build up the simulation scene as can be seen in Figure\ref{fig:sim_scene}. The final scene consists of a model of the robot's torso, two KUKA LWR4+ arm models with attached grippers and a model of the table in front of the robot. The origin of the world reference frame is located on the upper left side of the table, indicated by a slightly green shimmering sphere. A dummy object called \emph{ref\_frame\_origin} was placed at that location. Each position calculation later on will happen relative to that dummy element. If it is necessary to move the origin to another location within the workspace, this can simply be achieved by just moving that dummy to the required location. The position and orientation of the torso, the table and the two arms are set relative to the world reference frame. (TODO: transformation was provided - how was it achieved?). The grippers were placed on the tip of each arm. Within the scene hierarchy they are child elements of the last node in the corresponding arm tree. The correct rotation and offset was measured on the real counterpart and then adjusted accordingly. \\
 
-The kinect camera model was also taken from the model browser. As it's position and orientation in the real world is not fixed and might change from time to time, it's position within the simulation scene is only an approximation to reflect the real world setting as good as possible. In the vision sensor settings, the option 'Ignore RGB info' was selected. A vision sensor usually produces two images, namely a color image and a depth image on each simulation pass. This generation process slows down the simulation and therefore skipping one of the two images brings a speedup.
+The plate and the legs of the table were modelled as group of primitive cuboids. The table is defined as respondable to ensure that it will produce a collision reaction if a robot component collides with it. But as it is a static object it's position will not be influenced by such a collision because it is fixed within the scene. The material setting is set to \emph{highFrictionMaterial}. \\
 
-The origin of the overall reference frame is located on the upper left side of the table, indicated by a slightly green shimmering sphere. The position and orientation of the torso, the table and the two arms was were configured relative to this reference frame. A dummy object called 'ref\_frame\_origin' was placed at that location. Each position calculation later on will happen relative to that dummy. If it is necessary to move the origin to another location within the workspace this can simply be achieved by just moving that dummy to the required location.
+The Kinect camera model was also taken from the model browser. As it's position and orientation in the real world is not fixed and might change from time to time, it's position within the simulation scene is just an approximation to reflect the real world setting as good as possible. 
 
+\subsection{Configuring the collision detection module\footnote{http://www.coppeliarobotics.com/helpFiles/en/collisionDetection.htm}}
 
+One of the requirements to the final solution is the ability to detect and visualize possible accidental collisions of the simulated robot with itself or it's environment. Moreover it would be a convenient feature to have some kind of warning if some of the robot's parts come dangerously close to an obstacle during movement. This could be achieved by using a padded version of the robot model for additional collision checking.
+ 
 
-\subsection{Configuring the collision detection module}
+ These considerations led to two different types of possible collisions. \emph{Soft collisions} are collisions, detected using an enlarged version of the robot model. They just indicate a warning that the robot comes very close to an object it is not allowed to collide with. \emph{Hard collisions} mean that a robot component directly hits another collidable object. This would be also a collision in the real world. The simulator should be able to distinguish cleanly between those two types of collisions.\\ 
 
-The solution should be able to detect and visualize possible accidental collisions of one of the robot components with their environment. It would also be good to have some kind of warning if one of the robot components comes dangerously close to an obstacle during a movement. Therefore a so called 'collision shield' is modelled around the two robot arms, to detect if the arm comes closer than approximately 5cm to an obstacle. To achieve that functionality, for each single link another shape had to be modelled that is slightly larger than the corresponding link and that only purpose is to be checked for collisions. The modelling process started at the second link of each robot arm and on each link the following steps had to be performed:
+The goal was achieved by using V-Rep's \emph{collision detection module}. This calculation module can be used to detect and visualize all kinds of collisions within the simulation scene. The first necessary step of the configuration process was to create the \emph{collision shield} - a collection, consisting of enlarged copies of the robot links. Therefore it was necessary to model an additional shape for each link that is slightly larger than the original one. This modelling process started at the second link of each robot arm and on all subsequent links the following steps had to be performed:
 
-- Copy the visible part of the robot link
-- Morph the copied object into a group of convex shapes (V-Rep editor functionality)
-- Ungroup the resulting shape and merge it into one single shape
-- Grow the resulting shape in x and y direction of it's own reference frame to receive a mesh that
-  is approximately 10cm larger than the original mesh but has the same height.
-- Adjust the outside color to make it green and nearly transparent
-- Rename the shape to the same name as the original shape, with the '\_col' suffix 
-- Make the new shape a sibling to the original one within the model tree
-- Define the new shape to be static and non-respondable.
-- Disable the 'collidable' flag on the shape. This behaviour will be overridden in the collection
-  settings later on when configuring the collision detection module
+\begin{itemize}
 
-The modelling process is visualized in Fig???.
+\item
+Create a copy of the shape that forms the visible part of the robot link
+\item
+Morph the copied object into a group of convex shapes to reduce complexity. This can be done by using the corresponding shape editor functionality.
+\item
+Ungroup the resulting group of shapes and merge them into one single shape
+\item
+Grow the resulting shape, but only in x and y direction of it's own reference frame. The resulting mesh should be approximately 10cm larger while still having the same height.
+\item
+Adjust the outside color to make it green and nearly transparent. The collision shield should be visible but not completely occlude the original model.
+\item
+Rename the shape to the same name as the original one but add the '\_col' suffix to be be able to easily identify it within the model hierarchy.
+\item
+Make the new shape a sibling of the original one within the model tree
+\item
+Adjust the shape object properties. Define the new shape to be \emph{static} and \emph{non-respondable}.
+\item
+Disable the \emph{collidable} flag on the shape. This behaviour will be overridden in the collection
+settings later on when configuring the collision detection module.
 
-Basically there are two different types of possible collisions:
+\end{itemize}
 
-- Soft collision - the collision shield hits another collidable object 
-  (no direct collision - only a collision warning)
-- Hard collision - a robot component directly hits another collidable object. This would also
-  be a collision in real world.
+This modelling process is visualized in Fig???.\\
 
-The solution should be able to distinguish clearly between those two types of collisions. Therefore a number of so called collision objects have to be configured within V-Rep's collision detection module. Each collision objects checks for collisions between a collider against a collidee. Collider and collidee are single shapes or collections of shapes with the collidable flag set. For each arm two collision objects have to be set up - one for each collision type. The configuration is explained for the left arm but the steps for the right arm are similar. The first collision object is named 'left\_arm'. The collider is the collection called 'leftArm'. This collection contains the whole sub tree of the left arm, including the gripper, but excluding the elements of the left collision shield. The collidee are all other collidable entities within the scene. This collision object detects the hard collisions. This also makes clear, why the collidable flag is disabled on the parts of the collision shield because otherwise collisions with the shield would also be detected which would not be correct. The second collision object is called `left\_armShield'. The collider is the collection called `leftArmShield'. This collection is composed of the parts of the left collision shield and the whole subtree of the left gripper. This collection is defined to override the value of the collidable flag of the contained elements - this is important because as previously mentioned, the elements of the collision shield are defined as not collidable. The collidee of the current collision object is the collection called `exLeftArmShield'. This collection simply contains all other scene objects except those contained in the left arm's subtree. As mentioned before, the same configuration steps happened for the right arm. All collision objects are defined not to be handled explicitly. This means that V-Rep does not check for collisions automatically in each simulation pass. It has to be done manually and will be explained later on in the section about the control interface implementation. 
+The next step was to adjust the configuration of the \emph{collision detection module}.
+
+. Therefore a number of so called collision objects have to be configured within V-Rep's collision detection module. Each collision objects checks for collisions between a collider against a collidee. Collider and collidee are single shapes or collections of shapes with the collidable flag set. For each arm two collision objects have to be set up - one for each collision type. The configuration is explained for the left arm but the steps for the right arm are similar. The first collision object is named 'left\_arm'. The collider is the collection called 'leftArm'. This collection contains the whole sub tree of the left arm, including the gripper, but excluding the elements of the left collision shield. The collidee are all other collidable entities within the scene. This collision object detects the hard collisions. This also makes clear, why the collidable flag is disabled on the parts of the collision shield because otherwise collisions with the shield would also be detected which would not be correct. The second collision object is called `left\_armShield'. The collider is the collection called `leftArmShield'. This collection is composed of the parts of the left collision shield and the whole subtree of the left gripper. This collection is defined to override the value of the collidable flag of the contained elements - this is important because as previously mentioned, the elements of the collision shield are defined as not collidable. The collidee of the current collision object is the collection called `exLeftArmShield'. This collection simply contains all other scene objects except those contained in the left arm's subtree. As mentioned before, the same configuration steps happened for the right arm. All collision objects are defined not to be handled explicitly. This means that V-Rep does not check for collisions automatically in each simulation pass. It has to be done manually and will be explained later on in the section about the control interface implementation. 
 
 \subsection{Configuring the IK calculation module}
 

@@ -3,8 +3,9 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Schunk SDH-2 gripper}}{9}{figure.2.1}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Placing a joint within the model}}{10}{figure.2.2}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Hierarchy of the gripper model}}{10}{figure.2.3}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Kinematic chain of the Schunk gripper}}{10}{figure.2.3}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Process of approximating the original mesh with pure shapes}}{11}{figure.2.4}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Structure of the V-Rep simulation scene}}{12}{figure.2.5}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Stages of the pickup phase in the simulator}}{20}{figure.3.1}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Stages of the placement phase in the simulator}}{21}{figure.3.2}

@@ -14,7 +14,7 @@
 \BOOKMARK [1][-]{section.2.3}{Dynamic simulations in V-REP}{chapter.2}
 \BOOKMARK [1][-]{section.2.4}{Designing the simulation scene}{chapter.2}
 \BOOKMARK [2][-]{subsection.2.4.1}{Modelling the Schunk SDH-2 gripper}{section.2.4}
-\BOOKMARK [2][-]{subsection.2.4.2}{Putting the pieces together}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.2}{Assembling the scene}{section.2.4}
 \BOOKMARK [2][-]{subsection.2.4.3}{Configuring the collision detection module}{section.2.4}
 \BOOKMARK [2][-]{subsection.2.4.4}{Configuring the IK calculation module}{section.2.4}
 \BOOKMARK [1][-]{section.2.5}{Implementation of the ROS control interface}{chapter.2}
