@@ -74,7 +74,7 @@ Dummies are the simplest scene objects at all but they provide some important fu
 
 \end{itemize}
 
-Groups of scene objects can be organized in collections and treated as one single entity. Collections play an important role in the collision detection module.
+Groups of scene objects can be organized in \emph{collections} and treated as one single entity. Collections play an important role in the collision detection module.
 
 
 \section{Designing the simulation scene}
@@ -158,14 +158,20 @@ The plate and the legs of the table were modelled as group of primitive cuboids.
 
 The Kinect camera model was also taken from the model browser. As it's position and orientation in the real world is not fixed and might change from time to time, it's position within the simulation scene is just an approximation to reflect the real world setting as good as possible. 
 
-\subsection{Configuring the collision detection module\footnote{http://www.coppeliarobotics.com/helpFiles/en/collisionDetection.htm}}
+\subsection{Configuring the collision detection module}
 
-One of the requirements to the final solution is the ability to detect and visualize possible accidental collisions of the simulated robot with itself or it's environment. Moreover it would be a convenient feature to have some kind of warning if some of the robot's parts come dangerously close to an obstacle during movement. This could be achieved by using a padded version of the robot model for additional collision checking.
- 
+One of the requirements to the final solution is the ability to detect and visualize possible accidental collisions of the simulated robot with itself or it's environment. Moreover it would be a convenient feature to have some kind of warning if some of the robot's parts come dangerously close to an obstacle during movement. This could be achieved by creating a \emph{collision shield}, which means an enlarged version of the robot and do additional collision checking. These considerations lead to two different types of possible collisions. \emph{Soft collisions} are collisions, detected on the collision shield of the model. They just indicate a warning that the robot comes very close to an object it is not allowed to touch. \emph{Hard collisions} mean that a robot component directly hits another collidable object. This would be also a collision in the real world. The solution should be able to distinguish cleanly between those two types.\\ 
 
- These considerations led to two different types of possible collisions. \emph{Soft collisions} are collisions, detected using an enlarged version of the robot model. They just indicate a warning that the robot comes very close to an object it is not allowed to collide with. \emph{Hard collisions} mean that a robot component directly hits another collidable object. This would be also a collision in the real world. The simulator should be able to distinguish cleanly between those two types of collisions.\\ 
+\begin{figure}[hb]
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/collision.jpg}
+	\caption{Collision detection and visualizing. The left image shows a hit on the collision shield, the right image indicates a direct hit.}
+	\label{fig:collision}
+\end{figure}
 
-The goal was achieved by using V-Rep's \emph{collision detection module}. This calculation module can be used to detect and visualize all kinds of collisions within the simulation scene. The first necessary step of the configuration process was to create the \emph{collision shield} - a collection, consisting of enlarged copies of the robot links. Therefore it was necessary to model an additional shape for each link that is slightly larger than the original one. This modelling process started at the second link of each robot arm and on all subsequent links the following steps had to be performed:
+That goal was achieved by using V-Rep's \emph{collision detection module}\footnote{http://www.coppeliarobotics.com/helpFiles/en/collisionDetection.htm}. This calculation module is capable of detecting and visualizing collisions within the simulation scene by checking for interferences between \emph{collidable} shapes. It is important to understand that the collision detection module only \textit{detects} collisions. Producing \emph{collision reactions} is the responsibility of the \emph{dynamics module} and the chosen physics engine. Usually the shapes that form the visual part of the model are used for collision checking. The configuration is done by registering one or more \emph{collision objects}. Each collision object consists of a \emph{collider} and a \emph{collidee}. Both of them can be single shapes or collections of shapes. The collidee settings also offer the option \emph{all other collidable objects in the scene}. In that case, the collider is checked against all elements in $S=\{~s~|~s\in\textit{scene and}~s\notin\textit{collider}~\}$. The big advantage in using collections is that they allow to exactly describe which shapes should be checked against which other ones. Detected collisions are visualized by applying different colouring either to the collider or to the collidee as can be seen inf Figure\ref{fig:collision}. \\
+
+The first step during realization was to model the collision shield. Therefore it was necessary to create an additional shape for each link that is slightly larger than the original one. This modelling process started at the second link of each robot arm and for all subsequent links the following steps were performed:
 
 \begin{itemize}
 
@@ -176,13 +182,13 @@ Morph the copied object into a group of convex shapes to reduce complexity. This
 \item
 Ungroup the resulting group of shapes and merge them into one single shape
 \item
-Grow the resulting shape, but only in x and y direction of it's own reference frame. The resulting mesh should be approximately 10cm larger while still having the same height.
+Grow the resulting shape, but only in x and y direction of it's own reference frame. The resulting mesh should be approximately 10cm larger but keep the same height.
 \item
-Adjust the outside color to make it green and nearly transparent. The collision shield should be visible but not completely occlude the original model.
+Adjust the outside color to make it green and nearly transparent. The collision shield should be visible but not occlude the original model.
 \item
-Rename the shape to the same name as the original one but add the '\_col' suffix to be be able to easily identify it within the model hierarchy.
+Apply a meaningful name to the newly created shape to be be able to easily identify it within the model hierarchy. Here the name of the original shape with the '\_col' suffix was used.
 \item
-Make the new shape a sibling of the original one within the model tree
+Make the new shape a sibling of the original one within the model hierarchy.
 \item
 Adjust the shape object properties. Define the new shape to be \emph{static} and \emph{non-respondable}.
 \item
@@ -193,14 +199,67 @@ settings later on when configuring the collision detection module.
 
 This modelling process is visualized in Fig???.\\
 
-The next step was to adjust the configuration of the \emph{collision detection module}.
-
-. Therefore a number of so called collision objects have to be configured within V-Rep's collision detection module. Each collision objects checks for collisions between a collider against a collidee. Collider and collidee are single shapes or collections of shapes with the collidable flag set. For each arm two collision objects have to be set up - one for each collision type. The configuration is explained for the left arm but the steps for the right arm are similar. The first collision object is named 'left\_arm'. The collider is the collection called 'leftArm'. This collection contains the whole sub tree of the left arm, including the gripper, but excluding the elements of the left collision shield. The collidee are all other collidable entities within the scene. This collision object detects the hard collisions. This also makes clear, why the collidable flag is disabled on the parts of the collision shield because otherwise collisions with the shield would also be detected which would not be correct. The second collision object is called `left\_armShield'. The collider is the collection called `leftArmShield'. This collection is composed of the parts of the left collision shield and the whole subtree of the left gripper. This collection is defined to override the value of the collidable flag of the contained elements - this is important because as previously mentioned, the elements of the collision shield are defined as not collidable. The collidee of the current collision object is the collection called `exLeftArmShield'. This collection simply contains all other scene objects except those contained in the left arm's subtree. As mentioned before, the same configuration steps happened for the right arm. All collision objects are defined not to be handled explicitly. This means that V-Rep does not check for collisions automatically in each simulation pass. It has to be done manually and will be explained later on in the section about the control interface implementation. 
+The next step was to adjust the configuration of the \emph{collision detection module}. Each arm requires two \emph{collision objects}, defined as stated in Figure\ref{fig:col_groups}. 
+\begin{figure}
+  \centering
+  \label{fig:col_groups}
+  \begin{tabular}[h]{|l|l|l|} \hline
+	\textbf{Collision object} & \textbf{Collider} & \textbf{Collidee} \\ \hline
+	left\_arm & leftArm & all other entities \\
+	right\_arm & rightArm & all other entities \\
+	left\_armShield & leftArmShield & exLeftArmShield \\
+	right\_armShield & rightArmShield & exRightArmShield \\ \hline
+  \end{tabular}
+  \caption{Configured collision objects}
+\end{figure}
+The first two collision objects are designed to detect direct hits on the corresponding arm.  
+Therefore the colliders (collections \emph{leftArm} and \emph{rightArm}) are checked for collisions against \emph{all other collidable objects in the scene}. This setting is only possible because the \emph{collidable} flag is disabled within the scene object settings of the collision shield elements, which means that they are excluded from collision checking by default. The collision objects, named with the \emph{Shield} suffix are responsible to check for hits solely on the collision shield elements. The colliders (collections \emph{leftArmShield} and \emph{rightArmShield}) consist only of the collision shield elements. As those elements were defined without the \emph{collidable} flag, the option \emph{Collection overrides collidable properties} is selected in the corresponding settings to explicitly enforce collision checking when using those collections. The collections, defining the collidees (\emph{exLeftArmShield} and \emph{exRightArmShield}) include all other objects except those, contained in the left/right arm's subtree. This exclusion is necessary because otherwise those collision objects would detect collisions between the shield elements and the other arm links. The collection definitions can be seen in Figure\ref{fig:col_defs}.
+\begin{figure}
+  \centering
+  \label{fig:col_defs}
+  \begin{tabular}[h]{|l|l|} \hline
+	\textbf{Collection} & \textbf{Definition} \\ \hline
+	leftArm & $\{~s~|~s\in\textit{subtree of left arm}~\}$ \\
+	leftArmShield & $\{~t~|~t\in\textit{element of left collision shield}~\}$ \\
+	exLeftArmShield & $\{~u~|~u\in\textit{scene and}~u~\notin\textit{subtree of left arm}~\}$ \\
+	rightArm & $\{~v~|~v\in\textit{subtree of left arm}~\}$ \\
+	rightArmShield & $\{~w~|~w\in\textit{element of left collision shield}~\}$ \\
+	exRightArmShield & $\{~x~|~x\in\textit{scene and}~x~\notin\textit{subtree of right arm}~\}$ \\ \hline
+  \end{tabular}
+  \caption{Collection definitions}
+\end{figure}
+All collision objects are defined not to be handled explicitly. This means that V-Rep does not check them automatically on each simulation pass. It has to be done manually and will be explained later on in the section about control interface implementation.
 
 \subsection{Configuring the IK calculation module}
 
-The IK calculation module can be used to define different IK groups to solve the inverse kinematics for the required robot components. This functionality is used for the Cartesian positioning 
-functionality of the ROS control interface. To define an IK group it is necessary to exactly define the kinematic chain of the robot component, starting at the base link up to the dedicated tip. The base link is the root element of the arm's model tree. The tip element is a dummy that is placed on the top end of the arm. That dummy must be a child element of the last link in the arm tree and it defines the reference frame that is used for Cartesian positioning. All the joints between the base and the tip, that are operated in IK mode will be taken into account by the IK calculation module. An additional dummy is used to define the target pose for IK calculation. Initially the pose of the target dummy is exactly the same as that from the tip dummy. When moving the target dummy to a new location, the IK calculation module tries to bring the tip dummy exactly to the same pose by setting the joint values of the manipulator accordingly, respecting the joint limits and the configured constraints and tolerances. More than one IK group can be defined for each manipulator. To improve performance three IK groups have been configured for each arm. The first one focuses on performance but the settings provide less stability. The second one is more or less the same configuration but with a little higher tolerance values. The third one is designed to increase stability especially for positions close to singularities. But that configuration is less performant and therefore it is only used if the other configurations have failed to find a solution. How those IK groups are used is explained in the ROS control interface section.
+The ROS control interface needs the ability to set arm target positions in \emph{joint space} or in \emph{Cartesian space}, depending on the selected control mode. Joint space targets are relatively easy to handle as that only means to set the target position of each single joint. Setting targets in Cartesian space requires to solve the inverse kinematics problem for the corresponding robot component. Therefore V-Rep offers the \emph{inverse kinematics calculation module} \footnote{http://www.coppeliarobotics.com/helpFiles/en/inverseKinematicsModule.htm}. 
+This calculation module allows to define and register various \emph{IK groups}. Each IK group has to contain at least one \emph{IK element}, defining the kinematic chain, constraints and desired precision settings (linear and angular). IK elements can be configured to enforce position constraints and/or orientation constraints for each single axis. The kinematic chain is specified by selecting the dedicated base link and the tip. The tip is a dummy object, indicating the end effector reference frame. The IK target is defined by another dummy object. Tip and target have to be linked, forming a \emph{IK, tip-target} connection by selecting the appropriate link type within the dummy object settings. Figure\ref{fig:ik_vrep} shows a schematic description of that concept. The target pose is set by placing the target dummy at the desired location. The IK calculation model will then adjust the joint positions until the tip pose matches the target pose, respecting joint limits and configured constraints and tolerance values. The joints within the specified kinematic chain need to be operated in \emph{inverse kinematics mode}, otherwise the module is not able to control them.
+
+\begin{figure}[ht]
+	\centering
+  	\includegraphics[width=0.5\textwidth]{images/ik_vrep.jpg}
+	\caption{IK calculation module concept}
+	\label{fig:ik_vrep}
+\end{figure}
+
+The IK calculation module allows to define various IK groups for each robot component with differing configurations. Along the collection of IK elements, the IK group settings include the desired calculation method and the maximum amount of calculation iterations to use. Available IK calculation methods are \emph{pseudo inverse} (PI) and \emph{damped least squares} (DLS). As stated by \cite{buss2004}, the PI method is usually faster than DLS. The tradeoff is that PI tends to be unstable in configurations where the target position is unreachable. That fact leads to a jittery behaviour of the manipulator. The DLS method provides higher stability in such situations but requires more calculation time.
+
+\begin{figure}[h]
+  \centering
+  \label{fig:ik_defs}
+  \begin{tabular}[h]{|l|c|c|c|} \hline
+	\textbf{IK group} & \textbf{Method} & \textbf{Iterations} & \textbf{Prec. lin/ang} \\ \hline
+	left\_arm & PI & 9 & 0.001 / 0.1  \\
+	left\_arm1 & PI & 3 & 0.002 / 0.2  \\
+	left\_arm2 & DLS & 3 & 0.002 / 0.1  \\
+	right\_arm & PI & 9 & 0.001 / 0.1  \\
+	right\_arm1 & PI & 3 & 0.002 / 0.2  \\
+	right\_arm2 & DLS & 3 & 0.002 / 0.1  \\ \hline
+  \end{tabular}
+  \caption{IK group definitions}
+\end{figure}
+
+Three IK groups have been created for each arm. The configuration settings are listed in Figure\ref{fig:ik_defs}. They were chosen, following the guidelines from the V-Rep documentation. The first two groups use the faster PI calculation method. The first one allows a higher amount of maximum iterations while demanding stricter precision settings than the second one. The third one is designed to increase stability especially for positions close to singularities. Therefore the DLS method was chosen with an increased position tolerance value. That configuration is less performant because of the DSL calculation method and therefore it is only used if the other groups failed to find a solution. The IK groups are called sequentially until one of them is able to solve the problem. This process is explained in the ROS control interface section later on.
 
 \section{Implementation of the ROS control interface}
 

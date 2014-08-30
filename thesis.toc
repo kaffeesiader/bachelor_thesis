@@ -16,21 +16,21 @@
 \contentsline {subsection}{\numberline {2.4.1}Modelling the Schunk SDH-2 gripper}{9}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Assembling the scene}{12}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}Configuring the collision detection module}{13}{subsection.2.4.3}
-\contentsline {subsection}{\numberline {2.4.4}Configuring the IK calculation module}{14}{subsection.2.4.4}
-\contentsline {section}{\numberline {2.5}Implementation of the ROS control interface}{15}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Overview}{15}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}Plugin Architecture}{15}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}Identifying simulation components in the scene}{17}{subsection.2.5.3}
-\contentsline {subsection}{\numberline {2.5.4}Creating startup launch file}{18}{subsection.2.5.4}
-\contentsline {subsection}{\numberline {2.5.5}Documentation and usage examples}{18}{subsection.2.5.5}
-\contentsline {chapter}{\numberline {3}Pick and place}{19}{chapter.3}
-\contentsline {section}{\numberline {3.1}Overview}{19}{section.3.1}
-\contentsline {section}{\numberline {3.2}Pick and place tasks in MoveIt}{21}{section.3.2}
-\contentsline {section}{\numberline {3.3}Implementation of the benchmark task}{22}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Creating the environment}{23}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Generating possible grasps}{23}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Planning and executing the pickup}{24}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}Planning and executing the placement}{24}{subsection.3.3.4}
-\contentsline {section}{\numberline {3.4}Executing the benchmark task}{25}{section.3.4}
-\contentsline {section}{\numberline {3.5}Observations}{26}{section.3.5}
-\contentsline {chapter}{Bibliography}{27}{section*.10}
+\contentsline {subsection}{\numberline {2.4.4}Configuring the IK calculation module}{15}{subsection.2.4.4}
+\contentsline {section}{\numberline {2.5}Implementation of the ROS control interface}{17}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Overview}{17}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Plugin Architecture}{17}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Identifying simulation components in the scene}{19}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}Creating startup launch file}{20}{subsection.2.5.4}
+\contentsline {subsection}{\numberline {2.5.5}Documentation and usage examples}{20}{subsection.2.5.5}
+\contentsline {chapter}{\numberline {3}Pick and place}{21}{chapter.3}
+\contentsline {section}{\numberline {3.1}Overview}{21}{section.3.1}
+\contentsline {section}{\numberline {3.2}Pick and place tasks in MoveIt}{23}{section.3.2}
+\contentsline {section}{\numberline {3.3}Implementation of the benchmark task}{24}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Creating the environment}{25}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Generating possible grasps}{25}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Planning and executing the pickup}{26}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Planning and executing the placement}{26}{subsection.3.3.4}
+\contentsline {section}{\numberline {3.4}Executing the benchmark task}{27}{section.3.4}
+\contentsline {section}{\numberline {3.5}Observations}{28}{section.3.5}
+\contentsline {chapter}{Bibliography}{29}{section*.10}

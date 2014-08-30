@@ -6,45 +6,45 @@ Warning--empty journal in freese2013
 Warning--empty year in freese2013
 Warning--empty year in freese2013
 Warning--can't use both volume and number fields in quigley2009
-You've used 2 entries,
+You've used 3 entries,
             2773 wiz_defined-function locations,
-            602 strings with 5221 characters,
-and the built_in function-call counts, 1203 in all, are:
-= -- 84
-> -- 114
-< -- 1
-+ -- 38
-- -- 36
-* -- 117
-:= -- 196
-add.period$ -- 5
-call.type$ -- 2
-change.case$ -- 18
-chr.to.int$ -- 2
-cite$ -- 8
-duplicate$ -- 44
-empty$ -- 73
-format.name$ -- 38
-if$ -- 232
+            609 strings with 5399 characters,
+and the built_in function-call counts, 1562 in all, are:
+= -- 119
+> -- 124
+< -- 2
++ -- 42
+- -- 39
+* -- 140
+:= -- 252
+add.period$ -- 8
+call.type$ -- 3
+change.case$ -- 22
+chr.to.int$ -- 3
+cite$ -- 10
+duplicate$ -- 64
+empty$ -- 109
+format.name$ -- 42
+if$ -- 307
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 2
-newline$ -- 17
-num.names$ -- 8
-pop$ -- 45
+missing$ -- 3
+newline$ -- 22
+num.names$ -- 12
+pop$ -- 52
 preamble$ -- 1
-purify$ -- 16
+purify$ -- 19
 quote$ -- 0
-skip$ -- 34
+skip$ -- 47
 stack$ -- 0
-substring$ -- 4
-swap$ -- 4
+substring$ -- 22
+swap$ -- 5
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 22
+type$ -- 33
 warning$ -- 4
-while$ -- 6
+while$ -- 11
 width$ -- 0
-write$ -- 29
+write$ -- 42
 (There were 4 warnings)
