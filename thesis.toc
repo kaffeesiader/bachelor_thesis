@@ -20,17 +20,17 @@
 \contentsline {section}{\numberline {2.5}Implementation of the ROS control interface}{17}{section.2.5}
 \contentsline {subsection}{\numberline {2.5.1}Overview}{17}{subsection.2.5.1}
 \contentsline {subsection}{\numberline {2.5.2}Plugin Architecture}{17}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}Identifying simulation components in the scene}{19}{subsection.2.5.3}
-\contentsline {subsection}{\numberline {2.5.4}Creating startup launch file}{20}{subsection.2.5.4}
-\contentsline {subsection}{\numberline {2.5.5}Documentation and usage examples}{20}{subsection.2.5.5}
-\contentsline {chapter}{\numberline {3}Pick and place}{21}{chapter.3}
-\contentsline {section}{\numberline {3.1}Overview}{21}{section.3.1}
-\contentsline {section}{\numberline {3.2}Pick and place tasks in MoveIt}{23}{section.3.2}
-\contentsline {section}{\numberline {3.3}Implementation of the benchmark task}{24}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Creating the environment}{25}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Generating possible grasps}{25}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Planning and executing the pickup}{26}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}Planning and executing the placement}{26}{subsection.3.3.4}
-\contentsline {section}{\numberline {3.4}Executing the benchmark task}{27}{section.3.4}
-\contentsline {section}{\numberline {3.5}Observations}{28}{section.3.5}
-\contentsline {chapter}{Bibliography}{29}{section*.10}
+\contentsline {subsection}{\numberline {2.5.3}Identifying simulation components in the scene}{20}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}Creating startup launch file}{21}{subsection.2.5.4}
+\contentsline {subsection}{\numberline {2.5.5}Documentation and usage examples}{21}{subsection.2.5.5}
+\contentsline {chapter}{\numberline {3}Pick and place}{23}{chapter.3}
+\contentsline {section}{\numberline {3.1}Overview}{23}{section.3.1}
+\contentsline {section}{\numberline {3.2}Pick and place tasks in MoveIt}{25}{section.3.2}
+\contentsline {section}{\numberline {3.3}Implementation of the benchmark task}{26}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Creating the environment}{27}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Generating possible grasps}{27}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Planning and executing the pickup}{28}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Planning and executing the placement}{28}{subsection.3.3.4}
+\contentsline {section}{\numberline {3.4}Executing the benchmark task}{29}{section.3.4}
+\contentsline {section}{\numberline {3.5}Observations}{30}{section.3.5}
+\contentsline {chapter}{Bibliography}{31}{section*.10}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  30 AUG 2014 15:39
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  30 AUG 2014 17:41
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -406,7 +406,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 ]
 (./introduction.tex
 Chapter 1.
-<images/robot_setup.jpg, id=296, 3276.24pt x 2457.18pt>
+<images/robot_setup.jpg, id=300, 3276.24pt x 2457.18pt>
 File: images/robot_setup.jpg Graphic file (type jpg)
 
 <use images/robot_setup.jpg>
@@ -438,15 +438,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 85--86
 
  []
 
-<images/sdh_sheet.jpg, id=355, 691.83469pt x 482.55281pt>
+<images/sdh_sheet.jpg, id=359, 691.83469pt x 482.55281pt>
 File: images/sdh_sheet.jpg Graphic file (type jpg)
 
 <use images/sdh_sheet.jpg> [9 <./images/sdh_sheet.jpg>]
-<images/place_joint.jpg, id=362, 483.57846pt x 179.70493pt>
+<images/place_joint.jpg, id=366, 483.57846pt x 179.70493pt>
 File: images/place_joint.jpg Graphic file (type jpg)
 
 <use images/place_joint.jpg>
-<images/hand_tree.jpg, id=364, 911.405pt x 331.2375pt>
+<images/hand_tree.jpg, id=368, 911.405pt x 331.2375pt>
 File: images/hand_tree.jpg Graphic file (type jpg)
 
 <use images/hand_tree.jpg>
@@ -460,7 +460,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 114--115
  []
 
 [10 <./images/place_joint.jpg> <./images/hand_tree.jpg>]
-<images/extract_pure_shapes.jpg, id=371, 570.64198pt x 243.24432pt>
+<images/extract_pure_shapes.jpg, id=375, 570.64198pt x 243.24432pt>
 File: images/extract_pure_shapes.jpg Graphic file (type jpg)
 
 <use images/extract_pure_shapes.jpg>
@@ -469,7 +469,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--142
  []
 
 [11 <./images/extract_pure_shapes.jpg>]
-<images/simulation_scene.jpg, id=379, 979.40906pt x 560.0925pt>
+<images/simulation_scene.jpg, id=383, 979.40906pt x 560.0925pt>
 File: images/simulation_scene.jpg Graphic file (type jpg)
 
 <use images/simulation_scene.jpg>
@@ -487,7 +487,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 163--164
 
  []
 
-<images/collision.jpg, id=386, 1093.08376pt x 573.64313pt>
+<images/collision.jpg, id=390, 1093.08376pt x 573.64313pt>
 File: images/collision.jpg Graphic file (type jpg)
 
 <use images/collision.jpg>
@@ -500,13 +500,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 200--201
 
  []
 
-[14] <images/ik_vrep.jpg, id=403, 351.3125pt x 343.2825pt>
+[14] <images/ik_vrep.jpg, id=407, 351.3125pt x 343.2825pt>
 File: images/ik_vrep.jpg Graphic file (type jpg)
 
 <use images/ik_vrep.jpg> [15]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [16 <./images/ik_vrep.jpg>] [17] [18] [19]) (./pick_place_tasks.tex [20]
+ [16 <./images/ik_vrep.jpg>]
+<images/SimulatorPluginUML.jpg, id=421, 885.3075pt x 674.52pt>
+File: images/SimulatorPluginUML.jpg Graphic file (type jpg)
+
+<use images/SimulatorPluginUML.jpg> [17] [18 <./images/SimulatorPluginUML.jpg>]
+[19] <images/custom_dev_data.jpg, id=436, 1531.7225pt x 612.2875pt>
+File: images/custom_dev_data.jpg Graphic file (type jpg)
+
+<use images/custom_dev_data.jpg> [20 <./images/custom_dev_data.jpg>])
+(./pick_place_tasks.tex [21] [22
+
+]
 Chapter 3.
 
 Underfull \hbox (badness 10000) in paragraph at lines 10--11
@@ -518,22 +529,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
-[21
-
-]
+[23]
 Underfull \hbox (badness 10000) in paragraph at lines 18--19
 
  []
 
-<images/pickup.jpg, id=439, 568.94437pt x 327.15514pt>
+<images/pickup.jpg, id=455, 568.94437pt x 327.15514pt>
 File: images/pickup.jpg Graphic file (type jpg)
  <use images/pickup.jpg>
 Underfull \hbox (badness 10000) in paragraph at lines 29--30
 
  []
 
-[22 <./images/pickup.jpg>]
-<images/placement.jpg, id=445, 568.94437pt x 327.15514pt>
+[24 <./images/pickup.jpg>]
+<images/placement.jpg, id=461, 568.94437pt x 327.15514pt>
 File: images/placement.jpg Graphic file (type jpg)
 
 <use images/placement.jpg>
@@ -546,37 +555,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 51--52
 
  []
 
-[23 <./images/placement.jpg>]
+[25 <./images/placement.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
 
-[24]
+[26]
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 69.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<images/task_env.png, id=456, 979.40906pt x 560.0925pt>
+<images/task_env.png, id=471, 979.40906pt x 560.0925pt>
 File: images/task_env.png Graphic file (type png)
 
-<use images/task_env.png> [25 <./images/task_env.png (PNG copy)>]
-<images/grasp_stages.jpg, id=462, 1402.23875pt x 371.3875pt>
+<use images/task_env.png> [27 <./images/task_env.png (PNG copy)>]
+<images/grasp_stages.jpg, id=477, 1402.23875pt x 371.3875pt>
 File: images/grasp_stages.jpg Graphic file (type jpg)
 
-<use images/grasp_stages.jpg> [26 <./images/grasp_stages.jpg>]
-<images/place_stages.jpg, id=467, 2040.62375pt x 482.80376pt>
+<use images/grasp_stages.jpg> [28 <./images/grasp_stages.jpg>]
+<images/place_stages.jpg, id=482, 2040.62375pt x 482.80376pt>
 File: images/place_stages.jpg Graphic file (type jpg)
 
-<use images/place_stages.jpg> [27 <./images/place_stages.jpg>]) [28]
-(./thesis.bbl) [29
+<use images/place_stages.jpg> [29 <./images/place_stages.jpg>]) [30]
+(./thesis.bbl) [31
 
 
 ] (./thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 6888 strings out of 495061
- 97817 string characters out of 1182621
- 176103 words of memory out of 3000000
- 9793 multiletter control sequences out of 15000+50000
+ 6904 strings out of 495061
+ 98187 string characters out of 1182621
+ 176238 words of memory out of 3000000
+ 9803 multiletter control sequences out of 15000+50000
  80617 words of font info for 52 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,17n,41p,2288b,370s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -592,9 +601,9 @@ m/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf
 2.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/font
 s/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.p
 fb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on thesis.pdf (43 pages, 4269934 bytes).
+Output written on thesis.pdf (45 pages, 4407822 bytes).
 PDF statistics:
- 560 PDF objects out of 1000 (max. 8388607)
- 116 named destinations out of 1000 (max. 500000)
- 359 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 575 PDF objects out of 1000 (max. 8388607)
+ 120 named destinations out of 1000 (max. 500000)
+ 369 words of extra memory for PDF output out of 10000 (max. 10000000)
 

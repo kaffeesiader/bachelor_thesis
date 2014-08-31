@@ -280,7 +280,14 @@ After some investigation about the possibilities the decision was made to create
 
 
 \subsection{Plugin Architecture}
-The plugin code is organized as can be seen in Fig???.
+
+\begin{figure}[ht]
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/SimulatorPluginUML.jpg}
+	\caption{Simulator plugin architecture}
+	\label{fig:plugin_uml}
+\end{figure}
+The plugin code is organized as can be seen in Figure\ref{fig:plugin_uml}.
 
 - SimulationComponent
   A simulation component is a single, reusable part of the robot that can be used in different
@@ -391,7 +398,12 @@ The plugin code is organized as can be seen in Fig???.
   by Simon Hangl especially for the KUKA arms in the IIS Lab.
   
 \subsection{Identifying simulation components in the scene}
-
+\begin{figure}[ht]
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/custom_dev_data.jpg}
+	\caption{Custom developer data segments on scene object}
+	\label{fig:cust_dev_data}
+\end{figure}
 As each scene is a hierarchy of various types of scene objects there had to be found a way how to identify subtrees within this hierarchy that belong to known simulation components and should therefore be handeled by the plugin. One way would be to give each part a clearly defined, unique name and then search for those names within the scene. But than it would be necessary to hardcode the name of each single joint name and this is not a preferable solution for this problem. If somebody accidentally changes a name in the model tree then the solution is broken because the plugin looses connection to the underlying object and cannot control it any more. Here V-Rep's custom developer data functionality comes into play. It is possible to put auxiliary data segments to each single object in the scene.(TODO: show image of data segments) This data gets serialized together with the object and can be read programatically. Each data segment starts with a header number which is used to uniquely identify the data from a specific developer. The second element is an integer value that holds the length of the data segment and then comes the data itself. The format of the data can freely be chosen by the developer. It was decided to use string representations of key/value pairs, seperated by a colon (:). The key uniquely identifies the type of component (arm joint, hand joint, IK target dummy,...). The value segment can be used to provide additional data like for example the name of a joint. The left arm's model base for example is tagged with `2497,1:left\_arm'. This tag data item identifies that element as the model base of a LWRArmComponent with the name `left\_arm'. When actualizing for scene content change, the ComponentContainer traverses the scene hierarchy and looks for objects, that are tagged as known components. On success, it creates the specific instance with the object handle of the underlying scene object. During the initialization, the concrete SimulationComponent instance searches then the model subtree for all the necessary parts (joints, dummies, force sensors...). The implementations for the arm and the hand model provide feedback output on the console window about the success of this initialization process.
 
 \subsection{Creating startup launch file}
