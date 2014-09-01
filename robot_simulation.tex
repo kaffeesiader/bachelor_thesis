@@ -142,7 +142,6 @@ The extraction process is visualized in Figure\ref{fig:ex_pure_shape}. Dynamic p
 
 The last step of the modelling process was the adjustment of the model hierarchy. Root element of the hand model is the respondable part of the wrist which is also the dedicated model base. It is very important to follow the V-Rep guidelines for designing dynamic simulations because if the hierarchy is wrong, the model will simply fall apart when starting the simulation (detailed information can be found in the corresponding chapter\footnote{http://www.coppeliarobotics.com/helpFiles/en/designingDynamicSimulations.htm} of the V-Rep dodumentation). Each non-static and respondable shape has to be connected to it's parent by a joint or a force sensor. The visual part of the link is always a child object of it's corresponding respondable. That way, the kinematic chain of the gripper is formed.
 
-
 \subsection{Assembling the scene}
 
 \begin{figure}[ht]
@@ -263,89 +262,112 @@ Three IK groups have been created for each arm. The configuration settings are l
 
 \section{Implementing the ROS control interface}
 
+In the real world, each type of robot component has its own, clearly defined ROS control interface. Those interfaces are composed from sets of inbound and outbound ROS topics that allow sending commands and to retrieve state data. The simulated components have to provide exactly the same ROS interface as their real counterparts, using similar topic names and message types. The structure of this control flow can be seen in Figure\ref{fig:control_flow}.
+
 \begin{figure}[ht]
 	\centering
   	\includegraphics[width=1.0\textwidth]{images/control_flow.jpg}
-	\caption{Robot component control flow}
+	\caption{Control flow structure}
 	\label{fig:control_flow}
 \end{figure}
 
-\begin{figure}[ht]
-	\centering
-  	\includegraphics[width=1.0\textwidth]{images/handle_sim.jpg}
-	\caption{Handling a simulation step}
-	\label{fig:handle_sim}
-\end{figure}
+The existing ROS interface that is part of the V-Rep distribution is not suitable as it only provides a very general approach for controlling joint values and reading state data. Therefore V-Rep provides various extension points, allowing to add custom functionality. The final solution was implemented as a \emph{simulator plugin}, written in C++ and using V-Rep's \emph{regular API}\footnote{http://www.coppeliarobotics.com/helpFiles/en/apiOverview.htm}. This approach states the most flexible solution as this API provides more than 400 functions that can be used to extend the simulator functionality. A plugin is a compiled library file, written in C++ that has to follow some V-Rep specific naming conventions and must reside in the V-Rep working directory. The library file gets automatically loaded on V-Rep startup and runs in the main simulation thread. The source code is located in the \emph{iis\_simulation} package that is part of the \emph{iis\_robot\_sw} repository. The following section describes the design of the plugin architecture and the most important components within the package.
 
-After finishing the modelling process it was necessary to find a proper way to control the robot components via a ROS control interface. The arm as well as the hand is controlled via a set of inbound and outbound ROS topics that allow to send commands to the underlying component or to receive state data from the component(joint states, sensor data,\ldots). Each simulated component should provide exactly the same interface as it's real counterpart.
+%The first problem that arose when starting the implementation process was, how each type of robot component can be clearly identified within a simulation scene. V-Rep is a simulation environment that allows to load and simulate multiple scenes. A scene is a hierarchy of various scene objects, organized in a tree structure and those objects can be shapes, joints, sensors or even only dummies. The scene content can be modified by the user. Arbitrary objects can be added or removed, maybe a gripper gets replaced by another component, an arm gets removed or an additional Kinect camera gets installed. The required solution should be able to react to those changes. Parts of the hierarchy should be clearly identifiable as a specific simulation component. Each single part of a component should be identifiable (joints, sensors, dummies, IK groups, collision objects). Luckily V-Rep provides various extension points for programmers and is therefore highly customizable. 
 
-One problem is how each type of component can be clearly identified within the current simulation scene. A scene is a hierarchy of various scene objects, organized in a tree structure. As already explained, those objects can be shapes, joints, sensors or even only dummies. The scene content can be modified by the user. Maybe a gripper gets replaced by another component, an arm gets removed or an additional Kinect camera gets installed. The required solution should be able to react to changes in the current scene. Parts of the model hierarchy should be clearly identifiable as a specific simulation component. Each single part of a component should be identifiable (joints, sensors, dummies, IK groups, collision objects). Luckily V-Rep provides various extension points for programmers and is therefore highly customizable. 
-
-After some investigation about the possibilities the decision was made to create a simulator plugin, using the V-Rep regular API. This approach states the most flexible solution as this API provides more than 400 functions. A plugin is a compiled library file, written in C++ that has to follow some V-Rep specific naming conventions and must reside in the V-Rep working directory. The library file gets automatically loaded on V-Rep startup and runs in the main simulation thread. This means that it has to be programmed really carefully to avoid performance leaks during simulation. The plugin has to provide a clearly defined interface, consisting of 3 functions:
-
-- v\_RepStart - called on startup and can handle some initialization
-- v\_RepEnd - called before shutdown and can do some cleanup
-- v\_RepMessage - called very often during the whole V-Rep lifecycle and is therefore a very
-  performance critical method. Via this function V-Rep notifies the plugins about events like
-  start/end of simulation, simulation step, scene content change, scene switch, \ldots.
-  The plugin code can react to those events accordingly.
+%\begin{figure}[ht]
+%	\centering
+%  	\includegraphics[width=1.0\textwidth]{images/handle_sim.jpg}
+%	\caption{Handling a simulation step}
+%	\label{fig:handle_sim}
+%\end{figure}
 
 \subsection{Plugin architecture}
 
-\begin{figure}[ht]
+A plugin is a compiled library file, written in C++. This library needs to be placed in the V-Rep working directory and follow the V-Rep specific naming conventions. On startup, V-Rep looks for library files, prefixed with 'libv\_repExt'. Matching files are automatically loaded. A plugin runs in the main simulation thread -  that means it has to be programmed really carefully to avoid performance leaks during simulation. The plugin has to provide a clearly defined interface, consisting of 3 function definitions:
+
+\begin{itemize}
+
+\item \texttt{unsigned char v\_repStart(void* reserved,int reservedInt)} \\
+This function is called on V-Rep startup and is used to perform necessary initialization steps. A return value of zero indicates that the initialization process failed and the plugin gets unloaded immediately. The current solution depends on a running roscore during startup. If that is not the case it is not able to work.
+
+\item \texttt{void v\_repEnd()} \\
+Called before shutdown and is used to do some general cleanup and free allocated memory.
+
+\item \texttt{void* v\_repMessage(int msg, int* auxData, void* custData, int* resData)} \\
+This function is called very often during the whole V-Rep lifecycle and is therefore a very performance critical method. Via this function V-Rep notifies plugins about events like start/end of simulation, simulation step, scene content change, scene switch and more. The plugin code can react to those events accordingly. In the current implementation, those messages are just passed to the software components that are responsible to handle the specific action. 
+  
+\end{itemize}
+
+The plugin code is organized as can be seen in the UML diagram in Figure\ref{fig:plugin_uml}. The major parts of the system are described in the subsequent paragraphs.
+
+\paragraph{SimulationComponent}
+
+A simulation component is a single, reusable model of a specific robot component that can be utilized in different environments. Each component provides it's own clearly defined control interface. A simulation scene can contain multiple components from various types. The \emph{SimulationComponent} class is the abstract base class for all simulation components. Currently there are existing two concrete implementations -- the \emph{LWRArmComponent} and the \emph{SchunkHandComponent}. If the scenario should be extended and new components have to be introduced, it is necessary to create a new subclass of \emph{SimulationComponent} and provide implementations for the abstract methods. 
+
+\begin{figure}[t]
 	\centering
   	\includegraphics[width=1.0\textwidth]{images/SimulatorPluginUML.jpg}
 	\caption{Simulator plugin architecture}
 	\label{fig:plugin_uml}
 \end{figure}
-The plugin code is organized as can be seen in Figure\ref{fig:plugin_uml}. The major parts of the system are described in the subsequent paragraphs.
 
-\paragraph{SimulationComponent}
-
-A simulation component is a single, reusable part of the robot that can be used in different environments. Each component provides it's own clearly defined control interface. A simulation scene can contain various types of components. The SimulationComponent class is the abstract base class for all simulation components. Currently there are existing two concrete implementations -- the LWRArmComponent and the SchunkHandComponent. If the scenario should be extended and new components are introduced it is necessary to create a subclass of SimulationComponent and provide implementations for the abstract methods. Each SimulationComponent consists of two parts. The first  one is a class that provides access to a concrete simulation component instance. The LWRArm class for example stands for a KUKA LWR4+ arm model in the scene. This class provides full access to the functionality of the underlying arm model.
-
-The second part is a controller class for the component instance. This controller encapsulates the whole ROS interface to the simulation component and has to be a subclass of the abstract  ComponentController class. On each simulation pass the controller publishes all the necessary state data to it's various topics and sends incoming commands to the simulation component. The names of the various provided topics are composed from the overall namespace, the defined unique name of the component and the actual topic name. For example the joint control topic of the right robot arm evaluates to `/simulation/right\_arm/joint\_control/move'. Each SimulationComponent registers it's ComponentController at the ROSServer and unregisters it when it is destroyed.
-  
 \paragraph{ComponentContainer}
 
-This class represents the set of all identified simulation components in the current simulation scene. On V-Rep startup an instance of \emph{ComponentContainer} is created. Each time, the content of the current simulation scene changes, the method \emph{actualizeForSceneContent} is triggered. This method performs the following steps:
+This class represents the set of all identified simulation components within the current scene. On V-Rep startup an instance of \emph{ComponentContainer} is created. Each time, the content of the current simulation scene changes, the method \emph{actualizeForSceneContent} is triggered. This method then performs the following steps:
 \begin{itemize}
 
 \item
-It validates each currently registered SimulationComponent instance if it is still valid and present in the scene.
+It validates all currently registered \emph{SimulationComponent} instances if they are still valid and present in the scene.
 \item
 It traverses the whole scene hierarchy to identify newly created components
 \item
-If a new component is identified, a corresponding concrete instance of SimulationComponent is created and added to the container.
+If a new component is identified, a corresponding concrete instance of \emph{SimulationComponent} is created and added to the container.
 
 \end{itemize}
   
-To identify a component it has to be marked by using V-Rep's custom developer data functionality. Details are explained further on. The ComponentContainer gets notified about each simulation step. It then simply forwards that message to all registered components. Those can then perform all necessary steps like triggering collision checking or handling IK groups.
+The process of traversing the scene hierarchy and identifying components is explained in section\ref{sec:comp_id}. During a running simulation, the \emph{ComponentContainer} gets notified about each single simulation step. It simply forwards that message to all registered components. Those can then perform all necessary steps like triggering collision checking or handling IK groups.
   
 \paragraph{ROSServer}
 
-The ROSServer is a static class that encapsulates all ROS related functionality. It tries to initialize ROS on startup. If the connection to the master can be established it creates a ROS NodeHandle for the `simulation' namespace. Otherwise it forces the plugin to unload, because it is not able to work without a running roscore. Each SimulationComponent registers it's ComponentController instance at the ROSServer. On simulation start it initializes the registered controllers with the maintained NodeHandle. The ROSServer gets also notified about each simulation step and forces the controllers to handle the received commands and publish all the necessary data. On simulation end it forces the registered controllers to shutdown their publishers and subscribers.
+The \emph{ROSServer} is a static class that encapsulates all ROS related functionality. It tries to initialize ROS on plugin startup, forcing a shutdown, if the connection to the master cannot be established. Otherwise it creates and maintains a ROS \emph{NodeHandle} for the 'simulation' namespace. Each \emph{SimulationComponent} can register \emph{ComponentController} instances at the \emph{ROSServer}. On simulation start it initializes all registered controllers with the maintained \emph{NodeHandle}. The \emph{ROSServer} gets also notified about each simulation step and forces the controllers to handle the received commands and publish all the necessary data. On simulation end it triggers the shutdown of all registered controllers.
   
 \paragraph{ComponentController}
 
-  This is the abstract base class for all controllers. A ComponentController gets initialized by
-  the ROSServer on simulation start. Concrete implementations can use the provided NodeHandle to
-  create all the necessary publishers and subscribers. The update method is called by the ROSServer
-  on each simulation step and forces the controller to publish all the required data. On simulation
-  end the shutdown method is called by the ROSServer, forcing the controller to shutdown all 
-  publishers and subscribers.
+This is the abstract base class for all controllers. A controller actually represents the ROS interface of a specific simulation component, maintaining all the inbound and outbound topics used to control the simulated hardware. It is responsible for delegating commanded values to the underlying component as well as reading and publishing state data. Concrete implementations are the \emph{LWRArmController} and the \emph{SchunkHandController}. A \emph{ComponentController} needs to be registered at the \emph{ROSServer} and gets initialized on simulation start. Concrete implementations can use the provided NodeHandle to create all the necessary publishers and subscribers. The \emph{update} method is called by the \emph{ROSServer} on each simulation step and forces the controller to publish all the required data. The \emph{shutdown} method is called by the \emph{ROSServer} on simulation end, forcing the controller to shutdown all publishers and subscribers. \\
+
+Explain naming strategy, how topic names are structured...
 
 \subsection{Identifying simulation components}
+\label{sec:comp_id}
 
-\begin{figure}[ht]
+The plugin functionality should not be tied to a specific simulation scene but to specific models of robot components. Each time a known component is added to the scene it should be recognized by the plugin and the corresponding instance of \emph{SimulationComponent} has to be instantiated and added to the \emph{ComponentContainer}. As visualized in Figure\ref{fig:scene_tree}, each simulation scene
+is a tree structure, consisting of various different types of scene objects. 
+\begin{figure}[h]
+	\centering
+  	\includegraphics[width=0.8\textwidth]{images/scene_hierarchy.jpg}
+	\caption{Sample scene hierarchy}
+	\label{fig:scene_tree}
+\end{figure}
+It is necessary to identify subtrees within this hierarchy that belong to known simulation components and should therefore be handeled by the plugin. If a component is identified, the plugin has to discover each single part of the model. Depending on the model this can be joints, force sensors, reference frame dummies, IK groups or collision objects.
+
+One possible way would be to give each part a clearly defined, unique name and then search for those names within the scene. But this approach would require to hardcode each single joint name and this is not a preferable solution for this problem. If a user accidentally changes a name inside the model tree then the solution is broken because the plugin looses connection to the underlying object and cannot control it any more. Here V-Rep's custom developer data functionality comes into play. It is possible to put auxiliary data segments to each single object in the scene. Those data segments are serialized together with the object and can be read programatically. Each data segment starts with a header number which is used to uniquely identify the data from a specific developer. The format of the data can freely be chosen. A visualization of this concept can be seen in Figure\ref{fig:cust_dev_data}. 
+\begin{figure}[h]
 	\centering
   	\includegraphics[width=1.0\textwidth]{images/custom_dev_data.jpg}
 	\caption{Custom developer data segments on scene object}
 	\label{fig:cust_dev_data}
 \end{figure}
-As each scene is a hierarchy of various types of scene objects there had to be found a way how to identify subtrees within this hierarchy that belong to known simulation components and should therefore be handeled by the plugin. One way would be to give each part a clearly defined, unique name and then search for those names within the scene. But than it would be necessary to hardcode the name of each single joint name and this is not a preferable solution for this problem. If somebody accidentally changes a name in the model tree then the solution is broken because the plugin looses connection to the underlying object and cannot control it any more. Here V-Rep's custom developer data functionality comes into play. It is possible to put auxiliary data segments to each single object in the scene.(TODO: show image of data segments) This data gets serialized together with the object and can be read programatically. Each data segment starts with a header number which is used to uniquely identify the data from a specific developer. The second element is an integer value that holds the length of the data segment and then comes the data itself. The format of the data can freely be chosen by the developer. It was decided to use string representations of key/value pairs, seperated by a colon (:). The key uniquely identifies the type of component (arm joint, hand joint, IK target dummy,...). The value segment can be used to provide additional data like for example the name of a joint. The left arm's model base for example is tagged with `2497,1:left\_arm'. This tag data item identifies that element as the model base of a LWRArmComponent with the name `left\_arm'. When actualizing for scene content change, the ComponentContainer traverses the scene hierarchy and looks for objects, that are tagged as known components. On success, it creates the specific instance with the object handle of the underlying scene object. During the initialization, the concrete SimulationComponent instance searches then the model subtree for all the necessary parts (joints, dummies, force sensors...). The implementations for the arm and the hand model provide feedback output on the console window about the success of this initialization process.
+
+It was decided to use string representations of key/value pairs, separated by a colon (:). The key is an integer number, used to determine the type of the tagged object. The value segment can be used to provide additional information, e.g. the name of a joint. The left arm's model base for example is tagged with the data segment \texttt{2497,1:left\_arm}. The number 2497 is the header that identifies the data segment to belong to this plugin. The data segment identifies that element as the model base of a \emph{LWRArmComponent} (Key=1) with the name `left\_arm'. A complete list of all currently available keys can be found in the documentation, located in the appendix. 
+
+When actualizing for scene content change, the \emph{ComponentContainer} traverses the scene hierarchy and looks for objects, that are tagged as known components. On success, it creates the specific instance providing the object ID of the underlying scene object. During initialization, the concrete \emph{SimulationComponent} instance traverses the rest of the model subtree to extract all the remaining parts that belong to that specific model (joints, dummies, force sensors...), using the same mechanism. The implementations for arm and hand model provide feedback output on the console window about the success of this initialization process and provide meaningful error messages in case that not all necessary parts of a model could be successfully located.
 
 \subsection{The LWRArmComponent}
+
+Each SimulationComponent consists of two parts. The first  one is a class that provides access to a concrete simulation component instance. The LWRArm class for example stands for a KUKA LWR4+ arm model in the scene. This class provides full access to the functionality of the underlying arm model.
+
+The second part is a controller class for the component instance. This controller encapsulates the whole ROS interface to the simulation component and has to be a subclass of the abstract  ComponentController class. On each simulation pass the controller publishes all the necessary state data to it's various topics and sends incoming commands to the simulation component. The names of the various provided topics are composed from the overall namespace, the defined unique name of the component and the actual topic name. For example the joint control topic of the right robot arm evaluates to `/simulation/right\_arm/joint\_control/move'. Each SimulationComponent registers it's ComponentController at the ROSServer and unregisters it when it is destroyed.
 
 Description of the LWRArmComponent goes here...
 
@@ -400,6 +422,10 @@ Description of the LWRArmComponent goes here...
 \subsection{The SchunkHandComponent}
 
 Description of the SchunkHandComponent goes here...
+
+\subsection{Publishing Kinect camera data}
+
+How is the integrated vision sensor configured? How are the RGB and depth images published? Explain usage of default V-Rep ROS functionality and how to enable publishers in LUA script.
 
 \section{Simulator startup script}
 

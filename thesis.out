@@ -22,6 +22,7 @@
 \BOOKMARK [2][-]{subsection.2.5.2}{Identifying simulation components}{section.2.5}
 \BOOKMARK [2][-]{subsection.2.5.3}{The LWRArmComponent}{section.2.5}
 \BOOKMARK [2][-]{subsection.2.5.4}{The SchunkHandComponent}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.5}{Publishing Kinect camera data}{section.2.5}
 \BOOKMARK [1][-]{section.2.6}{Simulator startup script}{chapter.2}
 \BOOKMARK [0][-]{chapter.3}{Motion planning}{}
 \BOOKMARK [1][-]{section.3.1}{Introduction}{chapter.3}
