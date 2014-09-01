@@ -17,20 +17,35 @@
 \BOOKMARK [2][-]{subsection.2.4.2}{Assembling the scene}{section.2.4}
 \BOOKMARK [2][-]{subsection.2.4.3}{Configuring the collision detection module}{section.2.4}
 \BOOKMARK [2][-]{subsection.2.4.4}{Configuring the IK calculation module}{section.2.4}
-\BOOKMARK [1][-]{section.2.5}{Implementation of the ROS control interface}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.5.1}{Overview}{section.2.5}
-\BOOKMARK [2][-]{subsection.2.5.2}{Plugin Architecture}{section.2.5}
-\BOOKMARK [2][-]{subsection.2.5.3}{Identifying simulation components in the scene}{section.2.5}
-\BOOKMARK [2][-]{subsection.2.5.4}{Creating startup launch file}{section.2.5}
-\BOOKMARK [2][-]{subsection.2.5.5}{Documentation and usage examples}{section.2.5}
-\BOOKMARK [0][-]{chapter.3}{Pick and place}{}
-\BOOKMARK [1][-]{section.3.1}{Overview}{chapter.3}
-\BOOKMARK [1][-]{section.3.2}{Pick and place tasks in MoveIt}{chapter.3}
-\BOOKMARK [1][-]{section.3.3}{Implementation of the benchmark task}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.3.1}{Creating the environment}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.2}{Generating possible grasps}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.3}{Planning and executing the pickup}{section.3.3}
-\BOOKMARK [2][-]{subsection.3.3.4}{Planning and executing the placement}{section.3.3}
-\BOOKMARK [1][-]{section.3.4}{Executing the benchmark task}{chapter.3}
-\BOOKMARK [1][-]{section.3.5}{Observations}{chapter.3}
-\BOOKMARK [0][-]{section*.10}{Bibliography}{}
+\BOOKMARK [1][-]{section.2.5}{Implementing the ROS control interface}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.5.1}{Plugin architecture}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.2}{Identifying simulation components}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.3}{The LWRArmComponent}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.4}{The SchunkHandComponent}{section.2.5}
+\BOOKMARK [1][-]{section.2.6}{Simulator startup script}{chapter.2}
+\BOOKMARK [0][-]{chapter.3}{Motion planning}{}
+\BOOKMARK [1][-]{section.3.1}{Introduction}{chapter.3}
+\BOOKMARK [1][-]{section.3.2}{The MoveIt! motion planning framework}{chapter.3}
+\BOOKMARK [1][-]{section.3.3}{Creating the URDF model of the robot setup}{chapter.3}
+\BOOKMARK [1][-]{section.3.4}{Configuring the planning tools}{chapter.3}
+\BOOKMARK [1][-]{section.3.5}{Connecting MoveIt to the existing robot control interface}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.5.1}{Overview ROS control stack}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.2}{Designing the hardware adapter}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.3}{Launching the hardware adapter}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.4}{Adjusting the MoveIt configuration}{section.3.5}
+\BOOKMARK [1][-]{section.3.6}{Usage examples}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.6.1}{Capabilities}{section.3.6}
+\BOOKMARK [2][-]{subsection.3.6.2}{Modifying the planning scene}{section.3.6}
+\BOOKMARK [2][-]{subsection.3.6.3}{Planning and executing trajectories}{section.3.6}
+\BOOKMARK [2][-]{subsection.3.6.4}{Running the planning tools in different namespaces}{section.3.6}
+\BOOKMARK [0][-]{chapter.4}{Pick and place}{}
+\BOOKMARK [1][-]{section.4.1}{Overview}{chapter.4}
+\BOOKMARK [1][-]{section.4.2}{Pick and place tasks in MoveIt}{chapter.4}
+\BOOKMARK [1][-]{section.4.3}{Implementation of the benchmark task}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.3.1}{Creating the environment}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.2}{Generating possible grasps}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.3}{Planning and executing the pickup}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.4}{Planning and executing the placement}{section.4.3}
+\BOOKMARK [1][-]{section.4.4}{Executing the benchmark task}{chapter.4}
+\BOOKMARK [1][-]{section.4.5}{Observations}{chapter.4}
+\BOOKMARK [0][-]{section*.14}{Bibliography}{}

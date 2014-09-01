@@ -13,6 +13,28 @@
 \supervisor{Emre Ugur, PhD\\Univ.-Prof. Dr. Justus Piater, PhD}
 %\supervisor{Firstname1 Lastname1\\ Firstname2 Lastname2}
 
+\definecolor{myblue}{rgb}{0.0,0.0,0.5}
+\definecolor{mygreen}{rgb}{0,0.5,0.0}
+\definecolor{myorange}{rgb}{1.0,0.4,0}
+
+% code format settings
+\lstset{
+basicstyle=\footnotesize\sffamily\color{black},
+commentstyle=\color{mygreen}\itshape,
+emph={uint},
+emphstyle=\color{myblue},
+frame=single,
+numbers=left,
+numbersep=5pt,
+numberstyle=\tiny\color{myblue},
+keywordstyle=\color{myblue}\bfseries,
+showspaces=false,
+showstringspaces=false,
+stringstyle=\color{myorange},
+tabsize=2,
+language=C++
+}
+
 \begin{document}
 \maketitle
 
@@ -33,7 +55,7 @@ Thank you to the friendly members of the IIS Team.
 % Simulation
 \input{robot_simulation}
 % Motion planning first part
-%\input{motion_planning}
+\input{motion_planning}
 % Motion planning practical part
 \input{pick_place_tasks}
 % Observations, measurements, test results
