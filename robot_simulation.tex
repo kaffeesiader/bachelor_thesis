@@ -336,8 +336,6 @@ The \emph{ROSServer} is a static class that encapsulates all ROS related functio
 
 This is the abstract base class for all controllers. A controller actually represents the ROS interface of a specific simulation component, maintaining all the inbound and outbound topics used to control the simulated hardware. It is responsible for delegating commanded values to the underlying component as well as reading and publishing state data. Concrete implementations are the \emph{LWRArmController} and the \emph{SchunkHandController}. A \emph{ComponentController} needs to be registered at the \emph{ROSServer} and gets initialized on simulation start. Concrete implementations can use the provided NodeHandle to create all the necessary publishers and subscribers. The \emph{update} method is called by the \emph{ROSServer} on each simulation step and forces the controller to publish all the required data. The \emph{shutdown} method is called by the \emph{ROSServer} on simulation end, forcing the controller to shutdown all publishers and subscribers. \\
 
-Explain naming strategy, how topic names are structured...
-
 \subsection{Identifying simulation components}
 \label{sec:comp_id}
 
@@ -359,69 +357,106 @@ One possible way would be to give each part a clearly defined, unique name and t
 	\label{fig:cust_dev_data}
 \end{figure}
 
-As the format of the data can freely be chosen, it was decided to use string representations of key/value pairs, separated by a colon (:). The key is an integer number, used to determine the type of the tagged object. The value segment can be used to provide additional information, e.g. the name of a joint. The left arm's model base for example is tagged with the data segment \texttt{2497,1:left\_arm}. The number 2497 is the header that identifies the data segment to belong to this plugin. The data segment identifies that element as the model base of a \emph{LWRArmComponent} (Key=1) with the name `left\_arm'. A complete list of all currently available keys can be found in the documentation, located in the appendix. 
+As the format of the data can freely be chosen, it was decided to use string representations of key/value pairs, separated by a colon (:). The key is an integer number, used to determine the type of the tagged object. The value segment can be used to provide additional information, e.g. the name of a joint. The left arm's model base for example is tagged with the data segment \texttt{2497,1:left\_arm}. The number 2497 is the header that identifies the data segment to belong to this plugin. The data segment identifies that element as the model base of a \emph{LWRArmComponent} (Key=1) with the name `left\_arm'. The available keys are explained in the sections that correspond to the specific simulation components.
 
-When actualizing for scene content change, the \emph{ComponentContainer} traverses the scene hierarchy and looks for objects, that are tagged as known components. On success, it creates the specific instance providing the object ID of the underlying scene object to the constructor. During initialization, the concrete \emph{SimulationComponent} implementation then traverses the rest of the model subtree to extract all the remaining parts that belong to that specific model (joints, dummies, force sensors...), also looking for tagged objects. The implementations for arm and hand model provide feedback output on the console window about the success of this initialization process and provide meaningful error messages in case that not all necessary parts of a model could be successfully located.
+When actualizing for scene content change, the \emph{ComponentContainer} traverses the scene hierarchy and looks for objects, that are tagged as known components. On success, it creates the specific instance providing the object ID of the underlying scene object to the constructor. During initialization, the concrete \emph{SimulationComponent} implementation then traverses the rest of the model subtree to extract all the remaining parts that belong to that specific model (joints, dummies, force sensors...), also looking for tagged objects. The implementations for arm and hand model provide feedback output on the console window about the status of this initialization process and provide meaningful error messages in case that not all necessary parts of a model could be successfully located.
 
 \subsection{The LWRArmComponent}
 
-Each SimulationComponent consists of two parts. The first  one is a class that provides access to a concrete simulation component instance. The LWRArm class for example stands for a KUKA LWR4+ arm model in the scene. This class provides full access to the functionality of the underlying arm model.
+The \emph{LWRArmComponent} is a concrete subclass of \emph{SimulationComponent} and states the abstraction of a simulated KUKA LWR4+ arm model. It is composed of two parts - an instance of the \emph{LWRArm} class and a corresponding \emph{LWRArmController}, as can be seen in the UML diagram in Figure\ref{fig:plugin_uml}. Their functionalities are explained in the following paragraphs.
 
-The second part is a controller class for the component instance. This controller encapsulates the whole ROS interface to the simulation component and has to be a subclass of the abstract  ComponentController class. On each simulation pass the controller publishes all the necessary state data to it's various topics and sends incoming commands to the simulation component. The names of the various provided topics are composed from the overall namespace, the defined unique name of the component and the actual topic name. For example the joint control topic of the right robot arm evaluates to `/simulation/right\_arm/joint\_control/move'. Each SimulationComponent registers it's ComponentController at the ROSServer and unregisters it when it is destroyed.
+\paragraph{LWRArm}
 
-Description of the LWRArmComponent goes here...
+This class states the connection to the (simulated) hardware itself, providing methods to set commanded values and access all available state data like joint positions, Cartesian position of the end effector, current collision state and more. On creation, it is passed the base of the model tree as constructor argument. The base is identified by the LWR\_ARM\_COMPONENT tag. The value segment of this tag states the name of the arm which has to be unique within the scene. During initialization it traverses the model tree and extracts all required parts by searching for tagged scene objects as described in the previous chapter. The parts to identify are the 7 arm joints, the force sensor on the last link of the arm, IK tip and target dummies. The corresponding tags are listed in Table\ref{fig:lwr_tags}.
+\begin{table}[ht]
+  \centering
+  \label{fig:lwr_tags}
+  \begin{tabularx}{\textwidth}{|l|l|l|X|} \hline
+	\textbf{Constant} & \textbf{Key} & \textbf{Value} & \textbf{Description} \\ \hline
+	LWR\_ARM\_COMPONENT & 1 & Arm name & Identifies KUKA LWR arm model \\
+	LWR\_ARM\_JOINT & 12 & Joint name & Joint in KUKA LWR arm \\
+	LWR\_ARM\_CONNECTOR & 13 & - & Force sensor on arm tip \\
+	LWR\_ARM\_TIP & 14 & - & IK tip dummy \\
+	LWR\_ARM\_TARGET & 15 & - & IK target dummy  \\ \hline
+  \end{tabularx}
+  \caption{Tag data items for LWRArmComponent}
+\end{table}
+Additionally the \emph{LWRArm} also requires a connection to the configured IK groups and collision objects. As there is no possibility to place custom developer tags on IK groups and collision objects, the extraction is done by using a special naming strategy. The first IK group needs to have the same name as the arm itself and it's existence is mandatory, leading to a configuration error message if no such group can be extracted during initialization. Subsequent groups are optional and must have the same name with consecutive numbering (ARM\_NAME1, ARM\_NAME2, \ldots). That allows to reconfigure the IK calculation module and introduce additional IK groups without touching the plugin code. The two required collision objects are also searched, based on the name of the arm (ARM\_NAME and ARM\_NAMEShield). If one or both of them cannot be detected, an error message is stated on the console and the collision detection functionality will not work as expected.
 
-- LWRArm
-  This class provides access to a correctly configured LWR arm model within the simulation scene.
-  To fullfill the requirements for the control interface, the arm has to be able to operate in joint
-  control mode and in inverse kinematics mode. Initially the arm starts in joint control mode. All 
-  the joints are switched to torque/force mode and accept target positions to be set. The simulated
-  PID controllers will try to move the joints to their designated target positions. 
-  
-  Switching to IK mode means to operate all the joints in IK mode and use the previously configured   
-  IK calculation module. Setting a target pose in Cartesian space means to bring the IK target dummy
-  into the required pose. The IK calculation module tries then to bring the linked IK tip dummy into
-  the same pose by commanding the robot arm's joints accordingly and satisfying the configured
-  constraints and precision settings. At the moment, three IK groups are configured for
-  each arm with different settings to achieve performant and stable solutions. Those groups are
-  sequentially called until one of them is successful. The configuration of the first group focuses
-  on performance but provides less stability. The last group uses a configuration that is slower but
-  provides more stability in positions closed to singularities. If none of the groups was successful
-  it will result in an error message on the console, otherwise the arm will start or continue to move
-  towards it's target pose. When initializing the LWRArmComponent, it will search for IK groups that 
-  are named the same as the arm and with consecutive numbering (left\_arm, left\_arm1,
-  left\_arm2,...).
-  That allows to reconfigure the IK calculation module and introduce additional IK groups without 
-  touching the plugin code. It is expected that at least one IK group is configured, otherwise
-  an error message is written to the console.
-  
-  The collision status of the arm is determined by using the configured collision detection module.
-  On each simulation step the collision group that is responsible for detecting direct collisions is 
-  handled first. If that one detects a collision, a direct hit is reported and it is not necessary
-  to handle the second group at all, because a direct hit always implies a hit with the shield as
-  well. Only if no direct hit was detected, the second group is handled. The outcome can be queried
-  as the current collision state of the arm. During initialization it is searched for a collision
-  group that has the same name as the arm, responsible for direct hit detection and a group that is
-  named with the naming pattern [arm\_nameShield], responsible for shield hit detection. If one or
-  both of the required groups cannot be detected, an error message on the console will be stated and
-  the collision detection functionality will not work as expected. Collision state is evaluated on 
-  each simulation time step.
-  
-  Additional items that have to be identified within the model tree are the 7 joints, the end
-  effector tip dummy, the IK target dummy and the force sensor on the last link of the arm. The
-  origin of the reference frame can be defined by creating a dummy object within the scene with
-  the special name 'ref\_frame\_origin'. If such a scene object is found, all Cartesian poses are
-  taken with respect to the reference frame of that object, otherwise the poses are interpreted
-  absolute within the world reference frame. All the necessary data that is published by the 
-  controller can be accessed via this class.
-  
-- LWRArmController
-  The LWRArmController provides the implementation of the Kukie interface. This interface is created
-  by Simon Hangl especially for the KUKA arms in the IIS Lab.
+To fullfill the requirements for the control interface, the arm has to be able to operate in joint control mode (FK mode) and in inverse kinematics mode (IK mode). Initially the arm starts in FK mode, which means the joints are operated in \emph{torque/force} mode and accept target positions to be set. Switching to IK mode is done by changing the joint control mode to \emph{inverse kinematics} mode, which means that they are conntrolled by the IK calculation module further on. Setting a target pose in Cartesian space is done by moving the IK target dummy to the required location and orientation. The known IK groups are then handled sequentially, until one of them is able to solve the problem and set the proper joint target positions. When switching from FK to IK mode, the IK target dummy has to be aligned with the tip dummy to prevent the arm from doing uncontrolled motions.
+
+The current collision status is determined by using the configured collision objects. On each simulation step the collision object that is responsible for detecting direct collisions is handled first. If that one detects a collision, a direct hit is reported and it is not necessary to handle the second object at all, because a direct hit always implies a hit with the shield as well. Only if no direct hit was detected, the second collision object is handled. The outcome can be queried as the current collision state of the arm. The collision state is evaluated on each simulation step.
+
+\paragraph{LWRArmController}
+
+The \emph{LWRArmController} is a subclass of \emph{ComponentController} that encapsulates the whole ROS interface to the \emph{LWRArmComponnt}. On creation it is passed a reference to the underlying \emph{LWRArm}. The arm controller offers 3 basic control modes:
+
+\begin{itemize}
+
+\item \textbf{Joint control mode} \\
+The controller accepts target positions in joint space via the \texttt{joint\_control/move} topic. The message basically consists of a vector, containing a target angles for each single joint, measured in \emph{radiant}. Incoming target positions are validated not to exceed a specified velocity limit, enforcing the constraint
+\begin{equation}
+  |c_{i}-t_{i}|<\delta, \forall ~i~\in~[0,6]
+\end{equation}
+where $c_{i}$ are current and $t_{i}$ are target positions for the joints 0 to 6 and $\delta$ is the current velocity limit. If the velocity limit is violated, the message is dropped and a corresponding error message is published to the \texttt{sensoring/error} topic and written to the console output. The default limit is set to a value of 0.1 and can be adjusted via the \texttt{joint\_control/set\_velocity\_limit} topic. Valid target positions are simply passed to the underlying \emph{LWRArm} instance, which is operated in FK mode.
+
+\item \textbf{Cartesian control mode} \\
+The controller accepts target positions in Cartesian space via the \texttt{cartesian\_control/move} topic. Therefore, the \emph{LWRArm} needs to be operated in IK mode. The commanded target pose is also validated before accepting it. The constraint is defined as
+\begin{equation}
+  |c_{x}-t_{x}|<\sigma ~and~ |c_{y}-t_{y}|<\sigma ~and~ |c_{z}-t_{z}|<\sigma
+\end{equation}
+where $c$ is the current and $t$ is the target position in Cartesian space and $\sigma$ is the current Cartesian velocity limit. The velocity limit can be adjusted, using the \texttt{cartesian\_control/set\_velocity\_limit} topic. Invalid messages are dropped and result in an error message as well, published in \texttt{sensoring/error} topic. Valid target poses are passed to the underlying \emph{LWRArm}.
+
+\item \textbf{Follow mode} \\
+This mode is only on the simulator available and designed to mirror the behaviour of the real robot. The controller reads the joint states of it's real counterpart from the corresponding topic and uses it's current position as target. Therefore, the \emph{LWRArm} is operated in FK mode. This results in an exact copy of the real robot's motions. This mode can be used to test the accuracy of the simulated model, for example by carefully moving the robot close to positions where it collides with the table and check when the collision is reported. 
+
+\end{itemize}
+
+The controller has to be registered at the \emph{ROSServer} in order to be able to work. This section only covered the most important control modes and topics. The complete interface description can be found in the documentation, located in the appendix.
 
 \subsection{The SchunkHandComponent}
 
-Description of the SchunkHandComponent goes here...
+The \emph{SchunkHandComponent} is designed, using the same approach as for the \emph{LWRArmComponent}. Therefore only the most important facts will be stated here. The two composing parts are the \emph{SchunkHand} and the \emph{SchunkHandController}.
+
+\paragraph{SchunkHand}
+
+States the connection to a Schunk hand model. The only additional parts that have to be discovered during initialization are the 7 gripper joints and their corresponding names. The available tags are
+listed in Table\ref{fig:schunk_tags}
+\begin{table}[h]
+  \centering
+  \label{fig:schunk_tags}
+  \begin{tabularx}{\textwidth}{|l|l|l|X|} \hline
+	\textbf{Constant} & \textbf{Key} & \textbf{Value} & \textbf{Description} \\ \hline
+	SCHUNK\_HAND\_COMPONENT & 2 & Hand name & Identifies Schunk hand model \\
+	SCHUNK\_HAND\_JOINT & 22 & Joint name & Joint in Schunk hand model \\ \hline
+  \end{tabularx}
+  \caption{Tag data items for SchunkHandComponent}
+\end{table}
+The \emph{SchunkHand} class provides methods to set joint positions and to retrieve current joint states. Additionally it allows to modify the motor strength for each single joint, based on a percentage of maximum force. This reflects the possibility of adjusting the motor currents in the real hand, which also leads to the effect that the maximum motor strengths of the finger joints can be increased or decreased.
+
+\paragraph{SchunkHandController}
+
+The \emph{SchunkHandController} provides an implementation of the ROS interface for the Schunk gripper model. The basic topics are quite similar to those of the \emph{LWRArmController}, as there are \texttt{joint\_control/move} for setting joint target positions or \texttt{joint\_control/get\_state} for retrieving joint states.
+\begin{figure}[h]
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/grasp_types.jpg}
+	\caption{Grasp types SPHERICAL, CENTRICAL, CYLINDRICAL and PARALLEL}
+	\label{fig:grasp_types}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+  \label{fig:grasp_defs}
+  \begin{tabular}{|l|c|c|c|} \hline
+	\textbf{Name} & \textbf{pivoting} & \textbf{proximal} & \textbf{distal} \\ \hline
+	CYLINDRICAL & $0$ & $(-30+30x)\frac{\pi}{180}$ & $(30 + 35x)\frac{\pi}{180}$ \\
+	PARALLEL & $0$ & $(-75+82x)\frac{\pi}{180}$ & $(75-82x)\frac{\pi}{180}$ \\
+	CENTRICAL & $\frac{\pi}{3}$ & $(-75+82x)\frac{\pi}{180}$ & $(75-82x)\frac{\pi}{180}$ \\
+	SPHERICAL & $\frac{\pi}{3}$ & $(-40+25x)\frac{\pi}{180}$ & $(40+15x)\frac{\pi}{180}$ \\ \hline
+  \end{tabular}
+  \caption{Joint position functions based on close ratio $x$}
+\end{table}
+
 
 \subsection{Publishing Kinect camera data}
 

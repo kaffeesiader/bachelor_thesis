@@ -12,10 +12,11 @@
 \contentsline {figure}{\numberline {2.9}{\ignorespaces Simulator plugin architecture}}{19}{figure.2.9}
 \contentsline {figure}{\numberline {2.10}{\ignorespaces Sample scene hierarchy}}{20}{figure.2.10}
 \contentsline {figure}{\numberline {2.11}{\ignorespaces Custom developer data segments on scene object}}{21}{figure.2.11}
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Grasp types SPHERICAL, CENTRICAL, CYLINDRICAL and PARALLEL}}{24}{figure.2.12}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Stages of the pickup phase in the simulator}}{32}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Stages of the placement phase in the simulator}}{33}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Planning scene after inserting the collision objects}}{35}{figure.4.3}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Grasp poses, gripper approach and retreat}}{36}{figure.4.4}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Place locations, pre-place approach and post-place retreat}}{37}{figure.4.5}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Stages of the pickup phase in the simulator}}{34}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Stages of the placement phase in the simulator}}{35}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Planning scene after inserting the collision objects}}{37}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Grasp poses, gripper approach and retreat}}{38}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Place locations, pre-place approach and post-place retreat}}{39}{figure.4.5}

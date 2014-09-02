@@ -25,32 +25,36 @@
 \contentsline {paragraph}{ComponentController}{19}{section*.13}
 \contentsline {subsection}{\numberline {2.5.2}Identifying simulation components}{19}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}The LWRArmComponent}{21}{subsection.2.5.3}
-\contentsline {subsection}{\numberline {2.5.4}The SchunkHandComponent}{22}{subsection.2.5.4}
-\contentsline {subsection}{\numberline {2.5.5}Publishing Kinect camera data}{22}{subsection.2.5.5}
-\contentsline {section}{\numberline {2.6}Simulator startup script}{22}{section.2.6}
-\contentsline {chapter}{\numberline {3}Motion planning}{23}{chapter.3}
-\contentsline {section}{\numberline {3.1}Introduction}{23}{section.3.1}
-\contentsline {section}{\numberline {3.2}The MoveIt! motion planning framework}{23}{section.3.2}
-\contentsline {section}{\numberline {3.3}Creating the URDF model of the robot setup}{24}{section.3.3}
-\contentsline {section}{\numberline {3.4}Configuring the planning tools}{25}{section.3.4}
-\contentsline {section}{\numberline {3.5}Connecting MoveIt to the existing robot control interface}{26}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Overview ROS control stack}{26}{subsection.3.5.1}
-\contentsline {subsection}{\numberline {3.5.2}Designing the hardware adapter}{27}{subsection.3.5.2}
-\contentsline {subsection}{\numberline {3.5.3}Launching the hardware adapter}{28}{subsection.3.5.3}
-\contentsline {subsection}{\numberline {3.5.4}Adjusting the MoveIt configuration}{28}{subsection.3.5.4}
-\contentsline {section}{\numberline {3.6}Usage examples}{29}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Capabilities}{29}{subsection.3.6.1}
-\contentsline {subsection}{\numberline {3.6.2}Modifying the planning scene}{29}{subsection.3.6.2}
-\contentsline {subsection}{\numberline {3.6.3}Planning and executing trajectories}{29}{subsection.3.6.3}
-\contentsline {subsection}{\numberline {3.6.4}Running the planning tools in different namespaces}{29}{subsection.3.6.4}
-\contentsline {chapter}{\numberline {4}Pick and place}{31}{chapter.4}
-\contentsline {section}{\numberline {4.1}Overview}{31}{section.4.1}
-\contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{33}{section.4.2}
-\contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{34}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{35}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{35}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{36}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{36}{subsection.4.3.4}
-\contentsline {section}{\numberline {4.4}Executing the benchmark task}{37}{section.4.4}
-\contentsline {section}{\numberline {4.5}Observations}{38}{section.4.5}
-\contentsline {chapter}{Bibliography}{39}{section*.14}
+\contentsline {paragraph}{LWRArm}{21}{section*.14}
+\contentsline {paragraph}{LWRArmController}{22}{section*.15}
+\contentsline {subsection}{\numberline {2.5.4}The SchunkHandComponent}{23}{subsection.2.5.4}
+\contentsline {paragraph}{SchunkHand}{23}{section*.16}
+\contentsline {paragraph}{SchunkHandController}{23}{section*.17}
+\contentsline {subsection}{\numberline {2.5.5}Publishing Kinect camera data}{24}{subsection.2.5.5}
+\contentsline {section}{\numberline {2.6}Simulator startup script}{24}{section.2.6}
+\contentsline {chapter}{\numberline {3}Motion planning}{25}{chapter.3}
+\contentsline {section}{\numberline {3.1}Introduction}{25}{section.3.1}
+\contentsline {section}{\numberline {3.2}The MoveIt! motion planning framework}{25}{section.3.2}
+\contentsline {section}{\numberline {3.3}Creating the URDF model of the robot setup}{26}{section.3.3}
+\contentsline {section}{\numberline {3.4}Configuring the planning tools}{27}{section.3.4}
+\contentsline {section}{\numberline {3.5}Connecting MoveIt to the existing robot control interface}{28}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Overview ROS control stack}{28}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Designing the hardware adapter}{29}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.3}Launching the hardware adapter}{30}{subsection.3.5.3}
+\contentsline {subsection}{\numberline {3.5.4}Adjusting the MoveIt configuration}{30}{subsection.3.5.4}
+\contentsline {section}{\numberline {3.6}Usage examples}{31}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Capabilities}{31}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}Modifying the planning scene}{31}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}Planning and executing trajectories}{31}{subsection.3.6.3}
+\contentsline {subsection}{\numberline {3.6.4}Running the planning tools in different namespaces}{31}{subsection.3.6.4}
+\contentsline {chapter}{\numberline {4}Pick and place}{33}{chapter.4}
+\contentsline {section}{\numberline {4.1}Overview}{33}{section.4.1}
+\contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{35}{section.4.2}
+\contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{36}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{37}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{37}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{38}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{38}{subsection.4.3.4}
+\contentsline {section}{\numberline {4.4}Executing the benchmark task}{39}{section.4.4}
+\contentsline {section}{\numberline {4.5}Observations}{40}{section.4.5}
+\contentsline {chapter}{Bibliography}{41}{section*.18}

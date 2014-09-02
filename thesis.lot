@@ -3,5 +3,8 @@
 \contentsline {table}{\numberline {2.1}{\ignorespaces Configured collision objects}}{15}{table.2.1}
 \contentsline {table}{\numberline {2.2}{\ignorespaces Collection definitions}}{15}{table.2.2}
 \contentsline {table}{\numberline {2.3}{\ignorespaces IK group definitions}}{16}{table.2.3}
+\contentsline {table}{\numberline {2.4}{\ignorespaces Tag data items for LWRArmComponent}}{21}{table.2.4}
+\contentsline {table}{\numberline {2.5}{\ignorespaces Tag data items for SchunkHandComponent}}{23}{table.2.5}
+\contentsline {table}{\numberline {2.6}{\ignorespaces Joint position functions based on close ratio $x$}}{23}{table.2.6}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
