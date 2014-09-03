@@ -357,9 +357,9 @@ One possible way would be to give each part a clearly defined, unique name and t
 	\label{fig:cust_dev_data}
 \end{figure}
 
-As the format of the data can freely be chosen, it was decided to use string representations of key/value pairs, separated by a colon (:). The key is an integer number, used to determine the type of the tagged object. The value segment can be used to provide additional information, e.g. the name of a joint. The left arm's model base for example is tagged with the data segment \texttt{2497,1:left\_arm}. The number 2497 is the header that identifies the data segment to belong to this plugin. The data segment identifies that element as the model base of a \emph{LWRArmComponent} (Key=1) with the name `left\_arm'. The available keys are explained in the sections that correspond to the specific simulation components.
+As the format of the data can freely be chosen, it was decided to use string representations of key/value pairs, separated by a colon (:). The key is an integer number, used to determine the type of the tagged object. The value segment can be used to provide additional information, e.g. the name of a joint. The left arm's model base for example is tagged with the data segment \texttt{2497,1:left\_arm}. The number 2497 is the header that identifies the data segment to belong to this plugin. The data segment identifies that element as the model base of a \emph{LWRArmComponent} (Key=1) with the name \emph{left\_arm}. The available keys are explained in the sections that correspond to the specific simulation components.
 
-When actualizing for scene content change, the \emph{ComponentContainer} traverses the scene hierarchy and looks for objects, that are tagged as known components. On success, it creates the specific instance providing the object ID of the underlying scene object to the constructor. During initialization, the concrete \emph{SimulationComponent} implementation then traverses the rest of the model subtree to extract all the remaining parts that belong to that specific model (joints, dummies, force sensors...), also looking for tagged objects. The implementations for arm and hand model provide feedback output on the console window about the status of this initialization process and provide meaningful error messages in case that not all necessary parts of a model could be successfully located.
+When actualizing for scene content change, the \emph{ComponentContainer} traverses the scene hierarchy and looks for objects, that are tagged as known components. On success, it creates the specific instance providing the object ID of the underlying scene object to the constructor. During initialization, the concrete \emph{SimulationComponent} implementation then traverses the rest of the model subtree to extract all the remaining parts that belong to that specific model (joints, dummies, force sensors...), also by looking for tagged objects. The implementations for arm and hand model provide feedback output on the console window about the status of this initialization process and provide meaningful error messages in case that not all necessary parts of a model could be successfully located.
 
 \subsection{The LWRArmComponent}
 
@@ -417,11 +417,6 @@ The controller has to be registered at the \emph{ROSServer} in order to be able 
 \subsection{The SchunkHandComponent}
 
 The \emph{SchunkHandComponent} is designed, using the same approach as for the \emph{LWRArmComponent}. Therefore only the most important facts will be stated here. The two composing parts are the \emph{SchunkHand} and the \emph{SchunkHandController}.
-
-\paragraph{SchunkHand}
-
-States the connection to a Schunk hand model. The only additional parts that have to be discovered during initialization are the 7 gripper joints and their corresponding names. The available tags are
-listed in Table\ref{fig:schunk_tags}
 \begin{table}[h]
   \centering
   \label{fig:schunk_tags}
@@ -432,7 +427,11 @@ listed in Table\ref{fig:schunk_tags}
   \end{tabularx}
   \caption{Tag data items for SchunkHandComponent}
 \end{table}
-The \emph{SchunkHand} class provides methods to set joint positions and to retrieve current joint states. Additionally it allows to modify the motor strength for each single joint, based on a percentage of maximum force. This reflects the possibility of adjusting the motor currents in the real hand, which also leads to the effect that the maximum motor strengths of the finger joints can be increased or decreased.
+
+\paragraph{SchunkHand}
+
+States the connection to a Schunk hand model. The only additional parts that have to be discovered during initialization are the 7 gripper joints and their corresponding names. Available tags are
+listed in Table\ref{fig:schunk_tags}. The \emph{SchunkHand} class provides methods to set joint positions and to retrieve current joint states. Additionally it allows to modify the motor strength for each single joint, based on a percentage of maximum force. This reflects the possibility of adjusting the motor currents in the real hand, which also leads to the effect that the maximum motor strengths of the finger joints can be increased or decreased.
 
 \paragraph{SchunkHandController}
 
@@ -443,7 +442,7 @@ The \emph{SchunkHandController} provides an implementation of the ROS interface 
 	\caption{Grasp types SPHERICAL, CENTRICAL, CYLINDRICAL and PARALLEL}
 	\label{fig:grasp_types}
 \end{figure}
-
+Additionally the hand is able to perform grasps, based on specific \emph{grasp types} as can be seen in Figure\ref{fig:grasp_types}. This functionality can be accessed via the \texttt{joint\_control/gripHand} topic. A grasp is defined by the parameters \emph{grasp type} and \emph{close ratio}. The controller then calculates the corresponding joint positions, based on those parameters and sets the desired target positions. Each grasp can be expressed, using three functions -- one for the position of the pivoting joints and the other two for the positions of the distal and proximal finger joints. The utilized functions were taken from the original controller code of the \texttt{schunk\_sdh} ROS package, located in the \texttt{iis\_robot\_sw} code repository. The definitions can be seen in Table\ref{fig:grasp_defs}. The grasp strength can be adjusted, using the \texttt{settings/set\_motor\_current} topic. The message basically consists of a vector, holding a value for each joint, defining a percentage of the maximum motor strength. The real gripper also provides a topic that allows to read the current motor temperatures. For the sake of consistency, the \emph{SchunkHandController} also provides this topic, but as V-Rep is not able to simulate motor heatings, only constant fake values are published. A complete interface description can be found in the appendix.
 \begin{table}[h]
   \centering
   \label{fig:grasp_defs}
@@ -457,11 +456,6 @@ The \emph{SchunkHandController} provides an implementation of the ROS interface 
   \caption{Joint position functions based on close ratio $x$}
 \end{table}
 
-
 \subsection{Publishing Kinect camera data}
 
-How is the integrated vision sensor configured? How are the RGB and depth images published? Explain usage of default V-Rep ROS functionality and how to enable publishers in LUA script.
-
-\section{Simulator startup script}
-
-Describe startup script, environmental variable (VREP\_PACKAGE\_PATH), launch file, how to use different simulation scenes.
+The Kinect camera model does not contain any flexible parts that have to be controlled by the plugin. But it is necessary to make the images, captured by the simulated vision sensor available via ROS topics. This was achieved by using the corresponding functionality of the V-Rep default ROS interface that allows publishing vision sensor data, using the correct message types. Therefore a LUA script was attached to the base element of the camera model within the scene. This script simply extracts the object ID of the vision sensor and enables publishers for the captured RGB and depth images. The corresponding topics are \texttt{kinect1/sensoring/rgb\_image} and \texttt{kinect1/sensoring/depth\_image}. 

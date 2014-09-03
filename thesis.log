@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  2 SEP 2014 15:20
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  3 SEP 2014 13:11
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -644,7 +644,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--19
 
  []
 
-<images/pickup.jpg, id=613, 568.94437pt x 327.15514pt>
+<images/pickup.jpg, id=615, 568.94437pt x 327.15514pt>
 File: images/pickup.jpg Graphic file (type jpg)
  <use images/pickup.jpg>
 Underfull \hbox (badness 10000) in paragraph at lines 29--30
@@ -652,7 +652,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--30
  []
 
 [34 <./images/pickup.jpg>]
-<images/placement.jpg, id=619, 568.94437pt x 327.15514pt>
+<images/placement.jpg, id=621, 568.94437pt x 327.15514pt>
 File: images/placement.jpg Graphic file (type jpg)
 
 <use images/placement.jpg>
@@ -670,26 +670,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
 
-[36] <images/task_env.png, id=630, 979.40906pt x 560.0925pt>
+[36] <images/task_env.png, id=632, 979.40906pt x 560.0925pt>
 File: images/task_env.png Graphic file (type png)
 
 <use images/task_env.png> [37 <./images/task_env.png (PNG copy)>]
-<images/grasp_stages.jpg, id=635, 1402.23875pt x 371.3875pt>
+<images/grasp_stages.jpg, id=637, 1402.23875pt x 371.3875pt>
 File: images/grasp_stages.jpg Graphic file (type jpg)
 
 <use images/grasp_stages.jpg> [38 <./images/grasp_stages.jpg>]
-<images/place_stages.jpg, id=640, 2040.62375pt x 482.80376pt>
+<images/place_stages.jpg, id=642, 2040.62375pt x 482.80376pt>
 File: images/place_stages.jpg Graphic file (type jpg)
 
 <use images/place_stages.jpg> [39 <./images/place_stages.jpg>]) [40]
 (./thesis.bbl) [41
 
 
-] (./thesis.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./thesis.aux) ) 
 Here is how much of TeX's memory you used:
  7150 strings out of 495061
  101831 string characters out of 1182621
@@ -698,22 +694,25 @@ Here is how much of TeX's memory you used:
  80617 words of font info for 52 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,17n,58p,2099b,370s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dv
-ips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share
-/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm
-/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texm
-f/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi
-8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts
-/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></us
-r/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/publ
-ic/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/share
-/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm
-/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/te
-xmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
-tt10.pfb>
-Output written on thesis.pdf (55 pages, 4656943 bytes).
+pdfTeX warning (dest): name{section.2.6} has been referenced 
+but does not exist, replaced by a fixed one
+
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvip
+s/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/t
+exmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm/l
+mbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.
+pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/
+share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public
+/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/l
+mss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texm
+f/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt
+10.pfb>
+Output written on thesis.pdf (55 pages, 4659379 bytes).
 PDF statistics:
- 746 PDF objects out of 1000 (max. 8388607)
+ 748 PDF objects out of 1000 (max. 8388607)
  163 named destinations out of 1000 (max. 500000)
  512 words of extra memory for PDF output out of 10000 (max. 10000000)
 
