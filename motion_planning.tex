@@ -8,19 +8,27 @@ What means motion planning?
 What are the requirements?
 
 
-
 \section{The MoveIt! motion planning framework}
 
-MoveIt is an open source framework for motion planning. It is the successor of the previous arm navigation stack and is therefore fully integrated into ROS. MoveIt! was originally developed by Willowgarage(www.willowgarage.com) but since April 2012 it is maintained by the Open Source Robotics Foundation (OSRF). Figure blabla gives an overview about the system architecture of MoveIt!. The most important node is the move\_group node. Configuration of that node happens via the parameter server. It requires a complete kinematic and semantic description of the robot setup in the urdf and srdf format and a lot of other configuration parameters which will be described later on. The move\_group node provides a rich set of ROS actions and services which can be used to solve planning problems and execute the calculated motion plans on the connected hardware.
+MoveIt\footnote{http://moveit.ros.org} is an open source framework for motion planning. It is the successor of the previous arm navigation stack and therefore fully integrated into ROS. MoveIt was originally developed by Willowgarage\footnote{http://www.willowgarage.com} but since April 2012 it is maintained by the Open Source Robotics Foundation (OSRF). Figure\ref{fig:moveit_arch} gives an overview about the system architecture. Central part of the framework is the \texttt{move\_group} node which  provides a rich set of ROS topics and services that can be used to solve planning problems and execute calculated motion plans on connected hardware. Configuration of that node happens via the parameter server. It requires a complete kinematic and semantic description of the robot setup and a lot of other configuration parameters which will be described in subsequent sections. The most important parts of MoveIt are implemented as plugins which means that it is highly customizable. By default it uses the Kinematics and Dynamics Library\footnote{http://www.orocos.org/kdl} (KDL) as IK solver and the Open Motion Planning Library (OMPL) as planning plugin but it is possible to replace them with custom solutions if necessary.\\
 
-The most important parts of MoveIt are implemented as plugins which means that it is highly customizable. By default it uses KDL as IK solver and the Open Motion Planning Library (OMPL) as planning plugin but it is possible to replace them with custom solutions if necessary.
+\begin{figure}[ht]
+	\centering
+  	\includegraphics[width=0.75\textwidth]{images/moveit_architecture.jpg}
+	\caption[Moveit architecture]{MoveIt architecture}
+	{\scriptsize Image source: \url{http://moveit.ros.org/documentation/concepts}}
+	\label{fig:moveit_arch}
+\end{figure}
 
-MoveIt! maintains a planning scene which is an internal representation of the world, including the robot and it's environment. The base is a description of the robot and it's various planning groups. To keep track of the current state of the robot MoveIt! needs to be informed continuously about the actual joint states. This is done via publishing the joint states to a specific topic. If there are additional objects within the robot's workspace they also have to be added to the planning scene. This can be done either by explicitly adding them via the corresponding topic or by integrating sensor information like Kinect camera data. MoveIt! can then take those objects into account during motion planning and avoid collisions. But some collisions are intended. For example if an object has to be picked up, the gripper has to get in contact to this object. Therefore collision checking for specific objects can be (temporary) disabled to allow those controlled collisions. Therefore MoveIt! maintains an 'AllowedCollisionMatrix' to which objects can be added or removed. The connection to the hardware happens via the FollowJointTrajectoryAction interface. Each robot component has to provide this interface if it is intended to be control via MoveIt!. This interface consists of a set of ROS topics that provide trajectory execution functionality and also allow monitoring of the current execution status. The major contribution within this chapter to the whole project was to provide an implementation of this interface and connect it to the one that is currently available.
-(TODO: leave some words about OMPL!!!)
+MoveIt maintains a planning scene which is an internal representation of the world, including the robot and it's environment. The base is a description of the robot and it's various planning groups. 
+The kinematic description needs to be available in form of a URDF model. Necessary steps to create that model are described in Section\ref{sec:urdf}. Based on that URDF model, a semantic description (SRDF) is created that contains additional information about the setup, as explained in Section\ref{sec:moveit_assistant}. On top of those static descriptions, MoveIt allows to modify the planning scene on runtime via appropriate ROS topics.\\
+
+To keep track of the current state of the robot MoveIt needs to be informed continuously about actual joint states. This is done via publishing the joint states to a specific topic. If there are additional objects within the robot's workspace they also have to be added to the planning scene. This can be done either by explicitly adding them via the corresponding topic or by integrating sensor information like Kinect camera data. MoveIt can then take those objects into account during motion planning and avoid collisions. But some collisions are intended. For example if an object has to be picked up, the gripper has to get in contact to this object. Therefore collision checking for specific objects can be (temporary) disabled to allow those controlled collisions. Therefore MoveIt maintains an \emph{AllowedCollisionMatrix} to which objects can be added or removed. The connection to the hardware happens via the \emph{FollowJointTrajectory} action interface. Each robot component has to provide this interface if it is intended to be control via MoveIt. This interface consists of a set of ROS topics that provide trajectory execution functionality and also allow monitoring the current execution status. The major contribution within this chapter to the whole project was to provide an implementation of this interface and connect it to the one that is currently available.
 
 \section{Creating the URDF model of the robot setup}
+\label{sec:urdf}
 
-The Unified Robot Description Format (URDF) is a markup language, designed to exactly describe robots. The description has to be done in XML formated text files. The exact specification can be found under (http://wiki.ros.org/urdf/XML). The most important elements in the XML specification are:
+The \emph{Unified Robot Description Format} (URDF) is a markup language, designed to describe robots. The description happens in text files, in a special XML format. The most important elements in the XML specification\footnote{http://wiki.ros.org/urdf/XML} are:
 
 \begin{itemize}
 
@@ -29,28 +37,55 @@ Describes the all necessary properties of a specific robot link. Each link must 
 or from mesh files. If mesh files are used it is important that they are not to complex. Especially for the collision model it is recommended to use a simplified model to avoid a performance loss.
 
 \item \textbf{<joint>} \\
-Describes the properties of a joint. A joint is a connection between two links, having exactly one parent and one child link. Each joint states a new reference frame for it's child link and it is positioned relative to it's parent frame. A fixed joint is a rigid connection between parent and child link. There are different types of joints available but for the current project only revolute joints are of interest. Details like limits, axis orientation and dynamic properties can be configured in the corresponding subtags of the joint element.
+Describes the properties of a joint. A joint is a connection between two links, having exactly one parent and one child link. Each joint states a new reference frame for it's child link and it is positioned relative to it's parent frame. A \emph{fixed} joint is a rigid connection between parent and child link. There are different types of joints available but for the current project only \emph{revolute} joints\footnote{Rotational joint with one degree of freedom} are of interest. Details like limits, axis orientation and dynamic properties can be configured in the corresponding subtags of the joint element.
 
 \end{itemize}
+\begin{figure}[ht]
+	\centering
+  	\includegraphics[width=0.75\textwidth]{images/urdf_chain.jpg}
+	\caption[URDF graph]{URDF graph}
+	{\scriptsize Image source: http://wiki.ros.org/urdf/Tutorials/Create your own urdf file}
+	\label{fig:urdf_graph}
+\end{figure}
+Those elements are used to exactly describe the kinematic chain of the robot components and their placement relative to each other as visualized in figure\ref{fig:urdf_graph}. This description can get very large as a lot of different components are involved. So it is possible to organize it into a set of text files, each one describing one part of the whole. For example one file describes the arm itself. Other files can then use that description and insert multiple instances of that arm. The \texttt{xacro} ROS package provides the necessary functionality to combine all those text files into one XML string. \emph{XACRO} stands for XML Macro and is designed to parse xacro files and combine them into one single XML document, containing the resulting URDF description.\\
 
-Those elements are used to exactly describe the kinematic chain of the robot components and their placement relative to each other. This description can get very large as a lot of different components are involved. So it is possible to organize it into a set of text files, each one describing one part of the whole. The 'xacro' ROS package provides the necessary functionality to combine all those text files into one XML string. XACRO stands for XML Macro and is designed to parse xacro files into one single XML document.
+The URDF description of the IIS robot setup is spread across multiple packages, located in the \texttt{iis\_hardware} stack. Arm and gripper descriptions are located in seperate packages (\texttt{lwr\_description} and \texttt{schunk\_description}), the \texttt{iis\_robot} package brings all the components together. The modelling process started with the search for pre-existing URDF descriptions of the required robot components. A suitable description of the Schunk SDH gripper was taken from the \texttt{schunk\_description} ROS package. A model of the KUKA LWR arm was found in the Github repository\footnote{https://github.com/RCPRG-ros-pkg/lwr\_robot/tree/hydro-devel/lwr\_defs} of the \emph{Robot Control and Pattern Recognition Group}\footnote{University of Warsaw (http://robotyka.ia.pw.edu.pl/twiki/bin/view/Main)}. The other parts of the model, namely the robot torso and the table had to be created. The descriptions are located in a seperate files within the \texttt{uibk\_robot} package (torso.xacro and table.xacro).
 
-The URDF description of the IIS robot setup is located in the iis\_hardware stack. The arm and gripper descriptions are located in seperate packages within this stack. The iis\_robot package brings all the components together.
+The mesh files, used in the description of the robot torso have been exported from the V-Rep simulation scene. For the visual part, the mesh was taken as it is. For the collision model, the width of the original mesh was increased to provide some safety padding. Moreover a cylinder with a diameter of 40cm was added in the head area to ensure that the planner avoids accidental hits in this sensitive region. Figure\ref{fig:torso_col} shows the visual and the collidable part of the torso model.
+\begin{figure}
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/torso.jpg}
+	\caption{Left image shows visual part, right image the collidable part of the torso}
+	\label{fig:torso_col}
+\end{figure}
+The table was modelled from primitive shapes. It was taken care that the size of the table can easily be adjusted, as can bee seen in Listing\ref{lst:table}. The collision model of the table is also slightly larger than the visual part to provide some safety margins.
+\lstset{language=XML,style=customxml}
+\begin{lstlisting}[caption={XML snippet, inserting the table model into the URDF}, label=lst:table]
+<!-- draw the table relative to the origin -->
+<xacro:model_table name="table" 
+	     parent="world"
+	     length="2.22"
+	     width="0.8">
+	<!-- Place the table relative to the world reference frame -->
+	<origin xyz="-0.029 -0.3 0" />
+    
+</xacro:model_table>
+\end{lstlisting}
 
-The modelling process started with the search for pre-existing URDF descriptions of the required robot components. A description of the Schunk SDH gripper was found in the schunk\_description ROS package. A suitable description of the KUKA LWR arm was found in the git repository of the Robot Control and Pattern Recognition Group (RCPRG - University of Warsaw). The other parts of the model, namely the robot torso and the table had to be created. Each one is located in a seperate file within the uibk\_robot package (torso.xacro and table.xacro). The mesh files, used in the description of the robot torso have been exported from the V-Rep simulation scene. For the visual part, the mesh was taken as it is. For the collision model, the width of the original mesh was increased to provide some safety padding. Moreover a cylinder with a diameter of 40cm was added in the head area to ensure that the planner avoids accidental hits in this sensitive region.
-The table was modelled from primitive shapes. It was taken care that the size of the table can easily be adjusted if it becomes necessary. The collision model of the table is also slightly larger than the visual part to provide some safety margins.
-The offset between the gripper and the last arm link was not correct, because in the existing description the connector ring was missing. To correct that issue the file 'sdh\_with\_connector.xacro' was created.
+When attaching the two grippers it showed that the offset between gripper wrist and last arm link was not correct. To correct that issue the file \texttt{sdh\_with\_connector.xacro} was created which simply places an additional ring between the last arm link and the gripper.\\
 
-The file 'iis\_robot\_table.xacro' draws all the pieces together. It describes the whole setup, consisting of the torso, two arms, two grippers and the table. The root element of the model hierarchy is a link called 'world\_link'. Torso, table and both arms are positioned relative to that root link. Changing the world reference frame could easily be achieved by shifting the root link to a new position.
-
-The robot model described within those files can be visualized using RViz. Therefore the launch file 'display.launch' was created within the 'iis\_robot' package. When launching this file, the URDF description is uploaded to the parameter server and RViz starts, displaying the model. The collision model can be visualized by checking the 'Collision Enabled' checkbox in the 'RobotState' plugin settings. (TODO: show image, displaying visual and collision model)
-- additional setups available
-- can be visualized using launch file and 'file\_name' parameter
-
+The file \texttt{iis\_robot\_table.xacro} draws all the pieces together. It describes the whole setup, consisting of the torso, two arms, two grippers and the table. The root element of the model hierarchy is a link called 'world\_link'. Torso, table and both arms are positioned relative to that root link. Changing the world reference frame could easily be achieved by shifting the root link to a new position. Figure\ref{fig:robot_table} shows a visualization of the URDF description.
+\begin{figure}
+	\centering
+  	\includegraphics[width=0.75\textwidth]{images/iis_robot_table.png}
+	\caption{Visualization of the URDF description}
+	\label{fig:robot_table}
+\end{figure}
 
 \section{Configuring the planning tools}
+\label{sec:moveit_assistant}
 
-The MoveIt configuration package was created, using the MoveIt Setup Assistant. Precondition for doing that is an existing URDF description of the robot setup which was created in the previous step.
+The MoveIt configuration package is created, using the \emph{MoveIt Setup Assistant}. Precondition is an existing URDF description of the robot setup which was created in the previous step.
 The setup process comprised of the following steps:
 
 \begin{itemize}
@@ -61,20 +96,23 @@ The self collision matrix consists of pairs of robot links that can safely be ex
 
 \item \textbf{Defining the planning groups}
 
-Each planning request in MoveIt is done against one of the defined planning groups. A planning group is a group of links and joints within the model that comprises a single robot component. Planning groups are defined for each arm and gripper. There is also defined a planning group called 'both\_arms'. That group can be used later on if a planning request should be done for both arms simultaneously.
+Each planning request in MoveIt is done against one of the defined \emph{planning groups}. A planning group is a group of links and joints within the model that can be seen as one logical component. Planning groups are defined for both arms and grippers. The configuration for the arms also requires the definition of the utilized IK solvers but currently only the default KDL solver is available. An additional planning group, called \texttt{both\_arms} allows planning requests for both arms simultaneously.
 
 \item \textbf{Defining the end effectors}
 
-The end effectors are the left and the right gripper. Each end effector has a name and consists of one of the predefined planning groups, a parent group and the parent link which is the last link in the kinematic chain of the parent group.
+End effectors are the left and the right gripper. Each end effector has a name and consists of one of the predefined planning groups, a parent group and the parent link which is the last link in the kinematic chain of the parent group.
 
 \item \textbf{Generate the configuration files}
 
-After completing all the configuration steps the configuration package can be generated. Therefore a target directory has to be specified which was set to 'uibk\_robot\_moveit\_config'.
+After completing all the configuration steps the configuration package can be generated. Therefore a target directory has to be specified which was set to \texttt{uibk\_robot\_moveit\_config}. This package is a prototype, containing a large number of predefined configuration files. Some of those files have to be extended manually, adding additional information about available robot controllers and sensors. 
 
 \end{itemize}
 
-After completing the last step, a ROS package was created, containing all the necessary configuration and launch files for the given robot setup. The outcome can be tested, using the 'demo.launch' file from the configuration package. The setup can be modified by launching the Setup Assistant again, using the 'setup\_assistant.launch' file from this package.
-
+Completing the last step results in a ROS package, containing necessary configuration and launch files for the given robot setup. The semantic robot description can be found in the \texttt{iis\_robot.srdf} file. It contains previously defined parameters like the self-collision matrix, planning groups and end effectors. The configuration package can be tested, running the following command on the command line:
+\begin{center}
+\texttt{roslaunch uibk\_robot\_moveit\_config demo.launch}
+\end{center}
+This command launches a \texttt{move\_group} node and a graphical user interface that can be used to test the configuration by defining planning requests. In case of a successful request, the resulting trajectories will be visualized. The setup can be modified by launching the Setup Assistant again, using the \texttt{setup\_assistant.launch} file from this package.
 
 \section{Connecting MoveIt to the existing robot control interface}
 

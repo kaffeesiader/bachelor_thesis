@@ -7,6 +7,7 @@
 
 % \usepackage[ngerman]{babel}     % if the thesis is written in German
 \usepackage{listings}
+\usepackage{caption}
 
 \usepackage{tabularx}
 
@@ -23,9 +24,25 @@
 \lstset{
 basicstyle=\footnotesize\sffamily\color{black},
 commentstyle=\color{mygreen}\itshape,
+frame=single,
 emph={uint},
 emphstyle=\color{myblue},
-frame=single,
+keywordstyle=\color{myblue}\bfseries,
+showspaces=false,
+showstringspaces=false,
+stringstyle=\color{myorange},
+tabsize=2
+}
+
+\lstdefinestyle{customxml}{
+language=XML
+}
+
+\lstdefinestyle{customc}{
+basicstyle=\footnotesize\sffamily\color{black},
+commentstyle=\color{mygreen}\itshape,
+emph={uint},
+emphstyle=\color{myblue},
 numbers=left,
 numbersep=5pt,
 numberstyle=\tiny\color{myblue},
