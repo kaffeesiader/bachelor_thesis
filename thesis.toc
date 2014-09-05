@@ -39,21 +39,21 @@
 \contentsline {section}{\numberline {3.5}Connecting MoveIt to the existing robot control interface}{30}{section.3.5}
 \contentsline {subsection}{\numberline {3.5.1}ROS control stack overview}{31}{subsection.3.5.1}
 \contentsline {subsection}{\numberline {3.5.2}Designing the hardware adapter}{32}{subsection.3.5.2}
-\contentsline {subsection}{\numberline {3.5.3}Launching the hardware adapter}{33}{subsection.3.5.3}
-\contentsline {subsection}{\numberline {3.5.4}Adjusting the MoveIt configuration}{34}{subsection.3.5.4}
-\contentsline {section}{\numberline {3.6}Usage examples}{34}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Capabilities}{34}{subsection.3.6.1}
-\contentsline {subsection}{\numberline {3.6.2}Modifying the planning scene}{34}{subsection.3.6.2}
-\contentsline {subsection}{\numberline {3.6.3}Planning and executing trajectories}{34}{subsection.3.6.3}
-\contentsline {subsection}{\numberline {3.6.4}Running the planning tools in different namespaces}{34}{subsection.3.6.4}
-\contentsline {chapter}{\numberline {4}Pick and place}{35}{chapter.4}
-\contentsline {section}{\numberline {4.1}Overview}{35}{section.4.1}
-\contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{37}{section.4.2}
-\contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{38}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{39}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{39}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{40}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{40}{subsection.4.3.4}
-\contentsline {section}{\numberline {4.4}Executing the benchmark task}{41}{section.4.4}
-\contentsline {section}{\numberline {4.5}Observations}{42}{section.4.5}
-\contentsline {chapter}{Bibliography}{43}{section*.47}
+\contentsline {subsection}{\numberline {3.5.3}Launching the hardware adapter}{34}{subsection.3.5.3}
+\contentsline {section}{\numberline {3.6}Adjusting the MoveIt configuration}{34}{section.3.6}
+\contentsline {section}{\numberline {3.7}Usage examples}{35}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}Capabilities}{35}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.2}Modifying the planning scene}{35}{subsection.3.7.2}
+\contentsline {subsection}{\numberline {3.7.3}Planning and executing trajectories}{35}{subsection.3.7.3}
+\contentsline {subsection}{\numberline {3.7.4}Running the planning tools in different namespaces}{35}{subsection.3.7.4}
+\contentsline {chapter}{\numberline {4}Pick and place}{37}{chapter.4}
+\contentsline {section}{\numberline {4.1}Overview}{37}{section.4.1}
+\contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{39}{section.4.2}
+\contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{40}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{41}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{41}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{42}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{42}{subsection.4.3.4}
+\contentsline {section}{\numberline {4.4}Executing the benchmark task}{43}{section.4.4}
+\contentsline {section}{\numberline {4.5}Observations}{44}{section.4.5}
+\contentsline {chapter}{Bibliography}{45}{section*.48}

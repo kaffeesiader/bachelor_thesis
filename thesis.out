@@ -32,12 +32,12 @@
 \BOOKMARK [2][-]{subsection.3.5.1}{ROS control stack overview}{section.3.5}
 \BOOKMARK [2][-]{subsection.3.5.2}{Designing the hardware adapter}{section.3.5}
 \BOOKMARK [2][-]{subsection.3.5.3}{Launching the hardware adapter}{section.3.5}
-\BOOKMARK [2][-]{subsection.3.5.4}{Adjusting the MoveIt configuration}{section.3.5}
-\BOOKMARK [1][-]{section.3.6}{Usage examples}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.6.1}{Capabilities}{section.3.6}
-\BOOKMARK [2][-]{subsection.3.6.2}{Modifying the planning scene}{section.3.6}
-\BOOKMARK [2][-]{subsection.3.6.3}{Planning and executing trajectories}{section.3.6}
-\BOOKMARK [2][-]{subsection.3.6.4}{Running the planning tools in different namespaces}{section.3.6}
+\BOOKMARK [1][-]{section.3.6}{Adjusting the MoveIt configuration}{chapter.3}
+\BOOKMARK [1][-]{section.3.7}{Usage examples}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.7.1}{Capabilities}{section.3.7}
+\BOOKMARK [2][-]{subsection.3.7.2}{Modifying the planning scene}{section.3.7}
+\BOOKMARK [2][-]{subsection.3.7.3}{Planning and executing trajectories}{section.3.7}
+\BOOKMARK [2][-]{subsection.3.7.4}{Running the planning tools in different namespaces}{section.3.7}
 \BOOKMARK [0][-]{chapter.4}{Pick and place}{}
 \BOOKMARK [1][-]{section.4.1}{Overview}{chapter.4}
 \BOOKMARK [1][-]{section.4.2}{Pick and place tasks in MoveIt}{chapter.4}
@@ -48,4 +48,4 @@
 \BOOKMARK [2][-]{subsection.4.3.4}{Planning and executing the placement}{section.4.3}
 \BOOKMARK [1][-]{section.4.4}{Executing the benchmark task}{chapter.4}
 \BOOKMARK [1][-]{section.4.5}{Observations}{chapter.4}
-\BOOKMARK [0][-]{section*.47}{Bibliography}{}
+\BOOKMARK [0][-]{section*.48}{Bibliography}{}

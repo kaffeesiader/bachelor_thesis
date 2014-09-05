@@ -19,9 +19,10 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Left image shows visual part, right image the collidable part of the torso\relax }}{28}{figure.caption.39}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces URDF description in RViz\relax }}{29}{figure.caption.40}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces ROS control architecture\relax }}{31}{figure.caption.41}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Hardware adapter architecture\relax }}{32}{figure.caption.42}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Stages of the pickup phase in the simulator\relax }}{36}{figure.caption.42}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Stages of the placement phase in the simulator\relax }}{37}{figure.caption.43}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Planning scene after inserting the collision objects\relax }}{39}{figure.caption.44}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Grasp poses, gripper approach and retreat\relax }}{40}{figure.caption.45}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Place locations, pre-place approach and post-place retreat\relax }}{41}{figure.caption.46}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Stages of the pickup phase in the simulator\relax }}{38}{figure.caption.43}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Stages of the placement phase in the simulator\relax }}{39}{figure.caption.44}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Planning scene after inserting the collision objects\relax }}{41}{figure.caption.45}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Grasp poses, gripper approach and retreat\relax }}{42}{figure.caption.46}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Place locations, pre-place approach and post-place retreat\relax }}{43}{figure.caption.47}

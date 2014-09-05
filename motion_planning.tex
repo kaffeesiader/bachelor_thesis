@@ -118,7 +118,7 @@ This commands launches a \texttt{move\_group} node, using the previously created
 
 Now MoveIt is configured and ready to handle planning requests for the robot setup. But execution of the resulting trajectories is still impossible because of the missing connection between MoveIt and the involved robot hardware. Each component that is intended to be controlled by MoveIt needs to provide the \emph{FollowJointTrajectory} action interface, as defined in the \texttt{control\_msgs} package. This is a special kind of ROS interface that allows to send trajectories to robot components and monitor the execution status. As the existing control interface of the IIS robot components does not fulfil these requirements, an additional node is necessary that is capable of executing trajectories, using the existing infrastructure.\\
 
-The planning outcome of MoveIt is a time parametrized trajectory, expressed by the \emph{JointTrajectory} message type. This message consists of a set of waypoints. A waypoint is a joint configuration, described by the tuple $(p,v,a,t)$ where $p \in \mathbb{R}^n$ are the positions, $v \in \mathbb{R}^n$ the velocities and $a \in \mathbb{R}^n$ the accelerations at time $t$ and $n$ is the number of involved joints. Those waypoints mark the important points along the path, the manipulator has to move. The controller needs to be able to translate this trajectory into a sequence of suitable motor commands. Just sending the joint positions within the waypoints to the robot would not suffice as a trajectory is also constrained in terms of \emph{velocities} and \emph{accelerations} over time. Therefore the controller needs to be able to \emph{interpolate} between the subsequent waypoints and calculate intermediate joint positions based on the loop rate of the control cycle. This interpolation is a difficult task and the implementation would be far beyond the scope of this project. Luckily the required functionality is already available within the \texttt{ros\_control} stack\footnote{http://wiki.ros.org/ros\_control}. Those packages are created to integrate and control robot hardware in a generalized way, facilitating the usage of existing controllers on various different robots. 
+The planning outcome of MoveIt is a time parametrized trajectory, expressed by the \emph{JointTrajectory} message type. This message consists of a set of waypoints. A waypoint is a joint configuration, described by the tuple $(p,v,a,t)$ where $p \in \mathbb{R}^n$ are the positions, $v \in \mathbb{R}^n$ the velocities and $a \in \mathbb{R}^n$ the accelerations at time $t$ and $n$ is the number of involved joints. Those waypoints mark the important points along the path, the manipulator has to move. The controller needs to be able to translate this trajectory into a sequence of suitable motor commands. Just sending the joint positions within the waypoints to the robot would not suffice as a trajectory is also constrained in terms of \emph{velocities} and \emph{accelerations} over \emph{time}. Therefore the controller needs to be able to interpolate between the subsequent waypoints and calculate intermediate joint positions based on the loop rate of the control cycle. This interpolation is a difficult task and the implementation would be far beyond the scope of this project. Luckily the required functionality is already available within the \texttt{ros\_control} stack\footnote{http://wiki.ros.org/ros\_control}. Those packages are created to integrate and control robot hardware in a generalized way, facilitating the usage of existing controllers on various different robots. 
 
 \subsection{ROS control stack overview}
 
@@ -145,48 +145,56 @@ The \emph{ControllerManager} is responsible to maintain a set of controllers. It
 
 \subsection{Designing the hardware adapter}
 
-The idea of the hardware adapter is to be the connection between MoveIt and the simulated or real hardware. Therefore the necessary infrastructure for using the generic controllers from the ros\_control packages has to be made available. The figure ??? gives an overview about the concept of the hardware adapter. The UibkRobotHW handles the connection to the involved robot components via their ROS interfaces. Therefore it maintains a set of JointStateAdapters, each one responsible for the communication to one robot component. A JointStateAdapter reads the current robot state from the configured 'joint\_state\_topic' and sends the commanded values to the configured 'joint\_commmand\_topic'. The adapter configuration is done via the parameter server. On startup, the hardware adapter loads the configured JointStateAdapters.
+The \emph{hardware adapter} is an independent ROS node that acts as connection between MoveIt and the simulated or real hardware. It provides the necessary infrastructure for using generic controllers from the \texttt{ros\_control} packages. Figure\ref{fig:hardware_adapter} gives an overview about the hardware adapter architecture. The \emph{UibkRobotHW} is a subclass of \emph{RobotHW} and represents the connection to the robot. It maintains the complete state of all joints in the connected components. Joints are represented by the \emph{Joint} datatype, consisting of a unique joint name, state parameters and a commanded target position. For controllers, the \emph{UibkRobotHW} class provides a \emph{JointStatesInterface} and a \emph{JointPositionInterface}. Active controllers use those interfaces to access the current state and for commanding target positions. 
 
-The UibkRobotHW inherits from the abstract RobotHW and represents the connection to the robot. It maintains the current state of all connected components. Therefore it maintains a set of JointStateAdapters, based on the configuration files. Each JointStateAdapter states a connection to one specific robot component. During the control cycle the JointStateAdapter reads the current joint states from the configured joint states topic and updates the received values accordingly. Commanded positions are sent to the configured joint command topic. The UIBKRobotHW also maintains a set, containing all the information about each single robot joint. The joints are identified by a unique name. During initialization, the JointStateAdapters are created, based on the adapter.config file. After creation, each JointStateAdapter waits a certain amount of time for an initial joint states message. If it does not receive such a message before timeout, it will automatically shut down for safety reasons and report an error. This is very important as the JointStateAdapter will imediately begin to send joint positions after the initialization. The position to be sent is initially the current position, as long as no other positions have been commanded by the controllers. Therefore the initial position always has to be known, otherwise dangerous and rapid robot motions could occur.
-
-For the controllers, the UIBKRobotHW class provides a JointStatesInterface and a JointPositionInterface. The controllers will use those interfaces to access the current state and for commanding target positions.
-
-The required configuration parameters are:
+The \emph{UibkRobotHW} utilizes a set of \emph{JointStateAdapters}, each one representing a connection to one specific robot component. During the control cycle the \emph{JointStateAdapters} read current joint states from the appropriate topics and send commanded values back to the hardware.
+\begin{figure}[h]
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/hardware_adapter.jpg}
+	\caption{Hardware adapter architecture}
+	\label{fig:hardware_adapter}
+\end{figure}
+The \emph{JointStateAdapters} are created during initialization, based on the configuration settings. After creation, each \emph{JointStateAdapter} waits a certain amount of time for an initial joint states message. If it does not receive such a message before timeout, it will automatically shut down for safety reasons and report an error. This is very important as the \emph{JointStateAdapter} imediately begins to send joint positions after initialization. The position to be sent is initially the currently known position, as long as no other values have been commanded by the controllers. Therefore the initial position always has to be known, otherwise dangerous and rapid robot motions could occur on startup. The adapter configuration happens via the parameter server. Available configuration parameters are:
 
 \begin{itemize}
 
-\item \textbf{adapter\_list} \
+\item \textbf{\texttt{adapter\_list}} \
 
-Contains a list of all JointStatesAdapters that have to be created. For each adapter name mentioned in this list a detailed configuration is required.
+Contains a list of all \emph{JointStatesAdapters} that have to be created. For each adapter name mentioned in this list a detailed configuration is required. The subsequent parameters have to be configured for each single adapter.
 
-\item \textbf{joint\_state\_topic} \
-The name of the topic where the adapter listens for joint states. The message type of that topic has to be 'sensor\_msgs/JointStates'. This parameter is mandatory
+\item \textbf{\texttt{joint\_state\_topic}} \
 
-\item \textbf{readonly} \
+The name of the topic where a specific adapter listens for joint states. The expected message type  \texttt{sensor\_msgs/JointStates}. This parameter is mandatory.
+
+\item \textbf{\texttt{readonly}} \
+
 This parameter is optional. If true then the adapter will only listen for joint states but not publish commanded values.
 
-\item \textbf{joint\_command\_topic} \
-The name of the topic the adapter should use to publish the commanded values to. The message type, the adapter uses is 'std\_msgs/Float64MultiArray'. This parameter is necessary if the adapter is not configured to be read only.
+\item \textbf{\texttt{joint\_command\_topic}} \
 
-\item \textbf{joints} \
+The name of the topic the adapter should use to publish the commanded values to. The expected message type is \texttt{std\_msgs/Float64MultiArray}. This parameter is mandatory if the adapter is not configured to be read only.
+
+\item \textbf{\texttt{joints}} \
+
 A list of joint names that should be controlled by the adapter. The order in this list also determines the order of the values in the published message.
 
-\item \textbf{joint\_name\_prefix} \
-This parameter can be used to uniquely identify joints. For example both arms are using the same joint names (arm\_0\_joint, arm\_1\_joint,...). But the MoveIt requires joint names to be globally unique. Therefore the prefix can be used to prepend the original name to achieve uniqueness. A value of 'right\_' for example will lead to the joint names (right\_arm\_0\_joint, right\_arm\_1\_joint,...).
+\item \textbf{\texttt{joint\_name\_prefix}} \
+
+This parameter can be used to be able to uniquely identify joints. For example both arms are using the same joint names (\texttt{arm\_0\_joint}, \texttt{arm\_1\_joint},\ldots). But in a URDF model,  joint names have to be globally unique. Therefore the prefix can be used to prepend the original name to achieve uniqueness. A value of \texttt{right\_} for example will lead to the joint names \texttt{right\_arm\_0\_joint}, \texttt{right\_arm\_1\_joint},\ldots).
 
 \end{itemize}
 
-As the topic names, used by the JointStateAdapters can be configured, the UIBKRobotHW class is able to interact with the simulator and the real robot as well, as both of them provide exactly the same ROS interface.
+An example configuration can be found in the \texttt{adapter.config} file from the \texttt{uibk\_moveit\_adapter} package. As the topic names, used by the \emph{JointStateAdapters} can be configured freely, the hardware adapter is able to interact with the simulator and the real robot as well, as both of them provide exactly the same ROS interface.\\
 
-During hardware adapter startup an instance of the UIBKRobotHW and ControllerManager is created from configuration. The control cycle runs in it's own thread, currently at a loop rate of 100hz. On each iteration the exact time since the last step is calculated. The ControllerManager then updates all registered controllers based on current state and time since last iteration. After handling the controllers, the JointStatesAdapters are forced to send the commanded values to the hardware. The ROS spinning and all the callback functions are handled in the original thread.
+During hardware adapter startup an instance of the \emph{UibkRobotHW} and \emph{ControllerManager} is created from configuration. As the control loop must not be interrupted by ROS callback functions, it is launched in a separate thread after completing initialization, using a loop rate of 100hz. On each iteration the exact time since the last step is calculated. The \emph{ControllerManager} then updates all registered controllers based on current state and time since last iteration. After handling the controllers, the \emph{JointStatesAdapters} are forced to send the commanded values to the hardware. The ROS callback functions are handled in the original thread.\\
 
-
+After starting the hardware adapter, the required controllers have to be loaded and started. This is usually done, by using the corresponding ROS services, provided by a running \emph{ControllerManager} instance, but the \texttt{controller\_manager} package contains a tool named \texttt{spawner} that simplifies the starting process. The configuration of each controller has to reside on the parameter server. Utilized controllers are the \emph{JointTrajectoryController} and the \emph{JointStateController}. The \emph{JointTrajectoryController} can be configured to provide the required \emph{FollowJointTrajectory} action interface for a group of joints. For each robot component a separate \emph{JointTrajectoryController} is used. The \emph{JointStateController} publishes the current state of all robot joints at once to the \texttt{joint\_states} topic, which is used by MoveIt to monitor the state of the robot.
 
 \subsection{Launching the hardware adapter}
 
 For starting the hardware adapter, a launch file (hardware\_adapter.launch) was created in the 'uibk\_moveit\_adapter', package that handles the necessary configuration parameter upload and starts the required nodes. As it is designed to be used with the simulator and the real robot as well, it provides the 'config\_name' parameter that can be used to switch between both namespaces. Possible values are 'simulation' and 'real'. For example 'roslaunch uibk\_moveit\_adapter hardware\_adapter.launch config\_name:=real' starts the hardware adapter for the real robot. The launch file uploads the URDF robot description, the adapter and controller configuration to the parameter server. After that it runs the hardware adapter node and forces the ControllerManager to load and start the configured controllers via a ROS service call. The controller gives a lot of state information about the state and errors during the startup process. Simulator or real robot have to be launched before starting the hardware adapter, otherwise the adapter will not be able to work because of the missing initial joint states. After launching the hardware adapter, the additional controller topics can be found in the corresponding namespace, along with an additional 'joint\_states' topic that publishes the whole state of the robot at once as it is required by MoveIt.
 
-\subsection{Adjusting the MoveIt configuration}
+\section{Adjusting the MoveIt configuration}
 
 The prerequisites are now made for connecting MoveIt to the (simulated or real) robot. The last remaining step is to adjust the MoveIt configuration for establishing a connection to the JointTrajectoryControllers. Therefore the configuration file 'controllers.yaml' was created. It contains a list, describing the available controllers. For each controller description contains the name of the controller, it's action namespace, the type and a list, containing the names of the controlled joints.
 
