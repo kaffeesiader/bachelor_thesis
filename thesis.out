@@ -29,7 +29,7 @@
 \BOOKMARK [1][-]{section.3.3}{Creating the URDF model of the robot setup}{chapter.3}
 \BOOKMARK [1][-]{section.3.4}{Configuring the planning tools}{chapter.3}
 \BOOKMARK [1][-]{section.3.5}{Connecting MoveIt to the existing robot control interface}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.5.1}{Overview ROS control stack}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.1}{ROS control stack overview}{section.3.5}
 \BOOKMARK [2][-]{subsection.3.5.2}{Designing the hardware adapter}{section.3.5}
 \BOOKMARK [2][-]{subsection.3.5.3}{Launching the hardware adapter}{section.3.5}
 \BOOKMARK [2][-]{subsection.3.5.4}{Adjusting the MoveIt configuration}{section.3.5}
@@ -48,4 +48,4 @@
 \BOOKMARK [2][-]{subsection.4.3.4}{Planning and executing the placement}{section.4.3}
 \BOOKMARK [1][-]{section.4.4}{Executing the benchmark task}{chapter.4}
 \BOOKMARK [1][-]{section.4.5}{Observations}{chapter.4}
-\BOOKMARK [0][-]{section*.46}{Bibliography}{}
+\BOOKMARK [0][-]{section*.47}{Bibliography}{}
