@@ -40,7 +40,7 @@
 \contentsline {subsection}{\numberline {3.5.1}ROS control stack overview}{31}{subsection.3.5.1}
 \contentsline {subsection}{\numberline {3.5.2}Designing the hardware adapter}{32}{subsection.3.5.2}
 \contentsline {subsection}{\numberline {3.5.3}Launching the hardware adapter}{34}{subsection.3.5.3}
-\contentsline {section}{\numberline {3.6}Adjusting the MoveIt configuration}{34}{section.3.6}
+\contentsline {section}{\numberline {3.6}Adjusting the MoveIt configuration}{35}{section.3.6}
 \contentsline {section}{\numberline {3.7}Usage examples}{35}{section.3.7}
 \contentsline {subsection}{\numberline {3.7.1}Capabilities}{35}{subsection.3.7.1}
 \contentsline {subsection}{\numberline {3.7.2}Modifying the planning scene}{35}{subsection.3.7.2}

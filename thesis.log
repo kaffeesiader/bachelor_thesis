@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  5 SEP 2014 19:14
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  6 SEP 2014 12:51
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -752,33 +752,35 @@ File: images/hardware_adapter.jpg Graphic file (type jpg)
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 161.
 
-Overfull \hbox (27.4029pt too wide) in paragraph at lines 187--188
-[]\T1/lmr/m/n/10.95 An ex-am-ple con-fig-u-ra-tion can be found in the \T1/lmtt
-/m/n/10.95 adapter.config \T1/lmr/m/n/10.95 file from the \T1/lmtt/m/n/10.95 ui
-bk_moveit_adapter
+(./code/adapter_config.yaml)
+Overfull \hbox (17.0pt too wide) in paragraph at lines 189--192
+[]$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 187--188
+Underfull \hbox (badness 10000) in paragraph at lines 189--192
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
+Underfull \vbox (badness 6675) has occurred while \output is active []
+
+ [33]
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
 
  []
 
-[33]
-Overfull \hbox (12.01543pt too wide) in paragraph at lines 203--204
-\T1/lmr/m/n/10.95 be se-lected us-ing the boolean pa-ram-e-ter ’sim-u-la-tion
-’. 'roslaunch uibk_robot_moveit_config
+[34]
+Underfull \hbox (badness 10000) in paragraph at lines 203--204
+
  []
 
-) (./pick_place_tasks.tex
-Underfull \vbox (badness 2229) has occurred while \output is active []
 
- [34]
-[35] [36
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
+
+ []
+
+) (./pick_place_tasks.tex [35] [36
 
 ]
 Chapter 4.
@@ -797,7 +799,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--19
 
  []
 
-<images/pickup.jpg, id=689, 568.94437pt x 327.15514pt>
+<images/pickup.jpg, id=721, 568.94437pt x 327.15514pt>
 File: images/pickup.jpg Graphic file (type jpg)
  <use images/pickup.jpg>
 Underfull \hbox (badness 10000) in paragraph at lines 29--30
@@ -805,7 +807,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--30
  []
 
 [38 <./images/pickup.jpg>]
-<images/placement.jpg, id=695, 568.94437pt x 327.15514pt>
+<images/placement.jpg, id=727, 568.94437pt x 327.15514pt>
 File: images/placement.jpg Graphic file (type jpg)
 
 <use images/placement.jpg>
@@ -823,15 +825,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
 
-[40] <images/task_env.png, id=705, 979.40906pt x 560.0925pt>
+[40] <images/task_env.png, id=737, 979.40906pt x 560.0925pt>
 File: images/task_env.png Graphic file (type png)
 
 <use images/task_env.png> [41 <./images/task_env.png (PNG copy)>]
-<images/grasp_stages.jpg, id=711, 1402.23875pt x 371.3875pt>
+<images/grasp_stages.jpg, id=743, 1402.23875pt x 371.3875pt>
 File: images/grasp_stages.jpg Graphic file (type jpg)
 
 <use images/grasp_stages.jpg> [42 <./images/grasp_stages.jpg>]
-<images/place_stages.jpg, id=716, 2040.62375pt x 482.80376pt>
+<images/place_stages.jpg, id=748, 2040.62375pt x 482.80376pt>
 File: images/place_stages.jpg Graphic file (type jpg)
 
 <use images/place_stages.jpg> [43 <./images/place_stages.jpg>]) [44]
@@ -847,11 +849,11 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 8479 strings out of 495061
- 123291 string characters out of 1182621
- 214586 words of memory out of 3000000
- 11255 multiletter control sequences out of 15000+50000
- 88905 words of font info for 66 fonts, out of 3000000 for 9000
+ 8517 strings out of 495061
+ 123881 string characters out of 1182621
+ 231664 words of memory out of 3000000
+ 11258 multiletter control sequences out of 15000+50000
+ 92214 words of font info for 68 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,17n,49p,2099b,1086s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
@@ -871,9 +873,9 @@ nts/type1/public/lm/lmsy9.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pf
 b></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/ty
 pe1/public/lm/lmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/s
 ymbols/msbm10.pfb>
-Output written on thesis.pdf (59 pages, 5582900 bytes).
+Output written on thesis.pdf (59 pages, 5589349 bytes).
 PDF statistics:
- 844 PDF objects out of 1000 (max. 8388607)
- 190 named destinations out of 1000 (max. 500000)
+ 884 PDF objects out of 1000 (max. 8388607)
+ 220 named destinations out of 1000 (max. 500000)
  534 words of extra memory for PDF output out of 10000 (max. 10000000)
 
