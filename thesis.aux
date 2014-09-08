@@ -36,6 +36,7 @@
 \newlabel{chap:simulation}{{2}{5}{Robot simulation\relax }{chapter.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}Choosing a suitable simulation platform}{5}{section.2.1}}
 \citation{freese2013}
+\citation{freese2013}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}The Virtual Robot Experimentation Platform(V-Rep)}{6}{section.2.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Dynamic simulations in V-REP}{7}{section.2.3}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Designing the simulation scene}{8}{section.2.4}}
@@ -95,66 +96,78 @@
 \newlabel{fig:grasp_defs}{{\caption@xref {fig:grasp_defs}{ on input line 448}}{24}{SchunkHandController\relax }{table.caption.36}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2.6}{\ignorespaces Joint position functions based on close ratio $x$\relax }}{24}{table.caption.36}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.5.5}Publishing Kinect camera data}{24}{subsection.2.5.5}}
+\citation{choset2005}
+\citation{schwartz1983}
+\citation{choset2005}
+\citation{choset2005}
+\citation{choset2005}
+\citation{omplPrimer}
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Motion planning}{25}{chapter.3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}Introduction}{25}{section.3.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}The MoveIt! motion planning framework}{25}{section.3.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Moveit architecture}}{26}{figure.caption.37}}
-\newlabel{fig:moveit_arch}{{3.1}{26}{Moveit architecture\relax }{figure.caption.37}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Creating the URDF model of the robot setup}{26}{section.3.3}}
-\newlabel{sec:urdf}{{3.3}{26}{Creating the URDF model of the robot setup\relax }{section.3.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces URDF graph}}{27}{figure.caption.38}}
-\newlabel{fig:urdf_graph}{{3.2}{27}{URDF graph\relax }{figure.caption.38}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Left image shows visual part, right image the collidable part of the torso\relax }}{28}{figure.caption.39}}
-\newlabel{fig:torso_col}{{3.3}{28}{Left image shows visual part, right image the collidable part of the torso\relax \relax }{figure.caption.39}{}}
-\newlabel{lst:table}{{3.1}{28}{XML snippet, inserting the table model into the URDF\relax }{lstlisting.3.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}XML snippet, inserting the table model into the URDF}{28}{lstlisting.3.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces URDF description in RViz\relax }}{29}{figure.caption.40}}
-\newlabel{fig:robot_table}{{3.4}{29}{URDF description in RViz\relax \relax }{figure.caption.40}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Configuring the planning tools}{29}{section.3.4}}
-\newlabel{sec:moveit_assistant}{{3.4}{29}{Configuring the planning tools\relax }{section.3.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Connecting MoveIt to the existing robot control interface}{30}{section.3.5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces ROS control architecture\relax }}{31}{figure.caption.41}}
-\newlabel{fig:ros_control}{{3.5}{31}{ROS control architecture\relax \relax }{figure.caption.41}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}ROS control stack overview}{31}{subsection.3.5.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Designing the hardware adapter}{32}{subsection.3.5.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Hardware adapter architecture\relax }}{32}{figure.caption.42}}
-\newlabel{fig:hardware_adapter}{{3.6}{32}{Hardware adapter architecture\relax \relax }{figure.caption.42}{}}
-\newlabel{lst:adapter_config}{{3.2}{34}{Adapter configuration for left arm and gripper\relax }{lstlisting.3.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}Adapter configuration for left arm and gripper}{34}{lstlisting.3.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.3}Launching the hardware adapter}{34}{subsection.3.5.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Adjusting the MoveIt configuration}{35}{section.3.6}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}Usage examples}{35}{section.3.7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Capabilities}{35}{subsection.3.7.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Modifying the planning scene}{35}{subsection.3.7.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Planning and executing trajectories}{35}{subsection.3.7.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.4}Running the planning tools in different namespaces}{35}{subsection.3.7.4}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Pick and place}{37}{chapter.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Sampling-based motion planning}{25}{section.3.2}}
+\@writefile{toc}{\contentsline {paragraph}{Probabilistic roadmaps}{26}{section*.37}}
+\@writefile{toc}{\contentsline {paragraph}{Tree-based planners}{26}{section*.38}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}The MoveIt! motion planning framework}{27}{section.3.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Moveit architecture}}{27}{figure.caption.39}}
+\newlabel{fig:moveit_arch}{{3.1}{27}{Moveit architecture\relax }{figure.caption.39}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Creating the URDF model of the robot setup}{28}{section.3.4}}
+\newlabel{sec:urdf}{{3.4}{28}{Creating the URDF model of the robot setup\relax }{section.3.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces URDF graph}}{29}{figure.caption.40}}
+\newlabel{fig:urdf_graph}{{3.2}{29}{URDF graph\relax }{figure.caption.40}{}}
+\newlabel{lst:table}{{3.1}{29}{XML snippet, inserting the table model into the URDF\relax }{lstlisting.3.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}XML snippet, inserting the table model into the URDF}{29}{lstlisting.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Left image shows visual part, right image the collidable part of the torso\relax }}{30}{figure.caption.41}}
+\newlabel{fig:torso_col}{{3.3}{30}{Left image shows visual part, right image the collidable part of the torso\relax \relax }{figure.caption.41}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Configuring the planning tools}{30}{section.3.5}}
+\newlabel{sec:moveit_assistant}{{3.5}{30}{Configuring the planning tools\relax }{section.3.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces URDF description in RViz\relax }}{31}{figure.caption.42}}
+\newlabel{fig:robot_table}{{3.4}{31}{URDF description in RViz\relax \relax }{figure.caption.42}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Connecting MoveIt to the existing robot control interface}{32}{section.3.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}ROS control stack overview}{32}{subsection.3.6.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces ROS control architecture\relax }}{33}{figure.caption.43}}
+\newlabel{fig:ros_control}{{3.5}{33}{ROS control architecture\relax \relax }{figure.caption.43}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}Designing the hardware adapter}{34}{subsection.3.6.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Hardware adapter architecture\relax }}{34}{figure.caption.44}}
+\newlabel{fig:hardware_adapter}{{3.6}{34}{Hardware adapter architecture\relax \relax }{figure.caption.44}{}}
+\newlabel{lst:adapter_config}{{3.2}{36}{Adapter configuration for left arm and gripper\relax }{lstlisting.3.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}Adapter configuration for left arm and gripper}{36}{lstlisting.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}Launching the hardware adapter}{36}{subsection.3.6.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}Adjusting the MoveIt configuration}{37}{section.3.7}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.8}Usage examples}{37}{section.3.8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.1}Capabilities}{37}{subsection.3.8.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.2}Modifying the planning scene}{37}{subsection.3.8.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.3}Planning and executing trajectories}{37}{subsection.3.8.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.4}Running the planning tools in different namespaces}{37}{subsection.3.8.4}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Pick and place}{39}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chap:pick_place}{{4}{37}{Pick and place\relax }{chapter.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Overview}{37}{section.4.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Stages of the pickup phase in the simulator\relax }}{38}{figure.caption.43}}
-\newlabel{fig:pickup}{{4.1}{38}{Stages of the pickup phase in the simulator\relax \relax }{figure.caption.43}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Stages of the placement phase in the simulator\relax }}{39}{figure.caption.44}}
-\newlabel{fig:placement}{{4.2}{39}{Stages of the placement phase in the simulator\relax \relax }{figure.caption.44}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{39}{section.4.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{40}{section.4.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{41}{subsection.4.3.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Planning scene after inserting the collision objects\relax }}{41}{figure.caption.45}}
-\newlabel{fig:task_env}{{4.3}{41}{Planning scene after inserting the collision objects\relax \relax }{figure.caption.45}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{41}{subsection.4.3.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Grasp poses, gripper approach and retreat\relax }}{42}{figure.caption.46}}
-\newlabel{fig:grasp_stages}{{4.4}{42}{Grasp poses, gripper approach and retreat\relax \relax }{figure.caption.46}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{42}{subsection.4.3.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{42}{subsection.4.3.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Place locations, pre-place approach and post-place retreat\relax }}{43}{figure.caption.47}}
-\newlabel{fig:place_stages}{{4.5}{43}{Place locations, pre-place approach and post-place retreat\relax \relax }{figure.caption.47}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Executing the benchmark task}{43}{section.4.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Observations}{44}{section.4.5}}
+\newlabel{chap:pick_place}{{4}{39}{Pick and place\relax }{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Overview}{39}{section.4.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Stages of the pickup phase in the simulator\relax }}{40}{figure.caption.45}}
+\newlabel{fig:pickup}{{4.1}{40}{Stages of the pickup phase in the simulator\relax \relax }{figure.caption.45}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Stages of the placement phase in the simulator\relax }}{41}{figure.caption.46}}
+\newlabel{fig:placement}{{4.2}{41}{Stages of the placement phase in the simulator\relax \relax }{figure.caption.46}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{41}{section.4.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{42}{section.4.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{43}{subsection.4.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Planning scene after inserting the collision objects\relax }}{43}{figure.caption.47}}
+\newlabel{fig:task_env}{{4.3}{43}{Planning scene after inserting the collision objects\relax \relax }{figure.caption.47}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{43}{subsection.4.3.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Grasp poses, gripper approach and retreat\relax }}{44}{figure.caption.48}}
+\newlabel{fig:grasp_stages}{{4.4}{44}{Grasp poses, gripper approach and retreat\relax \relax }{figure.caption.48}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{44}{subsection.4.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{44}{subsection.4.3.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Place locations, pre-place approach and post-place retreat\relax }}{45}{figure.caption.49}}
+\newlabel{fig:place_stages}{{4.5}{45}{Place locations, pre-place approach and post-place retreat\relax \relax }{figure.caption.49}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Executing the benchmark task}{45}{section.4.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Observations}{46}{section.4.5}}
 \bibdata{refs}
-\bibcite{buss2004}{{1}{2004}{{Buss}}{{}}}
-\bibcite{freese2013}{{2}{}{{Freese et~al.}}{{Freese, Singh, Ozaki, and Matsuhira}}}
-\bibcite{quigley2009}{{3}{2009}{{Quigley et~al.}}{{Quigley, Conley, Gerkey, Faust, Foote, Leibs, Wheeler, and Ng}}}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{45}{section*.48}}
+\bibcite{omplPrimer}{{1}{}{{omp}}{{}}}
+\bibcite{buss2004}{{2}{2004}{{Buss}}{{}}}
+\bibcite{choset2005}{{3}{2005}{{Choset}}{{}}}
+\bibcite{freese2013}{{4}{}{{Freese et~al.}}{{Freese, Singh, Ozaki, and Matsuhira}}}
+\bibcite{quigley2009}{{5}{2009}{{Quigley et~al.}}{{Quigley, Conley, Gerkey, Faust, Foote, Leibs, Wheeler, and Ng}}}
+\bibcite{schwartz1983}{{6}{1983}{{Schwartz and Sharir}}{{}}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{47}{section*.50}}

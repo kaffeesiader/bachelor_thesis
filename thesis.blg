@@ -2,49 +2,51 @@ This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: thesis.aux
 The style file: plainnat.bst
 Database file #1: refs.bib
+Warning--to sort, need author or key in omplPrimer
+Warning--empty year in omplPrimer
 Warning--empty journal in freese2013
 Warning--empty year in freese2013
 Warning--empty year in freese2013
 Warning--can't use both volume and number fields in quigley2009
-You've used 3 entries,
+You've used 6 entries,
             2773 wiz_defined-function locations,
-            609 strings with 5399 characters,
-and the built_in function-call counts, 1562 in all, are:
-= -- 119
-> -- 124
-< -- 2
-+ -- 42
-- -- 39
-* -- 140
-:= -- 252
-add.period$ -- 8
-call.type$ -- 3
-change.case$ -- 22
-chr.to.int$ -- 3
-cite$ -- 10
-duplicate$ -- 64
-empty$ -- 109
-format.name$ -- 42
-if$ -- 307
+            626 strings with 5868 characters,
+and the built_in function-call counts, 2556 in all, are:
+= -- 210
+> -- 155
+< -- 4
++ -- 54
+- -- 48
+* -- 206
+:= -- 389
+add.period$ -- 17
+call.type$ -- 6
+change.case$ -- 33
+chr.to.int$ -- 6
+cite$ -- 19
+duplicate$ -- 119
+empty$ -- 216
+format.name$ -- 55
+if$ -- 525
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 3
-newline$ -- 22
-num.names$ -- 12
-pop$ -- 52
+missing$ -- 6
+newline$ -- 37
+num.names$ -- 20
+pop$ -- 89
 preamble$ -- 1
-purify$ -- 19
+purify$ -- 28
 quote$ -- 0
-skip$ -- 47
+skip$ -- 84
 stack$ -- 0
-substring$ -- 22
-swap$ -- 5
+substring$ -- 54
+swap$ -- 8
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 33
-warning$ -- 4
-while$ -- 11
+type$ -- 61
+warning$ -- 6
+while$ -- 19
 width$ -- 0
-write$ -- 42
-(There were 4 warnings)
+write$ -- 78
+(There were 6 warnings)

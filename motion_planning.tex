@@ -4,9 +4,39 @@
 Chapter overview
 
 \section{Introduction}
-What means motion planning?
-What are the requirements?
 
+\citep[p. 1--11]{choset2005} describes motion planning as to be the task of finding a collision free path from one robot \emph{configuration} to another one. The classic path planning problem is the so called \emph{piano mover's problem}, originally mentioned by \cite{schwartz1983}. It is assumed to have a piano, which states a three dimensional rigid body and a set of known obstacles. The problem is to find a continuous motion that moves the piano from it's current position to a given target position without touching any of the obstacles. Thereby the piano can freely be moved and rotated in Cartesian space. 
+
+A generalized version of the \emph{piano mover's problem} is to find paths for a robot, composed from a set of rigid bodies, linked by joints while enforcing \emph{constraints} during that motions. A \emph{constraint} could be to avoid obstacles or to keep the robot's end effector in an upright position. Therefore it is important to have a representation of a robot's state that allows to determine the location of all robot parts. This representation is called the \emph{configuration} of a robot and the \emph{configuration space} is the set of all possible configurations, the robot is able to acquire. The dimension of the configuration space is the amount of \emph{degrees of freedom} (DOF), which is the number or independent variables that are necessary to describe a configuration. An imaginary free flying piano has six degrees of freedom as it's configuration consists of the position and orientation $(x,y,z,roll,pitch,yaw)$ in Cartesian space. A robot arm with 7 joints has 7 degrees of freedom and it's configuration are the joint positions. The motion planning problem is to find a curve in the configuration space that connects start and goal configuration without violating constraints. This is a very complex problem and there exist various different approaches to find solutions. Examples are among others the \emph{bug algorithms}\citep[chapter 2]{choset2005}, \emph{potential functions}\citep[chapter 4]{choset2005} or \emph{sampling-based methods}\citep[chapter 7]{choset2005}. As the solution within this project only uses sampling based algorithms, a short overview about this class of methods will be given in the following section.
+
+\section{Sampling-based motion planning}
+
+Based on \citep[chapter 2]{omplPrimer}, sampling-based motion planning can be seen as a powerful concept, capable of handling planning problems efficiently, especially for systems with many degrees of freedom. The general idea is to generate a uniform set of random sample points in the configuration space and then connect start and goal state by connecting the samples via collision free paths, with respect to possible motion constraints. Those methods are usually faster than traditional approaches because it is not necessary to reason about the whole configuration space but only about a finite number of sample configurations. The majority of sampling-based approaches are known to be \emph{probabilistic complete}, which means that the probability of finding an existing solution tends to 1 as the number of sample points increases to infinity. But they are not able to decide if a valid solution exists at all. The following definitions are used throughout this section to describe the concepts of sampling-based motion planning.
+
+\begin{itemize}
+
+\item \textbf{State space} \\
+The \emph{state space} $\mathcal{S}$ is equal to the configuration space and consists of all possible robot configurations (states).
+
+\item \textbf{Free state space} \\
+The \emph{free state space} $\mathcal{S}_{free}$ is a subset of $\mathcal{S}$, containing only collision free states.  
+
+\item \textbf{Path} \\
+A \emph{path} is a sequence of states. If each state within the path is contained in $\mathcal{S}_{free}$, it is called a \emph{collision free} path.  
+
+\end{itemize}
+
+The sampling-based motion planners can be categorized into two major types - \emph{probabilistic roadmaps} (PRM) and \emph{tree-based planners}. Common to both methods is that they create uniformly distributed samples within the free state space. As the shape of $\mathcal{S}_{free}$ is not explicitly known, the created sample states are checked for collisions before using them. The following paragraphs give a short overview about both approaches.
+
+\paragraph{Probabilistic roadmaps}
+
+That approach uses the sampled states to create a ``roadmap'' of the free state space. Therefore each sample point is connected to an amount of $k$ nearby sample points via collision free paths. This is done by a local planner that simply interpolates between two points in the desired resolution while watching out for collisions. If no collision is detected, a new edge is introduced into the graph that is formed by the roadmap. After completing the graph, a planning query can be reduced to finding the shortest path within that graph that connects the start state and the goal state. (Images will follow...)
+
+\paragraph{Tree-based planners}
+
+A lot of different sampling-based planning algorithm are using the tree based approach, as there are for example (RRT, EST, SBL or KPIECE). The difference to PRM is that this method uses a tree data structure of the free state space, which means that the resulting graph contains no cycles. The root of the tree is the start state and the tree is then expanded towards the goal state by creating collision free connections between the sample points. If the goal is reached, the solution is found. The different approaches differ in the strategy that is used to expand the tree towards the goal state. (Images will follow)\\
+
+Generally can be said that the tree based approaches are more adequate for \emph{single query planning} because the tree usually does not has cover the whole free state space. A roadmap could be reused for subsequent queries. As the most methods also require the search of a nearest neighbour, the utilized distance metric is also a crucial part within sampling-based motion planning as it is not always easy to identify the optimal method for finding nearby states in systems with large degrees of freedom.  
 
 \section{The MoveIt! motion planning framework}
 
@@ -213,8 +243,7 @@ For starting MoveIt, the launch file \path{moveit_planning_execution.launch} was
 \begin{verbatim}
 roslaunch uibk_robot_moveit_config moveit_planning_execution.launch simulation:=false
 \end{verbatim}}
-launches a MoveIt configuration in the \texttt{real} namespace, connecting the \texttt{move\_group} instance to the real robot. The launch file also starts an RViz instance configured with the \emph{motion planning plugin}. This is used for visualizing the planned trajectories and can also be used to test the connection to the robot by making planning requests and execute the resulting trajectories.
-
+launches a MoveIt configuration, connecting the \texttt{move\_group} instance to the real robot. The launch file also starts RViz configured with the motion planning plugin. This is used for visualizing the planned trajectories and can also be used to test the connection to the robot by making planning requests and execute the resulting trajectories.
 
 \section{Usage examples} 
 

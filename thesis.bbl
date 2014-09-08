@@ -1,9 +1,14 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{6}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[omp()]{omplPrimer}
+Open motion planning library: A primer.
+\newblock \url{http://ompl.kavrakilab.org/OMPL_Primer.pdf}.
+\newblock Published by Kavraki Lab, Rice University.
 
 \bibitem[Buss(2004)]{buss2004}
 Samuel~R Buss.
@@ -11,6 +16,12 @@ Samuel~R Buss.
   pseudoinverse and damped least squares methods.
 \newblock \emph{IEEE Journal of Robotics and Automation}, 17:\penalty0 1--19,
   2004.
+
+\bibitem[Choset(2005)]{choset2005}
+Howie~M Choset.
+\newblock \emph{Principles of robot motion: theory, algorithms, and
+  implementation}.
+\newblock MIT press, 2005.
 
 \bibitem[Freese et~al.()Freese, Singh, Ozaki, and Matsuhira]{freese2013}
 Marc Freese, Surya Singh, Fumio Ozaki, and Nobuto Matsuhira.
@@ -23,5 +34,12 @@ Morgan Quigley, Ken Conley, Brian Gerkey, Josh Faust, Tully Foote, Jeremy
   Leibs, Rob Wheeler, and Andrew~Y Ng.
 \newblock Ros: an open-source robot operating system.
 \newblock In \emph{ICRA workshop on open source software}, volume~3, 2009.
+
+\bibitem[Schwartz and Sharir(1983)]{schwartz1983}
+Jacob~T Schwartz and Micha Sharir.
+\newblock On the ``piano movers'' problem. ii. general techniques for computing
+  topological properties of real algebraic manifolds.
+\newblock \emph{Advances in applied Mathematics}, 4\penalty0 (3):\penalty0
+  298--351, 1983.
 
 \end{thebibliography}
