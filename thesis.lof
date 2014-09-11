@@ -1,18 +1,18 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Current setup in the IIS-Lab TODO: provide more recent image\relax }}{2}{figure.caption.10}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Schunk SDH-2 (source: Schunk data sheet\cite {buss2004})}}{9}{figure.caption.11}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Schunk SDH-2 gripper\relax }}{9}{figure.caption.11}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Placing a joint within the model\relax }}{10}{figure.caption.12}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Kinematic chain of the Schunk gripper\relax }}{10}{figure.caption.13}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Process of approximating the original mesh with pure shapes\relax }}{11}{figure.caption.14}
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Structure of the V-Rep simulation scene\relax }}{12}{figure.caption.15}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Collision detection and visualizing. The left image shows a hit on the collision shield, the right image indicates a direct hit.\relax }}{13}{figure.caption.16}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Collision detection and visualizing\relax }}{13}{figure.caption.16}
 \contentsline {figure}{\numberline {2.7}{\ignorespaces IK calculation module concept\relax }}{16}{figure.caption.19}
 \contentsline {figure}{\numberline {2.8}{\ignorespaces Control flow structure\relax }}{17}{figure.caption.21}
 \contentsline {figure}{\numberline {2.9}{\ignorespaces Simulator plugin architecture\relax }}{19}{figure.caption.23}
 \contentsline {figure}{\numberline {2.10}{\ignorespaces Sample scene hierarchy\relax }}{20}{figure.caption.27}
 \contentsline {figure}{\numberline {2.11}{\ignorespaces Custom developer data segments on scene object\relax }}{21}{figure.caption.28}
-\contentsline {figure}{\numberline {2.12}{\ignorespaces Grasp types SPHERICAL, CENTRICAL, CYLINDRICAL and PARALLEL\relax }}{24}{figure.caption.35}
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Grasp types \texttt {SPHERICAL}, \texttt {CENTRICAL}, \texttt {CYLINDRICAL} and \texttt {PARALLEL}\relax }}{24}{figure.caption.35}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Moveit architecture}}{27}{figure.caption.39}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces URDF graph}}{29}{figure.caption.40}
@@ -29,4 +29,3 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {A.1}{\ignorespaces Edit custom developer data dialog\relax }}{52}{figure.caption.52}
-\addvspace {10\p@ }

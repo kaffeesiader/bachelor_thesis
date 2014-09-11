@@ -62,5 +62,5 @@
 \contentsline {section}{\numberline {A.3}Modifying custom developer data tags}{52}{section.A.3}
 \contentsline {section}{\numberline {A.4}ROS interface}{52}{section.A.4}
 \contentsline {subsection}{\numberline {A.4.1}Arm control topics}{53}{subsection.A.4.1}
-\contentsline {subsection}{\numberline {A.4.2}Hand control topics}{53}{subsection.A.4.2}
-\contentsline {chapter}{\numberline {B}Hardware adapter documentation}{55}{appendix.B}
+\contentsline {subsection}{\numberline {A.4.2}Hand control topics}{54}{subsection.A.4.2}
+\contentsline {subsection}{\numberline {A.4.3}Kinect camera settings}{54}{subsection.A.4.3}

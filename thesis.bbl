@@ -1,4 +1,4 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -34,6 +34,10 @@ Morgan Quigley, Ken Conley, Brian Gerkey, Josh Faust, Tully Foote, Jeremy
   Leibs, Rob Wheeler, and Andrew~Y Ng.
 \newblock Ros: an open-source robot operating system.
 \newblock In \emph{ICRA workshop on open source software}, volume~3, 2009.
+
+\bibitem[Schunk(2010)]{schunk2010}
+Schunk.
+\newblock Sdh2 documentation overview, 2010.
 
 \bibitem[Schwartz and Sharir(1983)]{schwartz1983}
 Jacob~T Schwartz and Micha Sharir.

@@ -90,6 +90,7 @@ The mesh files, used in the description of the robot torso have been exported fr
 \end{figure}
 The table was modelled from primitive shapes. It was taken care that the size of the table can easily be adjusted, as can bee seen in Listing\ref{lst:table}. The collision model of the table is also slightly larger than the visual part to provide some safety margins.
 \lstset{language=XML,style=customxml}
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={XML snippet, inserting the table model into the URDF}, label=lst:table]
 <!-- draw the table relative to the origin -->
 <xacro:model_table name="table" 
@@ -101,6 +102,7 @@ The table was modelled from primitive shapes. It was taken care that the size of
     
 </xacro:model_table>
 \end{lstlisting}
+\end{minipage}
 
 When attaching the two grippers it showed that the offset between gripper wrist and last arm link was not correct. To correct that issue the file \texttt{sdh\_with\_connector.xacro} was created which simply places an additional ring between the last arm link and the gripper.\\
 
