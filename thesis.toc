@@ -44,11 +44,6 @@
 \contentsline {subsection}{\numberline {3.6.2}Designing the hardware adapter}{34}{subsection.3.6.2}
 \contentsline {subsection}{\numberline {3.6.3}Launching the hardware adapter}{36}{subsection.3.6.3}
 \contentsline {section}{\numberline {3.7}Adjusting the MoveIt configuration}{37}{section.3.7}
-\contentsline {section}{\numberline {3.8}Usage examples}{37}{section.3.8}
-\contentsline {subsection}{\numberline {3.8.1}Capabilities}{37}{subsection.3.8.1}
-\contentsline {subsection}{\numberline {3.8.2}Modifying the planning scene}{37}{subsection.3.8.2}
-\contentsline {subsection}{\numberline {3.8.3}Planning and executing trajectories}{37}{subsection.3.8.3}
-\contentsline {subsection}{\numberline {3.8.4}Running the planning tools in different namespaces}{37}{subsection.3.8.4}
 \contentsline {chapter}{\numberline {4}Pick and place}{39}{chapter.4}
 \contentsline {section}{\numberline {4.1}Overview}{39}{section.4.1}
 \contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{41}{section.4.2}
@@ -59,4 +54,13 @@
 \contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{44}{subsection.4.3.4}
 \contentsline {section}{\numberline {4.4}Executing the benchmark task}{45}{section.4.4}
 \contentsline {section}{\numberline {4.5}Observations}{46}{section.4.5}
-\contentsline {chapter}{Bibliography}{47}{section*.50}
+\contentsline {chapter}{\numberline {5}Conclusions}{47}{chapter.5}
+\contentsline {chapter}{Bibliography}{49}{section*.50}
+\contentsline {chapter}{\numberline {A}Simulator documentation}{51}{appendix.A}
+\contentsline {section}{\numberline {A.1}Installation and startup}{51}{section.A.1}
+\contentsline {section}{\numberline {A.2}Modifying the simulation scene}{51}{section.A.2}
+\contentsline {section}{\numberline {A.3}Modifying custom developer data tags}{52}{section.A.3}
+\contentsline {section}{\numberline {A.4}ROS interface}{52}{section.A.4}
+\contentsline {subsection}{\numberline {A.4.1}Arm control topics}{53}{subsection.A.4.1}
+\contentsline {subsection}{\numberline {A.4.2}Hand control topics}{53}{subsection.A.4.2}
+\contentsline {chapter}{\numberline {B}Hardware adapter documentation}{55}{appendix.B}

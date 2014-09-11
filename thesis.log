@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  8 SEP 2014 16:54
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  11 SEP 2014 12:08
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -376,7 +376,7 @@ LaTeX Font Info:    Try loading font information for T1+lmss on input line 57.
  (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<Uni_LOGO_4c.pdf, id=211, 150.5625pt x 300.12125pt>
+<Uni_LOGO_4c.pdf, id=227, 150.5625pt x 300.12125pt>
 File: Uni_LOGO_4c.pdf Graphic file (type pdf)
  <use Uni_LOGO_4c.pdf>
 Overfull \vbox (158.71652pt too high) has occurred while \output is active []
@@ -465,7 +465,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 ] (./introduction.tex
 Chapter 1.
-<images/robot_setup.jpg, id=407, 3276.24pt x 2457.18pt>
+<images/robot_setup.jpg, id=434, 3276.24pt x 2457.18pt>
 File: images/robot_setup.jpg Graphic file (type jpg)
 
 <use images/robot_setup.jpg>
@@ -497,15 +497,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 85--86
 
  []
 
-<images/sdh_sheet.jpg, id=467, 691.83469pt x 482.55281pt>
+<images/sdh_sheet.jpg, id=492, 691.83469pt x 482.55281pt>
 File: images/sdh_sheet.jpg Graphic file (type jpg)
 
 <use images/sdh_sheet.jpg> [9 <./images/sdh_sheet.jpg>]
-<images/place_joint.jpg, id=474, 483.57846pt x 179.70493pt>
+<images/place_joint.jpg, id=499, 483.57846pt x 179.70493pt>
 File: images/place_joint.jpg Graphic file (type jpg)
 
 <use images/place_joint.jpg>
-<images/hand_tree.jpg, id=476, 911.405pt x 331.2375pt>
+<images/hand_tree.jpg, id=501, 911.405pt x 331.2375pt>
 File: images/hand_tree.jpg Graphic file (type jpg)
 
 <use images/hand_tree.jpg>
@@ -519,7 +519,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 114--115
  []
 
 [10 <./images/place_joint.jpg> <./images/hand_tree.jpg>]
-<images/extract_pure_shapes.jpg, id=483, 570.64198pt x 243.24432pt>
+<images/extract_pure_shapes.jpg, id=508, 570.64198pt x 243.24432pt>
 File: images/extract_pure_shapes.jpg Graphic file (type jpg)
 
 <use images/extract_pure_shapes.jpg>
@@ -528,7 +528,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--142
  []
 
 [11 <./images/extract_pure_shapes.jpg>]
-<images/simulation_scene.jpg, id=491, 979.40906pt x 560.0925pt>
+<images/simulation_scene.jpg, id=516, 979.40906pt x 560.0925pt>
 File: images/simulation_scene.jpg Graphic file (type jpg)
 
 <use images/simulation_scene.jpg>
@@ -546,7 +546,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 162--163
 
  []
 
-<images/collision.jpg, id=498, 1093.08376pt x 573.64313pt>
+<images/collision.jpg, id=523, 1093.08376pt x 573.64313pt>
 File: images/collision.jpg Graphic file (type jpg)
 
 <use images/collision.jpg>
@@ -575,7 +575,7 @@ See the caption package documentation for explanation.
 LaTeX Warning: Reference `fig:col_defs' on page 14 undefined on input line 215.
 
 
-[14] <images/ik_vrep.jpg, id=515, 351.3125pt x 343.2825pt>
+[14] <images/ik_vrep.jpg, id=540, 351.3125pt x 343.2825pt>
 File: images/ik_vrep.jpg Graphic file (type jpg)
 
 <use images/ik_vrep.jpg> [15]
@@ -589,7 +589,7 @@ LaTeX Warning: Reference `fig:ik_defs' on page 16 undefined on input line 261.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [16 <./images/ik_vrep.jpg>] <images/control_flow.jpg, id=529, 1332.98pt x 576.
+ [16 <./images/ik_vrep.jpg>] <images/control_flow.jpg, id=554, 1332.98pt x 576.
 1525pt>
 File: images/control_flow.jpg Graphic file (type jpg)
 
@@ -600,7 +600,7 @@ LaTeX Font Info:    Try loading font information for T1+lmtt on input line 291.
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 [17 <./images/control_flow.jpg>]
-<images/SimulatorPluginUML.jpg, id=539, 885.3075pt x 674.52pt>
+<images/SimulatorPluginUML.jpg, id=564, 885.3075pt x 674.52pt>
 File: images/SimulatorPluginUML.jpg Graphic file (type jpg)
 
 <use images/SimulatorPluginUML.jpg>
@@ -608,7 +608,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 337--338
 
  []
 
-[18] <images/scene_hierarchy.jpg, id=549, 807.015pt x 525.965pt>
+[18] <images/scene_hierarchy.jpg, id=574, 807.015pt x 525.965pt>
 File: images/scene_hierarchy.jpg Graphic file (type jpg)
 
 <use images/scene_hierarchy.jpg>
@@ -616,7 +616,7 @@ File: images/scene_hierarchy.jpg Graphic file (type jpg)
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [19 <./images/SimulatorPluginUML.jpg>]
-<images/custom_dev_data.jpg, id=556, 1531.7225pt x 612.2875pt>
+<images/custom_dev_data.jpg, id=581, 1531.7225pt x 612.2875pt>
 File: images/custom_dev_data.jpg Graphic file (type jpg)
 
 <use images/custom_dev_data.jpg>
@@ -626,16 +626,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 Underfull \vbox (badness 1648) has occurred while \output is active []
 
- [20 <./images/scene_hierarchy.jpg>]
-
-Package caption Warning: \label before \caption on input line 373.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:lwr_tags' on page 21 undefined on input line 370.
-
-
-[21 <./images/custom_dev_data.jpg>]
+ [20 <./images/scene_hierarchy.jpg>] [21 <./images/custom_dev_data.jpg>]
 Overfull \hbox (2.89188pt too wide) in paragraph at lines 403--405
 \T1/lmr/m/n/10.95 The con-troller ac-cepts tar-get po-si-tions in Carte-sian sp
 ace via the \T1/lmtt/m/n/10.95 cartesian_control/move
@@ -647,27 +638,10 @@ Overfull \hbox (105.81097pt too wide) in paragraph at lines 407--409
 usted, us-ing the \T1/lmtt/m/n/10.95 cartesian_control/set_velocity_limit
  []
 
-[22]
-
-Package caption Warning: \label before \caption on input line 422.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:schunk_tags' on page 23 undefined on input line 4
-34.
-
-<images/grasp_types.jpg, id=577, 843.15pt x 286.06876pt>
+[22] <images/grasp_types.jpg, id=602, 843.15pt x 286.06876pt>
 File: images/grasp_types.jpg Graphic file (type jpg)
 
 <use images/grasp_types.jpg>
-
-Package caption Warning: \label before \caption on input line 448.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:grasp_defs' on page 23 undefined on input line 44
-5.
-
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -685,7 +659,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--44
 
  []
 
-[26] <images/moveit_architecture.jpg, id=620, 1027.84pt x 770.88pt>
+[26] <images/moveit_architecture.jpg, id=645, 1027.84pt x 770.88pt>
 File: images/moveit_architecture.jpg Graphic file (type jpg)
 
 <use images/moveit_architecture.jpg>
@@ -694,7 +668,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 53--55
  []
 
 [27 <./images/moveit_architecture.jpg>]
-<images/urdf_chain.jpg, id=634, 876.27374pt x 622.7265pt>
+<images/urdf_chain.jpg, id=659, 876.27374pt x 622.7265pt>
 File: images/urdf_chain.jpg Graphic file (type jpg)
 
 <use images/urdf_chain.jpg>
@@ -702,7 +676,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 80--81
 
  []
 
-[28] <images/torso.jpg, id=645, 858.20625pt x 507.39563pt>
+[28] <images/torso.jpg, id=670, 858.20625pt x 507.39563pt>
 File: images/torso.jpg Graphic file (type jpg)
 
 <use images/torso.jpg>
@@ -721,7 +695,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 105--106
 
  []
 
-<images/iis_robot_table.png, id=667, 745.28438pt x 507.39563pt>
+<images/iis_robot_table.png, id=692, 745.28438pt x 507.39563pt>
 File: images/iis_robot_table.png Graphic file (type png)
 
 <use images/iis_robot_table.png> [30 <./images/torso.jpg>]
@@ -735,7 +709,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 149--150
 
  []
 
-<images/ros_control.png, id=678, 455.2441pt x 351.67606pt>
+<images/ros_control.png, id=703, 455.2441pt x 351.67606pt>
 File: images/ros_control.png Graphic file (type png)
 
 <use images/ros_control.png>
@@ -749,7 +723,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 170--171
  []
 
 [32] [33 <./images/ros_control.png>]
-<images/hardware_adapter.jpg, id=691, 777.90625pt x 233.87375pt>
+<images/hardware_adapter.jpg, id=716, 777.90625pt x 233.87375pt>
 File: images/hardware_adapter.jpg Graphic file (type jpg)
 
 <use images/hardware_adapter.jpg>
@@ -803,7 +777,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--19
 
  []
 
-<images/pickup.jpg, id=751, 568.94437pt x 327.15514pt>
+<images/pickup.jpg, id=776, 568.94437pt x 327.15514pt>
 File: images/pickup.jpg Graphic file (type jpg)
  <use images/pickup.jpg>
 Underfull \hbox (badness 10000) in paragraph at lines 29--30
@@ -811,7 +785,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--30
  []
 
 [40 <./images/pickup.jpg>]
-<images/placement.jpg, id=757, 568.94437pt x 327.15514pt>
+<images/placement.jpg, id=782, 568.94437pt x 327.15514pt>
 File: images/placement.jpg Graphic file (type jpg)
 
 <use images/placement.jpg>
@@ -829,20 +803,57 @@ Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
 
-[42] <images/task_env.png, id=768, 979.40906pt x 560.0925pt>
+[42] <images/task_env.png, id=793, 979.40906pt x 560.0925pt>
 File: images/task_env.png Graphic file (type png)
 
 <use images/task_env.png> [43 <./images/task_env.png (PNG copy)>]
-<images/grasp_stages.jpg, id=773, 1402.23875pt x 371.3875pt>
+<images/grasp_stages.jpg, id=798, 1402.23875pt x 371.3875pt>
 File: images/grasp_stages.jpg Graphic file (type jpg)
 
 <use images/grasp_stages.jpg> [44 <./images/grasp_stages.jpg>]
-<images/place_stages.jpg, id=778, 2040.62375pt x 482.80376pt>
+<images/place_stages.jpg, id=803, 2040.62375pt x 482.80376pt>
 File: images/place_stages.jpg Graphic file (type jpg)
 
-<use images/place_stages.jpg> [45 <./images/place_stages.jpg>]) [46]
-(./thesis.bbl) [47
+<use images/place_stages.jpg> [45 <./images/place_stages.jpg>])
+(./conclusion.tex [46]
+Chapter 5.
+) [47
 
+] [48
+
+] (./thesis.bbl) (./appendix_a.tex [49
+
+] [50
+
+]
+Appendix A.
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--22
+
+ []
+
+[51] <images/dlg_cust_data.jpg, id=836, 575.14874pt x 183.68625pt>
+File: images/dlg_cust_data.jpg Graphic file (type jpg)
+
+<use images/dlg_cust_data.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+
+ []
+
+[52 <./images/dlg_cust_data.jpg>]
+Overfull \hbox (6.25601pt too wide) in paragraph at lines 46--47
+\T1/lmr/m/n/10.95 posed, based on the com-po-nent name. The over-all names-pace
+ is de-clared within the $\T1/lmtt/m/n/10.95 initialize()$
+ []
+
+[53]) (./appendix_b.tex [54]
+Appendix B.
+) [55
 
 ] (./thesis.aux)
 
@@ -850,11 +861,11 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 8535 strings out of 495061
- 124156 string characters out of 1182621
- 232431 words of memory out of 3000000
- 11268 multiletter control sequences out of 15000+50000
- 92214 words of font info for 68 fonts, out of 3000000 for 9000
+ 8587 strings out of 495061
+ 124826 string characters out of 1182621
+ 232629 words of memory out of 3000000
+ 11292 multiletter control sequences out of 15000+50000
+ 103241 words of font info for 79 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,17n,49p,2099b,1086s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
@@ -874,9 +885,9 @@ nts/type1/public/lm/lmsy9.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pf
 b></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/ty
 pe1/public/lm/lmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/s
 ymbols/msbm10.pfb>
-Output written on thesis.pdf (61 pages, 5604151 bytes).
+Output written on thesis.pdf (69 pages, 5640410 bytes).
 PDF statistics:
- 917 PDF objects out of 1000 (max. 8388607)
- 228 named destinations out of 1000 (max. 500000)
- 542 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 983 PDF objects out of 1000 (max. 8388607)
+ 243 named destinations out of 1000 (max. 500000)
+ 579 words of extra memory for PDF output out of 10000 (max. 10000000)
 

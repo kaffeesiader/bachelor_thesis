@@ -34,11 +34,6 @@
 \BOOKMARK [2][-]{subsection.3.6.2}{Designing the hardware adapter}{section.3.6}
 \BOOKMARK [2][-]{subsection.3.6.3}{Launching the hardware adapter}{section.3.6}
 \BOOKMARK [1][-]{section.3.7}{Adjusting the MoveIt configuration}{chapter.3}
-\BOOKMARK [1][-]{section.3.8}{Usage examples}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.8.1}{Capabilities}{section.3.8}
-\BOOKMARK [2][-]{subsection.3.8.2}{Modifying the planning scene}{section.3.8}
-\BOOKMARK [2][-]{subsection.3.8.3}{Planning and executing trajectories}{section.3.8}
-\BOOKMARK [2][-]{subsection.3.8.4}{Running the planning tools in different namespaces}{section.3.8}
 \BOOKMARK [0][-]{chapter.4}{Pick and place}{}
 \BOOKMARK [1][-]{section.4.1}{Overview}{chapter.4}
 \BOOKMARK [1][-]{section.4.2}{Pick and place tasks in MoveIt}{chapter.4}
@@ -49,4 +44,13 @@
 \BOOKMARK [2][-]{subsection.4.3.4}{Planning and executing the placement}{section.4.3}
 \BOOKMARK [1][-]{section.4.4}{Executing the benchmark task}{chapter.4}
 \BOOKMARK [1][-]{section.4.5}{Observations}{chapter.4}
+\BOOKMARK [0][-]{chapter.5}{Conclusions}{}
 \BOOKMARK [0][-]{section*.50}{Bibliography}{}
+\BOOKMARK [0][-]{appendix.A}{Simulator documentation}{}
+\BOOKMARK [1][-]{section.A.1}{Installation and startup}{appendix.A}
+\BOOKMARK [1][-]{section.A.2}{Modifying the simulation scene}{appendix.A}
+\BOOKMARK [1][-]{section.A.3}{Modifying custom developer data tags}{appendix.A}
+\BOOKMARK [1][-]{section.A.4}{ROS interface}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.4.1}{Arm control topics}{section.A.4}
+\BOOKMARK [2][-]{subsection.A.4.2}{Hand control topics}{section.A.4}
+\BOOKMARK [0][-]{appendix.B}{Hardware adapter documentation}{}
