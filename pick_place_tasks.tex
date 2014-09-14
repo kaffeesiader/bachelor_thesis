@@ -7,66 +7,87 @@ The implementation of a benchmark pick and place task, executable on simulator a
 
 \section{Overview}
 
-A pick and place task is the process of grasping an object, lifting it and dropping it somewhere else. Humans do that permanently, without even think about it. But when teaching a robot to perform a pick and place action, it shows how difficult and complex this task is and how much planning is involved to achieve the desired result. The planner requires exact knowledge about the robot and it's environment, including the objects to grasp and possible obstacles. Accidental collisions have to be avoided but other collisions are mandatory when the robot has to get in contact with the world. The gripper definitely collides with the object to pick, but only during grasping and holding. Therefore there has to be a mechanism to explicitly tell the planner that specific collisions are allowed during particular stages of the operation. Moreover, after grasping an object it has to be considered as an additional part of the robot during subsequent planning requests. That means that it must be attached to the manipulator temporarily and removed, after releasing the object. As long as the object is part of the robot, it possibly increases the size of the end effector.\\
+A pick and place task is the process of grasping an object, lifting it and dropping it at a target position. Humans do that permanently, without even think about it. But when teaching a robot to perform a pick and place action, it shows how difficult and complex this task is and how much planning is involved to achieve the desired result. A planner would possibly require exact knowledge about the robot and it's environment, including the objects to grasp and the obstacles around. Collisions that would risk harming the robot have to be avoided but other collisions are mandatory when the robot has to get in contact with the world. The gripper definitely collides with the object to pick, but only during grasping and holding. Therefore there has to be a mechanism to explicitly tell the planner that specific collisions are allowed during particular stages of the operation. Moreover, after grasping an object it has to be considered as an additional part of the robot. That means that in the planning domain, the grasped object should be included into the definition of the robot during subsequent planning requests because it possibly increases the size of the end effector that carries the object. \\
 
-Stationary objects usually stand or lie on a surface, called the \emph{support surface}. During the interaction with an object, possible collisions with the support surface have to be taken into account. It is also possible that the whole process underlies additional constraints, so called \emph{path constraints}. This type of constraint has to be enforced along the whole path, the grasped object takes during the operation. For example when carrying a glass, filled with liquid it has to stay in an upright position, otherwise the liquid is lost. That means, the glass has to be held in a specific orientation during the whole task. This can be described as \emph{orientation constraint} which is a special type of path constraint. The planning solution has to provide mechanisms to define end enforce such types of \emph{path constraints}. \\
+Stationary objects usually stand or lie on a surface, called the \emph{support surface}. During the interaction with an object, possible collisions with the support surface have to be taken into account. It is also possible that the whole process underlies additional constraints, so called \emph{path constraints}. This type of constraint has to be enforced along the whole path, the grasped object takes during the operation. For example when carrying a glass, filled with liquid it has to stay in an upright position, otherwise the liquid is lost. That means, the glass has to be held in a specific orientation during the whole task. This can be described as \emph{orientation constraint} which is a special type of path constraint. The planning solution has to provide mechanisms to define and enforce such types of \emph{path constraints}. \\
 
-Pick and place tasks can be split into two independent phases, each one composed from a number of trajectory stages:
+\begin{figure}[ht]
+	\centering
+  	\includegraphics[width=0.5\textwidth]{images/state_trans.jpg}
+	\caption{State transition diagramm for a pick and place task}
+	{\scriptsize Image inspired by \citep{kang1994}}
+	\label{fig:state_trans}
+\end{figure}
+
+\citep{kang1994} propose a method for \emph{temporal segmentation} of arbitrary grasping tasks. They divide each task into sequences of \emph{subtasks} that \emph{can be represented as series of states and transitions}. According to their notion, a pick and place operation is divided into 5 phases.
 
 \begin{itemize}
 
-\item \textbf{Pickup phase} \\
+\item \textbf{Pregrasp phase} \\
 
-This phase starts at an arbitrary robot configuration. In the first stage, the manipulator has to be brought into a position closed to the object to grasp, but in a distance that allows the gripper to open safely without touching the object. This position is called the \emph{pre-grasp pose}. The next stage is to set the gripper into \emph{pre-grasp posture}. That means, bring it's fingers into an open configuration that allows to completely enclose the object (or at least that part that is used to clutch it) after approaching towards the final \emph{pose}. How this configuration looks like depends on the shape of the object to grasp and the structure of the gripper. Further on, the gripper has to be moved towards the \emph{grasp pose} using the correct approach direction. This is the place where the robot gets in contact with the object. The gripper moves it's fingers into the \emph{grasp posture} - a configuration that encloses the object and applies as much force as necessary to be able to take and hold it. The resulting collisions between the gripper links and the object have to be ignored. At that point the object has to be attached to the gripper and further on treated like an additional link of the robot although still being in collision with the support surface. The pickup phase completes after lifting the object along the retreat direction. The object is now part of the robot and no collisions should be tolerated any more. Figure \ref{fig:pickup} shows the stages of the pickup phase.
+This phase starts at an arbitrary robot configuration. The hand is moved towards the grasp location and the fingers have to be adjusted to preshape the gripper in a way that allows to enclose the object to grasp (or at least that part that is used to clutch it). The required gripper configuration depends on the size and shape of the object to grasp and the structure of the gripper.
+
+\item \textbf{Grasp phase} \\
+
+This is the stage where the robot gets in contact with the object. The gripper closes around the object and applies as much force as necessary to be able to take and hold it. The grasp phase states the transition between the \emph{pregrasp} and the \emph{manipulation} phase.
+
+\item \textbf{Manipulation phase} \\
+
+The grasped object is enclosed by the gripper and considered to be part of the robot configuration. 
+During \emph{manipulation} phase, the object is translated towards the place location. Possible path constraints have to be enforced whilst that stage.
+
+\item \textbf{Ungrasp phase} \\
+
+The manipulator reached at the goal location and the gripper opens and releases the object. This is the transition between \emph{manipulation} and \emph{depart} phase.
+
+\item \textbf{Depart phase} \\
+
+The object was placed at the target location and relased by the gripper. Now the manipulator retreats from the object. After that, the entire task is completed.
+
+\end{itemize}
+
+The corresponding state transition diagram can be seen in Figure\ref{fig:state_trans}. The task is only considered to be complete if each single stage has successfully been executed. Necessary planning parameters like the grasp location and gripper configurations are usually provided by a grasp planner. This is an additional node within the planning pipeline that can be used to identify objects in the environment of the robot, usually based on 3D sensor data and calculate the corresponding grasp parameters. Explaining the functionality of grasp planners is beyond the scope of this project though the section about implementing the reference task discusses the used parameters in greater detail and shows what data would usually be delivered by the grasp planner. \\
+
+\section{Pick and place tasks in MoveIt}
 
 \begin{figure}[ht]
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/pick_place_states.jpg}
+	\caption{Extended state transition diagram}
+	\label{fig:pick_place_states}
+\end{figure}
+
+The robot motions during the phases, described in the previous section need to be planned. Each single stage requires to plan trajectories that are free of accidental collisions while respecting the limits of the robot and enforcing possible additional constraints. The task can only be considered executable if a valid motion plan for each single stage exists. Planning pick and place tasks in MoveIt requires to is split them into two distinct operations, namely the \emph{pickup} operation and the \emph{place} operation. The explanation of those operations requires to further subdivide the phases, described in the previous section. This results in the state transition diagram that can be seen in Figure \ref{fig:pick_place_states}. The pregrasp phase is split into \emph{reach}, hand \emph{preshape} and \emph{approach} phase. During the reach phase, the manipulator is moved into a position close to the object to grasp, but in a distance that allows the gripper to open safely without touching the object. This position is called the \emph{pre-grasp pose}. The approach phase brings the opened gripper towards the final \emph{grasp pose}. 
+The preshape phase is the transition between the reach and the approach phase. During that stage the gripper needs to  bring it's fingers into a configuration that allows to enclose the object. This configuration is called the \emph{pre-grasp posture}. The manipulation phase is divided into two phases, namely the lift phase and the movement phase. There is no transition between those two stages because the pickup operation completes after the lift phase and the place operation starts at the movement phase. Planning of those operations happens by using the corresponding action servers that are advertised by the \path{move_group} node.\\
+
+\begin{figure}[h]
 	\centering
   	\includegraphics[width=0.75\textwidth]{images/pickup.jpg}
 	\caption{Stages of the pickup phase in the simulator}
 	\label{fig:pickup}
 \end{figure}
 
-\item \textbf{Placement phase} \\
+The \emph{PickupAction} server handles planning and optionally execution of all stages of a pickup operation at once. Pickup requests are done, using a \emph{PickupAction} client to send \emph{PickupGoal} messages to the server. The request message is composed of all the parameters that are necessary to completely describe the planning problem. Picking up an object can always be done in several ways. Depending on the shape of the object there hardly always exist a lot of possible poses where the gripper can safely approach and grasp. Therefore MoveIt allows to provide a set of possible grasp definitions for a pickup request. There is also a quality parameter that can be used to tell the planner, how `good' a specific grasp is compared to other ones. MoveIt can then favour grasps with higher quality if several valid solutions are found by the planner. Providing a number of different grasps increases the probability for the request to be successful. The grasp definition is composed of the pre- and post grasp postures for the gripper, the final grasp pose and the approach and retreat vectors. As MoveIt needs to know which object should be picked within the planning scene, it is also necessary to include the ID of the object to grasp.\\
 
-The placement phase starts after a successful pickup. The grasped object is enclosed by the gripper and considered to be part of the robot. Now the manipulator moves towards the \emph{pre-place location} - the place where the final approach towards the goal starts. The easy way is to just drop the object at that point. In that case, the placement phase completes after bringing the gripper fingers into the \emph{post-place posture} (opening it) and detaching the object from the robot.
-
-If the object should to be placed carefully, the gripper has to approach from the \emph{pre-place location} towards the final \emph{place location} along the specified approach direction. Here has to be considered that the object will get into contact with the support surface again when it's final position is reached. At that stage the gripper can open and the object has to be detached from the robot. From that point, the object needs to be treated as obstacle again which means the planner is forced to avoid collisions with it. The placement phase completes after the manipulator has moved away from the object along the specified retreat direction. The stages of the placement phase can be seen in Figure \ref{fig:placement}.
-
-\begin{figure}[ht]
+\begin{figure}[h]
 	\centering
   	\includegraphics[width=0.75\textwidth]{images/placement.jpg}
 	\caption{Stages of the placement phase in the simulator}
 	\label{fig:placement}
 \end{figure}
 
-\end{itemize}
-
-Both phases of the task are only considered to be complete if each single stage has successfully been executed. The necessary planning parameters like pre-grasp and grasp pose, gripper postures and approach and retreat directions are usually provided by a \emph{grasp planner}. This is an additional node within the planning pipeline that identifies objects in the environment of the robot, usually based on 3D sensor data and calculates the necessary grasp parameters. Explaining the functionality of grasp planners is far beyond the scope of this project though the section about implementing the reference task discusses the used parameters in greater detail and shows what would be usually delivered by the grasp planner.
-
-
-\section{Pick and place tasks in MoveIt}
-
-During the various stages of the pickup and placement phases a lot of motion planning is required. Each single stage requires to plan a trajectory that is free of accidental collisions while respecting the limits of the robot and enforcing possible additional constraints. Each phase can only be considered executable if a valid motion plan for each single stage exists. Planning all the subsequent stages one after the other would be a cumbersome task. Therefore MoveIt provides a set of messages and action servers that greatly simplify those planning tasks.\\
-
-The \emph{PickupAction} server handles the planning and optionally execution of all required stages during the pickup phase at once. Pickup requests are done, using a \emph{PickupAction} client to send \emph{PickupGoal} messages to the server. The request message is composed of all the parameters that are necessary to completely describe the planning problem. Picking up an object can always be done in several ways. Depending on the shape of the object there hardly always exist a lot of possible poses where the gripper can safely approach and grasp. Therefore MoveIt allows to provide a set of possible grasp definitions for a pickup request. There is also a quality parameter that can be used to tell the planner, how `good' a specific grasp is compared to other ones. MoveIt can then favour grasps with higher quality if several valid solutions are found by the planner. Providing a number of different grasps increases the probability for the request to be successful. The grasp definition is composed of the pre- and post grasp postures for the gripper, the final grasp pose and the approach and retreat vectors. As MoveIt needs to know which object should be picked within the planning scene, it is also necessary to include the ID of the object to grasp.\\
-
 The \emph{PlaceAction} server is responsible for planning the whole placement phase. Therefore same concept is used as above - a set of possible place locations can be provided to increase the probability of a successful planning attempt. The parameters that are used to describe a place location include the post-place posture of the gripper along with it's target pose, and vectors, describing the pre-place approach and the post-place retreat.\\
 
-Pickup and placement requests as well require a number of additional parameters that are explained in greater detail within the section about benchmark task implementation. 
-
-Objects contained in the task environment have to be brought to MoveIt's attention. This can be done either by manually adding them to the planning scene, using the corresponding topics or by configuring MoveIt to be aware of sensor data. As the integration of depth information from the Kinect camera did not work stable during the evaluation phase, that possibility is not covered within this thesis and all involved objects were added manually.
-
-Pickup- and place action servers provide the ability to choose whether to execute motion plans immediately or to do just the planning and return the outcome. In that case the execution has to be handled manually later on. 
-The first method is much more comfortable as MoveIt executes the trajectories and also handles additional requirements like attaching and detaching the grasped object in time. The drawback is that also possibly weird trajectories get executed immediately as they might be valid solutions for the given planning problem though they are obviously unsuitable. So an additional safety mechanism needs to be introduced that allows to interrupt the execution when facing any problems.
+The pickup and placement requests require a number of additional parameters that are explained in more detail in the next section. Objects contained in the task environment need to be added to the planning scene that is maintained by MoveIt. This can be done by manually adding them, using the corresponding topics or by configuring MoveIt to monitor the environment by reading sensor data, e.g. from a Kinect camera. For the sake of simplicity, all involved objects were added manually in the benchmark task. Pickup- and place action servers provide the ability to choose whether to execute motion plans immediately or to do just the planning and return the outcome. In the second case the execution has to be handled manually later on. The first method is more feasible as MoveIt executes the trajectories and also handles additional requirements like attaching and detaching the grasped object in time. The drawback is that also possibly long and unnatural trajectories get executed immediately as they might be valid solutions for the given planning problem though they are unsuitable. So an additional safety mechanism needs to be introduced that allows to interrupt the execution when facing any problems.
 The second method allows to visualize the resulting trajectories and then decide whether to execute them or not. But then each single trajectory stage has to be executed manually which also includes attaching or detaching objects to the manipulator. The advantage of this method is the clean separation between planning and execution, allowing maximum control over the execution flow. Therefore this method was favoured during benchmark task implementation.
 
 \section{Implementation of the benchmark task}
 
-This section describes the implementation of the benchmark pick and place task in greater detail. The source code can be found within the `uibk\_moveit\_tests' package. The workspace is the table in front of the robot covered with a 9cm thick foam mat. This mat will be declared as the support surface later on. The object to grasp is a cylinder with 4cm radius and a height of 25cm. This corresponds to the size of a usual SIGG bottle which can be used to run the benchmark task in the real world. The cylinder is located on a fixed, known position. There is also a box shaped object located within the workspace that acts as an additional obstacle. The goal of the task is to pick the cylinder up, using the right arm of the robot and place it at the goal location without colliding with the obstacle or other parts within the robot's environment. The implementation makes use of MoveIt's pick and place functionality. The necessary steps are explained in the following subsections.
+This section describes the implementation of the benchmark pick and place task in detail. The source code can be found within the \path{uibk_moveit_tests} package. The workspace is the table in front of the robot covered with a 9cm thick foam mat. This mat will be declared as the support surface later on. The object to grasp is a cylinder with 4cm radius and a height of 25cm. The cylinder is located on a fixed, known position. A cube with an edge length of 20cm acts as additional obstacle within the workspace. The goal of the task is to pick the cylinder up, using the right arm of the robot and place it at the goal location without colliding with the obstacle or other parts within the robot's environment. The implementation makes use of the previously described pick and place functionality. The necessary steps are explained in the following subsections.
 
 \subsection{Creating the environment}
 
-As MoveIt is currently not configured to use sensor data, it has to be notified about the task environment. The table and the surface mat are already part of the URDF description but the cylinder and the obstacle have to be added to the task environment. This is done utilizing the \texttt{planning\_interface::PlanningSceneInterface} class that provides functionality to manipulate the current planning scene. The same effects can be achieved by manually publishing to the `/collision\_object' topic but using the convenience class saves a lot of boilerplate code. The \emph{CollisionObject} type is used to describe those objects. Both of them are primitive shapes. Necessary parameters are the shape type, dimensions and the target pose. Additionally each \emph{CollisionObject} needs a unique ID which is used to identify the shape within the planning scene. After adding the \emph{CollisionObjects} to the collision world, they are visualized in RViz. The image in Figure\ref{fig:task_env} shows the task environment after adding the \emph{CollisionObjects}.
+As MoveIt is currently not configured to use sensor data, it has to be notified about the task environment. The table and the surface mat are already part of the URDF description but the cylinder and the obstacle have to be added to the planning scene. This is done utilizing the \emph{PlanningSceneInterface} class that provides functionality to manipulate the current planning scene. The \emph{CollisionObject} type is used to describe those objects. Both of them are primitive shapes. Necessary parameters are the shape type, dimensions and pose. Additionally each \emph{CollisionObject} needs a unique ID which is used to identify the shape within the planning scene. The image in Figure \ref{fig:task_env} shows a visualization of the task environment after adding the \emph{CollisionObjects}.
 
 \begin{figure}[ht]
 	\centering
@@ -77,11 +98,18 @@ As MoveIt is currently not configured to use sensor data, it has to be notified 
 
 \subsection{Generating possible grasps}
 
-Before calling the pickup action server it is necessary to generate a set of possible grasps for the object to pick. This information is usually provided by a grasp planner. The sample task encapsulates the grasp planner functionality within the \emph{generateGrasps} method. This method takes the current pose of the cylinder as input parameter and calculates 10 possible grasp poses along a semi circle around the cylinder location. Pre-grasp and grasp postures are joint trajectories for the gripper, containing just one trajectory point stating the target configuration for the gripper in the opened respectively the closed state. The pre-grasp approach and the post-grasp retreat are defined as \emph{GripperTranslations}. This is a special message type that describes the direct gripper movement from one position towards a target. The direction is defined as a three dimensional vector. The length of the translation can be set in a flexible way by specifying a desired distance and a minimum distance. Experiments showed that the success rate is much better if the grasp parameters allow some flexibility to the planners. The approach vector depends on the grasp pose and points along the z-axis of the end effector frame towards the object. The desired distance between pre-grasp and grasp pose is set to 20cm while the minimum distance is 10cm. The gripper retreat vector points up, along the z-axis of the world. Desired and maximum distances are also set to 20cm respectively 10cm. As no one of the generated grasps should be favoured among the others, the grasp\_quality parameter of each grasp is set to 1. This means that they are equal in quality. The last necessary parameter is a unique identifier for each grasp. As usually a lot of different grasps are provided for each pickup request, this ID can be used to identify, which one was finally used to solve the planning problem.
+\begin{figure}[ht]
+	\centering
+  	\includegraphics[width=0.4\textwidth]{images/grasps.jpg}
+	\caption{Grasp pose determination}
+	\label{fig:grasp_pose}
+\end{figure}
+
+Before calling the pickup action server it is necessary to generate a set of possible grasps for the object to pick. This information is usually provided by a grasp planner. The sample task encapsulates the grasp planner functionality within the \emph{generateGrasps} method. This method takes the current pose of the cylinder as input parameter and calculates 10 possible grasp poses along a semi circle around the cylinder location. Pre-grasp and grasp postures are joint trajectories for the gripper, containing just one trajectory point stating the target configuration for the gripper in the opened respectively the closed state. The pre-grasp approach and the post-grasp retreat are defined as \emph{GripperTranslations}. This is a special message type that describes the direct gripper movement from one position towards a target. The direction is defined as a three dimensional vector. The length of the translation can be set in a flexible way by specifying a desired distance and a minimum distance. That means that the location where the gripper needs to open is not explicitly set and can be any point along the approach vector between minimum distance and desired distance. Experiments showed that the success rate is much better if the grasp parameters allow some flexibility to the planner. The approach vector depends on the grasp pose and points along the z-axis of the end effector frame towards the object. The desired distance between pre-grasp and grasp pose is set to 20cm while the minimum distance is 10cm. The gripper retreat vector points up, along the z-axis of the world. Desired and maximum distances are also set to 20cm respectively 10cm. As no one of the generated grasps should be favoured among the others, the grasp\_quality parameter of each grasp is set to 1. This means that they are equal in quality. The last necessary parameter is a unique identifier for each grasp. As usually many different grasps are provided for each pickup request, this ID can be used to identify, which one was finally used to solve the planning problem.
 
 \begin{figure}[ht]
 	\centering
-  	\includegraphics[width=0.75\textwidth]{images/grasp_stages.jpg}
+  	\includegraphics[width=1.0\textwidth]{images/grasp_a-c.jpg}
 	\caption{Grasp poses, gripper approach and retreat}
 	\label{fig:grasp_stages}
 \end{figure}
@@ -97,7 +125,7 @@ The placement phase is planned and executed in a somehow similar manor. The cyli
 
 \begin{figure}[ht]
 	\centering
-  	\includegraphics[width=0.75\textwidth]{images/place_stages.jpg}
+  	\includegraphics[width=1.0\textwidth]{images/place_a-c.jpg}
 	\caption{Place locations, pre-place approach and post-place retreat}
 	\label{fig:place_stages}
 \end{figure}

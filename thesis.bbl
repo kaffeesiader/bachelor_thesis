@@ -1,4 +1,4 @@
-\begin{thebibliography}{7}
+\begin{thebibliography}{8}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -27,6 +27,13 @@ Howie~M Choset.
 Marc Freese, Surya Singh, Fumio Ozaki, and Nobuto Matsuhira.
 \newblock Virtual robot experimentation platform v-rep: A versatile 3d robot
   simulator.
+
+\bibitem[Kang and Ikeuchi(1994)]{kang1994}
+Sing~Bing Kang and Katsushi Ikeuchi.
+\newblock Determination of motion breakpoints in a task sequence from human
+  hand motion.
+\newblock In \emph{Robotics and Automation, 1994. Proceedings., 1994 IEEE
+  International Conference on}, pages 551--556. IEEE, 1994.
 
 \bibitem[Quigley et~al.(2009)Quigley, Conley, Gerkey, Faust, Foote, Leibs,
   Wheeler, and Ng]{quigley2009}

@@ -47,20 +47,20 @@
 \contentsline {chapter}{\numberline {4}Pick and place}{39}{chapter.4}
 \contentsline {section}{\numberline {4.1}Overview}{39}{section.4.1}
 \contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{41}{section.4.2}
-\contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{42}{section.4.3}
+\contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{43}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Creating the environment}{43}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{43}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{44}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{44}{subsection.4.3.4}
-\contentsline {section}{\numberline {4.4}Executing the benchmark task}{45}{section.4.4}
-\contentsline {section}{\numberline {4.5}Observations}{46}{section.4.5}
-\contentsline {chapter}{\numberline {5}Conclusions}{47}{chapter.5}
-\contentsline {chapter}{Bibliography}{49}{section*.50}
-\contentsline {chapter}{\numberline {A}Simulator documentation}{51}{appendix.A}
-\contentsline {section}{\numberline {A.1}Installation and startup}{51}{section.A.1}
-\contentsline {section}{\numberline {A.2}Modifying the simulation scene}{51}{section.A.2}
-\contentsline {section}{\numberline {A.3}Modifying custom developer data tags}{52}{section.A.3}
-\contentsline {section}{\numberline {A.4}ROS interface}{52}{section.A.4}
-\contentsline {subsection}{\numberline {A.4.1}Arm control topics}{53}{subsection.A.4.1}
-\contentsline {subsection}{\numberline {A.4.2}Hand control topics}{54}{subsection.A.4.2}
-\contentsline {subsection}{\numberline {A.4.3}Kinect camera settings}{54}{subsection.A.4.3}
+\contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{44}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{45}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{46}{subsection.4.3.4}
+\contentsline {section}{\numberline {4.4}Executing the benchmark task}{46}{section.4.4}
+\contentsline {section}{\numberline {4.5}Observations}{47}{section.4.5}
+\contentsline {chapter}{\numberline {5}Conclusion}{49}{chapter.5}
+\contentsline {chapter}{Bibliography}{51}{section*.53}
+\contentsline {chapter}{\numberline {A}Simulator documentation}{53}{appendix.A}
+\contentsline {section}{\numberline {A.1}Installation and startup}{53}{section.A.1}
+\contentsline {section}{\numberline {A.2}Modifying the simulation scene}{53}{section.A.2}
+\contentsline {section}{\numberline {A.3}Modifying custom developer data tags}{54}{section.A.3}
+\contentsline {section}{\numberline {A.4}ROS interface}{54}{section.A.4}
+\contentsline {subsection}{\numberline {A.4.1}Arm control topics}{55}{subsection.A.4.1}
+\contentsline {subsection}{\numberline {A.4.2}Hand control topics}{56}{subsection.A.4.2}
+\contentsline {subsection}{\numberline {A.4.3}Kinect camera settings}{56}{subsection.A.4.3}
