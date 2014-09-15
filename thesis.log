@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  14 SEP 2014 16:35
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  15 SEP 2014 09:57
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -786,54 +786,55 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--50
 File: images/pick_place_states.jpg Graphic file (type jpg)
 
 <use images/pick_place_states.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 60--62
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
 
  []
 
-<images/pickup.jpg, id=798, 568.94437pt x 327.15514pt>
+<images/pickup.jpg, id=799, 568.94437pt x 327.15514pt>
 File: images/pickup.jpg Graphic file (type jpg)
  <use images/pickup.jpg>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
-
- []
-
 [41 <./images/pick_place_states.jpg>]
-<images/placement.jpg, id=804, 568.94437pt x 327.15514pt>
+<images/placement.jpg, id=806, 568.94437pt x 327.15514pt>
 File: images/placement.jpg Graphic file (type jpg)
 
 <use images/placement.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 79--80
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
 
  []
 
 [42 <./images/pickup.jpg> <./images/placement.jpg>]
-<images/task_env.png, id=810, 979.40906pt x 560.0925pt>
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
+
+ []
+
+[43] <images/task_env.png, id=816, 979.40906pt x 560.0925pt>
 File: images/task_env.png Graphic file (type png)
 
-<use images/task_env.png> <images/grasps.jpg, id=811, 488.57532pt x 542.025pt>
+<use images/task_env.png> <images/grasps.jpg, id=817, 488.57532pt x 542.025pt>
 File: images/grasps.jpg Graphic file (type jpg)
 
-<use images/grasps.jpg> [43] [44 <./images/task_env.png (PNG copy)> <./images/g
-rasps.jpg>] <images/grasp_a-c.jpg, id=820, 2725.18124pt x 677.53125pt>
+<use images/grasps.jpg> [44 <./images/task_env.png (PNG copy)>]
+<images/grasp_a-c.jpg, id=822, 2725.18124pt x 677.53125pt>
 File: images/grasp_a-c.jpg Graphic file (type jpg)
 
-<use images/grasp_a-c.jpg>
-Underfull \vbox (badness 6173) has occurred while \output is active []
-
- [45 <./images/grasp_a-c.jpg>] <images/place_a-c.jpg, id=825, 2937.47438pt x 80
-4.00375pt>
+<use images/grasp_a-c.jpg> [45 <./images/grasps.jpg> <./images/grasp_a-c.jpg>]
+<images/place_a-c.jpg, id=827, 2937.47438pt x 804.00375pt>
 File: images/place_a-c.jpg Graphic file (type jpg)
 
-<use images/place_a-c.jpg> [46 <./images/place_a-c.jpg>]) (./conclusion.tex
-[47] [48
-
-]
+<use images/place_a-c.jpg> [46 <./images/place_a-c.jpg>] [47])
+(./conclusion.tex [48]
 Chapter 5.
-) [49] [50
+) [49
+
+] [50
 
 ] (./thesis.bbl) (./appendix_a.tex [51
 
@@ -851,7 +852,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--23
 
  []
 
-[53] <images/dlg_cust_data.jpg, id=863, 575.14874pt x 183.68625pt>
+[53] <images/dlg_cust_data.jpg, id=865, 575.14874pt x 183.68625pt>
 File: images/dlg_cust_data.jpg Graphic file (type jpg)
 
 <use images/dlg_cust_data.jpg>
@@ -900,9 +901,9 @@ s/type1/public/lm/lmsso9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb
 1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr
 /share/texmf/fonts/type1/public/lm/lmtt8.pfb></usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (70 pages, 6018170 bytes).
+Output written on thesis.pdf (70 pages, 6019394 bytes).
 PDF statistics:
- 1028 PDF objects out of 1200 (max. 8388607)
+ 1030 PDF objects out of 1200 (max. 8388607)
  266 named destinations out of 1000 (max. 500000)
  594 words of extra memory for PDF output out of 10000 (max. 10000000)
 

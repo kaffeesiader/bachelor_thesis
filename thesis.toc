@@ -48,11 +48,11 @@
 \contentsline {section}{\numberline {4.1}Overview}{39}{section.4.1}
 \contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{41}{section.4.2}
 \contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{43}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{43}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{44}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{44}{subsection.4.3.2}
 \contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{45}{subsection.4.3.3}
 \contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{46}{subsection.4.3.4}
-\contentsline {section}{\numberline {4.4}Executing the benchmark task}{46}{section.4.4}
+\contentsline {section}{\numberline {4.4}Executing the benchmark task}{47}{section.4.4}
 \contentsline {section}{\numberline {4.5}Observations}{47}{section.4.5}
 \contentsline {chapter}{\numberline {5}Conclusion}{49}{chapter.5}
 \contentsline {chapter}{Bibliography}{51}{section*.53}
