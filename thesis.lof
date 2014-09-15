@@ -26,9 +26,9 @@
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Stages of the pickup phase in the simulator\relax }}{42}{figure.caption.47}
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Stages of the placement phase in the simulator\relax }}{42}{figure.caption.48}
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Planning scene after inserting the collision objects\relax }}{44}{figure.caption.49}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Grasp pose determination\relax }}{45}{figure.caption.50}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Grasp poses, gripper approach and retreat\relax }}{45}{figure.caption.51}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Place locations, pre-place approach and post-place retreat\relax }}{46}{figure.caption.52}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Grasp poses, gripper approach and retreat\relax }}{45}{figure.caption.50}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Grasp pose determination\relax }}{46}{figure.caption.55}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Place locations, pre-place approach and post-place retreat\relax }}{48}{figure.caption.66}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Edit custom developer data dialog\relax }}{54}{figure.caption.55}
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Edit custom developer data dialog\relax }}{56}{figure.caption.69}

@@ -136,15 +136,17 @@ End effectors are the left and the right gripper. Each end effector has a name a
 
 \item \textbf{Generate the configuration files}
 
-After completing all the configuration steps the configuration package can be generated. Therefore a package name has to be specified which was set to \texttt{uibk\_robot\_moveit\_config}. This package is a prototype, containing a large number of predefined configuration files. Some of those files have to be extended manually, adding additional information about available robot controllers and sensors. 
+After completing all the configuration steps the configuration package can be generated. Therefore a package name has to be specified which was set to \path{uibk_robot_moveit_config}. This package is a prototype, containing a large number of predefined configuration files. Some of those files have to be extended manually, adding additional information about available robot controllers and sensors. 
 
 \end{itemize}
 
-Completing the last step results in a ROS package, containing necessary configuration and launch files for the given robot setup. The semantic robot description can be found in the \texttt{iis\_robot.srdf} file. It contains previously defined parameters like the self-collision matrix, planning groups and end effectors. The configuration package can be tested, running the following command on the command line:
-\begin{center}
-\texttt{roslaunch uibk\_robot\_moveit\_config demo.launch}
-\end{center}
-This commands launches a \texttt{move\_group} node, using the previously created configuration files and starts an instance of RViz with the motion planning plugin. There it is possible to switch between the planning groups, set start and target configurations, do planning requests and visualize the outcome. The setup can be modified by launching the Setup Assistant again, using the \texttt{setup\_assistant.launch} file from this package.
+Completing the last step results in a ROS package, containing necessary configuration and launch files for the given robot setup. The semantic robot description can be found in the \path{iis_robot.srdf} file. It contains previously defined parameters like the self-collision matrix, planning groups and end effectors. The configuration package can be tested, running the following command on the command line:
+\begin{quote}
+\begin{verbatim}
+roslaunch uibk_robot_moveit_config demo.launch
+\end{verbatim}
+\end{quote}
+This commands launches a \path{move_group} node in demo mode, using the previously created configuration files and starts an instance of RViz with the motion planning plugin. There it is possible to switch between the planning groups, set start and target configurations, do planning requests and visualize the outcome. The setup can be modified by launching the Setup Assistant again, using the \path{setup_assistant.launch} file from this package.
 
 \section{Connecting MoveIt to the existing robot control interface}
 
@@ -227,6 +229,7 @@ During hardware adapter startup an instance of the \emph{UibkRobotHW} and \emph{
 After starting the hardware adapter, the required controllers have to be loaded and started. This is usually done, by using the corresponding ROS services, provided by a running \emph{ControllerManager} instance, but the \texttt{controller\_manager} package contains a tool named \texttt{spawner} that simplifies the starting process. The configuration of each controller has to reside on the parameter server. Utilized controllers are the \emph{JointTrajectoryController} and the \emph{JointStateController}. The \emph{JointTrajectoryController} provides the required \emph{FollowJointTrajectory} action interface for a group of joints. For each robot component a separate \emph{JointTrajectoryController} is used. The \emph{JointStateController} publishes the collected states of all robot joints at once to the \texttt{joint\_states} topic, which is used by MoveIt to monitor the robot configuration.
 
 \subsection{Launching the hardware adapter}
+\label{sec:launch_moveit}
 
 The file \texttt{hardware\_adapter.launch}, located in the \texttt{uibk\_moveit\_adapter} package was created to handle the necessary configuration parameter upload and launch the hardware adapter node for the simulator and the real robot as well. As can be seen in Listing\ref{lst:adapter_config}, the configured topic names for the \emph{JointStateAdapters} are defined, using \emph{relative} graph resource names (i.e. without trailing slash). The required instance is than accessed by simply shifting the node into \texttt{simulation} or \texttt{real} namespace. This is realized, specifying the \texttt{config\_name} parameter of the launch file. The command line statement
 \begin{verbatim}

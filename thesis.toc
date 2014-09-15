@@ -48,19 +48,33 @@
 \contentsline {section}{\numberline {4.1}Overview}{39}{section.4.1}
 \contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{41}{section.4.2}
 \contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{43}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{44}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{43}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{44}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{45}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{46}{subsection.4.3.4}
-\contentsline {section}{\numberline {4.4}Executing the benchmark task}{47}{section.4.4}
-\contentsline {section}{\numberline {4.5}Observations}{47}{section.4.5}
-\contentsline {chapter}{\numberline {5}Conclusion}{49}{chapter.5}
-\contentsline {chapter}{Bibliography}{51}{section*.53}
-\contentsline {chapter}{\numberline {A}Simulator documentation}{53}{appendix.A}
-\contentsline {section}{\numberline {A.1}Installation and startup}{53}{section.A.1}
-\contentsline {section}{\numberline {A.2}Modifying the simulation scene}{53}{section.A.2}
-\contentsline {section}{\numberline {A.3}Modifying custom developer data tags}{54}{section.A.3}
-\contentsline {section}{\numberline {A.4}ROS interface}{54}{section.A.4}
-\contentsline {subsection}{\numberline {A.4.1}Arm control topics}{55}{subsection.A.4.1}
-\contentsline {subsection}{\numberline {A.4.2}Hand control topics}{56}{subsection.A.4.2}
-\contentsline {subsection}{\numberline {A.4.3}Kinect camera settings}{56}{subsection.A.4.3}
+\contentsline {paragraph}{Grasp ID}{45}{section*.51}
+\contentsline {paragraph}{Pre-grasp/grasp posture}{45}{section*.52}
+\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{45}{section*.53}
+\contentsline {paragraph}{Grasp pose}{46}{section*.54}
+\contentsline {paragraph}{Grasp quality}{47}{section*.56}
+\contentsline {paragraph}{Allowed touch objects}{47}{section*.57}
+\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{47}{subsection.4.3.3}
+\contentsline {paragraph}{\texttt {target\_name}}{47}{section*.58}
+\contentsline {paragraph}{\texttt {group\_name}}{47}{section*.59}
+\contentsline {paragraph}{\texttt {end\_effector\_name}}{47}{section*.60}
+\contentsline {paragraph}{\texttt {possible\_grasps}}{47}{section*.61}
+\contentsline {paragraph}{\texttt {support\_surface\_name}}{47}{section*.62}
+\contentsline {paragraph}{\texttt {allow\_gripper\_support\_collision}}{47}{section*.63}
+\contentsline {paragraph}{\texttt {allowed\_planning\_time}}{47}{section*.64}
+\contentsline {paragraph}{\texttt {plan\_only}}{47}{section*.65}
+\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{48}{subsection.4.3.4}
+\contentsline {section}{\numberline {4.4}Executing the benchmark task}{48}{section.4.4}
+\contentsline {section}{\numberline {4.5}Discussion}{49}{section.4.5}
+\contentsline {chapter}{\numberline {5}Conclusion}{51}{chapter.5}
+\contentsline {chapter}{Bibliography}{53}{section*.67}
+\contentsline {chapter}{\numberline {A}Simulator documentation}{55}{appendix.A}
+\contentsline {section}{\numberline {A.1}Installation and startup}{55}{section.A.1}
+\contentsline {section}{\numberline {A.2}Modifying the simulation scene}{55}{section.A.2}
+\contentsline {section}{\numberline {A.3}Modifying custom developer data tags}{56}{section.A.3}
+\contentsline {section}{\numberline {A.4}ROS interface}{56}{section.A.4}
+\contentsline {subsection}{\numberline {A.4.1}Arm control topics}{57}{subsection.A.4.1}
+\contentsline {subsection}{\numberline {A.4.2}Hand control topics}{58}{subsection.A.4.2}
+\contentsline {subsection}{\numberline {A.4.3}Kinect camera settings}{58}{subsection.A.4.3}

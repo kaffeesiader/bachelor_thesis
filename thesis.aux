@@ -134,6 +134,7 @@
 \newlabel{lst:adapter_config}{{3.2}{36}{Adapter configuration for left arm and gripper\relax }{lstlisting.3.2}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}Adapter configuration for left arm and gripper}{36}{lstlisting.3.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}Launching the hardware adapter}{36}{subsection.3.6.3}}
+\newlabel{sec:launch_moveit}{{3.6.3}{36}{Launching the hardware adapter\relax }{subsection.3.6.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.7}Adjusting the MoveIt configuration}{37}{section.3.7}}
 \citation{kang1994}
 \citation{kang1994}
@@ -152,21 +153,42 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Stages of the placement phase in the simulator\relax }}{42}{figure.caption.48}}
 \newlabel{fig:placement}{{4.4}{42}{Stages of the placement phase in the simulator\relax \relax }{figure.caption.48}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{43}{section.4.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{44}{subsection.4.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{43}{subsection.4.3.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Planning scene after inserting the collision objects\relax }}{44}{figure.caption.49}}
 \newlabel{fig:task_env}{{4.5}{44}{Planning scene after inserting the collision objects\relax \relax }{figure.caption.49}{}}
+\newlabel{lst:obstacle}{{4.1}{44}{Creating the obstacle\relax }{lstlisting.4.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.1}Creating the obstacle}{44}{lstlisting.4.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{44}{subsection.4.3.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces Grasp pose determination\relax }}{45}{figure.caption.50}}
-\newlabel{fig:grasp_pose}{{4.6}{45}{Grasp pose determination\relax \relax }{figure.caption.50}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces Grasp poses, gripper approach and retreat\relax }}{45}{figure.caption.51}}
-\newlabel{fig:grasp_stages}{{4.7}{45}{Grasp poses, gripper approach and retreat\relax \relax }{figure.caption.51}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{45}{subsection.4.3.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{46}{subsection.4.3.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Place locations, pre-place approach and post-place retreat\relax }}{46}{figure.caption.52}}
-\newlabel{fig:place_stages}{{4.8}{46}{Place locations, pre-place approach and post-place retreat\relax \relax }{figure.caption.52}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Executing the benchmark task}{47}{section.4.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Observations}{47}{section.4.5}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusion}{49}{chapter.5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces Grasp poses, gripper approach and retreat\relax }}{45}{figure.caption.50}}
+\newlabel{fig:grasp_stages}{{4.6}{45}{Grasp poses, gripper approach and retreat\relax \relax }{figure.caption.50}{}}
+\@writefile{toc}{\contentsline {paragraph}{Grasp ID}{45}{section*.51}}
+\@writefile{toc}{\contentsline {paragraph}{Pre-grasp/grasp posture}{45}{section*.52}}
+\@writefile{toc}{\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{45}{section*.53}}
+\newlabel{lst:translation}{{4.2}{46}{Definition of gripper translations\relax }{lstlisting.4.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.2}Definition of gripper translations}{46}{lstlisting.4.2}}
+\@writefile{toc}{\contentsline {paragraph}{Grasp pose}{46}{section*.54}}
+\newlabel{eq:grasp_pose}{{4.1}{46}{Grasp pose\relax }{equation.4.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces Grasp pose determination\relax }}{46}{figure.caption.55}}
+\newlabel{fig:grasp_pose}{{4.7}{46}{Grasp pose determination\relax \relax }{figure.caption.55}{}}
+\@writefile{toc}{\contentsline {paragraph}{Grasp quality}{47}{section*.56}}
+\@writefile{toc}{\contentsline {paragraph}{Allowed touch objects}{47}{section*.57}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{47}{subsection.4.3.3}}
+\@writefile{toc}{\contentsline {paragraph}{\texttt  {target\_name}}{47}{section*.58}}
+\@writefile{toc}{\contentsline {paragraph}{\texttt  {group\_name}}{47}{section*.59}}
+\@writefile{toc}{\contentsline {paragraph}{\texttt  {end\_effector\_name}}{47}{section*.60}}
+\@writefile{toc}{\contentsline {paragraph}{\texttt  {possible\_grasps}}{47}{section*.61}}
+\@writefile{toc}{\contentsline {paragraph}{\texttt  {support\_surface\_name}}{47}{section*.62}}
+\@writefile{toc}{\contentsline {paragraph}{\texttt  {allow\_gripper\_support\_collision}}{47}{section*.63}}
+\@writefile{toc}{\contentsline {paragraph}{\texttt  {allowed\_planning\_time}}{47}{section*.64}}
+\@writefile{toc}{\contentsline {paragraph}{\texttt  {plan\_only}}{47}{section*.65}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{48}{subsection.4.3.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Place locations, pre-place approach and post-place retreat\relax }}{48}{figure.caption.66}}
+\newlabel{fig:place_stages}{{4.8}{48}{Place locations, pre-place approach and post-place retreat\relax \relax }{figure.caption.66}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Executing the benchmark task}{48}{section.4.4}}
+\newlabel{lst:pick_place}{{4.3}{49}{Benchmark task main routine\relax }{lstlisting.4.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.3}Benchmark task main routine}{49}{lstlisting.4.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Discussion}{49}{section.4.5}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusion}{51}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibdata{refs}
@@ -178,23 +200,23 @@
 \bibcite{quigley2009}{{6}{2009}{{Quigley et~al.}}{{Quigley, Conley, Gerkey, Faust, Foote, Leibs, Wheeler, and Ng}}}
 \bibcite{schunk2010}{{7}{2010}{{Schunk}}{{}}}
 \bibcite{schwartz1983}{{8}{1983}{{Schwartz and Sharir}}{{}}}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{51}{section*.53}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Simulator documentation}{53}{appendix.A}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{53}{section*.67}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Simulator documentation}{55}{appendix.A}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{app:sim_doc}{{A}{53}{Simulator documentation\relax }{appendix.A}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {A.1}Installation and startup}{53}{section.A.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {A.2}Modifying the simulation scene}{53}{section.A.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {A.3}Modifying custom developer data tags}{54}{section.A.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {A.1}{\ignorespaces Edit custom developer data dialog\relax }}{54}{figure.caption.55}}
-\newlabel{fig:change_dev_data}{{A.1}{54}{Edit custom developer data dialog\relax \relax }{figure.caption.55}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {A.4}ROS interface}{54}{section.A.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.4.1}Arm control topics}{55}{subsection.A.4.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {A.1}{\ignorespaces Available topics of \emph  {LWRArmController}\relax }}{55}{table.caption.56}}
-\newlabel{fig:arm_topics}{{A.1}{55}{Available topics of \emph {LWRArmController}\relax \relax }{table.caption.56}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.4.2}Hand control topics}{56}{subsection.A.4.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {A.2}{\ignorespaces Available topics of \emph  {SchunkHandController}\relax }}{56}{table.caption.57}}
-\newlabel{fig:hand_topics}{{A.2}{56}{Available topics of \emph {SchunkHandController}\relax \relax }{table.caption.57}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.4.3}Kinect camera settings}{56}{subsection.A.4.3}}
-\newlabel{lst:kinect_script}{{A.1}{56}{LUA script, attached to Kinect model\relax }{lstlisting.A.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {A.1}LUA script, attached to Kinect model}{56}{lstlisting.A.1}}
+\newlabel{app:sim_doc}{{A}{55}{Simulator documentation\relax }{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.1}Installation and startup}{55}{section.A.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.2}Modifying the simulation scene}{55}{section.A.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.3}Modifying custom developer data tags}{56}{section.A.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {A.1}{\ignorespaces Edit custom developer data dialog\relax }}{56}{figure.caption.69}}
+\newlabel{fig:change_dev_data}{{A.1}{56}{Edit custom developer data dialog\relax \relax }{figure.caption.69}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.4}ROS interface}{56}{section.A.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4.1}Arm control topics}{57}{subsection.A.4.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {A.1}{\ignorespaces Available topics of \emph  {LWRArmController}\relax }}{57}{table.caption.70}}
+\newlabel{fig:arm_topics}{{A.1}{57}{Available topics of \emph {LWRArmController}\relax \relax }{table.caption.70}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4.2}Hand control topics}{58}{subsection.A.4.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {A.2}{\ignorespaces Available topics of \emph  {SchunkHandController}\relax }}{58}{table.caption.71}}
+\newlabel{fig:hand_topics}{{A.2}{58}{Available topics of \emph {SchunkHandController}\relax \relax }{table.caption.71}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4.3}Kinect camera settings}{58}{subsection.A.4.3}}
+\newlabel{lst:kinect_script}{{A.1}{58}{LUA script, attached to Kinect model\relax }{lstlisting.A.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {A.1}LUA script, attached to Kinect model}{58}{lstlisting.A.1}}
