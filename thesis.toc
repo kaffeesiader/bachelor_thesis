@@ -7,7 +7,7 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}IIS-Lab Robot Setup}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}The Robot Operating System(ROS)}{2}{section.1.2}
-\contentsline {section}{\numberline {1.3}Project Targets}{3}{section.1.3}
+\contentsline {section}{\numberline {1.3}Project Targets}{4}{section.1.3}
 \contentsline {chapter}{\numberline {2}Robot simulation}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Choosing a suitable simulation platform}{5}{section.2.1}
 \contentsline {section}{\numberline {2.2}The Virtual Robot Experimentation Platform(V-Rep)}{6}{section.2.2}
@@ -19,23 +19,23 @@
 \contentsline {subsection}{\numberline {2.4.4}Configuring the IK calculation module}{15}{subsection.2.4.4}
 \contentsline {section}{\numberline {2.5}Implementing the ROS control interface}{17}{section.2.5}
 \contentsline {subsection}{\numberline {2.5.1}Plugin architecture}{17}{subsection.2.5.1}
-\contentsline {paragraph}{SimulationComponent}{18}{section*.22}
-\contentsline {paragraph}{ComponentContainer}{18}{section*.24}
-\contentsline {paragraph}{ROSServer}{18}{section*.25}
-\contentsline {paragraph}{ComponentController}{19}{section*.26}
+\contentsline {paragraph}{SimulationComponent}{18}{section*.23}
+\contentsline {paragraph}{ComponentContainer}{18}{section*.25}
+\contentsline {paragraph}{ROSServer}{18}{section*.26}
+\contentsline {paragraph}{ComponentController}{19}{section*.27}
 \contentsline {subsection}{\numberline {2.5.2}Identifying simulation components}{19}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}The LWRArmComponent}{21}{subsection.2.5.3}
-\contentsline {paragraph}{LWRArm}{21}{section*.29}
-\contentsline {paragraph}{LWRArmController}{22}{section*.31}
+\contentsline {paragraph}{LWRArm}{21}{section*.30}
+\contentsline {paragraph}{LWRArmController}{22}{section*.32}
 \contentsline {subsection}{\numberline {2.5.4}The SchunkHandComponent}{23}{subsection.2.5.4}
-\contentsline {paragraph}{SchunkHand}{23}{section*.33}
-\contentsline {paragraph}{SchunkHandController}{23}{section*.34}
+\contentsline {paragraph}{SchunkHand}{23}{section*.34}
+\contentsline {paragraph}{SchunkHandController}{23}{section*.35}
 \contentsline {subsection}{\numberline {2.5.5}Publishing Kinect camera data}{24}{subsection.2.5.5}
 \contentsline {chapter}{\numberline {3}Motion planning}{25}{chapter.3}
 \contentsline {section}{\numberline {3.1}Introduction}{25}{section.3.1}
 \contentsline {section}{\numberline {3.2}Sampling-based motion planning}{25}{section.3.2}
-\contentsline {paragraph}{Probabilistic roadmaps}{26}{section*.37}
-\contentsline {paragraph}{Tree-based planners}{26}{section*.38}
+\contentsline {paragraph}{Probabilistic roadmaps}{26}{section*.38}
+\contentsline {paragraph}{Tree-based planners}{26}{section*.39}
 \contentsline {section}{\numberline {3.3}The MoveIt! motion planning framework}{27}{section.3.3}
 \contentsline {section}{\numberline {3.4}Creating the URDF model of the robot setup}{28}{section.3.4}
 \contentsline {section}{\numberline {3.5}Configuring the planning tools}{30}{section.3.5}
@@ -50,26 +50,26 @@
 \contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{43}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Creating the environment}{43}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{44}{subsection.4.3.2}
-\contentsline {paragraph}{Grasp ID}{45}{section*.51}
-\contentsline {paragraph}{Pre-grasp/grasp posture}{45}{section*.52}
-\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{45}{section*.53}
-\contentsline {paragraph}{Grasp pose}{46}{section*.54}
-\contentsline {paragraph}{Grasp quality}{47}{section*.56}
-\contentsline {paragraph}{Allowed touch objects}{47}{section*.57}
+\contentsline {paragraph}{Grasp ID}{45}{section*.52}
+\contentsline {paragraph}{Pre-grasp/grasp posture}{45}{section*.53}
+\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{45}{section*.54}
+\contentsline {paragraph}{Grasp pose}{46}{section*.55}
+\contentsline {paragraph}{Grasp quality}{47}{section*.57}
+\contentsline {paragraph}{Allowed touch objects}{47}{section*.58}
 \contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{47}{subsection.4.3.3}
-\contentsline {paragraph}{\texttt {target\_name}}{47}{section*.58}
-\contentsline {paragraph}{\texttt {group\_name}}{47}{section*.59}
-\contentsline {paragraph}{\texttt {end\_effector\_name}}{47}{section*.60}
-\contentsline {paragraph}{\texttt {possible\_grasps}}{47}{section*.61}
-\contentsline {paragraph}{\texttt {support\_surface\_name}}{47}{section*.62}
-\contentsline {paragraph}{\texttt {allow\_gripper\_support\_collision}}{47}{section*.63}
-\contentsline {paragraph}{\texttt {allowed\_planning\_time}}{47}{section*.64}
-\contentsline {paragraph}{\texttt {plan\_only}}{47}{section*.65}
+\contentsline {paragraph}{\texttt {target\_name}}{47}{section*.59}
+\contentsline {paragraph}{\texttt {group\_name}}{47}{section*.60}
+\contentsline {paragraph}{\texttt {end\_effector\_name}}{47}{section*.61}
+\contentsline {paragraph}{\texttt {possible\_grasps}}{47}{section*.62}
+\contentsline {paragraph}{\texttt {support\_surface\_name}}{47}{section*.63}
+\contentsline {paragraph}{\texttt {allow\_gripper\_support\_collision}}{47}{section*.64}
+\contentsline {paragraph}{\texttt {allowed\_planning\_time}}{47}{section*.65}
+\contentsline {paragraph}{\texttt {plan\_only}}{47}{section*.66}
 \contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{48}{subsection.4.3.4}
 \contentsline {section}{\numberline {4.4}Executing the benchmark task}{48}{section.4.4}
 \contentsline {section}{\numberline {4.5}Discussion}{49}{section.4.5}
 \contentsline {chapter}{\numberline {5}Conclusion}{51}{chapter.5}
-\contentsline {chapter}{Bibliography}{53}{section*.67}
+\contentsline {chapter}{Bibliography}{53}{section*.68}
 \contentsline {chapter}{\numberline {A}Simulator documentation}{55}{appendix.A}
 \contentsline {section}{\numberline {A.1}Installation and startup}{55}{section.A.1}
 \contentsline {section}{\numberline {A.2}Modifying the simulation scene}{55}{section.A.2}
