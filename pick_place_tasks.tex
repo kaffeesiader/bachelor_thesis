@@ -3,7 +3,7 @@
 \chapter{Pick and place}
 \label{chap:pick_place}
 
-The implementation of a benchmark pick and place task, executable on simulator and real robot as well, states one of the objective targets of this project. The implementation heavily uses major parts of MoveIt's planning functionality. The overview at the beginning of this chapter gives some general information about pick and place tasks, explaining the process step by step and describing the single stages that have to be performed. The second part focuses on the pick and place functionality of MoveIt and discusses the involved action servers, topics and messages. The third section explains the implementation of the benchmark pick and place task in greater detail and demonstrates how that functionality of MoveIt was used. The last section describes some observations that have been made during the implementation process.
+The implementation of a benchmark pick and place task, executable on simulator and real robot as well, states one of the objective targets of this project. The tasks consists of various stages that have to be planned, using the planning framework introduced in the prvious chapter. The overview at the beginning of this chapter provides information about general grasping tasks, explaining the process step by step and describing the single stages that have to be performed. The second part focuses on how pick and place tasks are planned and executed, using the motion planning framework that was described in the previous chapter. The third section explains the implementation of the benchmark pick and place task in detail and describes the involved message types and action servers. The last section discusses some observations that have been made during the implementation process.
 
 \section{Overview}
 
@@ -234,7 +234,7 @@ The placement phase is planned and executed in a similar manner. The cylinder ha
 The \emph{PlaceAction} server is responsible for planning the whole placement phase. The request is done, utilizing a \emph{PlaceAction} client and \emph{PlaceGoal} messages. The server call is handled in the same way as above. The most important parameters are the ID of the object to place, the name of the planning group, the set of possible place locations and the maximum allowed planning time.  On success, the resulting trajectories are again visualized in RViz and can then be executed the same way as during pickup phase. After the execution, the task is considered to be complete and the picked object is detached from the gripper and again part of the collision world.
 
 
-\section{Executing the benchmark task}
+\section{Running the benchmark task}
 
 The benchmark task is designed to run on the simulator and the real robot as well. It only depends on a running \path{move_group} instance. Therefore it is necessary to start the simulator or real robot and launch the corresponding MoveIt instance as described in Section \ref{sec:launch_moveit}. The benchmark task can then be executed in the desired namespace. This is done by setting the \path{ROS_NAMESPACE} environment variable to either \path{simulation} or \path{real} within the terminal that is used to run the task. The following example runs the benchmark task on the simulator.
 
@@ -245,7 +245,7 @@ rosrun uibk_moveit_tests sample_pick_place
 \end{verbatim}
 \end{quote}
 
-After creating the environment and adding the objects to the planning scene the pickup phase gets planned. The outcome can be seen in RViz and the program will ask if the resulting trajectory is ok and should be executed. A negative answer will force the program to replan the pickup and ask again, otherwise the trajectory gets executed. After successful execution, the place phase gets planned. The resulting plan is visualized as well and execution also needs confirmation. The program exits after successful completing the placement phase. Listing \ref{lst:pick_place} shows the main routine of the benchmark task. It can be seen, that the pickup and the place operation is handled within a loop, because planning often fails due to MoveIt internal issues and subsequent calls with the same parameters are successful.
+After creating the environment and adding the objects to the planning scene the pickup phase gets planned. The outcome can be seen in RViz and the program will ask if the resulting trajectory is ok and should be executed. A negative answer will force the program to replan the pickup and ask again, otherwise the trajectory gets executed. After successful execution, the place phase gets planned. The resulting plan is visualized as well and execution also needs confirmation. The program exits after successful completing the placement phase. Listing \ref{lst:pick_place} shows the main routine of the benchmark task. It was observed that planning sometimes fails due to unknown MoveIt internal issues and subsequent calls with the same parameters are successful. Therefore, the pickup and the place operation are handled within a loop. 
 
 \lstset{style=customc}
 \begin{minipage}{\linewidth}

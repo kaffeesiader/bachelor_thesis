@@ -33,7 +33,7 @@
 \contentsline {subsection}{\numberline {2.5.5}Publishing Kinect camera data}{24}{subsection.2.5.5}
 \contentsline {chapter}{\numberline {3}Motion planning}{25}{chapter.3}
 \contentsline {section}{\numberline {3.1}Introduction}{25}{section.3.1}
-\contentsline {section}{\numberline {3.2}Sampling-based motion planning}{25}{section.3.2}
+\contentsline {section}{\numberline {3.2}Sampling-based motion planning}{26}{section.3.2}
 \contentsline {paragraph}{Probabilistic roadmaps}{26}{section*.38}
 \contentsline {paragraph}{Tree-based planners}{26}{section*.39}
 \contentsline {section}{\numberline {3.3}The MoveIt! motion planning framework}{27}{section.3.3}
@@ -66,7 +66,7 @@
 \contentsline {paragraph}{\texttt {allowed\_planning\_time}}{47}{section*.65}
 \contentsline {paragraph}{\texttt {plan\_only}}{47}{section*.66}
 \contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{48}{subsection.4.3.4}
-\contentsline {section}{\numberline {4.4}Executing the benchmark task}{48}{section.4.4}
+\contentsline {section}{\numberline {4.4}Running the benchmark task}{48}{section.4.4}
 \contentsline {section}{\numberline {4.5}Discussion}{49}{section.4.5}
 \contentsline {chapter}{\numberline {5}Conclusion}{51}{chapter.5}
 \contentsline {chapter}{Bibliography}{53}{section*.68}

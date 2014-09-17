@@ -1,5 +1,5 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Current setup in the IIS-Lab TODO: provide more recent image\relax }}{2}{figure.caption.10}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Current setup in the IIS-Lab\relax }}{2}{figure.caption.10}
 \contentsline {figure}{\numberline {1.2}{\ignorespaces ROS nodes, topics and services\relax }}{3}{figure.caption.11}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Schunk SDH-2 gripper\relax }}{9}{figure.caption.12}
@@ -17,7 +17,7 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Moveit architecture}}{27}{figure.caption.40}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces URDF graph}}{29}{figure.caption.41}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Left image shows visual part, right image the collidable part of the torso\relax }}{30}{figure.caption.42}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Visual and collidable model of torso}}{30}{figure.caption.42}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces URDF description in RViz\relax }}{31}{figure.caption.43}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces ROS control architecture\relax }}{33}{figure.caption.44}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Hardware adapter architecture\relax }}{34}{figure.caption.45}

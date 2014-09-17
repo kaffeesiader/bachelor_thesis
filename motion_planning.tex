@@ -1,7 +1,8 @@
 %!TEX root = thesis.tex
 
 \chapter{Motion planning}
-Chapter overview
+\label{chap:moveit}
+This chapter explains the motion planning related part of the thesis. The introduction gives an overview about motion planning problems in general. Further on, the sampling based motion planning approach is described. Subsequent sections describe the integration of the motion planning framework MoveIt into the existing robot setup.
 
 \section{Introduction}
 
@@ -53,7 +54,7 @@ MoveIt\footnote{http://moveit.ros.org} is an open source framework for motion pl
 MoveIt maintains a planning scene which is an internal representation of the world, including the robot and it's environment. The base is a description of the robot and it's various planning groups. 
 The kinematic description needs to be available in form of a URDF model. Necessary steps to create that model are described in Section\ref{sec:urdf}. Based on that URDF model, a semantic description (SRDF) is created that contains additional information about the setup, as explained in Section\ref{sec:moveit_assistant}. On top of those static descriptions, MoveIt allows to modify the planning scene on runtime via appropriate ROS topics.\\
 
-To keep track of the current state of the robot MoveIt needs to be informed continuously about actual joint states. This is done via publishing the joint states to a specific topic. If there are additional objects within the robot's workspace they also have to be added to the planning scene. This can be done either by explicitly adding them via the corresponding topic or by integrating sensor information like Kinect camera data. MoveIt can then take those objects into account during motion planning and avoid collisions. But some collisions are intended. For example if an object has to be picked up, the gripper has to get in contact to this object. That means, collision checking for specific objects has to be (temporary) disabled to allow those controlled collisions. Therefore MoveIt maintains an \emph{AllowedCollisionMatrix} to which objects can be added or removed. The connection to the hardware happens via the \emph{FollowJointTrajectory} action interface. Each robot component has to provide this interface if it is intended to be control via MoveIt. This interface consists of a set of ROS topics that provide trajectory execution functionality and also allow monitoring the current execution status. The major contribution within this chapter to the whole project was to provide an implementation of this interface and connect it to the one that is currently available.
+To keep track of the current state of the robot MoveIt needs to be informed continuously about actual joint states. This is done via publishing the joint states to a specific topic. If there are additional objects within the robot's workspace they also have to be added to the planning scene. This can be done either by explicitly adding them via the corresponding topic or by integrating sensor information like Kinect camera data. MoveIt can then take those objects into account during motion planning and avoid collisions. But some collisions are intended. For example if an object has to be picked up, the gripper has to get in contact to this object. That means, collision checking for specific objects has to be (temporary) disabled to allow those controlled collisions. Therefore MoveIt maintains an \emph{AllowedCollisionMatrix} to which objects can be added or removed. The connection to the hardware happens via the \emph{FollowJointTrajectory} action interface. Each robot component has to provide this interface if it is intended to be control via MoveIt. This interface consists of a set of ROS topics that provide trajectory execution functionality and also allow monitoring the current execution status. The implementation and usage of a ROS node that provides the necessary interface is described in section \ref{sec:hardware_adapter}.
 
 \section{Creating the URDF model of the robot setup}
 \label{sec:urdf}
@@ -85,7 +86,7 @@ The mesh files, used in the description of the robot torso have been exported fr
 \begin{figure}
 	\centering
   	\includegraphics[width=1.0\textwidth]{images/torso.jpg}
-	\caption{Left image shows visual part, right image the collidable part of the torso}
+	\caption[Visual and collidable model of torso]{Left image shows visual part, right image the collidable part of the torso}
 	\label{fig:torso_col}
 \end{figure}
 The table was modelled from primitive shapes. It was taken care that the size of the table can easily be adjusted, as can bee seen in Listing\ref{lst:table}. The collision model of the table is also slightly larger than the visual part to provide some safety margins.
@@ -122,7 +123,7 @@ The setup process comprised of the following steps:
 
 \begin{itemize}
 
-\item \textbf{Computation of the self collision matrix}
+\item \textbf{Computating the self collision matrix}
 
 The self collision matrix consists of pairs of robot links that can safely be excluded from collision checking. Neighbouring links for example are in permanent collision. Collisions between other links can never happen because they are simply too far apart. The Setup Assistant calculates a large number of different robot configurations and tracks for link pairs that are mostly always in collision and pairs that are never in collision. The self collision matrix can be adjusted manually if necessary. Excluding a large number of link pairs raises performance during motion planning because collision checking is an expensive process.
 
@@ -149,6 +150,7 @@ roslaunch uibk_robot_moveit_config demo.launch
 This commands launches a \path{move_group} node in demo mode, using the previously created configuration files and starts an instance of RViz with the motion planning plugin. There it is possible to switch between the planning groups, set start and target configurations, do planning requests and visualize the outcome. The setup can be modified by launching the Setup Assistant again, using the \path{setup_assistant.launch} file from this package.
 
 \section{Connecting MoveIt to the existing robot control interface}
+\label{sec:hardware_adapter}
 
 Now MoveIt is configured and ready to handle planning requests for the robot setup. But execution of the resulting trajectories is still impossible because of the missing connection between MoveIt and the involved robot hardware. Each component that is intended to be controlled by MoveIt needs to provide the \emph{FollowJointTrajectory} action interface, as defined in the \texttt{control\_msgs} package. This is a special kind of ROS interface that allows to send trajectories to robot components and monitor the execution status. As the existing control interface of the IIS robot components does not fulfil these requirements, an additional node is necessary that is capable of executing trajectories, using the existing infrastructure.\\
 
@@ -169,7 +171,7 @@ Figure\ref{fig:ros_control} shows an architectural overview of the ROS control s
 
 \item \textbf{RobotHW} \\
 
-This is the abstract base class for robot hardware abstraction. It's main purpose is to send commands to the hardware and retrieve state data. The \emph{RobotHW} also maintains a set of \emph{hardware ressource interfaces}. Each generic controller needs a special kind of interface for controlling joints or read their current state. Concrete implementations have to register the required interfaces. For retrieving state data, a \emph{JointStateInterface} is required. Controllers using that interface can query it for a specific joint and ask for the current state. Sending commands to the joints is done via subtypes of the of the abstract \emph{JointCommandInterface}. The \emph{JointPositionInterface} for example allows to send target positions to registered joints. Other implementations are \emph{JointEffortInterface} and \emph{JointVelocityInterface}. Which interfaces are provided depends on the way how the actual hardware is controlled.
+This is the abstract base class for robot hardware abstraction. It's main purpose is to send commands to the hardware and retrieve state data. The \emph{RobotHW} also maintains a set of \emph{hardware ressource interfaces}. Each generic controller needs a special kind of interface for controlling joints or read their current state. Concrete implementations have to register the required interfaces. For retrieving state data, a \emph{JointStateInterface} is required. Controllers using that interface can query it for a specific joint and ask for the current state. Sending commands to the joints is done via subtypes of the of the abstract \emph{JointCommandInterface}. The \emph{PositionJointInterface} for example allows to send target positions to registered joints. Other implementations are \emph{JointEffortInterface} and \emph{JointVelocityInterface}. Which interfaces are provided depends on the way how the actual hardware is controlled.
 
 \item \textbf{ControllerManager} \\
 
