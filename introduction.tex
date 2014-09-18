@@ -55,8 +55,7 @@ The nodes of a ROS system can be distributed over various different machines. On
 
 A system usually consists of a large number of nodes that have to be configured and started. This can be done, using so called \emph{launch files}. Those are simple textfiles, holding startup information and configuration details for one or more nodes in an XML like syntax. Using the \emph{roslaunch} command line tool, a whole system of nodes can be configured and launched at once. \\
 
-ROS is a modular software system organized into \emph{packages}. Each package adds clearly defined functionality and can be reused in other systems. Packages can be installed on demand and they may also depend on the functionality of other packages. A package might contain one or more ROS nodes or even only configuration data. Additional packages can be downloaded and installed, using a package manager tool.
-Custom functionality is added to a ROS system by creating a new package and developing the required piece of software.
+ROS is a modular software system organized into \emph{packages}. Each package adds clearly defined functionality and can be reused in other systems. Custom functionality is added to a ROS system by creating a new package and developing the required piece of software. A package might contain one or more ROS nodes or even only configuration data. Existing packages are usually installed, using a software repository package manager. A very useful ROS package is the visualization tool \emph{RViz}. This tool provides a number of different plugins that allow to display robot setups and configurations, planned trajectories or point cloud data from a vision sensor. RViz gets utilized in the motion planning related part of this project.
 
 \section{Project Targets}
 Both objectives

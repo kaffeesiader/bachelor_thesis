@@ -38,11 +38,11 @@
 \contentsline {paragraph}{Tree-based planners}{26}{section*.39}
 \contentsline {section}{\numberline {3.3}The MoveIt! motion planning framework}{27}{section.3.3}
 \contentsline {section}{\numberline {3.4}Creating the URDF model of the robot setup}{28}{section.3.4}
-\contentsline {section}{\numberline {3.5}Configuring the planning tools}{30}{section.3.5}
+\contentsline {section}{\numberline {3.5}Configuring the planning tools}{31}{section.3.5}
 \contentsline {section}{\numberline {3.6}Connecting MoveIt to the existing robot control interface}{32}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}ROS control stack overview}{32}{subsection.3.6.1}
-\contentsline {subsection}{\numberline {3.6.2}Designing the hardware adapter}{34}{subsection.3.6.2}
-\contentsline {subsection}{\numberline {3.6.3}Launching the hardware adapter}{36}{subsection.3.6.3}
+\contentsline {subsection}{\numberline {3.6.1}ROS control stack overview}{33}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}Designing the hardware adapter}{35}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}Launching the hardware adapter}{37}{subsection.3.6.3}
 \contentsline {section}{\numberline {3.7}Adjusting the MoveIt configuration}{37}{section.3.7}
 \contentsline {chapter}{\numberline {4}Pick and place}{39}{chapter.4}
 \contentsline {section}{\numberline {4.1}Overview}{39}{section.4.1}
@@ -50,26 +50,26 @@
 \contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{43}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Creating the environment}{43}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{44}{subsection.4.3.2}
-\contentsline {paragraph}{Grasp ID}{45}{section*.52}
-\contentsline {paragraph}{Pre-grasp/grasp posture}{45}{section*.53}
-\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{45}{section*.54}
-\contentsline {paragraph}{Grasp pose}{46}{section*.55}
-\contentsline {paragraph}{Grasp quality}{47}{section*.57}
-\contentsline {paragraph}{Allowed touch objects}{47}{section*.58}
+\contentsline {paragraph}{Grasp ID}{45}{section*.53}
+\contentsline {paragraph}{Pre-grasp/grasp posture}{45}{section*.54}
+\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{45}{section*.55}
+\contentsline {paragraph}{Grasp pose}{46}{section*.56}
+\contentsline {paragraph}{Grasp quality}{47}{section*.58}
+\contentsline {paragraph}{Allowed touch objects}{47}{section*.59}
 \contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{47}{subsection.4.3.3}
-\contentsline {paragraph}{\texttt {target\_name}}{47}{section*.59}
-\contentsline {paragraph}{\texttt {group\_name}}{47}{section*.60}
-\contentsline {paragraph}{\texttt {end\_effector\_name}}{47}{section*.61}
-\contentsline {paragraph}{\texttt {possible\_grasps}}{47}{section*.62}
-\contentsline {paragraph}{\texttt {support\_surface\_name}}{47}{section*.63}
-\contentsline {paragraph}{\texttt {allow\_gripper\_support\_collision}}{47}{section*.64}
-\contentsline {paragraph}{\texttt {allowed\_planning\_time}}{47}{section*.65}
-\contentsline {paragraph}{\texttt {plan\_only}}{47}{section*.66}
+\contentsline {paragraph}{\texttt {target\_name}}{47}{section*.60}
+\contentsline {paragraph}{\texttt {group\_name}}{47}{section*.61}
+\contentsline {paragraph}{\texttt {end\_effector\_name}}{47}{section*.62}
+\contentsline {paragraph}{\texttt {possible\_grasps}}{47}{section*.63}
+\contentsline {paragraph}{\texttt {support\_surface\_name}}{47}{section*.64}
+\contentsline {paragraph}{\texttt {allow\_gripper\_support\_collision}}{47}{section*.65}
+\contentsline {paragraph}{\texttt {allowed\_planning\_time}}{47}{section*.66}
+\contentsline {paragraph}{\texttt {plan\_only}}{47}{section*.67}
 \contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{48}{subsection.4.3.4}
 \contentsline {section}{\numberline {4.4}Running the benchmark task}{48}{section.4.4}
 \contentsline {section}{\numberline {4.5}Discussion}{49}{section.4.5}
 \contentsline {chapter}{\numberline {5}Conclusion}{51}{chapter.5}
-\contentsline {chapter}{Bibliography}{53}{section*.68}
+\contentsline {chapter}{Bibliography}{53}{section*.69}
 \contentsline {chapter}{\numberline {A}Simulator documentation}{55}{appendix.A}
 \contentsline {section}{\numberline {A.1}Installation and startup}{55}{section.A.1}
 \contentsline {section}{\numberline {A.2}Modifying the simulation scene}{55}{section.A.2}
