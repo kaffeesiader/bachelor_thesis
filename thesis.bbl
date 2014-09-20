@@ -1,4 +1,4 @@
-\begin{thebibliography}{8}
+\begin{thebibliography}{11}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -23,6 +23,11 @@ Howie~M Choset.
   implementation}.
 \newblock MIT press, 2005.
 
+\bibitem[Craig(2005)]{craig2005}
+John~J Craig.
+\newblock \emph{Introduction to robotics: mechanics and control}.
+\newblock Pearson/Prentice Hall Upper Saddle River, NJ, USA:, 2005.
+
 \bibitem[Freese et~al.()Freese, Singh, Ozaki, and Matsuhira]{freese2013}
 Marc Freese, Surya Singh, Fumio Ozaki, and Nobuto Matsuhira.
 \newblock Virtual robot experimentation platform v-rep: A versatile 3d robot
@@ -34,6 +39,11 @@ Sing~Bing Kang and Katsushi Ikeuchi.
   hand motion.
 \newblock In \emph{Robotics and Automation, 1994. Proceedings., 1994 IEEE
   International Conference on}, pages 551--556. IEEE, 1994.
+
+\bibitem[LaValle(2006)]{lavalle2006}
+Steven~M LaValle.
+\newblock \emph{Planning algorithms}.
+\newblock Cambridge university press, 2006.
 
 \bibitem[Quigley et~al.(2009)Quigley, Conley, Gerkey, Faust, Foote, Leibs,
   Wheeler, and Ng]{quigley2009}
@@ -52,5 +62,11 @@ Jacob~T Schwartz and Micha Sharir.
   topological properties of real algebraic manifolds.
 \newblock \emph{Advances in applied Mathematics}, 4\penalty0 (3):\penalty0
   298--351, 1983.
+
+\bibitem[Sucan and Sachin~Chitta()]{MoveIt}
+Ioan~A. Sucan and [Online] Available:~http://moveit.ros.org Sachin~Chitta,
+  MoveIt!
+\newblock Archive.
+\newblock \url{http://moveit.ros.org/}.
 
 \end{thebibliography}

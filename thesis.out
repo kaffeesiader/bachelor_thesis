@@ -5,9 +5,9 @@
 \BOOKMARK [0][-]{section*.7}{List of Tables}{}
 \BOOKMARK [0][-]{chapter*.9}{Declaration}{}
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}
-\BOOKMARK [1][-]{section.1.1}{IIS-Lab Robot Setup}{chapter.1}
-\BOOKMARK [1][-]{section.1.2}{Project Targets}{chapter.1}
-\BOOKMARK [1][-]{section.1.3}{The Robot Operating System\(ROS\)}{chapter.1}
+\BOOKMARK [1][-]{section.1.1}{Project Targets}{chapter.1}
+\BOOKMARK [1][-]{section.1.2}{The IIS-Lab Robot setup}{chapter.1}
+\BOOKMARK [1][-]{section.1.3}{The Robot Operating System \(ROS\)}{chapter.1}
 \BOOKMARK [0][-]{chapter.2}{Robot simulation}{}
 \BOOKMARK [1][-]{section.2.1}{Choosing a suitable simulation platform}{chapter.2}
 \BOOKMARK [1][-]{section.2.2}{The Virtual Robot Experimentation Platform\(V-Rep\)}{chapter.2}

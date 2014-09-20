@@ -14,21 +14,9 @@ Those considerations motivated the first part of this thesis -- the realistic re
 
 Very often various groups of developers are working simultaneously on different parts of the software. But in most cases there is only one device that can be used for testing and so only one can run his/her code at a time. The others have to wait until they get access to the robot. Moreover, tests on real robots always come with a high level of risk. Incorrect algorithms can lead very fast to damages on robot components or their environment and entail costly repairs. In the worst case even people can get hurt by uncontrolled robot motions.
 
-
-
 The second part of the thesis is about motion planning. Moving the robot hand cannot follow any arbitrary trajectory towards a target pose. During that motion it might collide with itself or any other obstacle within it's environment. That means those trajectories have to be planned carefully to avoid accidental collisions and to generate smooth and well controlled robot motions. This also involves to create and maintain an internal representation of the robot and it's environment, a step that is common to the simulation part of the thesis. Chapter \ref{chap:moveit} shows the configuration and integration of the motion planning framework MoveIt into the IIS-Lab robot setup along with some usage examples.
 
 Chapter \ref{chap:pick_place} focuses on MoveIt's grasping functionality. It shows, how a reference `Pick and Place' task can be planned with the planning tools  and executed on the simulator and the real robot as well.
-
-\section{IIS-Lab Robot Setup}
-\begin{figure}[ht]
-	\centering
-  \includegraphics[width=0.75\textwidth]{images/robot_setup.jpg}
-	\caption{Current setup in the IIS-Lab}
-	\label{fig:iis_setup}
-\end{figure}
-
-The structure of the robot setup in the IIS lab changes frequently, as new robot components are introduced and arrangements are modified. The robot setting considered in this thesis is a snapshot but the provided solution should be customizable to reflect alternating setups. The main part of the robot setup consists of an aluminium torso with two mounted 7 DOF\footnote{Degrees of freedom - the number of independent variables, necessary to describe a robot's configuration} KUKA LWR4+ industrial robot arms, as can be seen in Figure \ref{fig:iis_setup}. The IIS lab also owns two Schunk SDH robot hands that act as end effectors. The workspace where experiments usually take place consists of a table, covered with a foam mat in front of the robot. Additionally there is a Kinect camera mounted on the torso, between both arms, that provides RGB and depth images of the task environment. The described setup is considered in the simulation and the motion planning chapters. 
 
 \section{Project Targets}
 
@@ -36,8 +24,17 @@ The first goal of the project is to create a realistic replication of the IIS la
 
 The implementation of those objectives requires to determine the exact properties of the involved robot components and create kinematic, dynamic and volumetric models. This includes to do an exact measuring of the robot setup, the involved components and their placement relative to each other and create an internal representation of the world. For Cartesian positioning functionality it is also necessary to define a world reference frame and place components relative to that reference frame. \citep{craig2005} describes the inverse kinematics (IK) problem as the problem of finding possible joint settings for the robot to achieve a desired end effector position and orientation in Cartesian space. Forward kinematics (FK) is the reverse problem of finding the position and orientation of the end effector, given a set of joint angles. The end effector is the tool, mounted on the tip of the robot arm.
 
+\section{The IIS-Lab Robot setup}
+\begin{figure}[ht]
+	\centering
+  \includegraphics[width=0.75\textwidth]{images/robot_setup.jpg}
+	\caption{Current setup in the IIS-Lab}
+	\label{fig:iis_setup}
+\end{figure}
 
-\section{The Robot Operating System(ROS)}
+The structure of the robot setup in the IIS-lab changes frequently, as new robot components are introduced and arrangements are modified. The setting considered within this thesis is a snapshot though the solution that needs to be developed should be customizable to reflect alternating settings. The main part of the robot setup consists of an aluminium torso with two mounted 7 DOF\footnote{Degrees of freedom - the number of independent variables, necessary to describe a robot's configuration} KUKA LWR4+ industrial robot arms, as can be seen in Figure \ref{fig:iis_setup}. The IIS-Lab also owns two Schunk SDH 3 finger grippers that can be mounted to the robot arms for grasping experiments. Additionally there is a Kinect camera placed on the torso, between both arms, that provides RGB and depth images of the task environment. Control and the data exchange with those components is based on ROS which will be described in the next section. The workspace where experiments usually take place consists of a table in front of the robot which is covered with a foam mat for security reasons. 
+
+\section{The Robot Operating System (ROS)}
 
 The implementation of the project requirements is based on ROS. Therefore a brief introduction about the basic concepts\footnote{http://wiki.ros.org/ROS/Concepts} shall be given here. The explained terminology will be used throughout this thesis. As stated in \cite{quigley2009}, ROS is not an operating system in the classical sense. It runs on top of a host operating system (usually linux) and can be seen as an additional communication layer, providing various mechanisms for inter process communication. A ROS system consists of a number of \emph{nodes}. Each node is an independent computation unit that runs in it's own process, adding some clearly defined functionality to the overall system. For example one node can be responsible for planning, another one for perception and a third one for controlling the hardware. Nodes communicate to each other by passing \emph{messages}, using the ROS communication infrastructure. Messages are strictly typed data structures, defined in a special message composition format\footnote{http://wiki.ros.org/msg}. They can be composed of primitive types like float, integer or string, but also of other message types. Therefore it is possible to create arbitrary complex messages for each use case. Messages are published to \emph{topics}. A topic is a strongly typed message bus, addressed by it's \emph{topic name}. Arbitrary nodes can connect to a topic in parallel, as long as they use the correct message type. Each node can publish and subscribe to a number of topics. It is also possible that various nodes publish to the same topic. 
 

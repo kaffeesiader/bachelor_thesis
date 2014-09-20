@@ -8,45 +8,46 @@ Warning--empty journal in freese2013
 Warning--empty year in freese2013
 Warning--empty year in freese2013
 Warning--can't use both volume and number fields in quigley2009
-You've used 8 entries,
+Warning--empty year in MoveIt
+You've used 11 entries,
             2773 wiz_defined-function locations,
-            637 strings with 6135 characters,
-and the built_in function-call counts, 3425 in all, are:
-= -- 294
-> -- 186
-< -- 7
-+ -- 65
-- -- 57
-* -- 255
-:= -- 508
-add.period$ -- 23
-call.type$ -- 8
-change.case$ -- 42
-chr.to.int$ -- 8
-cite$ -- 23
-duplicate$ -- 166
-empty$ -- 301
-format.name$ -- 68
-if$ -- 724
+            651 strings with 6461 characters,
+and the built_in function-call counts, 4367 in all, are:
+= -- 369
+> -- 227
+< -- 10
++ -- 80
+- -- 69
+* -- 306
+:= -- 657
+add.period$ -- 32
+call.type$ -- 11
+change.case$ -- 53
+chr.to.int$ -- 11
+cite$ -- 30
+duplicate$ -- 221
+empty$ -- 397
+format.name$ -- 85
+if$ -- 923
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 7
-newline$ -- 46
-num.names$ -- 28
-pop$ -- 115
+missing$ -- 11
+newline$ -- 61
+num.names$ -- 40
+pop$ -- 152
 preamble$ -- 1
-purify$ -- 35
+purify$ -- 45
 quote$ -- 0
-skip$ -- 125
+skip$ -- 166
 stack$ -- 0
-substring$ -- 90
-swap$ -- 20
+substring$ -- 96
+swap$ -- 23
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 83
-warning$ -- 6
-while$ -- 28
+type$ -- 106
+warning$ -- 7
+while$ -- 37
 width$ -- 0
-write$ -- 102
-(There were 6 warnings)
+write$ -- 137
+(There were 7 warnings)
