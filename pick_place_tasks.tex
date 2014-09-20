@@ -212,6 +212,7 @@ After generating the set of grasps, the pickup operation can be planned. The \em
 \paragraph{\texttt{possible\_grasps}} The set, containing the previously computed grasps. At least one grasp has to be provided, but the success rate rises when providing multiple grasps.
 \paragraph{\texttt{support\_surface\_name}} The name of the link that acts a support surface within the planning scene. This is the link that states the surface mat covering the table (\path{table_surface_link}). 
 \paragraph{\texttt{allow\_gripper\_support\_collision}} That parameter specifies, whether collisions between the gripper links and the support surface are allowed, or not.
+\paragraph{\texttt{path\_constraints}} It is possible to apply a set of path constraints to the planning request. This could be for example an orientation constraint for the end effector. Path constraints are enforced on each single point of the resulting trajectory which drastically raises the complexity of the planning problem. The sample task does not apply any task constraints.
 \paragraph{\texttt{allowed\_planning\_time}} The maximum amount of time, the planner is allowed to find a solution. The sample tasks uses a value of 5 seconds.
 \paragraph{\texttt{plan\_only}} Specifies, if resulting trajectories should be immediately executed, or not. This is set to \path{true} to allow a visual verification of the resulting motion plan. \\
 
