@@ -9,45 +9,45 @@ Warning--empty year in freese2013
 Warning--empty year in freese2013
 Warning--can't use both volume and number fields in quigley2009
 Warning--empty year in MoveIt
-You've used 11 entries,
+You've used 13 entries,
             2773 wiz_defined-function locations,
-            651 strings with 6461 characters,
-and the built_in function-call counts, 4367 in all, are:
-= -- 369
-> -- 227
-< -- 10
-+ -- 80
-- -- 69
-* -- 306
-:= -- 657
-add.period$ -- 32
-call.type$ -- 11
-change.case$ -- 53
-chr.to.int$ -- 11
-cite$ -- 30
-duplicate$ -- 221
-empty$ -- 397
-format.name$ -- 85
-if$ -- 923
+            659 strings with 6819 characters,
+and the built_in function-call counts, 5241 in all, are:
+= -- 439
+> -- 303
+< -- 11
++ -- 106
+- -- 93
+* -- 376
+:= -- 803
+add.period$ -- 37
+call.type$ -- 13
+change.case$ -- 68
+chr.to.int$ -- 13
+cite$ -- 34
+duplicate$ -- 252
+empty$ -- 453
+format.name$ -- 111
+if$ -- 1097
 int.to.chr$ -- 1
 int.to.str$ -- 1
 missing$ -- 11
-newline$ -- 61
-num.names$ -- 40
-pop$ -- 152
+newline$ -- 70
+num.names$ -- 48
+pop$ -- 182
 preamble$ -- 1
-purify$ -- 45
+purify$ -- 57
 quote$ -- 0
-skip$ -- 166
+skip$ -- 197
 stack$ -- 0
-substring$ -- 96
-swap$ -- 23
+substring$ -- 100
+swap$ -- 24
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 106
+type$ -- 128
 warning$ -- 7
-while$ -- 37
+while$ -- 43
 width$ -- 0
-write$ -- 137
+write$ -- 160
 (There were 7 warnings)

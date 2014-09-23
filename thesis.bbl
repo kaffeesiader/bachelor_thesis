@@ -1,4 +1,4 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{13}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -9,6 +9,13 @@
 Open motion planning library: A primer.
 \newblock \url{http://ompl.kavrakilab.org/OMPL_Primer.pdf}.
 \newblock Published by Kavraki Lab, Rice University.
+
+\bibitem[Andersen et~al.(2012)Andersen, Jensen, Lisouski, Mortensen, Hansen,
+  Gregersen, and Ahrendt]{andersen2012}
+Michael~Riis Andersen, Thomas Jensen, Pavel Lisouski, Anders~Krogh Mortensen,
+  Mikkel~Kragh Hansen, Torben Gregersen, and Peter Ahrendt.
+\newblock Kinect depth sensor evaluation for computer vision applications.
+\newblock Technical report, {\AA}rhus Universitet, 2012.
 
 \bibitem[Buss(2004)]{buss2004}
 Samuel~R Buss.
@@ -39,6 +46,11 @@ Sing~Bing Kang and Katsushi Ikeuchi.
   hand motion.
 \newblock In \emph{Robotics and Automation, 1994. Proceedings., 1994 IEEE
   International Conference on}, pages 551--556. IEEE, 1994.
+
+\bibitem[KUKA(2012)]{kuka2012}
+KUKA.
+\newblock Kuka system software 5.6 lr - operating and programming instructions
+  for system integrators, 2012.
 
 \bibitem[LaValle(2006)]{lavalle2006}
 Steven~M LaValle.
