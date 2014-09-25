@@ -41,7 +41,7 @@ The topic names used in the current project follow the IIS lab internal naming c
 \begin{center}
 \texttt{/[namespace]/[component name]/[control type]/[name]}
 \end{center}
-The namespace is necessary to distinguish between the topics of simulator and real robot. All simulator related topics reside in the \path{simulation} namespace. The component name identifies a specific robot component within that namespace, e.g. \texttt{left\_arm} or \texttt{right\_sdh}. The control type groups sets of topics into different categories. Possible values are \texttt{joint\_control}, \texttt{cartesian\_control}, \texttt{sensoring} and \texttt{settings}. Finally, the chosen name is used to identify the specific topic within that category. For example the topic \path{/simulation/left_arm/joint_control/move} states a topic named \path{move} in the category \path{joint_control} for a simulated component, named \path{left_arm}. \\
+The namespace is necessary to distinguish between the topics of simulator and real robot. All simulator related topics reside in the \path{simulation} namespace. The component name identifies a specific device within that namespace, e.g. \texttt{left\_arm} or \texttt{right\_sdh}. The control type groups sets of topics into different categories. Possible values are \texttt{joint\_control}, \texttt{cartesian\_control}, \texttt{sensoring} and \texttt{settings}. Finally, the chosen name is used to identify a specific topic within that category. For example the topic \path{/simulation/left_arm/joint_control/move} states a topic named \path{move} in the category \path{joint_control} for a simulated component, named \path{left_arm}. \\
 
 \begin{figure}[h]
 	\centering
