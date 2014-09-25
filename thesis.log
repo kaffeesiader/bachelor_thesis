@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  25 SEP 2014 13:43
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  25 SEP 2014 18:20
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -544,7 +544,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
-<images/robot_setup.jpg, id=437, 1422.81563pt x 1066.7353pt>
+<images/robot_setup.jpg, id=439, 1422.81563pt x 1066.7353pt>
 File: images/robot_setup.jpg Graphic file (type jpg)
 
 <use images/robot_setup.jpg>
@@ -574,7 +574,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 44--45
 
  []
 
-<images/ros_concept.jpg, id=469, 586.19pt x 364.36125pt>
+<images/ros_concept.jpg, id=471, 586.19pt x 364.36125pt>
 File: images/ros_concept.jpg Graphic file (type jpg)
 
 <use images/ros_concept.jpg>
@@ -635,143 +635,131 @@ Underfull \hbox (badness 10000) in paragraph at lines 94--95
 
  []
 
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 103--104
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
 
  []
 
-<images/sdh_sheet.jpg, id=538, 691.83469pt x 482.55281pt>
+[10] <images/sdh_sheet.jpg, id=541, 691.83469pt x 482.55281pt>
 File: images/sdh_sheet.jpg Graphic file (type jpg)
 
 <use images/sdh_sheet.jpg>
-<images/place_joint.jpg, id=543, 483.57846pt x 179.70493pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11 <./images/sdh_sheet.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 114--115
+
+ []
+
+<images/place_joint.jpg, id=552, 1290.8225pt x 481.8pt>
 File: images/place_joint.jpg Graphic file (type jpg)
 
-<use images/place_joint.jpg> [11]
-<images/hand_tree.jpg, id=551, 911.405pt x 331.2375pt>
+<use images/place_joint.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
+
+ []
+
+<images/hand_tree.jpg, id=557, 911.405pt x 331.2375pt>
 File: images/hand_tree.jpg Graphic file (type jpg)
 
 <use images/hand_tree.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 131--132
+Underfull \hbox (badness 10000) in paragraph at lines 125--132
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 133--134
+[12 <./images/place_joint.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 133--145
 
  []
 
-[12 <./images/sdh_sheet.jpg>]
-<images/extract_pure_shapes.jpg, id=557, 570.64198pt x 243.24432pt>
+[13 <./images/hand_tree.jpg>]
+<images/extract_pure_shapes.jpg, id=574, 570.64198pt x 243.24432pt>
 File: images/extract_pure_shapes.jpg Graphic file (type jpg)
 
 <use images/extract_pure_shapes.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 160--161
-
- []
-
-[13 <./images/place_joint.jpg> <./images/hand_tree.jpg>]
-<images/simulation_scene.jpg, id=564, 979.40906pt x 560.0925pt>
+<images/simulation_scene.jpg, id=576, 979.40906pt x 560.0925pt>
 File: images/simulation_scene.jpg Graphic file (type jpg)
 
 <use images/simulation_scene.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 173--174
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
-
- []
-
-[14 <./images/extract_pure_shapes.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 182--183
 
  []
 
-<images/collision.jpg, id=571, 1093.08376pt x 573.64313pt>
-File: images/collision.jpg Graphic file (type jpg)
+[14 <./images/extract_pure_shapes.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 184--185
 
-<use images/collision.jpg>
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 191--192
 
  []
 
-[15 <./images/simulation_scene.jpg>] [16]
-<images/ik_vrep.jpg, id=588, 351.3125pt x 343.2825pt>
+[15 <./images/simulation_scene.jpg>]
+<images/collision.jpg, id=587, 1093.08376pt x 573.64313pt>
+File: images/collision.jpg Graphic file (type jpg)
+
+<use images/collision.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 200--201
+
+ []
+
+[16 <./images/collision.jpg>] [17]
+<images/ik_vrep.jpg, id=604, 351.3125pt x 343.2825pt>
 File: images/ik_vrep.jpg Graphic file (type jpg)
  <use images/ik_vrep.jpg>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[17] <images/control_flow.jpg, id=600, 1332.98pt x 576.1525pt>
+[18] <images/control_flow.jpg, id=615, 1332.98pt x 576.1525pt>
 File: images/control_flow.jpg Graphic file (type jpg)
 
-<use images/control_flow.jpg> [18]
-<images/SimulatorPluginUML.jpg, id=608, 885.3075pt x 674.52pt>
+<use images/control_flow.jpg> [19 <./images/ik_vrep.jpg>] [20 <./images/control
+_flow.jpg>] <images/SimulatorPluginUML.jpg, id=628, 885.3075pt x 674.52pt>
 File: images/SimulatorPluginUML.jpg Graphic file (type jpg)
 
-<use images/SimulatorPluginUML.jpg> [19]
-Underfull \hbox (badness 10000) in paragraph at lines 357--358
+<use images/SimulatorPluginUML.jpg> [21 <./images/SimulatorPluginUML.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 366--367
 
  []
 
-<images/scene_hierarchy.jpg, id=618, 807.015pt x 525.965pt>
+<images/scene_hierarchy.jpg, id=636, 807.015pt x 525.965pt>
 File: images/scene_hierarchy.jpg Graphic file (type jpg)
 
-<use images/scene_hierarchy.jpg>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/custom_dev_data.jpg, id=620, 1531.7225pt x 612.2875pt>
+<use images/scene_hierarchy.jpg> [22 <./images/scene_hierarchy.jpg>]
+<images/custom_dev_data.jpg, id=644, 1531.7225pt x 612.2875pt>
 File: images/custom_dev_data.jpg Graphic file (type jpg)
 
-<use images/custom_dev_data.jpg>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[20]
-Underfull \hbox (badness 10000) in paragraph at lines 393--408
+<use images/custom_dev_data.jpg> [23 <./images/custom_dev_data.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 402--417
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 409--410
+Underfull \hbox (badness 10000) in paragraph at lines 418--419
 
  []
 
-[21]
-Overfull \hbox (2.89188pt too wide) in paragraph at lines 426--428
+[24]
+Overfull \hbox (2.89188pt too wide) in paragraph at lines 435--437
 \T1/lmr/m/n/10.95 The con-troller ac-cepts tar-get po-si-tions in Carte-sian sp
 ace via the \T1/lmtt/m/n/10.95 cartesian_control/move
  []
 
-[22] <images/grasp_types.jpg, id=643, 843.15pt x 286.06876pt>
+[25] <images/grasp_types.jpg, id=667, 843.15pt x 286.06876pt>
 File: images/grasp_types.jpg Graphic file (type jpg)
 
-<use images/grasp_types.jpg>
+<use images/grasp_types.jpg> [26 <./images/grasp_types.jpg>])
+(./motion_planning.tex [27] [28
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (./motion_planning.tex [23] [24] [25 <./images/collision.jpg> <./images/ik_vr
-ep.jpg>] [26 <./images/control_flow.jpg> <./images/SimulatorPluginUML.jpg>]
-[27 <./images/scene_hierarchy.jpg> <./images/custom_dev_data.jpg>] [28 <./image
-s/grasp_types.jpg>]
+]
 Chapter 3.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [29
-
-]
+ [29]
 Underfull \hbox (badness 10000) in paragraph at lines 38--39
 
  []
 
-<images/sampling_based.jpg, id=697, 795.72281pt x 394.47375pt>
+<images/sampling_based.jpg, id=708, 795.72281pt x 394.47375pt>
 File: images/sampling_based.jpg Graphic file (type jpg)
 
 <use images/sampling_based.jpg> [30]
@@ -779,7 +767,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--53
 
  []
 
-<images/moveit_architecture.jpg, id=711, 1027.84pt x 770.88pt>
+<images/moveit_architecture.jpg, id=722, 1027.84pt x 770.88pt>
 File: images/moveit_architecture.jpg Graphic file (type jpg)
 
 <use images/moveit_architecture.jpg>
@@ -788,7 +776,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 62--64
  []
 
 [31 <./images/sampling_based.jpg>] [32 <./images/moveit_architecture.jpg>]
-<images/urdf_chain.jpg, id=732, 876.27374pt x 622.7265pt>
+<images/urdf_chain.jpg, id=743, 876.27374pt x 622.7265pt>
 File: images/urdf_chain.jpg Graphic file (type jpg)
 
 <use images/urdf_chain.jpg>
@@ -797,7 +785,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--90
  []
 
 [33 <./images/urdf_chain.jpg>]
-<images/torso.jpg, id=742, 858.20625pt x 507.39563pt>
+<images/torso.jpg, id=753, 858.20625pt x 507.39563pt>
 File: images/torso.jpg Graphic file (type jpg)
  <use images/torso.jpg>
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
@@ -818,7 +806,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 116--117
 
  []
 
-<images/iis_robot_table.png, id=752, 745.28438pt x 507.39563pt>
+<images/iis_robot_table.png, id=763, 745.28438pt x 507.39563pt>
 File: images/iis_robot_table.png Graphic file (type png)
 
 <use images/iis_robot_table.png> [35 <./images/iis_robot_table.png (PNG copy)>]
@@ -827,7 +815,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 163--164
 
  []
 
-[36] <images/ros_control.png, id=775, 455.2441pt x 351.67606pt>
+[36] <images/ros_control.png, id=786, 455.2441pt x 351.67606pt>
 File: images/ros_control.png Graphic file (type png)
 
 <use images/ros_control.png>
@@ -841,7 +829,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 184--185
  []
 
 [37] [38 <./images/ros_control.png>]
-<images/hardware_adapter.jpg, id=788, 777.90625pt x 233.87375pt>
+<images/hardware_adapter.jpg, id=799, 777.90625pt x 233.87375pt>
 File: images/hardware_adapter.jpg Graphic file (type jpg)
 
 <use images/hardware_adapter.jpg>
@@ -885,7 +873,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
-<images/state_trans.jpg, id=839, 425.59pt x 205.76875pt>
+<images/state_trans.jpg, id=850, 425.59pt x 205.76875pt>
 File: images/state_trans.jpg Graphic file (type jpg)
 
 <use images/state_trans.jpg> [43
@@ -921,7 +909,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--50
  []
 
 [44 <./images/state_trans.jpg>]
-<images/pick_place_states.jpg, id=854, 827.09pt x 327.2225pt>
+<images/pick_place_states.jpg, id=865, 827.09pt x 327.2225pt>
 File: images/pick_place_states.jpg Graphic file (type jpg)
 
 <use images/pick_place_states.jpg>
@@ -930,14 +918,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 60--61
  []
 
 [45 <./images/pick_place_states.jpg>]
-<images/pickup.jpg, id=861, 568.94437pt x 327.15514pt>
+<images/pickup.jpg, id=872, 568.94437pt x 327.15514pt>
 File: images/pickup.jpg Graphic file (type jpg)
  <use images/pickup.jpg>
-<images/placement.jpg, id=863, 568.94437pt x 327.15514pt>
+<images/placement.jpg, id=874, 568.94437pt x 327.15514pt>
 File: images/placement.jpg Graphic file (type jpg)
 
 <use images/placement.jpg> [46 <./images/pickup.jpg> <./images/placement.jpg>]
-<images/task_env.png, id=868, 979.40906pt x 560.0925pt>
+<images/task_env.png, id=879, 979.40906pt x 560.0925pt>
 File: images/task_env.png Graphic file (type png)
 
 <use images/task_env.png> [47 <./images/task_env.png (PNG copy)>]
@@ -964,7 +952,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 101--128
 []$[]$ 
  []
 
-<images/grasp_a-c.jpg, id=876, 2725.18124pt x 677.53125pt>
+<images/grasp_a-c.jpg, id=887, 2725.18124pt x 677.53125pt>
 File: images/grasp_a-c.jpg Graphic file (type jpg)
 
 <use images/grasp_a-c.jpg> [48 <./images/grasp_a-c.jpg>]
@@ -972,7 +960,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 148--171
 []$[]$ 
  []
 
-[49] <images/grasps.jpg, id=941, 488.57532pt x 542.025pt>
+[49] <images/grasps.jpg, id=952, 488.57532pt x 542.025pt>
 File: images/grasps.jpg Graphic file (type jpg)
 
 <use images/grasps.jpg> [50 <./images/grasps.jpg>]
@@ -980,7 +968,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 217--218
 
  []
 
-<images/place_a-c.jpg, id=953, 2937.47438pt x 804.00375pt>
+<images/place_a-c.jpg, id=964, 2937.47438pt x 804.00375pt>
 File: images/place_a-c.jpg Graphic file (type jpg)
 
 <use images/place_a-c.jpg> [51]
@@ -1013,7 +1001,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--23
 
  []
 
-[59] <images/dlg_cust_data.jpg, id=1037, 575.14874pt x 183.68625pt>
+[59] <images/dlg_cust_data.jpg, id=1048, 575.14874pt x 183.68625pt>
 File: images/dlg_cust_data.jpg Graphic file (type jpg)
 
 <use images/dlg_cust_data.jpg>
@@ -1041,15 +1029,18 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 9835 strings out of 495061
- 141636 string characters out of 1182621
- 256762 words of memory out of 3000000
- 12371 multiletter control sequences out of 15000+50000
+ 9838 strings out of 495061
+ 141679 string characters out of 1182621
+ 256817 words of memory out of 3000000
+ 12372 multiletter control sequences out of 15000+50000
  114796 words of font info for 83 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,17n,65p,2005b,1399s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{Hfootnote.27} has been referenced but does not ex
+pdfTeX warning (dest): name{Hfootnote.28} has been referenced but does not ex
 ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.27} has been referenced but does not exis
+t, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.26} has been referenced but does not exis
 t, replaced by a fixed one
@@ -1144,13 +1135,13 @@ usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/
 public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmss9.pfb></usr/sh
 are/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/publ
 ic/lm/lmsso9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share
-/texmf/fonts/type1/public/lm/lmsy9.pfb></usr/share/texmf/fonts/type1/public/lm/
-lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf
-/fonts/type1/public/lm/lmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (76 pages, 5216703 bytes).
+/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/
+lmsy9.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.
+pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on thesis.pdf (76 pages, 5107208 bytes).
 PDF statistics:
- 1231 PDF objects out of 1440 (max. 8388607)
- 375 named destinations out of 1000 (max. 500000)
+ 1245 PDF objects out of 1440 (max. 8388607)
+ 377 named destinations out of 1000 (max. 500000)
  604 words of extra memory for PDF output out of 10000 (max. 10000000)
 

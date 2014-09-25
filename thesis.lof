@@ -2,35 +2,35 @@
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Current setup in the IIS-Lab\relax }}{2}{figure.caption.10}
 \contentsline {figure}{\numberline {1.2}{\ignorespaces ROS nodes, topics and services\relax }}{4}{figure.caption.11}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Schunk SDH-2 gripper\relax }}{12}{figure.caption.12}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Placing a joint within the model\relax }}{13}{figure.caption.13}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Schunk SDH-2 gripper\relax }}{11}{figure.caption.12}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Placing a joint within the model\relax }}{12}{figure.caption.13}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Kinematic chain of the Schunk gripper\relax }}{13}{figure.caption.14}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Process of approximating the original mesh with pure shapes\relax }}{14}{figure.caption.15}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Structure of the V-Rep simulation scene\relax }}{15}{figure.caption.16}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Collision detection and visualizing\relax }}{25}{figure.caption.17}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces IK calculation module concept\relax }}{25}{figure.caption.20}
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Control flow structure\relax }}{26}{figure.caption.22}
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Simulator plugin architecture\relax }}{26}{figure.caption.24}
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Sample scene hierarchy\relax }}{27}{figure.caption.28}
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Custom developer data segments on scene object\relax }}{27}{figure.caption.29}
-\contentsline {figure}{\numberline {2.12}{\ignorespaces Grasp types \texttt {SPHERICAL}, \texttt {CENTRICAL}, \texttt {CYLINDRICAL} and \texttt {PARALLEL}\relax }}{28}{figure.caption.36}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Process of approximating the original mesh with pure shapes\relax }}{14}{figure.caption.16}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Structure of the V-Rep simulation scene\relax }}{15}{figure.caption.17}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Collision detection and visualizing\relax }}{16}{figure.caption.18}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces IK calculation module concept\relax }}{19}{figure.caption.21}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Control flow structure\relax }}{20}{figure.caption.23}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Simulator plugin architecture\relax }}{21}{figure.caption.25}
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Sample scene hierarchy\relax }}{22}{figure.caption.29}
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Custom developer data segments on scene object\relax }}{23}{figure.caption.30}
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Grasp types \texttt {SPHERICAL}, \texttt {CENTRICAL}, \texttt {CYLINDRICAL} and \texttt {PARALLEL}\relax }}{26}{figure.caption.37}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Sampling based algorithms}}{31}{figure.caption.40}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Moveit architecture}}{32}{figure.caption.41}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces URDF graph}}{33}{figure.caption.42}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Visual and collidable model of torso}}{34}{figure.caption.43}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces URDF description in RViz\relax }}{35}{figure.caption.44}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces ROS control architecture\relax }}{38}{figure.caption.45}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Hardware adapter architecture\relax }}{39}{figure.caption.46}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Sampling based algorithms}}{31}{figure.caption.41}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Moveit architecture}}{32}{figure.caption.42}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces URDF graph}}{33}{figure.caption.43}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Visual and collidable model of torso}}{34}{figure.caption.44}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces URDF description in RViz\relax }}{35}{figure.caption.45}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces ROS control architecture\relax }}{38}{figure.caption.46}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Hardware adapter architecture\relax }}{39}{figure.caption.47}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces State transition diagramm for a pick and place task\relax }}{44}{figure.caption.47}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Extended state transition diagram\relax }}{45}{figure.caption.48}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Stages of the pickup phase in the simulator\relax }}{46}{figure.caption.49}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Stages of the placement phase in the simulator\relax }}{46}{figure.caption.50}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Planning scene after inserting the collision objects\relax }}{47}{figure.caption.51}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Grasp poses, gripper approach and retreat\relax }}{48}{figure.caption.52}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Grasp pose determination\relax }}{50}{figure.caption.57}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Place locations, pre-place approach and post-place retreat\relax }}{52}{figure.caption.69}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces State transition diagramm for a pick and place task\relax }}{44}{figure.caption.48}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Extended state transition diagram\relax }}{45}{figure.caption.49}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Stages of the pickup phase in the simulator\relax }}{46}{figure.caption.50}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Stages of the placement phase in the simulator\relax }}{46}{figure.caption.51}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Planning scene after inserting the collision objects\relax }}{47}{figure.caption.52}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Grasp poses, gripper approach and retreat\relax }}{48}{figure.caption.53}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Grasp pose determination\relax }}{50}{figure.caption.58}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Place locations, pre-place approach and post-place retreat\relax }}{52}{figure.caption.70}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Edit custom developer data dialog\relax }}{60}{figure.caption.72}
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Edit custom developer data dialog\relax }}{60}{figure.caption.73}

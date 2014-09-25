@@ -12,30 +12,30 @@
 \contentsline {section}{\numberline {2.1}Choosing a suitable simulation platform}{7}{section.2.1}
 \contentsline {section}{\numberline {2.2}The Virtual Robot Experimentation Platform(V-Rep)}{8}{section.2.2}
 \contentsline {section}{\numberline {2.3}Dynamic simulations in V-REP}{9}{section.2.3}
-\contentsline {section}{\numberline {2.4}Designing the simulation scene}{11}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Modelling the Schunk SDH-2 gripper}{11}{subsection.2.4.1}
+\contentsline {section}{\numberline {2.4}Designing the simulation scene}{12}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Modelling the Schunk SDH-2 gripper}{12}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Assembling the scene}{14}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}Configuring the collision detection module}{15}{subsection.2.4.3}
-\contentsline {subsection}{\numberline {2.4.4}Configuring the IK calculation module}{17}{subsection.2.4.4}
-\contentsline {section}{\numberline {2.5}Implementing the ROS control interface}{18}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Plugin architecture}{18}{subsection.2.5.1}
-\contentsline {paragraph}{SimulationComponent}{19}{section*.23}
-\contentsline {paragraph}{ComponentContainer}{19}{section*.25}
-\contentsline {paragraph}{ROSServer}{19}{section*.26}
-\contentsline {paragraph}{ComponentController}{20}{section*.27}
-\contentsline {subsection}{\numberline {2.5.2}Identifying simulation components}{20}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}The LWRArmComponent}{21}{subsection.2.5.3}
-\contentsline {paragraph}{LWRArm}{21}{section*.30}
-\contentsline {paragraph}{LWRArmController}{22}{section*.32}
-\contentsline {subsection}{\numberline {2.5.4}The SchunkHandComponent}{23}{subsection.2.5.4}
-\contentsline {paragraph}{SchunkHand}{23}{section*.34}
-\contentsline {paragraph}{SchunkHandController}{23}{section*.35}
-\contentsline {subsection}{\numberline {2.5.5}Publishing Kinect camera data}{24}{subsection.2.5.5}
+\contentsline {subsection}{\numberline {2.4.4}Configuring the IK calculation module}{18}{subsection.2.4.4}
+\contentsline {section}{\numberline {2.5}Implementing the ROS control interface}{19}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Plugin architecture}{20}{subsection.2.5.1}
+\contentsline {paragraph}{SimulationComponent}{20}{section*.24}
+\contentsline {paragraph}{ComponentContainer}{21}{section*.26}
+\contentsline {paragraph}{ROSServer}{22}{section*.27}
+\contentsline {paragraph}{ComponentController}{22}{section*.28}
+\contentsline {subsection}{\numberline {2.5.2}Identifying simulation components}{22}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}The LWRArmComponent}{24}{subsection.2.5.3}
+\contentsline {paragraph}{LWRArm}{24}{section*.31}
+\contentsline {paragraph}{LWRArmController}{25}{section*.33}
+\contentsline {subsection}{\numberline {2.5.4}The SchunkHandComponent}{26}{subsection.2.5.4}
+\contentsline {paragraph}{SchunkHand}{26}{section*.35}
+\contentsline {paragraph}{SchunkHandController}{26}{section*.36}
+\contentsline {subsection}{\numberline {2.5.5}Publishing Kinect camera data}{27}{subsection.2.5.5}
 \contentsline {chapter}{\numberline {3}Motion planning}{29}{chapter.3}
 \contentsline {section}{\numberline {3.1}Introduction}{29}{section.3.1}
 \contentsline {section}{\numberline {3.2}Sampling-based motion planning}{30}{section.3.2}
-\contentsline {paragraph}{Probabilistic roadmaps}{30}{section*.38}
-\contentsline {paragraph}{Tree-based planners}{30}{section*.39}
+\contentsline {paragraph}{Probabilistic roadmaps}{30}{section*.39}
+\contentsline {paragraph}{Tree-based planners}{30}{section*.40}
 \contentsline {section}{\numberline {3.3}The MoveIt! motion planning framework}{31}{section.3.3}
 \contentsline {section}{\numberline {3.4}Creating the URDF model of the robot setup}{32}{section.3.4}
 \contentsline {section}{\numberline {3.5}Configuring the planning tools}{35}{section.3.5}
@@ -50,27 +50,27 @@
 \contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{47}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Creating the environment}{47}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{48}{subsection.4.3.2}
-\contentsline {paragraph}{Grasp ID}{49}{section*.53}
-\contentsline {paragraph}{Pre-grasp/grasp posture}{49}{section*.54}
-\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{49}{section*.55}
-\contentsline {paragraph}{Grasp pose}{49}{section*.56}
-\contentsline {paragraph}{Grasp quality}{50}{section*.58}
-\contentsline {paragraph}{Allowed touch objects}{50}{section*.59}
+\contentsline {paragraph}{Grasp ID}{49}{section*.54}
+\contentsline {paragraph}{Pre-grasp/grasp posture}{49}{section*.55}
+\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{49}{section*.56}
+\contentsline {paragraph}{Grasp pose}{49}{section*.57}
+\contentsline {paragraph}{Grasp quality}{50}{section*.59}
+\contentsline {paragraph}{Allowed touch objects}{50}{section*.60}
 \contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{50}{subsection.4.3.3}
-\contentsline {paragraph}{\texttt {target\_name}}{50}{section*.60}
-\contentsline {paragraph}{\texttt {group\_name}}{51}{section*.61}
-\contentsline {paragraph}{\texttt {end\_effector\_name}}{51}{section*.62}
-\contentsline {paragraph}{\texttt {possible\_grasps}}{51}{section*.63}
-\contentsline {paragraph}{\texttt {support\_surface\_name}}{51}{section*.64}
-\contentsline {paragraph}{\texttt {allow\_gripper\_support\_collision}}{51}{section*.65}
-\contentsline {paragraph}{\texttt {path\_constraints}}{51}{section*.66}
-\contentsline {paragraph}{\texttt {allowed\_planning\_time}}{51}{section*.67}
-\contentsline {paragraph}{\texttt {plan\_only}}{51}{section*.68}
+\contentsline {paragraph}{\texttt {target\_name}}{50}{section*.61}
+\contentsline {paragraph}{\texttt {group\_name}}{51}{section*.62}
+\contentsline {paragraph}{\texttt {end\_effector\_name}}{51}{section*.63}
+\contentsline {paragraph}{\texttt {possible\_grasps}}{51}{section*.64}
+\contentsline {paragraph}{\texttt {support\_surface\_name}}{51}{section*.65}
+\contentsline {paragraph}{\texttt {allow\_gripper\_support\_collision}}{51}{section*.66}
+\contentsline {paragraph}{\texttt {path\_constraints}}{51}{section*.67}
+\contentsline {paragraph}{\texttt {allowed\_planning\_time}}{51}{section*.68}
+\contentsline {paragraph}{\texttt {plan\_only}}{51}{section*.69}
 \contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{51}{subsection.4.3.4}
 \contentsline {section}{\numberline {4.4}Running the benchmark task}{52}{section.4.4}
 \contentsline {section}{\numberline {4.5}Discussion}{53}{section.4.5}
 \contentsline {chapter}{\numberline {5}Conclusion}{55}{chapter.5}
-\contentsline {chapter}{Bibliography}{57}{section*.70}
+\contentsline {chapter}{Bibliography}{57}{section*.71}
 \contentsline {chapter}{\numberline {A}Simulator documentation}{59}{appendix.A}
 \contentsline {section}{\numberline {A.1}Installation and startup}{59}{section.A.1}
 \contentsline {section}{\numberline {A.2}Modifying the simulation scene}{59}{section.A.2}
