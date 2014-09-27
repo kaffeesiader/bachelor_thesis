@@ -55,7 +55,7 @@ This section gives an overview of the utilized simulation platform. V-Rep is a r
 %That editor can also be used to edit and simplify meshes. This is very important because for simulating dynamic processes only simple shapes with a low amount of vertices, edges and faces should be used to reduce complexity. The contained model browser provides a rich set of different robot models, static objects and various sensors, ready to use. A powerful feature are V-Rep's so called \emph{calculation modules}. They can be configured to provide additional calculation functionalities on groups of scene objects. The \emph{collision detection module} is capable of detecting and visualizing all kinds of collisions within the simulation scene. The \emph{inverse kinematics calculation module} allows to solve inverse kinematics problems for manipulators. The behaviour of the simulator is highly customizable via a rich programming API for C++ as well as the scripting language LUA\footnote{http://www.lua.org}. V-Rep is no open source software but it provides a free licence for educational units and can therefore be used for research purposes. \cite{freese2013} gives a more detailed insight into V-Rep's concepts .
 
 \section{Dynamic simulations in V-REP}
-For a better understanding of the modelling process it is necessary to explain a few fundamental concepts about designing simulations in V-Rep. This section covers those aspects that are important for the underlying project. A detailed explanation can be found in the official V-Rep documentation\footnote{http://www.coppeliarobotics/helpFiles}. \\
+For a better understanding of the modelling process it is necessary to explain a few fundamental concepts about designing simulations in V-Rep. This section covers the aspects that are important for the underlying project along with the used terminology. A detailed explanation can be found in the official V-Rep documentation\footnote{http://www.coppeliarobotics/helpFiles}. \\
 
 Simulations in V-Rep are organized into \emph{scenes}. A scene represents the simulated world which is composed from a number of elements like three dimensional bodies, joints, sensors or cameras that are combined in a tree structure and arranged within the environment. This tree structure forms the scene hierarchy. The elements within that hierarchy are called \emph{scene objects}. The scene hierarchy can be modified in the \emph{scene hierarchy view}, located on the left hand side of the scene editor. V-Rep provides various types of scene objects, but only those, which are important for the implementation will be explained here.
 
@@ -168,7 +168,7 @@ The extracted shapes were then removed from the active visibility layer because 
 	\label{fig:ex_pure_shape}
 \end{figure}
 
-The last step of the modelling process was the adjustment of the model tree. This adjustment was done by rearranging the nodes within the scene hierarchy view. Root element of the hand model is the respondable part of the gripper body which was also defined to be the dedicated model base. It is very important to follow the V-Rep guidelines for designing dynamic simulations because if the hierarchy is wrong, the model will simply fall apart when starting the simulation (detailed information about that topic can be found in the corresponding chapter\footnote{http://www.coppeliarobotics.com/helpFiles/en/designingDynamicSimulations.htm} of the V-Rep dodumentation). Each non-static and respondable shape needs to be connected to it's parent by a joint or a force sensor. The visual part of the link is always a child object of it's corresponding respondable. That way, the kinematic chain of the gripper was formed. The resulting model tree is shown in figure \ref{fig:gripper_tree}.
+The last step of the modelling process was the adjustment of the model tree. This adjustment was done by rearranging the nodes within the scene hierarchy view. Root element of the hand model is the respondable part of the gripper body which was also defined to be the dedicated model base. At this point it is very important to follow the V-Rep guidelines for designing dynamic simulations because if the hierarchy is wrong, the model will simply fall apart when starting the simulation (detailed information about that topic can be found in the corresponding chapter\footnote{http://www.coppeliarobotics.com/helpFiles/en/designingDynamicSimulations.htm} of the V-Rep dodumentation). Each non-static and respondable shape needs to be connected to it's parent by a joint or a force sensor. The visual part of the link is always a child object of it's corresponding respondable. That way, the kinematic chain of the gripper was formed. The resulting model tree is shown in figure \ref{fig:gripper_tree}.
 \begin{figure}[ht]
 	\centering
   	\includegraphics[width=0.6\textwidth]{images/gripper_tree.jpg}
@@ -185,40 +185,48 @@ The last step of the modelling process was the adjustment of the model tree. Thi
 	\label{fig:sim_scene}
 \end{figure}
 
-After finishing the gripper modelling process, each necessary component was available to build up the simulation scene as can be seen in figure\ref{fig:sim_scene}. The final scene consists of a model of the robot's torso, two KUKA LWR4+ arm models with attached grippers and a model of the table in front of the robot. The origin of the world reference frame is located on the upper left side of the table, indicated by a slightly green shimmering sphere. A dummy object called \emph{ref\_frame\_origin} was placed at that location. Each position calculation later on will happen relative to that dummy element. If it is necessary to move the origin to another location within the workspace, this can simply be achieved by just moving that dummy to the required location. The position and orientation of the torso, the table and the two arms are set relative to the world reference frame. (TODO: transformation was provided - how was it achieved?). The grippers were placed on the tip of each arm. Within the scene hierarchy they are child elements of the last node in the corresponding arm tree. The correct rotation and offset was measured on the real counterpart and then adjusted accordingly. \\
+After finishing the gripper modelling process, each necessary component was available to build up the simulation scene as can be seen in figure \ref{fig:sim_scene}. The final scene consists of a model of the robot's torso, two KUKA LWR4+ arm models with attached grippers and a model of the table in front of the robot. The origin of the world reference frame is located on the upper left side of the table, indicated by a slightly green shimmering sphere. A dummy object called \path{ref_frame_origin} was placed at that location. Each position for the simulation is defined relative to this dummy element. If it is necessary to change the origin of the world reference frame, this can simply be achieved by just adjusting the position and orientation that dummy. The positions and orientations of the torso, the table and the two arms were set relative to the world reference frame. The grippers were placed on the tip of each arm. Within the scene hierarchy they are child elements of the last node in the corresponding arm tree. The correct rotation and offset was measured on the real counterpart and then adjusted accordingly. \\
 
-The plate and the legs of the table were modelled as group of primitive cuboids. The table is defined as respondable to ensure that it will produce a collision reaction if a robot component collides with it. But as it is a static object it's position will not be influenced by such a collision because it is fixed within the scene. The material setting is set to \emph{highFrictionMaterial}. \\
+The plate and the legs of the table were modelled as group of primitive cuboids. The table shape is respondable to ensure that it will produce a collision reaction if a robot component collides with it. But as it is a static object it's position will not be influenced by such a collision because it is fixed within the scene. The material setting is set to the default \emph{highFrictionMaterial}. \\
 
-The Kinect camera model was also taken from the model browser. As it's position and orientation in the real world is not fixed and might change from time to time, it's position within the simulation scene is just an approximation to reflect the real world setting as good as possible. 
+The utilized Kinect camera model was contained in the V-Rep distribution and just had to be inserted into the scene. Position and orientation of the Kinect camera with respect to the robot base was measured in the real world and adjusted accordingly in the simulator. Figure \ref{fig:sim_scene_tree} shows a part of the resulting scene tree for the final simulation scene. 
+\begin{figure}[p]
+	\centering
+  	\includegraphics[width=0.6\textwidth]{images/scene_tree.jpg}
+	\caption{Simulation scene hierarchy}
+	\label{fig:sim_scene_tree}
+\end{figure}
 
 \subsection{Configuring the collision detection module}
 \label{sec:config_col}
 
-One of the requirements to the final solution is the ability to detect and visualize possible accidental collisions of the simulated robot with itself or it's environment. Moreover it would be a convenient feature to have some kind of warning if some of the robot's parts come dangerously close to an obstacle during movement. This could be achieved by creating a \emph{collision shield}, which means an enlarged version of the robot and do additional collision checking. These considerations lead to two different types of possible collisions. \emph{Soft collisions} are collisions, detected on the collision shield of the model. They just indicate a warning that the robot comes very close to an object it is not allowed to touch. \emph{Hard collisions} mean that a robot component directly hits another collidable object. This would be also a collision in the real world. The solution should be able to distinguish cleanly between those two types.\\ 
+The final solution needs to be able to detect and visualize collisions of the simulated robot with itself or its environment. This section describes the utilized simulator functionality along with the necessary steps to achieve the desired behaviour. \\
+
+V-Rep's \emph{collision detection module}\footnote{http://www.coppeliarobotics.com/helpFiles/en/collisionDetection.htm} is capable of detecting and visualizing collisions between (collections of) shapes. The shapes used for this collision detection can be any shapes within the scene as long as they are defined to be \emph{collidable}. It is important to note that the collision detection module only \textit{detects} collisions by checking for interferences between two meshes. Handling \emph{collision reactions} is the responsibility of the  physics engine. Configuration of the collision detection module is done by registering one or more \emph{collision objects}. Each collision object consists of a \emph{collider} and a \emph{collidee}. The collider can be for example the robot arm and the collidee a collection of objects, the arm is not allowed to collide with. Both of them can be single shapes or collections of shapes. The big advantage in using collections is that they allow to exactly describe which shapes should be checked against which other ones. Additionally can a collection be configured to overwrite the collidable attributes of the contained shapes. That means a whole collection can be marked to be collidable even though the contained shapes are not. The collidee settings also offer the option \emph{all other collidable objects in the scene}. In that case, the collider is checked against all collidable shapes in the scene that are not part of the collider itself. Detected collisions are visualized by applying different colouring either to the collider or to the collidee. Each collision objects needs to be \emph{handled}, which means the collision detection module has to be triggered to check for collisions and visualize them as defined in the specific collision object. This can happen automatically in each simulation step or it can be triggered manually by using the corresponding API function. The desired behaviour is defined by a configuration option called \emph{Explicit handling} in the collision object properties. \\
+
+One of the aims of the solution is to allow to check actions in the simulator before executing them on the real robot. Therefore the simulator needs to be able to detect and visualize collisions that possibly happen during those actions. Moreover it would be a convenient feature to have a proximity warning if parts of the robot come dangerously close to an obstacle during movement. To achieve that goal, we decided to create an enlarged version of the robot arm geometry which we called the \emph{collision shield} and do additional collision checking. These considerations lead to the two different types of possible collisions which we called \emph{soft collisions} and \emph{hard collisions}. Soft collisions are collisions, detected on the collision shield of the model. They just indicate a warning that the robot comes very close to an object it is not allowed to touch. \emph{Hard collisions} describe a direct hit of a robot part on another object. This would be also a collision in the real world. The final solution is able to distinguish between those two types as can be seen in figure \ref{fig:collision}. The left image shows a soft collision, the right image indicates a hard collision.\\. 
 
 \begin{figure}[hb]
 	\centering
   	\includegraphics[width=1.0\textwidth]{images/collision.jpg}
-	\caption{Collision detection and visualizing}
+	\caption{Collision detection and visualization}
 	\label{fig:collision}
 \end{figure}
 
-That goal was achieved by using V-Rep's \emph{collision detection module}\footnote{http://www.coppeliarobotics.com/helpFiles/en/collisionDetection.htm}. This calculation module is capable of detecting and visualizing collisions within the simulation scene by checking for interferences between \emph{collidable} shapes. It is important to understand that the collision detection module only \textit{detects} collisions. Producing \emph{collision reactions} is the responsibility of the \emph{dynamics module} and the chosen physics engine. Usually the shapes that form the visual part of the model are used for collision checking. The configuration is done by registering one or more \emph{collision objects}. Each collision object consists of a \emph{collider} and a \emph{collidee}. Both of them can be single shapes or collections of shapes. The collidee settings also offer the option \emph{all other collidable objects in the scene}. In that case, the collider is checked against all elements in $S=\{~s~|~s\in\textit{scene and}~s\notin\textit{collider}~\}$. The big advantage in using collections is that they allow to exactly describe which shapes should be checked against which other ones. Detected collisions are visualized by applying different colouring either to the collider or to the collidee as can be seen inf Figure\ref{fig:collision}. The left image shows a hit on the collision shield, the right image indicates a direct hit.\\
-
-The first step during realization was to model the collision shield. Therefore it was necessary to create an additional shape for each link that is slightly larger than the original one. This modelling process started at the second link of each robot arm and for all subsequent links the following steps were performed:
+The first step during realization was to model the collision shield. Therefore it was necessary to create an additional shape for each single link of the robot arms that is slightly larger than the original one. The images in figure \ref{fig:shield_steps} show snapshots of this modelling process. For all links within the arm models the following steps had to be performed:
 
 \begin{itemize}
 
 \item
 Create a copy of the shape that forms the visible part of the robot link
 \item
-Morph the copied object into a group of convex shapes to reduce complexity. This can be done by using the corresponding shape editor functionality.
+Morph the copied object into a group of convex shapes to reduce complexity. This can be done by using the corresponding shape editor functionality (figure \ref{fig:shield_steps}a).
 \item
-Ungroup the resulting group of shapes and merge them into one single shape
+Ungroup the resulting group of shapes and merge them into one single shape (figure \ref{fig:shield_steps}b).
 \item
-Grow the resulting shape, but only in x and y direction of it's own reference frame. The resulting mesh should be approximately 10cm larger but keep the same height.
+Grow the bounding box of the resulting shape, but only in x and y direction. The resulting mesh should be 10cm larger but keep the same height (figure \ref{fig:shield_steps}c).
 \item
-Adjust the outside color to make it green and nearly transparent. The collision shield should be visible but not occlude the original model.
+Adjust the outside color to make it green and nearly transparent. The collision shield should be visible but not occlude the original model (figure \ref{fig:shield_steps}d).
 \item
 Apply a meaningful name to the newly created shape to be be able to easily identify it within the model hierarchy. Here the name of the original shape with the '\_col' suffix was used.
 \item
@@ -230,8 +238,14 @@ Disable the \emph{collidable} flag on the shape. This behaviour will be overridd
 settings later on when configuring the collision detection module.
 
 \end{itemize}
+\begin{figure}[hp]
+	\centering
+  	\includegraphics[angle=90, width=1.0\textwidth]{images/shield_steps.jpg}
+	\caption{Modelling steps for the second arm link}
+	\label{fig:shield_steps}
+\end{figure}
 
-The next step was to adjust the configuration of the \emph{collision detection module}. Each arm requires two \emph{collision objects}, defined as listed in Table\ref{fig:col_groups}. 
+The next step was to define the required collision objects in the configuration of the collision detection module. Each arm requires two \emph{collision objects}, defined as listed in Table\ref{fig:col_groups}. 
 \begin{table}
   \centering
   \begin{tabular}[h]{|l|l|l|} \hline
