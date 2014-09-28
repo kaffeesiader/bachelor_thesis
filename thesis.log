@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  27 SEP 2014 13:23
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  28 SEP 2014 17:14
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -544,42 +544,44 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
-<images/robot_setup.jpg, id=445, 1422.81563pt x 1066.7353pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+
+ []
+
+[1
+
+] <images/robot_setup.jpg, id=453, 1422.81563pt x 1066.7353pt>
 File: images/robot_setup.jpg Graphic file (type jpg)
 
 <use images/robot_setup.jpg>
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [1
-
-]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 26.
+(Font)              <9> on input line 24.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 26.
-
-Underfull \hbox (badness 10000) in paragraph at lines 30--31
+(Font)              <5> on input line 24.
+ [2 <./images/robot_setup.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
  []
 
-[2 <./images/robot_setup.jpg>]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 34.
- (/usr/share/texmf/tex/latex/lm/omslmr.fd
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 32.
+(/usr/share/texmf/tex/latex/lm/omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 34.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 32.
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--45
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
-<images/ros_concept.jpg, id=477, 586.19pt x 364.36125pt>
+[3] <images/ros_concept.jpg, id=486, 586.19pt x 364.36125pt>
 File: images/ros_concept.jpg Graphic file (type jpg)
 
 <use images/ros_concept.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+ []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 53--54
@@ -591,12 +593,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 55--56
 
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 57--58
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
 
  []
 
-
+[4 <./images/ros_concept.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 63--64
 
  []
@@ -606,12 +608,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 65--66
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 67--68
-
- []
-
-[4 <./images/ros_concept.jpg>]) (./robot_simulation.tex [5] [6
+) (./robot_simulation.tex [5] [6
 
 ]
 Chapter 2.
@@ -640,7 +637,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 96--97
 
  []
 
-[10] <images/sdh_sheet.jpg, id=547, 691.83469pt x 482.55281pt>
+[10] <images/sdh_sheet.jpg, id=550, 691.83469pt x 482.55281pt>
 File: images/sdh_sheet.jpg Graphic file (type jpg)
 
 <use images/sdh_sheet.jpg>
@@ -651,7 +648,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 114--115
 
  []
 
-<images/place_joint.jpg, id=558, 1290.8225pt x 481.8pt>
+<images/place_joint.jpg, id=561, 1290.8225pt x 481.8pt>
 File: images/place_joint.jpg Graphic file (type jpg)
 
 <use images/place_joint.jpg>
@@ -659,7 +656,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 123--124
 
  []
 
-<images/hand_tree.jpg, id=563, 911.405pt x 331.2375pt>
+<images/hand_tree.jpg, id=566, 911.405pt x 331.2375pt>
 File: images/hand_tree.jpg Graphic file (type jpg)
 
 <use images/hand_tree.jpg>
@@ -673,15 +670,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 133--145
  []
 
 [13 <./images/hand_tree.jpg>]
-<images/extract_pure_shapes.jpg, id=580, 570.64198pt x 243.24432pt>
+<images/extract_pure_shapes.jpg, id=583, 570.64198pt x 243.24432pt>
 File: images/extract_pure_shapes.jpg Graphic file (type jpg)
 
 <use images/extract_pure_shapes.jpg>
-<images/gripper_tree.jpg, id=583, 338.01282pt x 514.17094pt>
+<images/gripper_tree.jpg, id=586, 338.01282pt x 514.17094pt>
 File: images/gripper_tree.jpg Graphic file (type jpg)
 
 <use images/gripper_tree.jpg>
-<images/simulation_scene.jpg, id=584, 979.40906pt x 560.0925pt>
+<images/simulation_scene.jpg, id=587, 979.40906pt x 560.0925pt>
 File: images/simulation_scene.jpg Graphic file (type jpg)
 
 <use images/simulation_scene.jpg>
@@ -698,7 +695,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 190--191
 Underfull \vbox (badness 5460) has occurred while \output is active []
 
  [15 <./images/gripper_tree.jpg>]
-<images/scene_tree.jpg, id=596, 261.97874pt x 479.54156pt>
+<images/scene_tree.jpg, id=599, 261.97874pt x 479.54156pt>
 File: images/scene_tree.jpg Graphic file (type jpg)
 
 <use images/scene_tree.jpg>
@@ -716,11 +713,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 205--206
  []
 
 [16 <./images/simulation_scene.jpg>]
-<images/collision.jpg, id=604, 1093.08376pt x 573.64313pt>
+<images/collision.jpg, id=607, 1093.08376pt x 573.64313pt>
 File: images/collision.jpg Graphic file (type jpg)
 
 <use images/collision.jpg>
-<images/shield_steps.jpg, id=610, 2208.25pt x 1491.5725pt>
+<images/shield_steps.jpg, id=613, 2208.25pt x 1491.5725pt>
 File: images/shield_steps.jpg Graphic file (type jpg)
 
 <use images/shield_steps.jpg>
@@ -745,7 +742,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 283--284
 
  []
 
-<images/ik_vrep.jpg, id=625, 351.3125pt x 343.2825pt>
+<images/ik_vrep.jpg, id=628, 351.3125pt x 343.2825pt>
 File: images/ik_vrep.jpg Graphic file (type jpg)
  <use images/ik_vrep.jpg>
 Underfull \hbox (badness 10000) in paragraph at lines 293--294
@@ -757,11 +754,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 295--296
 
  []
 
-[19] <images/control_flow.jpg, id=637, 1332.98pt x 576.1525pt>
+[19] <images/control_flow.jpg, id=640, 1332.98pt x 576.1525pt>
 File: images/control_flow.jpg Graphic file (type jpg)
 
 <use images/control_flow.jpg> [20]
-<images/SimulatorPluginUML.jpg, id=645, 885.3075pt x 674.52pt>
+<images/SimulatorPluginUML.jpg, id=648, 885.3075pt x 674.52pt>
 File: images/SimulatorPluginUML.jpg Graphic file (type jpg)
 
 <use images/SimulatorPluginUML.jpg>
@@ -769,14 +766,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 388--389
 
  []
 
-[21] <images/scene_hierarchy.jpg, id=656, 807.015pt x 525.965pt>
+[21] <images/scene_hierarchy.jpg, id=659, 807.015pt x 525.965pt>
 File: images/scene_hierarchy.jpg Graphic file (type jpg)
 
 <use images/scene_hierarchy.jpg>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<images/custom_dev_data.jpg, id=658, 1531.7225pt x 612.2875pt>
+<images/custom_dev_data.jpg, id=661, 1531.7225pt x 612.2875pt>
 File: images/custom_dev_data.jpg Graphic file (type jpg)
 
 <use images/custom_dev_data.jpg>
@@ -802,7 +799,7 @@ Overfull \hbox (2.89188pt too wide) in paragraph at lines 457--459
 ace via the \T1/lmtt/m/n/10.95 cartesian_control/move
  []
 
-[24] <images/grasp_types.jpg, id=681, 843.15pt x 286.06876pt>
+[24] <images/grasp_types.jpg, id=684, 843.15pt x 286.06876pt>
 File: images/grasp_types.jpg Graphic file (type jpg)
 
 <use images/grasp_types.jpg>
@@ -825,7 +822,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--39
 
  []
 
-<images/sampling_based.jpg, id=742, 795.72281pt x 394.47375pt>
+<images/sampling_based.jpg, id=745, 795.72281pt x 394.47375pt>
 File: images/sampling_based.jpg Graphic file (type jpg)
 
 <use images/sampling_based.jpg> [34]
@@ -833,7 +830,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--53
 
  []
 
-<images/moveit_architecture.jpg, id=756, 1027.84pt x 770.88pt>
+<images/moveit_architecture.jpg, id=759, 1027.84pt x 770.88pt>
 File: images/moveit_architecture.jpg Graphic file (type jpg)
 
 <use images/moveit_architecture.jpg>
@@ -842,7 +839,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 62--64
  []
 
 [35 <./images/sampling_based.jpg>] [36 <./images/moveit_architecture.jpg>]
-<images/urdf_chain.jpg, id=778, 876.27374pt x 622.7265pt>
+<images/urdf_chain.jpg, id=781, 876.27374pt x 622.7265pt>
 File: images/urdf_chain.jpg Graphic file (type jpg)
 
 <use images/urdf_chain.jpg>
@@ -851,7 +848,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--90
  []
 
 [37 <./images/urdf_chain.jpg>]
-<images/torso.jpg, id=788, 858.20625pt x 507.39563pt>
+<images/torso.jpg, id=791, 858.20625pt x 507.39563pt>
 File: images/torso.jpg Graphic file (type jpg)
  <use images/torso.jpg>
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
@@ -872,7 +869,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 116--117
 
  []
 
-<images/iis_robot_table.png, id=798, 745.28438pt x 507.39563pt>
+<images/iis_robot_table.png, id=801, 745.28438pt x 507.39563pt>
 File: images/iis_robot_table.png Graphic file (type png)
 
 <use images/iis_robot_table.png> [39 <./images/iis_robot_table.png (PNG copy)>]
@@ -881,7 +878,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 163--164
 
  []
 
-[40] <images/ros_control.png, id=820, 455.2441pt x 351.67606pt>
+[40] <images/ros_control.png, id=823, 455.2441pt x 351.67606pt>
 File: images/ros_control.png Graphic file (type png)
 
 <use images/ros_control.png>
@@ -895,7 +892,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 184--185
  []
 
 [41] [42 <./images/ros_control.png>]
-<images/hardware_adapter.jpg, id=834, 777.90625pt x 233.87375pt>
+<images/hardware_adapter.jpg, id=837, 777.90625pt x 233.87375pt>
 File: images/hardware_adapter.jpg Graphic file (type jpg)
 
 <use images/hardware_adapter.jpg>
@@ -939,7 +936,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
-<images/state_trans.jpg, id=884, 425.59pt x 205.76875pt>
+<images/state_trans.jpg, id=887, 425.59pt x 205.76875pt>
 File: images/state_trans.jpg Graphic file (type jpg)
 
 <use images/state_trans.jpg> [47
@@ -975,7 +972,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--50
  []
 
 [48 <./images/state_trans.jpg>]
-<images/pick_place_states.jpg, id=900, 827.09pt x 327.2225pt>
+<images/pick_place_states.jpg, id=903, 827.09pt x 327.2225pt>
 File: images/pick_place_states.jpg Graphic file (type jpg)
 
 <use images/pick_place_states.jpg>
@@ -984,14 +981,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 60--61
  []
 
 [49 <./images/pick_place_states.jpg>]
-<images/pickup.jpg, id=907, 568.94437pt x 327.15514pt>
+<images/pickup.jpg, id=910, 568.94437pt x 327.15514pt>
 File: images/pickup.jpg Graphic file (type jpg)
  <use images/pickup.jpg>
-<images/placement.jpg, id=909, 568.94437pt x 327.15514pt>
+<images/placement.jpg, id=912, 568.94437pt x 327.15514pt>
 File: images/placement.jpg Graphic file (type jpg)
 
 <use images/placement.jpg> [50 <./images/pickup.jpg> <./images/placement.jpg>]
-<images/task_env.png, id=914, 979.40906pt x 560.0925pt>
+<images/task_env.png, id=917, 979.40906pt x 560.0925pt>
 File: images/task_env.png Graphic file (type png)
 
 <use images/task_env.png> [51 <./images/task_env.png (PNG copy)>]
@@ -1018,7 +1015,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 101--128
 []$[]$ 
  []
 
-<images/grasp_a-c.jpg, id=921, 2725.18124pt x 677.53125pt>
+<images/grasp_a-c.jpg, id=924, 2725.18124pt x 677.53125pt>
 File: images/grasp_a-c.jpg Graphic file (type jpg)
 
 <use images/grasp_a-c.jpg> [52 <./images/grasp_a-c.jpg>]
@@ -1026,7 +1023,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 148--171
 []$[]$ 
  []
 
-[53] <images/grasps.jpg, id=987, 488.57532pt x 542.025pt>
+[53] <images/grasps.jpg, id=990, 488.57532pt x 542.025pt>
 File: images/grasps.jpg Graphic file (type jpg)
 
 <use images/grasps.jpg> [54 <./images/grasps.jpg>]
@@ -1034,7 +1031,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 217--218
 
  []
 
-<images/place_a-c.jpg, id=999, 2937.47438pt x 804.00375pt>
+<images/place_a-c.jpg, id=1002, 2937.47438pt x 804.00375pt>
 File: images/place_a-c.jpg Graphic file (type jpg)
 
 <use images/place_a-c.jpg> [55]
@@ -1067,7 +1064,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--23
 
  []
 
-[63] <images/dlg_cust_data.jpg, id=1082, 575.14874pt x 183.68625pt>
+[63] <images/dlg_cust_data.jpg, id=1085, 575.14874pt x 183.68625pt>
 File: images/dlg_cust_data.jpg Graphic file (type jpg)
 
 <use images/dlg_cust_data.jpg>
@@ -1202,9 +1199,9 @@ ic/lm/lmsso9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share
 lmsy9.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/
 fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.
 pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (80 pages, 5743850 bytes).
+Output written on thesis.pdf (80 pages, 5745766 bytes).
 PDF statistics:
- 1281 PDF objects out of 1440 (max. 8388607)
+ 1284 PDF objects out of 1440 (max. 8388607)
  384 named destinations out of 1000 (max. 500000)
  619 words of extra memory for PDF output out of 10000 (max. 10000000)
 
