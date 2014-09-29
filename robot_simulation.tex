@@ -163,7 +163,7 @@ For the name of the extracted shape the same value was used as for its visual co
 The extracted shapes were then removed from the active visibility layer because they are just used for dynamics calculations.
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}
 	\centering
   	\includegraphics[width=1.0\textwidth]{images/extract_pure_shapes.jpg}
 	\caption{Process of approximating the original mesh with pure shapes}
@@ -173,16 +173,16 @@ The extracted shapes were then removed from the active visibility layer because 
 The last step of the modelling process was the adjustment of the model tree. This adjustment was done by rearranging the nodes within the scene hierarchy view. Root element of the hand model is the respondable part of the gripper body which was also defined to be the dedicated model base. At this point it is very important to follow the V-Rep guidelines for designing dynamic simulations because if the hierarchy is wrong, the model will simply fall apart when starting the simulation (detailed information about that topic can be found in the corresponding chapter\footnote{http://www.coppeliarobotics.com/helpFiles/en/designingDynamicSimulations.htm} of the V-Rep dodumentation). Each non-static and respondable shape needs to be connected to it's parent by a joint or a force sensor. The visual part of the link is always a child object of it's corresponding respondable. That way, the kinematic chain of the gripper was formed. The resulting model tree is shown in figure \ref{fig:gripper_tree}.
 \begin{figure}[ht]
 	\centering
-  	\includegraphics[width=0.6\textwidth]{images/gripper_tree.jpg}
+  	\includegraphics[width=0.4\textwidth]{images/gripper_tree.jpg}
 	\caption{Gripper model tree}
 	\label{fig:gripper_tree}
 \end{figure}
 
 \subsection{Assembling the scene}
 
-\begin{figure}[ht]
+\begin{figure}[hbt]
 	\centering
-  	\includegraphics[width=1.0\textwidth]{images/simulation_scene.jpg}
+  	\includegraphics[width=0.8\textwidth]{images/simulation_scene.jpg}
 	\caption{Structure of the V-Rep simulation scene}
 	\label{fig:sim_scene}
 \end{figure}
@@ -192,9 +192,10 @@ After finishing the gripper modelling process, each necessary component was avai
 The plate and the legs of the table were modelled as group of primitive cuboids. The table shape is respondable to ensure that it will produce a collision reaction if a robot component collides with it. But as it is a static object it's position will not be influenced by such a collision because it is fixed within the scene. The material setting is set to the default \emph{highFrictionMaterial}. \\
 
 The utilized Kinect camera model was contained in the V-Rep distribution and just had to be inserted into the scene. Position and orientation of the Kinect camera with respect to the robot base was measured in the real world and adjusted accordingly in the simulator. Figure \ref{fig:sim_scene_tree} shows a part of the resulting scene tree for the final simulation scene. 
+
 \begin{figure}[h]
 	\centering
-  	\includegraphics[width=0.6\textwidth]{images/scene_tree.jpg}
+  	\includegraphics[width=0.4\textwidth]{images/scene_tree.jpg}
 	\caption{Simulation scene hierarchy}
 	\label{fig:sim_scene_tree}
 \end{figure}
@@ -208,9 +209,9 @@ V-Rep's \emph{collision detection module}\footnote{http://www.coppeliarobotics.c
 
 One of the aims of the solution is to allow to check actions in the simulator before executing them on the real robot. Therefore the simulator needs to be able to detect and visualize collisions that possibly happen during those actions. Moreover it would be a convenient feature to have a proximity warning if parts of the robot come dangerously close to an obstacle during movement. To achieve that goal, we decided to create an enlarged version of the robot arm geometry which we called the \emph{collision shield} and do additional collision checking. These considerations lead to the two different types of possible collisions which we called \emph{soft collisions} and \emph{hard collisions}. Soft collisions are collisions, detected on the collision shield of the model. They just indicate a warning that the robot comes very close to an object it is not allowed to touch. \emph{Hard collisions} describe a direct hit of a robot part on another object. This would be also a collision in the real world. The final solution is able to distinguish between those two types as can be seen in figure \ref{fig:collision}. The left image shows a soft collision, the right image indicates a hard collision.\\. 
 
-\begin{figure}[hb]
+\begin{figure}
 	\centering
-  	\includegraphics[width=1.0\textwidth]{images/collision.jpg}
+  	\includegraphics[width=0.8\textwidth]{images/collision.jpg}
 	\caption{Collision detection and visualization}
 	\label{fig:collision}
 \end{figure}
@@ -241,7 +242,7 @@ settings later on when configuring the collision detection module.
 
 \begin{figure}[h]
 	\centering
-  	\includegraphics[angle=90, width=1.0\textwidth]{images/shield_steps.jpg}
+  	\includegraphics[width=1.0\textwidth]{images/shield_steps.jpg}
 	\caption{Modelling steps for the second arm link}
 	\label{fig:shield_steps}
 \end{figure}
@@ -315,9 +316,9 @@ Three IK groups have been created for each arm contained in our simulation scene
 
 \section{Implementing the ROS control interface}
 
-\begin{figure}[ht]
+\begin{figure}[htb]
 	\centering
-  	\includegraphics[width=1.0\textwidth]{images/control_flow.jpg}
+  	\includegraphics[width=0.8\textwidth]{images/control_flow.jpg}
 	\caption{Control flow structure}
 	\label{fig:control_flow}
 \end{figure}
@@ -350,7 +351,7 @@ A plugin is a compiled library file that needs to be placed in the V-Rep working
 
 \begin{figure}
 	\centering
-  	\includegraphics[width=1.0\textwidth]{images/SimulatorPluginUML.jpg}
+  	\includegraphics[width=0.8\textwidth]{images/SimulatorPluginUML.jpg}
 	\caption{Simulator plugin architecture}
 	\label{fig:plugin_uml}
 \end{figure}
@@ -377,11 +378,11 @@ During a running simulation, the \path{ComponentContainer} gets notified about e
 
 \paragraph{ComponentController}
 
-This is the abstract base class for all controllers. A controller actually represents the ROS interface of a specific simulation component, maintaining all the inbound and outbound topics used to control the simulated hardware. It is responsible for delegating commanded values to the underlying component as well as reading and publishing state data. Concrete implementations are the \path{LWRArmController} and the \path{SchunkHandController}. A \path{ComponentController} needs to be registered at the \path{ROSServer} and gets initialized on simulation start. Concrete implementations can use the provided NodeHandle to create all the necessary publishers and subscribers. The \path{update} method is called by the \path{ROSServer} on each simulation step and forces the controller to publish all the required data. The \path{shutdown} method is called by the \path{ROSServer} on simulation end, forcing the controller to shutdown all publishers and subscribers.
+This is the abstract base class for all controllers. A controller actually represents the ROS interface of a specific simulation component, maintaining all the inbound and outbound topics used to control the simulated hardware. It is responsible for delegating commanded values to the underlying component as well as reading and publishing state data. Concrete implementations are the \path{LWRArmController} and the \path{SchunkHandController}. A \path{ComponentController} needs to be registered at the \path{ROSServer} and gets initialized on simulation start. Concrete implementations can use the provided \path{NodeHandle} to create all the necessary publishers and subscribers. The \path{update} method is called by the \path{ROSServer} on each simulation step and forces the controller to publish all the required data. The \path{shutdown} method is called by the \path{ROSServer} on simulation end, forcing the controller to shutdown all publishers and subscribers.
   
 \paragraph{ROSServer}
 
-The \paht{ROSServer} is a static class that encapsulates all ROS related functionality. It tries to initialize ROS on plugin startup, forcing a shutdown, if the connection to the master cannot be established. Otherwise it creates and maintains a ROS \path{NodeHandle} for the \path{simulation} namespace. Each \path{SimulationComponent} can register \path{ComponentController} instances at the \path{ROSServer}. On simulation start it initializes all registered controllers with the maintained \path{NodeHandle}. The \path{ROSServer} gets also notified about each simulation step and forces the controllers to handle the received commands and publish all the necessary data. On simulation end it triggers the shutdown of all registered controllers.
+The \path{ROSServer} is a static class that encapsulates all ROS related functionality. It tries to initialize ROS on plugin startup, forcing a shutdown, if the connection to the master cannot be established. Otherwise it creates and maintains a ROS \path{NodeHandle} for the \path{simulation} namespace. Each \path{SimulationComponent} can register \path{ComponentController} instances at the \path{ROSServer}. On simulation start it initializes all registered controllers with the maintained \path{NodeHandle}. The \path{ROSServer} gets also notified about each simulation step and forces the controllers to handle the received commands and publish all the necessary data. On simulation end it triggers the shutdown of all registered controllers.
 
 \paragraph{SimulatorPlugin}
 
@@ -411,17 +412,17 @@ This function is called very often during the whole V-Rep lifecycle and is there
 	\label{fig:scene_tree}
 \end{figure}
 
-The plugin functionality should not be tied to a specific simulation scene but to specific ``known'' models of robot components. For example adding a Kuka arm model to an arbitrary scene should force the plugin to create a corresponding controller that provides the proper ROS control topics. As visualized in Figure\ref{fig:scene_tree}, each simulation scene is a hierarchy of different types of scene objects like joints, shapes, dummies or sensors. Those elements can be loose objects like a shape that was just added to the scene for a grasping simulation, but they could also be part of a simulation component like the Kuka arm or the Schunk gripper. Therefore the plugin needs to be able to identify subtrees of scene objects within this hierarchy that belong to such known models. Moreover, once a specific simulation component is identified, the plugin has to discover each part of the model tree as V-Rep does not provide a function that allows to determine all scene objects that belong to a specific model. Depending on the simulation component this can be the joints, force sensors or reference frame dummies. The scene objects in V-Rep are represented by their dedicated \emph{object handles}, which are simple integer values that uniquely identify specific objects within a scene. Interacting with scene objects using the V-Rep API requires those object handles to be known. For example setting the target position for a specific joint in the arm model requires to know the object handle that is associated to that joint. The goal of the identification process is to find the object handles of all scene objects that belong to the model. \\
+The plugin functionality should not be tied to a specific simulation scene but to specific ``known'' models of robot components. For example adding a Kuka arm model to an arbitrary scene should force the plugin to create a corresponding controller that provides the proper ROS control topics. As visualized in figure \ref{fig:scene_tree}, each simulation scene is a hierarchy of different types of scene objects like joints, shapes, dummies or sensors. Those elements can be loose objects like a shape that was just added to the scene for a grasping simulation, but they could also be part of a simulation component like the Kuka arm or the Schunk gripper. Therefore the plugin needs to be able to identify subtrees of scene objects within this hierarchy that belong to such known models. Moreover, once a specific simulation component is identified, the plugin has to discover each part of the model tree as V-Rep does not provide a function that allows to determine all scene objects that belong to a specific model. Depending on the simulation component this can be the joints, force sensors or reference frame dummies. The scene objects in V-Rep are represented by their dedicated \emph{object handles}, which are simple integer values that uniquely identify specific objects within a scene. Interacting with scene objects using the V-Rep API requires those object handles to be known. For example setting the target position for a specific joint in the arm model requires to know the object handle that is associated to that joint. The goal of the identification process is to find the object handles of all scene objects that belong to the model. \\
 
-We solved this identification problem by using so called \emph{custom developer data tags}. V-Rep allows to put auxiliary data segments to each single object in the scene. Each data segment starts with a header number which is used to uniquely identify the tag data from a specific developer. We used the number `2497' for the data segments used in this project. A visualization of this concept can be seen in Figure\ref{fig:cust_dev_data}. 
 \begin{figure}[h]
 	\centering
-  	\includegraphics[width=1.0\textwidth]{images/custom_dev_data.jpg}
+  	\includegraphics[width=0.8\textwidth]{images/custom_dev_data.jpg}
 	\caption{Custom developer data segments on scene object}
 	{\scriptsize Image source: http://www.coppeliarobotics.com/helpFiles/en/pluginTutorial.htm}
 	\label{fig:cust_dev_data}
 \end{figure}
-The format of those data segments can freely be chosen by the developer. We decided to use string representations of key/value pairs, separated by a colon (:). The key is an integer value that specifies the type of information the tag contains. The value segment can be used to provide additional information, e.g. the name of the arm. The left arm's model base for example is tagged with the data segment 
+
+We solved this identification problem by using so called \emph{custom developer data tags}. V-Rep allows to put auxiliary data segments to each single object in the scene. Each data segment starts with a header number which is used to uniquely identify the tag data from a specific developer. We used the number `2497' for the data segments used in this project. A visualization of this concept can be seen in figure \ref{fig:cust_dev_data}. The format of those data segments can freely be chosen by the developer. We decided to use string representations of key/value pairs, separated by a colon (:). The key is an integer value that specifies the type of information the tag contains. The value segment can be used to provide additional information, e.g. the name of the arm. The left arm's model base for example is tagged with the data segment 
 \begin{center}
 \texttt{2497,1:left\_arm}
 \end{center}
@@ -434,11 +435,12 @@ The plugin code was designed to react for scene content change. This happens whe
 
 \subsection{The LWRArmComponent}
 
-The \emph{LWRArmComponent} is a concrete subclass of \emph{SimulationComponent} and states the abstraction of a simulated KUKA LWR4+ arm model. It is composed of two parts - an instance of the \emph{LWRArm} class and a corresponding \emph{LWRArmController}, as can be seen in the UML diagram in Figure\ref{fig:plugin_uml}. Their functionalities are explained in the following paragraphs.
+The \path{LWRArmComponent} is a concrete subclass of \path{SimulationComponent} and states the abstraction of a simulated Kuka LWR4+ arm model. It is composed of two parts - an instance of the \path{LWRArm} class and a corresponding \path{LWRArmController}, as can be seen in the UML diagram in figure \ref{fig:plugin_uml}. Their functionalities are explained in the following paragraphs.
 
 \paragraph{LWRArm}
 
-This class states the connection to the (simulated) hardware itself, providing methods to set commanded values and access all available state data like joint positions, Cartesian position of the end effector, current collision state and more. On creation, it is passed the base of the model tree as constructor argument. The base is identified by the \path{LWR_ARM_COMPONENT} tag. The value segment of this tag states the name of the arm which has to be unique within the scene. During initialization it traverses the model tree and extracts all required parts by searching for tagged scene objects as described in the previous section. The parts to identify are the 7 arm joints, the force sensor on the last link of the arm, IK tip and target dummies. The corresponding tags are listed in Table\ref{fig:lwr_tags}.
+This class states the abstraction of the (simulated) hardware of a Kuka arm model, providing methods to set commanded values and access all available state data. On creation, it is passed the object handle of the model base element as constructor argument. The base is identified by the \path{LWR_ARM_COMPONENT} tag. The value segment of this tag states the name of the arm which has to be unique within the scene. During initialization it traverses the model tree and extracts all required parts by searching for tagged scene objects as described in the previous section. The parts to identify are the 7 arm joints, the force sensor on the last link of the arm, IK tip and target dummies. The corresponding tags are listed in table \ref{fig:lwr_tags}. \\
+
 \begin{table}[ht]
   \centering
   \begin{tabularx}{\textwidth}{|l|l|l|X|} \hline
@@ -452,11 +454,26 @@ This class states the connection to the (simulated) hardware itself, providing m
   \caption{Tag data items for LWRArmComponent}
   \label{fig:lwr_tags}
 \end{table}
-Additionally the \emph{LWRArm} also requires a connection to the configured IK groups and collision objects. As there is no possibility to place custom developer tags on IK groups and collision objects, the extraction is done by using a special naming strategy. The first IK group needs to have the same name as the arm itself and it's existence is mandatory, leading to a configuration error message if no such group can be extracted during initialization. Subsequent groups are optional and must have the same name with consecutive numbering (\texttt{[ARM\_NAME]1}, \texttt{[ARM\_NAME]2}\ldots). That allows to reconfigure the IK calculation module and introduce additional IK groups without touching the plugin code. The two required collision objects are also searched, based on the name of the arm (\texttt{[ARM\_NAME]} and \texttt{[ARM\_NAME]Shield}). If one or both of them cannot be detected, an error message is stated on the console and the collision detection functionality will not work as expected. \\
 
-To fullfill the requirements for the control interface, the arm has to be able to operate in \emph{joint control mode} (FK mode) and in \emph{inverse kinematics mode} (IK mode). Initially the arm starts in FK mode, which means the joints are operated in \emph{torque/force} mode and accept target positions to be set. Switching to IK mode is done by changing the joint control mode to \emph{inverse kinematics} mode, which means that they are conntrolled by the IK calculation module further on. Setting a target pose in Cartesian space is done by moving the IK target dummy to the required location and orientation. The known IK groups are then handled sequentially, until one of them is able to solve the problem and set the proper joint target positions. When switching from FK to IK mode, the IK target dummy has to be aligned with the tip dummy to prevent the arm from doing uncontrolled motions. \\
+To fulfil the requirements for the ROS control interface, the arm needs to be able to operate either in joint control mode (FK mode) or in inverse kinematics mode (IK mode). During FK mode the joints are operated in \emph{torque/force} mode and accept target positions to be set. Therefore the \path{LWRArm} class provides a method called \path{setJointTargetPositions}. This method expects a vector, containing the desired joint target positions and delegates the commanded values to the corresponding arm joints. \\
 
-The current \emph{collision status} is determined by using the configured collision objects. On each simulation step the collision object that is responsible for detecting direct collisions is handled first. If that one detects a collision, a direct hit is reported and it is not necessary to handle the second object at all, because a direct hit always implies a hit with the shield as well. Only if no direct hit was detected, the second collision object is handled. The outcome can be queried as the current collision state of the arm. The collision state is evaluated on each simulation step.
+During IK mode the joints have to be operated in \emph{inverse kinematics} mode, which means that they are controlled by V-Rep's IK calculation module. Therefore we implemented the method \path{setKinematicsMode} in the \path{LWRArm} class that uses the appropriate V-Rep API function (\path{simSetJointMode}) to switch all joints to the required mode. Setting a target pose in Cartesian space is done by placing the IK target dummy at the required location and orientation. This can be done by using the method \path{setTargetPose} of the \path{LWRArm} class. When the arm is operated in IK mode, the method \path{handleIK} is invoked on each simulation step. This method uses the API function \path{simHandleIKGroup} to handle the previously configured IK groups sequentially, until one of them is able to solve the problem and set the proper joint target positions. \\
+
+The IK group object handles are determined during initialization based on their names (API function \path{simGetIkGroupHandle}). One IK group which uses the same name as the arm model is mandatory, leading to a configuration error message if no such group can be found. Subsequent groups are optional and must have the same name with consecutive numbering. For example an \path{LWRArm} class with name \path{right_arm} searches for IK groups named \path{right_arm1}, \path{right_arm2}\ldots. We chose that naming strategy because it allows to reconfigure the IK calculation module and introduce additional IK groups without touching the plugin code. \\
+
+The \path{LWRArm} class also provides a method that returns the current collision state of the underlying arm model. Therefore it requires the handles of the configured collision objects which are also searched during initialization based on the arm name (API function \path{simGetCollisionHandle}). The collision objects, responsible for soft collisions and hard collisions are required. An \path{LWRArm} class with name \path{right_arm} for example searches for collision objects named \path{right_arm} and \path{right_armShield}. If one or both of them cannot be detected, an error message is stated on the console and the collision detection functionality will not work as expected. The collision objects are handled by the \path{LWRArm} class on each simulation step (API function \path{simHandleCollision}). The collision object that is responsible for detecting direct collisions is handled first. If that one detects a collision, a direct hit is reported and it is not necessary to handle the second object at all, because a direct hit always implies a shield hit as well. Only if no direct hit was detected, the second collision object is handled. The outcome can be queried, using the method \path{getCollisionState} of the \path{LWRArm} class. The possible return values are listed in table \ref{tbl:col_states}. \\
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|l|} \hline
+	\textbf{State} & \textbf{Description} \\ \hline
+	0 & no collision at all \\
+	1 & hard collision \\
+	2 & soft collision \\ \hline
+  \end{tabular}
+  \caption{Possible collision states}
+  \label{tbl:col_states}
+\end{table}
 
 \paragraph{LWRArmController}
 
@@ -517,7 +534,7 @@ The \emph{SchunkHandController} provides an implementation of the ROS interface 
 	{\scriptsize Image source: \cite{schunk2010}}
 	\label{fig:grasp_types}
 \end{figure}
-Additionally the hand is able to perform grasps, based on specific \emph{grasp types} as visualized in Figure\ref{fig:grasp_types}. This functionality can be accessed via the \texttt{joint\_control/gripHand} topic. A grasp is defined by the parameters \emph{grasp type} and \emph{close ratio}. The controller then calculates the corresponding joint positions, based on those parameters and sets the desired target positions. Each grasp can be expressed, using three functions -- one for the position of the pivoting joints and the other two for the positions of the distal and proximal finger joints. The utilized functions were taken from the original controller code of the \texttt{schunk\_sdh} ROS package, located in the \texttt{iis\_robot\_sw} code repository. The definitions are listed in Table\ref{fig:grasp_defs}. The grasp strength can be adjusted, using the \texttt{settings/set\_motor\_current} topic. The message basically consists of a vector, holding a value for each joint, defining a percentage of the maximum motor strength. The real gripper also provides a topic that allows to read the current motor temperatures. For the sake of consistency, the \emph{SchunkHandController} also provides this topic, but as V-Rep is not able to simulate motor heatings, only constant fake values are published. A complete interface description can be found in Appendix \ref{app:sim_doc}.
+Additionally the hand is able to perform grasps, based on specific \emph{grasp types} as visualized in Figure\ref{fig:grasp_types}. This functionality can be accessed via the \texttt{joint\_control/gripHand} topic. A grasp is defined by the parameters \emph{grasp type} and \emph{close ratio}. The controller then calculates the corresponding joint positions, based on those parameters and sets the desired target positions. Each grasp can be expressed, using three functions -- one for the position of the pivoting joints and the other two for the positions of the distal and proximal finger joints. The utilized functions were taken from the original controller code of the \texttt{schunk\_sdh} ROS package, located in the \texttt{iis\_robot\_sw} code repository. The definitions are listed in Table\ref{fig:grasp_defs}. The grasp strength can be adjusted, using the \texttt{settings/set\_motor\_current} topic. The message basically consists of a vector, holding a value for each joint, defining a percentage of the maximum motor strength. The real gripper also provides a topic that allows to read the current motor temperatures. For the sake of consistency, the \path{SchunkHandController} also provides this topic, but as V-Rep is not able to simulate motor heatings, only constant fake values are published. A complete interface description can be found in Appendix \ref{app:sim_doc}.
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|c|c|c|} \hline
