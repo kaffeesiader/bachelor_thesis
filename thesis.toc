@@ -19,16 +19,16 @@
 \contentsline {subsection}{\numberline {2.4.4}Configuring the IK calculation module}{20}{subsection.2.4.4}
 \contentsline {section}{\numberline {2.5}Implementing the ROS control interface}{21}{section.2.5}
 \contentsline {subsection}{\numberline {2.5.1}Plugin architecture}{22}{subsection.2.5.1}
-\contentsline {paragraph}{SimulationComponent}{24}{section*.28}
-\contentsline {paragraph}{ComponentContainer}{24}{section*.29}
+\contentsline {paragraph}{SimulationComponent}{23}{section*.28}
+\contentsline {paragraph}{ComponentContainer}{23}{section*.29}
 \contentsline {paragraph}{ComponentController}{24}{section*.30}
 \contentsline {paragraph}{ROSServer}{24}{section*.31}
-\contentsline {paragraph}{SimulatorPlugin}{25}{section*.32}
+\contentsline {paragraph}{SimulatorPlugin}{24}{section*.32}
 \contentsline {subsection}{\numberline {2.5.2}Identifying simulation components}{25}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}The LWRArmComponent}{27}{subsection.2.5.3}
 \contentsline {paragraph}{LWRArm}{27}{section*.36}
-\contentsline {paragraph}{LWRArmController}{29}{section*.39}
-\contentsline {subsection}{\numberline {2.5.4}The SchunkHandComponent}{30}{subsection.2.5.4}
+\contentsline {paragraph}{LWRArmController}{28}{section*.39}
+\contentsline {subsection}{\numberline {2.5.4}The SchunkHandComponent}{29}{subsection.2.5.4}
 \contentsline {paragraph}{SchunkHand}{30}{section*.41}
 \contentsline {paragraph}{SchunkHandController}{30}{section*.43}
 \contentsline {subsection}{\numberline {2.5.5}Publishing Kinect camera data}{31}{subsection.2.5.5}
@@ -38,7 +38,7 @@
 \contentsline {paragraph}{Probabilistic roadmaps}{34}{section*.45}
 \contentsline {paragraph}{Tree-based planners}{34}{section*.46}
 \contentsline {section}{\numberline {3.3}The MoveIt! motion planning framework}{35}{section.3.3}
-\contentsline {section}{\numberline {3.4}Creating the URDF model of the robot setup}{36}{section.3.4}
+\contentsline {section}{\numberline {3.4}Creating the URDF model of the robot setup}{37}{section.3.4}
 \contentsline {section}{\numberline {3.5}Configuring the planning tools}{39}{section.3.5}
 \contentsline {section}{\numberline {3.6}Connecting MoveIt to the existing robot control interface}{40}{section.3.6}
 \contentsline {subsection}{\numberline {3.6.1}ROS control stack overview}{41}{subsection.3.6.1}
