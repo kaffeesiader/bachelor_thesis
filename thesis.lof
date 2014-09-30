@@ -16,7 +16,7 @@
 \contentsline {figure}{\numberline {2.12}{\ignorespaces Simulator plugin architecture\relax }}{23}{figure.caption.27}
 \contentsline {figure}{\numberline {2.13}{\ignorespaces Sample scene hierarchy\relax }}{26}{figure.caption.34}
 \contentsline {figure}{\numberline {2.14}{\ignorespaces Custom developer data segments on scene object\relax }}{26}{figure.caption.35}
-\contentsline {figure}{\numberline {2.15}{\ignorespaces Grasp types \texttt {SPHERICAL}, \texttt {CENTRICAL}, \texttt {CYLINDRICAL} and \texttt {PARALLEL}\relax }}{30}{figure.caption.43}
+\contentsline {figure}{\numberline {2.15}{\ignorespaces Grasp types\relax }}{30}{figure.caption.42}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Sampling based algorithms}}{35}{figure.caption.47}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Moveit architecture}}{36}{figure.caption.48}

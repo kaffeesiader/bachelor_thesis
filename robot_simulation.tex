@@ -516,11 +516,12 @@ We designed the follow mode to mirror the behaviour to the real robot arms. Ther
 
 \end{itemize}
 
-This section only covered the implemented control modes and the corresponding ROS topics but the controller also offers a number of topics that allow to retrieve state data like current joint positions, Cartesian position, the collision state and more. A complete interface description can be found in the documentation, located in Appendix \ref{app:sim_doc}.
+This section only covered the implemented control modes and the corresponding ROS topics but the controller also offers a number of topics that allow to retrieve state data like current joint positions, Cartesian position, the collision state and more. A complete interface description can be found in the documentation, located in appendix \ref{app:sim_doc}.
 
 \subsection{The SchunkHandComponent}
 
-The \emph{SchunkHandComponent} is designed, using the same approach as for the \emph{LWRArmComponent}. Therefore only the most important facts will be stated here. The two composing parts are the \emph{SchunkHand} and the \emph{SchunkHandController}.
+The design of the \path{SchunkHandComponent} follows the same approach that we used for the \path{LWRArmComponent}. Therefore only the most important facts will be stated here. The two composing parts are the \path{SchunkHand} and the \path{SchunkHandController}.
+
 \begin{table}[h]
   \centering
   \begin{tabularx}{\textwidth}{|l|l|l|X|} \hline
@@ -534,20 +535,24 @@ The \emph{SchunkHandComponent} is designed, using the same approach as for the \
 
 \paragraph{SchunkHand}
 
-States the connection to a Schunk hand model. The only additional parts that have to be discovered during initialization are the 7 gripper joints and their corresponding names. Available tags are
-listed in Table\ref{fig:schunk_tags}. The \emph{SchunkHand} class provides methods to set joint positions and to retrieve current joint states. Additionally it allows to modify the motor strength for each single joint, based on a percentage of maximum force. This reflects the possibility of adjusting the motor currents in the real hand, which also leads to the effect that the maximum motor strengths of the finger joints can be increased or decreased.
+The \path{SchunkHand} class states the abstraction of a simulated Schunk hand. The parts that have to be discovered during initialization are the 7 gripper joints and their corresponding names. Available tags are listed in table \ref{fig:schunk_tags}. The \path{SchunkHand} class provides methods to set joint positions (\path{setJointTargetPositions}) and to retrieve current joint states (\path{getJointStates}). Additionally it allows to modify the motor strength (\path{setJointMotorStrength}) for each single joint, based on a percentage of maximum force. This reflects the possibility of adjusting the motor currents in the real hand, which also leads to the effect that the motor strengths of the finger joints are increased or decreased.
 
-\paragraph{SchunkHandController}
-
-The \emph{SchunkHandController} provides an implementation of the ROS interface for the Schunk gripper model. The basic topics are quite similar to those of the \emph{LWRArmController}, as there are \texttt{joint\_control/move} for setting joint target positions or \texttt{joint\_control/get\_state} for retrieving joint states.
 \begin{figure}[h]
 	\centering
   	\includegraphics[width=1.0\textwidth]{images/grasp_types.jpg}
-	\caption{Grasp types \texttt{SPHERICAL}, \texttt{CENTRICAL}, \texttt{CYLINDRICAL} and \texttt{PARALLEL}}
+	\caption{Grasp types}
 	{\scriptsize Image source: \cite{schunk2010}}
 	\label{fig:grasp_types}
 \end{figure}
-Additionally the hand is able to perform grasps, based on specific \emph{grasp types} as visualized in figure \ref{fig:grasp_types}. This functionality can be accessed via the \texttt{joint\_control/gripHand} topic. A grasp is defined by the parameters \emph{grasp type} and \emph{close ratio}. The controller then calculates the corresponding joint positions, based on those parameters and sets the desired target positions. Each grasp can be expressed, using three functions -- one for the position of the pivoting joints and the other two for the positions of the distal and proximal finger joints. The utilized functions were taken from the original controller code of the \texttt{schunk\_sdh} ROS package, located in the \texttt{iis\_robot\_sw} code repository. The definitions are listed in Table\ref{fig:grasp_defs}. The grasp strength can be adjusted, using the \texttt{settings/set\_motor\_current} topic. The message basically consists of a vector, holding a value for each joint, defining a percentage of the maximum motor strength. The real gripper also provides a topic that allows to read the current motor temperatures. For the sake of consistency, the \path{SchunkHandController} also provides this topic, but as V-Rep is not able to simulate motor heatings, only constant fake values are published. A complete interface description can be found in Appendix \ref{app:sim_doc}.
+
+\paragraph{SchunkHandController}
+
+The \path{SchunkHandController} provides an implementation of the ROS interface for the Schunk gripper model. We designed this class to reflect the interface provided by the controller for the real hand. The basic topics are quite similar to those of the \path{LWRArmController}, as there are \path{joint_control/move} for setting joint target positions or \path{joint_control/get_state} for retrieving joint states. The controller allows to set the hand posture by setting target positions for all hand joints or based on 4 different \emph{grasps} (figure \ref{fig:grasp_types}). \\
+
+A grasp is defined by the parameters \emph{grasp type} and \emph{close ratio}. Allowed grasp types are \emph{cylindrical}, \emph{spherical}, \emph{centrical} and \emph{parallel}. The desired close ratio is defined as a value between 0 and 1. The controller calculates the corresponding joint positions, based on those parameters and sends the desired target positions to the underlying \path{SchunkHand}. Each grasp can be expressed, using three functions -- one for the position of the pivoting joints and the other two for the positions of the distal and proximal finger joints. The utilized functions were taken from the original controller code for the real hand. The definitions are listed in table \ref{fig:grasp_defs}. The first column holds the name of the grasp type. The second column shows how the positions of the pivoting joints are calculated. It can be seen that they are not influenced by the close ratio $x$ in all 4 grasp types. The third and fourth columns show the equations that are used to calculate the target values of the proximal and distal finger joints based on close ratio $x$. \\
+
+The grasp strength can be adjusted, using the \path{settings/set_motor_current} topic. The message basically consists of a vector, holding a value for each joint that defines a percentage of the maximum motor strength. The real gripper also provides a topic that allows to read the current motor temperatures. For the sake of consistency, the \path{SchunkHandController} also provides this topic, but as V-Rep is not able to simulate motor heatings, only constant fake values are published. A complete interface description can be found in appendix \ref{app:sim_doc}.
+
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|c|c|c|} \hline
@@ -563,4 +568,9 @@ Additionally the hand is able to perform grasps, based on specific \emph{grasp t
 
 \subsection{Publishing Kinect camera data}
 
-The Kinect camera model does not contain any flexible parts that have to be controlled by the plugin. But it is necessary to make the images, captured by the simulated vision sensor available via ROS topics. This was achieved by using the corresponding functionality of the V-Rep default ROS interface that allows publishing vision sensor data, using the correct message types. Therefore a LUA script was attached to the base element of the camera model within the scene. This script simply extracts the object ID of the vision sensor and enables publishers for the captured RGB and depth images. The corresponding topics are \texttt{kinect1/sensoring/rgb\_image} and \texttt{kinect1/sensoring/depth\_image}. 
+The Kinect camera model does not contain any flexible parts that have to be controlled by the plugin. But it was necessary to make the images, captured by the simulated vision sensor available via ROS topics. This was achieved by using the corresponding functionality of the V-Rep default ROS interface that allows publishing vision sensor data, using the correct message types. Therefore we created a LUA script that is associated with the base element of the camera model within the simulation scene. This script simply extracts the object ID of the vision sensor and enables publishers for the captured RGB and depth images. The corresponding topics are \path{kinect1/sensoring/rgb_image} and \path{kinect1/sensoring/depth_image}. The script code can be seen in code listing \ref{lst:kinect}. Topic names can be changed within that script and the publishers can be dissabled by simply commenting the corresponding lines of code. The script also assigns the sensor data to an additional view within the simulation scene. This is helpful because it visualizes, the camera images during simulation.
+
+\lstset{style=customc}
+\begin{minipage}{\linewidth}
+\lstinputlisting[caption={LUA script, attached to Kinect model}, label=lst:kinect]{code/kinect_script.lua}
+\end{minipage} \\

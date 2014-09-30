@@ -30,7 +30,7 @@
 \contentsline {paragraph}{LWRArmController}{29}{section*.39}
 \contentsline {subsection}{\numberline {2.5.4}The SchunkHandComponent}{30}{subsection.2.5.4}
 \contentsline {paragraph}{SchunkHand}{30}{section*.41}
-\contentsline {paragraph}{SchunkHandController}{30}{section*.42}
+\contentsline {paragraph}{SchunkHandController}{30}{section*.43}
 \contentsline {subsection}{\numberline {2.5.5}Publishing Kinect camera data}{31}{subsection.2.5.5}
 \contentsline {chapter}{\numberline {3}Motion planning}{33}{chapter.3}
 \contentsline {section}{\numberline {3.1}Introduction}{33}{section.3.1}
