@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <property name="leg_width" value="0.03" />
+  <property name="plate_thickness" value="0.03" />
+  <property name="table_height" value="0.734" />
+  <property name="border_offset" value="0.055" />
+  
+  <macro name="table_leg" params="parent name *origin">
+    
+    <joint name="${name}_joint" type="fixed">
+      <insert_block name="origin"/>
+      <parent link="${parent}" />
+      <child link="${name}_link" />
+    </joint>
+    
+    <link name="${name}_link">
+      
+		<visual>
+			<geometry>
+				<box size="${leg_width} -${leg_width} ${table_height - plate_thickness}"/>
+			</geometry>
+			<material name="Black"/>
+		</visual>
+		
+		<collision>
+			<geometry>
+				<box size="${leg_width} -${leg_width} ${table_height - plate_thickness}"/>
+			</geometry>
+		</collision>
+		
+    </link>
+    
+    
+  </macro>
+    
+  <macro name="model_table" params="parent name *origin length width">
+    
+    <joint name="${parent}_${name}_base_joint" type="fixed">
+      <insert_block name="origin"/>
+      <parent link="${parent}_link"/>
+      <child link="${name}_plate_link"/>
+    </joint>
+
+    <link name="${name}_plate_link">
+
+		<visual>
+			<origin xyz="${1/2 * width} ${1/2 * length} ${-1/2 * plate_thickness}"/>
+			<geometry>
+				<box size="${width} ${length} ${plate_thickness}"/>
+			</geometry>
+			<material name="LightGrey"/>
+		</visual>
+		
+		<collision>
+			<origin xyz="${1/2 * width} ${1/2 * length} ${-1/2 * plate_thickness}"/>
+			<geometry>
+				<box size="${width} ${length} ${plate_thickness}"/>
+			</geometry>
+		</collision>
+      
+    </link>
+    
+    <xacro:table_leg parent="${name}_plate_link" name="leg_0">
+      <origin xyz="${border_offset} ${border_offset} - 
+		    ${1/2 * (plate_thickness + table_height)}"/>
+    </xacro:table_leg>
+
+    <xacro:table_leg parent="${name}_plate_link" name="leg_1">
+      <origin xyz="${border_offset} ${length - border_offset} -
+		    ${1/2 * (plate_thickness + table_height)}"/>
+    </xacro:table_leg>
+
+    <xacro:table_leg parent="${name}_plate_link" name="leg_2">
+      <origin xyz="${width - border_offset} ${border_offset} -
+		    ${1/2 * (plate_thickness + table_height)}"/>
+    </xacro:table_leg>
+    
+    <xacro:table_leg parent="${name}_plate_link" name="leg_3">
+      <origin xyz="${width - border_offset} ${length - border_offset} -
+		    ${1/2 * (plate_thickness + table_height)}"/>
+    </xacro:table_leg>
+  </macro>
+  
+  <macro name="model_table_surface" 
+	 params="parent name *origin length width thickness">
+	 
+    <link name="${name}_link">
+
+		<visual>
+			<origin xyz="${1/2 * width} ${1/2 * length} ${1/2 * thickness}"/>
+			<geometry>
+				<box size="${width} ${length} ${thickness}"/>
+			</geometry>
+			<material name="LightGrey"/>
+		</visual>
+		
+		<collision>
+			<!-- place origin with respect to safety padding -->
+			<origin xyz="${1/2 * width} ${1/2 * length} ${1/2 * thickness + 0.005}"/>
+			<geometry>
+				<!-- add some safety padding to the collision model of the surface -->
+				<box size="${width + 0.05} ${length + 0.05} ${thickness + 0.01}"/>
+			</geometry>
+		</collision>
+      
+    </link>
+    
+    <joint name="${name}_joint" type="fixed">
+      <insert_block name="origin"/>
+      <parent link="${parent}_link"/>
+      <child link="${name}_link"/>
+    </joint>
+    
+  </macro>
+    
+</robot>

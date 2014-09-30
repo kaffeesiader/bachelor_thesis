@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+    <macro name="model_torso" params="parent name *origin">
+    
+    <joint name="${parent}_${name}_base_joint" type="fixed">
+      <insert_block name="origin"/>
+      <parent link="${parent}_link"/>
+      <child link="${name}_link"/>
+    </joint>
+
+    <link name="${name}_link">
+      <visual>
+	<geometry>
+	  <mesh filename="package://iis_robot/meshes/torso.dae"/>
+	</geometry>
+	<material name="Silver"/>
+      </visual>
+      <!-- take collision mesh with some extra padding at the dangerous parts -->
+      <collision>
+	<geometry>
+	  <mesh filename="package://iis_robot/meshes/torso_convex.stl"/>
+	</geometry>
+      </collision>
+
+    </link>
+
+  </macro>
+
+</robot>

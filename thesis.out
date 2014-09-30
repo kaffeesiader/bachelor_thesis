@@ -54,3 +54,8 @@
 \BOOKMARK [2][-]{subsection.A.4.1}{Arm control topics}{section.A.4}
 \BOOKMARK [2][-]{subsection.A.4.2}{Hand control topics}{section.A.4}
 \BOOKMARK [2][-]{subsection.A.4.3}{Kinect camera settings}{section.A.4}
+\BOOKMARK [0][-]{appendix.B}{URDF descriptions}{}
+\BOOKMARK [1][-]{section.B.1}{Complete model with table}{appendix.B}
+\BOOKMARK [1][-]{section.B.2}{Adjusted gripper model}{appendix.B}
+\BOOKMARK [1][-]{section.B.3}{Torso model}{appendix.B}
+\BOOKMARK [1][-]{section.B.4}{Table model}{appendix.B}

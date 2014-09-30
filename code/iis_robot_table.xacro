@@ -7,7 +7,7 @@
   <xacro:include filename="$(find lwr_description)/urdf/kuka_lwr_arm_defs.xacro"/>
   
   <!-- draw a small cross to visualize the origin of the world reference frame
-       It is necessary to hide the table surface in RViz to be able to see that -->
+       It is necessary to hide the table surface in RViz to be able to see that-->
   <link name="world_link">
     <visual>
       <geometry>
@@ -23,17 +23,20 @@
     </visual>
   </link>
   
-  <!-- draw the table relative to the origin, located in the top left corner of the table plate -->
+  <!-- draw the table relative to the origin, located in the top left corner
+       of the table plate -->
   <xacro:model_table name="table" 
 		     parent="world"
 		     length="2.22"
 		     width="0.8">
-    <!-- Place the table relative to the world reference frame (starting at top left corner) -->
+    <!-- Place the table relative to the world reference frame (starting at 
+	 top left corner) -->
     <origin xyz="-0.029 -0.3 0" />
     
   </xacro:model_table>
   
-  <!-- draw the table relative to the parent link (table_plate_link), located in the top left corner  -->
+  <!-- draw the table relative to the parent link (table_plate_link), located 
+       in the top left corner  -->
   <xacro:model_table_surface name="table_surface"
 			      parent="table_plate"
 			      length="2.3"

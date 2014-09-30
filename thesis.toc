@@ -39,12 +39,12 @@
 \contentsline {paragraph}{Tree-based planners}{34}{section*.46}
 \contentsline {section}{\numberline {3.3}The MoveIt! motion planning framework}{35}{section.3.3}
 \contentsline {section}{\numberline {3.4}Creating the URDF model of the robot setup}{37}{section.3.4}
-\contentsline {section}{\numberline {3.5}Configuring the planning tools}{39}{section.3.5}
-\contentsline {section}{\numberline {3.6}Connecting MoveIt to the existing robot control interface}{40}{section.3.6}
+\contentsline {section}{\numberline {3.5}Configuring the planning tools}{40}{section.3.5}
+\contentsline {section}{\numberline {3.6}Connecting MoveIt to the existing robot control interface}{41}{section.3.6}
 \contentsline {subsection}{\numberline {3.6.1}ROS control stack overview}{41}{subsection.3.6.1}
 \contentsline {subsection}{\numberline {3.6.2}Designing the hardware adapter}{43}{subsection.3.6.2}
 \contentsline {subsection}{\numberline {3.6.3}Launching the hardware adapter}{45}{subsection.3.6.3}
-\contentsline {section}{\numberline {3.7}Adjusting the MoveIt configuration}{45}{section.3.7}
+\contentsline {section}{\numberline {3.7}Adjusting the MoveIt configuration}{46}{section.3.7}
 \contentsline {chapter}{\numberline {4}Pick and place}{47}{chapter.4}
 \contentsline {section}{\numberline {4.1}Overview}{47}{section.4.1}
 \contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{49}{section.4.2}
@@ -80,3 +80,8 @@
 \contentsline {subsection}{\numberline {A.4.1}Arm control topics}{65}{subsection.A.4.1}
 \contentsline {subsection}{\numberline {A.4.2}Hand control topics}{66}{subsection.A.4.2}
 \contentsline {subsection}{\numberline {A.4.3}Kinect camera settings}{66}{subsection.A.4.3}
+\contentsline {chapter}{\numberline {B}URDF descriptions}{67}{appendix.B}
+\contentsline {section}{\numberline {B.1}Complete model with table}{67}{section.B.1}
+\contentsline {section}{\numberline {B.2}Adjusted gripper model}{68}{section.B.2}
+\contentsline {section}{\numberline {B.3}Torso model}{69}{section.B.3}
+\contentsline {section}{\numberline {B.4}Table model}{70}{section.B.4}

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:include filename="$(find schunk_description)/urdf/sdh/sdh.urdf.xacro" />
+  
+  <!-- SDH gripper with connector link -->
+  
+  <macro name="sdh_with_connector" params="parent name *origin">
+ 
+    <!-- joint between parent and the connector ring -->
+    <joint name="${name}_connector_joint" type="fixed" >
+      <insert_block name="origin"/>
+      <parent link="${parent}" />
+      <child link="${name}_connector_link" />
+    </joint>
+      
+    <!-- connector ring added to adjust distance to arm connector -->
+    <link name="${name}_connector_link">
+      <visual>
+	      <origin xyz="0 0 0.0084" rpy="0 0 0" />
+	      <geometry>
+		      <cylinder radius="0.02735" length="0.0168" />
+	      </geometry>
+	      <material name="DarkGrey" />
+      </visual>
+      
+      <collision>
+	      <origin xyz="0 0 0.0084" rpy="0 0 0" />
+	      <geometry>
+		      <cylinder radius="0.02735" length="0.0168" />
+	      </geometry>
+      </collision>
+    </link>
+    
+    <xacro:schunk_sdh parent="${name}_connector_link" name="${name}">
+      <origin xyz="0 0 0.0168"/>
+    </xacro:schunk_sdh>
+  
+  </macro>
+
+</robot>
