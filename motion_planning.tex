@@ -47,7 +47,7 @@ A lot of different sampling-based planning algorithm are using the tree based ap
 
 Generally can be said that the tree based approaches are more adequate for \emph{single query planning} because the tree usually does not has to cover the whole free state space. A roadmap could be reused for subsequent queries. As the most methods also require the search of a nearest neighbour, the utilized distance metric is also a crucial part within sampling-based motion planning as it is not always easy to identify the optimal method for finding nearby states in systems with large degrees of freedom.  
 
-\section{The MoveIt! motion planning framework}
+\section{The MoveIt motion planning framework}
 
 \begin{figure}[ht]
 	\centering
@@ -57,7 +57,9 @@ Generally can be said that the tree based approaches are more adequate for \emph
 	\label{fig:moveit_arch}
 \end{figure}
 
-MoveIt\citep{MoveIt} is an open source framework for motion planning that is fully integrated into ROS. MoveIt was originally developed by Willowgarage\footnote{http://www.willowgarage.com} but since April 2012 it is maintained by the Open Source Robotics Foundation (OSRF). Figure \ref{fig:moveit_arch} gives an overview about the system architecture. Central part of the framework is the \path{move_group} node. Configuration of that node happens via the parameter server. It requires a complete description of the robot setup and a number of other configuration parameters that will be described in section \ref{sec:moveit_assistant}. The \path{move_group} node maintains a \emph{planning scene} which is an internal representation of the world. This planning scene bases on a kinematic description of the robot in the URDF format, which is a special markup language, designed to describe robots. The necessary steps to create that URDF description for our robot setup are explained in section \ref{sec:urdf}. \\
+This section gives an overview about MoveIt's system architecture and introduces basic concepts. MoveIt\citep{MoveIt} is an open source framework for motion planning that is fully integrated into ROS. MoveIt was originally developed by Willowgarage\footnote{http://www.willowgarage.com} but since April 2012 it is maintained by the Open Source Robotics Foundation (OSRF). Figure \ref{fig:moveit_arch} gives an overview about the system architecture. \\
+
+Central part of the framework is the \path{move_group} node. Configuration of that node happens via the parameter server. Therefore it is necessary to create a MoveIt configuration package that contains a description of the robot setup and a number of configuration files. The creation of that package and the necessary configuration steps are described in section \ref{sec:moveit_assistant}. The \path{move_group} node maintains a \emph{planning scene} which is an internal representation of the world. This planning scene bases on a kinematic description of the robot in the URDF format, which is a special markup language, designed to describe robots. The necessary steps to create that URDF description for our robot setup are explained in section \ref{sec:urdf}. \\
 
 On top of this static description the \path{move_group} node needs to keep track of the current state of the robot. Therefore it expects the actual joint states to be published to a topic named \path{joint_states}. If there are additional objects within the robot's workspace that are not part of the robot description, they also have to be added to the maintained planning scene. This can be done either by explicitly adding them via the corresponding topics (\path{CollisionObject} or \path{PlanningSceneDiff}) or by integrating information from 3D sensors like Kinect cameras. This information will then be taken into account during motion planning and collisions are avoided. But some collisions are intended. For example if an object has to be picked up, the gripper has to get in contact to this object. That means, collision checking for specific objects has to be (temporary) disabled to allow those controlled collisions. Therefore the \path{move_group} node maintains a so called \path{AllowedCollisionMatrix} to which objects can be added or removed. This also happens via the \path{PlanningSceneDiff} topic. \\
 
@@ -65,7 +67,7 @@ The connection to the hardware happens via the \path{FollowJointTrajectory} acti
 
 The \path{move_group} node provides a ROS interface, consisting of various ROS topics and services that allow to access its functionality. The services \path{GetIKService} and \path{GetFKService} can be used to solve inverse and forward\footnote{The problem of computing the end effector position in Cartesian space for a given robot configuration} kinematics problems. The \path{PlanPathService} handles motion planning requests and the \path{ExecutePathService} can be used to execute the planned trajectories on the connected hardware. Additionally there are the \path{PickAction} and \path{PlaceAction} servers available. Those action servers are intended to plan and execute all stages of pick and place operations. They were utilized in the benchmark pick and place task that was implemented in the scope of this project. Their usage is therefore described in chapter \ref{chap:pick_place}. \\
 
-The functionality of the \path{move_group} node can be accessed in different ways. One way is to directly use the previously described ROS interface. Another way is to use the \path{move_group_interface} which is a C++ wrapper around that ROS interface or the corresponding Python wrapper (\path{moveit_commander}). MoveIt also provides a planning plugin for the RViz visualization tool which can be used to do planning requests based on a graphical user interface. \\
+The functionality of the \path{move_group} node can be accessed in different ways. One way is to directly use the previously described services of the ROS interface. Another way is to use the \path{move_group_interface} which is a C++ wrapper around that ROS interface or the corresponding Python wrapper (\path{moveit_commander}). MoveIt also provides a planning plugin for the RViz visualization tool which can be used to do planning requests based on a graphical user interface. \\
 
 Various important parts of MoveIt are implemented as plugins which means they are replaceable by other components that provide the same interface. The utilized inverse kinematics plugin uses the Kinematics and Dynamics Library\footnote{http://www.orocos.org/kdl} (KDL) for solving IK problems. The planning plugin uses the Open Motion Planning Library\footnote{http://ompl.kavrakilab.org} (OMPL), which is a framework that contains implementations of many different sampling based motion planning algorithms. Therefore it is possible to choose, which one of those algorithms to use during planning requests. \\
 
@@ -132,35 +134,59 @@ The file \path{iis_robot_table.xacro} draws all the pieces together. It describe
 	\label{fig:robot_table}
 \end{figure}
 
-\section{Configuring the planning tools}
+\section{Creating the MoveIt configuration package}
 \label{sec:moveit_assistant}
 
-This section explains how the MoveIt configuration package was created, using the \emph{MoveIt Setup Assistant}. \\
+After designing the URDF description of our robot setup it was necessary to create a MoveIt configuration package. This was done, using the \emph{MoveIt Setup Assistant} which is part of the MoveIt distribution. This software tool provides a graphical user interface that allows to configure and generate a ROS package that contains all necessary MoveIt configuration files based on an existing URDF model. This section explains the performed steps that had to be performed and the resulting configuration package. \\ 
 
-The MoveIt Setup Assistant is a software tool that is part of the MoveIt distribution. It provides a graphical user interface that allows to create a MoveIt configuration package based on a URDF robot description. The Setup Assistant can be launched using the following command line statement:
+The Setup Assistant was launched using the following command line statement:
 \begin{verbatim}
 roslaunch moveit_setup_assistant setup_assistant.launch
-\end{verbatim} \\
-
-
+\end{verbatim}
+This command brings up the Setup Assistant and asks for the file path to the previously created URDF description. After pointing the Setup Assistant to the correct file location, we had to perform the following configuration steps:
 
 \begin{itemize}
 
-\item \textbf{Computating the self collision matrix}
+\item \textbf{Computing the self collision matrix}
 
-The self collision matrix consists of pairs of robot links that can safely be excluded from collision checking. Neighbouring links for example are in permanent collision. Collisions between other links can never happen because they are simply too far apart. The Setup Assistant calculates a large number of different robot configurations and tracks for link pairs that are hardly always in collision and pairs that are never in collision. The self collision matrix can be adjusted manually if necessary. Excluding a large number of link pairs raises performance during motion planning because collision checking is an expensive process.
+The \emph{self collision matrix} consists of pairs of robot links that can safely be excluded from collision checking. Adjacent links of the robot arm for example are in permanent collision. Collisions between other links can never happen because they are simply too far apart. The Setup Assistant can be triggered to compute this self collision matrix automatically by testing a large number of different robot configurations while tracking for link pairs that are hardly always in collision and pairs that are never in collision. The number of sample configurations to check can be adjusted. We selected the maximum possible density of 100.000 sample configurations to find as many colliding link pairs as possible. This is important because excluding a large number of link pairs raises performance during motion planning because collision checking is an expensive process. The resulting self collision matrix can be adjusted manually if necessary. The image in figure \ref{fig:self_col} shows a screenshot of this configuration step.
+
+\begin{figure}[hp]
+	\centering
+  	\includegraphics[width=0.75\textwidth]{images/self_collision.jpg}
+	\caption{Computing the self collision matrix}
+	\label{fig:self_col}
+\end{figure}
 
 \item \textbf{Defining the planning groups}
 
-Each planning request in MoveIt is done against one of the defined \emph{planning groups}. A planning group is a group of links and joints within the model that can be seen as one logical component. Planning groups are defined for both arms and grippers. The configuration for the arms also requires the definition of the utilized IK solvers but currently only the default KDL solver is available. An additional planning group, called \texttt{both\_arms} allows planning requests for both arms simultaneously.
+MoveIt requires to define so called \emph{planning groups} for the robot setup. A planning group is a group of links and joints within the model that can be seen as a logical component, e.g. a gripper or a robot arm. Each planning group consists of a unique name and a list of robot links and joints that are part of that group. Additionally can be specified, which IK solver should be used for the planning group.Each planning request in MoveIt is done against one of those defined planning groups. We defined planning groups for the both arms (\path{left_arm} and \path{right_arm}) and grippers (\path{left_sdh} and \path{right_sdh}). We decided to use the default KDL solver for the arms. An additional planning group, called \path{both_arms} was created that allows planning requests for both robot arms simultaneously. They were defined on the \emph{Planning Groups} page of the Setup Assistant (figure \ref{fig:planning_groups}).
+
+\begin{figure}[hp]
+	\centering
+  	\includegraphics[width=0.75\textwidth]{images/planning_groups.jpg}
+	\caption{Definition of planning groups}
+	\label{fig:planning_groups}
+\end{figure}
 
 \item \textbf{Defining the end effectors}
 
-End effectors are the left and the right gripper. Each end effector has a name and consists of one of the predefined planning groups, a parent group and the parent link which is the last link in the kinematic chain of the parent group.
+Each planning request in MoveIt requires to specify the end effector of the selected planning group. Those end effectors also had to be defined during the setup process. An end effector definition in MoveIt consists of a unique name, the underlying planning group (i.e. \path{left_sdh}), the parent planning group (i.e. \path{left_arm}) and the name of the last link in the kinematic chain of the parent group. We defined end effectors as listed in table \ref{tbl:eef_defs}, using the \emph{End Effectors} page of the Setup Assistant.
 
-\item \textbf{Generate the configuration files}
+\begin{table}[h]
+  \centering
+  \begin{tabular}[h]{|l|l|l|l|} \hline
+	\textbf{Name} & \textbf{EEF group} & \textbf{Parent group} & \textbf{Parent link} \\ \hline
+	\path{left_eef} & \path{left_sdh} & \path{left_arm} & \path{left_arm_7_link} \\
+	\path{right_eef} & \path{right_sdh} & \path{right_arm} & \path{right_arm_7_link} \\ \hline
+  \end{tabular}
+  \caption{End effector definitions}
+  \label{tbl:eef_defs}
+\end{table}
 
-After completing all the configuration steps the configuration package can be generated. Therefore a package name has to be specified which was set to \path{uibk_robot_moveit_config}. This package is a prototype, containing a large number of predefined configuration files. Some of those files have to be extended manually, adding additional information about available robot controllers and sensors. 
+\item \textbf{Completing the Setup Assistant}
+
+The last step in the setup process was to generate a MoveIt configuration package based on the previously explained configuration steps. Therefore the Setup Assistant required to specify the desired package name which we set to \path{uibk_robot_moveit_config}. After triggering the package generation on the \emph{Configuration Files} page of the Setup Assistant, a new ROS package was created on the specified save location, containing  a large number of predefined configuration files. The package generated during this setup process was a prototype, which means that those configuration files still had to be extended manually, adding additional information about available robot controllers and the connection to the hardware. 
 
 \end{itemize}
 

@@ -10,9 +10,10 @@
 \contentsline {table}{\numberline {2.8}{\ignorespaces Tag data items for SchunkHandComponent\relax }}{29}{table.caption.40}
 \contentsline {table}{\numberline {2.9}{\ignorespaces Joint position functions based on close ratio $x$\relax }}{31}{table.caption.44}
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces End effector definitions\relax }}{41}{table.caption.54}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {A.1}{\ignorespaces Available topics of \emph {LWRArmController}\relax }}{65}{table.caption.80}
-\contentsline {table}{\numberline {A.2}{\ignorespaces Available topics of \emph {SchunkHandController}\relax }}{66}{table.caption.81}
+\contentsline {table}{\numberline {A.1}{\ignorespaces Available topics of \emph {LWRArmController}\relax }}{67}{table.caption.83}
+\contentsline {table}{\numberline {A.2}{\ignorespaces Available topics of \emph {SchunkHandController}\relax }}{68}{table.caption.84}
 \addvspace {10\p@ }

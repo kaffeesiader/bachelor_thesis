@@ -26,9 +26,9 @@
 \BOOKMARK [0][-]{chapter.3}{Motion planning}{}
 \BOOKMARK [1][-]{section.3.1}{Introduction}{chapter.3}
 \BOOKMARK [1][-]{section.3.2}{Sampling-based motion planning}{chapter.3}
-\BOOKMARK [1][-]{section.3.3}{The MoveIt! motion planning framework}{chapter.3}
+\BOOKMARK [1][-]{section.3.3}{The MoveIt motion planning framework}{chapter.3}
 \BOOKMARK [1][-]{section.3.4}{Creating the URDF model of the robot setup}{chapter.3}
-\BOOKMARK [1][-]{section.3.5}{Configuring the planning tools}{chapter.3}
+\BOOKMARK [1][-]{section.3.5}{Creating the MoveIt configuration package}{chapter.3}
 \BOOKMARK [1][-]{section.3.6}{Connecting MoveIt to the existing robot control interface}{chapter.3}
 \BOOKMARK [2][-]{subsection.3.6.1}{ROS control stack overview}{section.3.6}
 \BOOKMARK [2][-]{subsection.3.6.2}{Designing the hardware adapter}{section.3.6}
@@ -45,7 +45,7 @@
 \BOOKMARK [1][-]{section.4.4}{Running the benchmark task}{chapter.4}
 \BOOKMARK [1][-]{section.4.5}{Discussion}{chapter.4}
 \BOOKMARK [0][-]{chapter.5}{Conclusion}{}
-\BOOKMARK [0][-]{section*.77}{Bibliography}{}
+\BOOKMARK [0][-]{section*.80}{Bibliography}{}
 \BOOKMARK [0][-]{appendix.A}{Simulator documentation}{}
 \BOOKMARK [1][-]{section.A.1}{Installation and startup}{appendix.A}
 \BOOKMARK [1][-]{section.A.2}{Modifying the simulation scene}{appendix.A}
