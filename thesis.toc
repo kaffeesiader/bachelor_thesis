@@ -40,48 +40,54 @@
 \contentsline {section}{\numberline {3.3}The MoveIt motion planning framework}{35}{section.3.3}
 \contentsline {section}{\numberline {3.4}Creating the URDF model of the robot setup}{37}{section.3.4}
 \contentsline {section}{\numberline {3.5}Creating the MoveIt configuration package}{40}{section.3.5}
+\contentsline {paragraph}{\texttt {controllers.yaml}}{43}{section*.55}
+\contentsline {paragraph}{\texttt {fake\_controllers.yaml}}{43}{section*.56}
+\contentsline {paragraph}{\texttt {iis\_robot.srdf}}{43}{section*.57}
+\contentsline {paragraph}{\texttt {joint\_limits.yaml}}{43}{section*.58}
+\contentsline {paragraph}{\texttt {kinematics.yaml}}{43}{section*.59}
+\contentsline {paragraph}{\texttt {ompl\_planning.yaml}}{43}{section*.60}
 \contentsline {section}{\numberline {3.6}Connecting MoveIt to the existing robot control interface}{43}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}ROS control stack overview}{43}{subsection.3.6.1}
-\contentsline {subsection}{\numberline {3.6.2}Designing the hardware adapter}{45}{subsection.3.6.2}
-\contentsline {subsection}{\numberline {3.6.3}Launching the hardware adapter}{47}{subsection.3.6.3}
-\contentsline {section}{\numberline {3.7}Adjusting the MoveIt configuration}{48}{section.3.7}
-\contentsline {chapter}{\numberline {4}Pick and place}{49}{chapter.4}
-\contentsline {section}{\numberline {4.1}Overview}{49}{section.4.1}
-\contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{51}{section.4.2}
-\contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{53}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{53}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{54}{subsection.4.3.2}
-\contentsline {paragraph}{Grasp ID}{55}{section*.63}
-\contentsline {paragraph}{Pre-grasp/grasp posture}{55}{section*.64}
-\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{55}{section*.65}
-\contentsline {paragraph}{Grasp pose}{55}{section*.66}
-\contentsline {paragraph}{Grasp quality}{56}{section*.68}
-\contentsline {paragraph}{Allowed touch objects}{56}{section*.69}
-\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{56}{subsection.4.3.3}
-\contentsline {paragraph}{\texttt {target\_name}}{56}{section*.70}
-\contentsline {paragraph}{\texttt {group\_name}}{57}{section*.71}
-\contentsline {paragraph}{\texttt {end\_effector\_name}}{57}{section*.72}
-\contentsline {paragraph}{\texttt {possible\_grasps}}{57}{section*.73}
-\contentsline {paragraph}{\texttt {support\_surface\_name}}{57}{section*.74}
-\contentsline {paragraph}{\texttt {allow\_gripper\_support\_collision}}{57}{section*.75}
-\contentsline {paragraph}{\texttt {path\_constraints}}{57}{section*.76}
-\contentsline {paragraph}{\texttt {allowed\_planning\_time}}{57}{section*.77}
-\contentsline {paragraph}{\texttt {plan\_only}}{57}{section*.78}
-\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{57}{subsection.4.3.4}
-\contentsline {section}{\numberline {4.4}Running the benchmark task}{58}{section.4.4}
-\contentsline {section}{\numberline {4.5}Discussion}{59}{section.4.5}
-\contentsline {chapter}{\numberline {5}Conclusion}{61}{chapter.5}
-\contentsline {chapter}{Bibliography}{63}{section*.80}
-\contentsline {chapter}{\numberline {A}Simulator documentation}{65}{appendix.A}
-\contentsline {section}{\numberline {A.1}Installation and startup}{65}{section.A.1}
-\contentsline {section}{\numberline {A.2}Modifying the simulation scene}{65}{section.A.2}
-\contentsline {section}{\numberline {A.3}Modifying custom developer data tags}{66}{section.A.3}
-\contentsline {section}{\numberline {A.4}ROS interface}{66}{section.A.4}
-\contentsline {subsection}{\numberline {A.4.1}Arm control topics}{67}{subsection.A.4.1}
-\contentsline {subsection}{\numberline {A.4.2}Hand control topics}{68}{subsection.A.4.2}
-\contentsline {subsection}{\numberline {A.4.3}Kinect camera settings}{68}{subsection.A.4.3}
-\contentsline {chapter}{\numberline {B}URDF descriptions}{69}{appendix.B}
-\contentsline {section}{\numberline {B.1}Complete model with table}{69}{section.B.1}
-\contentsline {section}{\numberline {B.2}Adjusted gripper model}{70}{section.B.2}
-\contentsline {section}{\numberline {B.3}Torso model}{71}{section.B.3}
-\contentsline {section}{\numberline {B.4}Table model}{72}{section.B.4}
+\contentsline {subsection}{\numberline {3.6.1}ROS control stack overview}{44}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}Designing the hardware adapter}{46}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}Launching the hardware adapter}{49}{subsection.3.6.3}
+\contentsline {section}{\numberline {3.7}Adjusting the MoveIt configuration}{50}{section.3.7}
+\contentsline {chapter}{\numberline {4}Pick and place}{51}{chapter.4}
+\contentsline {section}{\numberline {4.1}Overview}{51}{section.4.1}
+\contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{53}{section.4.2}
+\contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{55}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{55}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{56}{subsection.4.3.2}
+\contentsline {paragraph}{Grasp ID}{57}{section*.69}
+\contentsline {paragraph}{Pre-grasp/grasp posture}{57}{section*.70}
+\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{57}{section*.71}
+\contentsline {paragraph}{Grasp pose}{57}{section*.72}
+\contentsline {paragraph}{Grasp quality}{58}{section*.74}
+\contentsline {paragraph}{Allowed touch objects}{58}{section*.75}
+\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{58}{subsection.4.3.3}
+\contentsline {paragraph}{\texttt {target\_name}}{58}{section*.76}
+\contentsline {paragraph}{\texttt {group\_name}}{59}{section*.77}
+\contentsline {paragraph}{\texttt {end\_effector\_name}}{59}{section*.78}
+\contentsline {paragraph}{\texttt {possible\_grasps}}{59}{section*.79}
+\contentsline {paragraph}{\texttt {support\_surface\_name}}{59}{section*.80}
+\contentsline {paragraph}{\texttt {allow\_gripper\_support\_collision}}{59}{section*.81}
+\contentsline {paragraph}{\texttt {path\_constraints}}{59}{section*.82}
+\contentsline {paragraph}{\texttt {allowed\_planning\_time}}{59}{section*.83}
+\contentsline {paragraph}{\texttt {plan\_only}}{59}{section*.84}
+\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{59}{subsection.4.3.4}
+\contentsline {section}{\numberline {4.4}Running the benchmark task}{60}{section.4.4}
+\contentsline {section}{\numberline {4.5}Discussion}{61}{section.4.5}
+\contentsline {chapter}{\numberline {5}Conclusion}{63}{chapter.5}
+\contentsline {chapter}{Bibliography}{65}{section*.86}
+\contentsline {chapter}{\numberline {A}Simulator documentation}{67}{appendix.A}
+\contentsline {section}{\numberline {A.1}Installation and startup}{67}{section.A.1}
+\contentsline {section}{\numberline {A.2}Modifying the simulation scene}{67}{section.A.2}
+\contentsline {section}{\numberline {A.3}Modifying custom developer data tags}{68}{section.A.3}
+\contentsline {section}{\numberline {A.4}ROS interface}{68}{section.A.4}
+\contentsline {subsection}{\numberline {A.4.1}Arm control topics}{69}{subsection.A.4.1}
+\contentsline {subsection}{\numberline {A.4.2}Hand control topics}{70}{subsection.A.4.2}
+\contentsline {subsection}{\numberline {A.4.3}Kinect camera settings}{70}{subsection.A.4.3}
+\contentsline {chapter}{\numberline {B}URDF descriptions}{71}{appendix.B}
+\contentsline {section}{\numberline {B.1}Complete model with table}{71}{section.B.1}
+\contentsline {section}{\numberline {B.2}Adjusted gripper model}{72}{section.B.2}
+\contentsline {section}{\numberline {B.3}Torso model}{73}{section.B.3}
+\contentsline {section}{\numberline {B.4}Table model}{74}{section.B.4}

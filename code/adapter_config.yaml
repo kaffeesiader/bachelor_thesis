@@ -1,11 +1,26 @@
 adapter_list:
   - left_arm
   - left_sdh
+  - right_arm
+  - right_sdh
   
 left_arm:
     joint_state_topic: "left_arm/joint_control/get_state"
     joint_command_topic: "left_arm/joint_control/move"
     joint_name_prefix: "left_"
+    joints:
+      - arm_0_joint
+      - arm_1_joint
+      - arm_2_joint
+      - arm_3_joint
+      - arm_4_joint
+      - arm_5_joint
+      - arm_6_joint
+      
+right_arm:
+    joint_state_topic: "right_arm/joint_control/get_state"
+    joint_command_topic: "right_arm/joint_control/move"
+    joint_name_prefix: "right_"
     joints:
       - arm_0_joint
       - arm_1_joint
@@ -21,9 +36,22 @@ left_sdh:
     joint_name_prefix: "left_sdh_"
     joints:
         - knuckle_joint
-        - finger_12_joint
-        - finger_13_joint
         - thumb_2_joint
         - thumb_3_joint
+        - finger_12_joint
+        - finger_13_joint
+        - finger_22_joint
+        - finger_23_joint
+        
+right_sdh:
+    joint_state_topic: "right_sdh/joint_control/get_state"
+    joint_command_topic: "right_sdh/joint_control/move"
+    joint_name_prefix: "right_sdh_"
+    joints:
+        - knuckle_joint
+        - thumb_2_joint
+        - thumb_3_joint
+        - finger_12_joint
+        - finger_13_joint
         - finger_22_joint
         - finger_23_joint

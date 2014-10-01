@@ -59,15 +59,15 @@ Generally can be said that the tree based approaches are more adequate for \emph
 
 This section gives an overview about MoveIt's system architecture and introduces basic concepts. MoveIt\citep{MoveIt} is an open source framework for motion planning that is fully integrated into ROS. MoveIt was originally developed by Willowgarage\footnote{http://www.willowgarage.com} but since April 2012 it is maintained by the Open Source Robotics Foundation (OSRF). Figure \ref{fig:moveit_arch} gives an overview about the system architecture. \\
 
-Central part of the framework is the \path{move_group} node. Configuration of that node happens via the parameter server. Therefore it is necessary to create a MoveIt configuration package that contains a description of the robot setup and a number of configuration files. The creation of that package and the necessary configuration steps are described in section \ref{sec:moveit_assistant}. The \path{move_group} node maintains a \emph{planning scene} which is an internal representation of the world. This planning scene bases on a kinematic description of the robot in the URDF format, which is a special markup language, designed to describe robots. The necessary steps to create that URDF description for our robot setup are explained in section \ref{sec:urdf}. \\
+Central part of the framework is the \path{move_group} node. Configuration of that node happens via the parameter server. Therefore it is necessary to create a MoveIt configuration package. This is a ROS package that contains a description of the robot setup along with a number of necessary configuration files. The creation of that package and the necessary configuration steps are described in section \ref{sec:moveit_assistant}. The \path{move_group} node maintains a \emph{planning scene} which is an internal representation of the world. This planning scene bases on a kinematic description of the robot in the URDF format, which is a special markup language, designed to describe robots. The necessary steps to create that URDF description for our robot setup are explained in section \ref{sec:urdf}. \\
 
 On top of this static description the \path{move_group} node needs to keep track of the current state of the robot. Therefore it expects the actual joint states to be published to a topic named \path{joint_states}. If there are additional objects within the robot's workspace that are not part of the robot description, they also have to be added to the maintained planning scene. This can be done either by explicitly adding them via the corresponding topics (\path{CollisionObject} or \path{PlanningSceneDiff}) or by integrating information from 3D sensors like Kinect cameras. This information will then be taken into account during motion planning and collisions are avoided. But some collisions are intended. For example if an object has to be picked up, the gripper has to get in contact to this object. That means, collision checking for specific objects has to be (temporary) disabled to allow those controlled collisions. Therefore the \path{move_group} node maintains a so called \path{AllowedCollisionMatrix} to which objects can be added or removed. This also happens via the \path{PlanningSceneDiff} topic. \\
-
-The connection to the hardware happens via the \path{FollowJointTrajectory} action interface. This is a special kind of ROS interface that builds upon the \emph{ROS action protocol}\footnote{http://wiki.ros.org/actionlib/DetailedDescription}. Each robot component that is intended to be controlled by MoveIt has to provide this interface. It consists of a set of ROS topics that provide trajectory execution functionality and also allow monitoring the current execution status. The implementation and usage of a ROS node that provides the necessary interface is described in section \ref{sec:hardware_adapter}. \\
 
 The \path{move_group} node provides a ROS interface, consisting of various ROS topics and services that allow to access its functionality. The services \path{GetIKService} and \path{GetFKService} can be used to solve inverse and forward\footnote{The problem of computing the end effector position in Cartesian space for a given robot configuration} kinematics problems. The \path{PlanPathService} handles motion planning requests and the \path{ExecutePathService} can be used to execute the planned trajectories on the connected hardware. Additionally there are the \path{PickAction} and \path{PlaceAction} servers available. Those action servers are intended to plan and execute all stages of pick and place operations. They were utilized in the benchmark pick and place task that was implemented in the scope of this project. Their usage is therefore described in chapter \ref{chap:pick_place}. \\
 
 The functionality of the \path{move_group} node can be accessed in different ways. One way is to directly use the previously described services of the ROS interface. Another way is to use the \path{move_group_interface} which is a C++ wrapper around that ROS interface or the corresponding Python wrapper (\path{moveit_commander}). MoveIt also provides a planning plugin for the RViz visualization tool which can be used to do planning requests based on a graphical user interface. \\
+
+The planning outcome of MoveIt is a time parametrized trajectory consisting of a set of waypoints. A waypoint is a joint configuration, described by the tuple $(p,v,a,t)$ where $p \in \mathbb{R}^n$ are the positions, $v \in \mathbb{R}^n$ the velocities and $a \in \mathbb{R}^n$ the accelerations at time $t$ and $n$ is the number of involved joints. Those waypoints mark the important points along the path, the manipulator has to move. Connecting  MoveIt to the hardware requires therefore controllers that are able to translate such time parametrized trajectories into a sequence of suitable motor commands. Just sending the joint positions within the waypoints to the robot would not suffice as a trajectory is also constrained in terms of \emph{velocities} and \emph{accelerations} over \emph{time}. Therefore the controller needs to be able to interpolate between the subsequent waypoints and calculate intermediate joint positions based on the loop rate of the control cycle. Section \ref{sec:hardware_adapter} explains in detail how this problem was solved and how the connection to the (simulated or real) hardware was established.\\
 
 Various important parts of MoveIt are implemented as plugins which means they are replaceable by other components that provide the same interface. The utilized inverse kinematics plugin uses the Kinematics and Dynamics Library\footnote{http://www.orocos.org/kdl} (KDL) for solving IK problems. The planning plugin uses the Open Motion Planning Library\footnote{http://ompl.kavrakilab.org} (OMPL), which is a framework that contains implementations of many different sampling based motion planning algorithms. Therefore it is possible to choose, which one of those algorithms to use during planning requests. \\
 
@@ -137,13 +137,15 @@ The file \path{iis_robot_table.xacro} draws all the pieces together. It describe
 \section{Creating the MoveIt configuration package}
 \label{sec:moveit_assistant}
 
-After designing the URDF description of our robot setup it was necessary to create a MoveIt configuration package. This was done, using the \emph{MoveIt Setup Assistant} which is part of the MoveIt distribution. This software tool provides a graphical user interface that allows to configure and generate a ROS package that contains all necessary MoveIt configuration files based on an existing URDF model. This section explains the performed steps that had to be performed and the resulting configuration package. \\ 
+After designing the URDF description of our robot setup it was necessary to create a MoveIt configuration package. This was done, using the \emph{MoveIt Setup Assistant} which is part of the MoveIt distribution. This software tool provides a graphical user interface that allows to configure and generate a ROS package that contains all necessary MoveIt configuration files based on an existing URDF model. This section explains the steps that had to be performed and the resulting configuration package. \\ 
 
 The Setup Assistant was launched using the following command line statement:
+\begin{quote}
 \begin{verbatim}
 roslaunch moveit_setup_assistant setup_assistant.launch
 \end{verbatim}
-This command brings up the Setup Assistant and asks for the file path to the previously created URDF description. After pointing the Setup Assistant to the correct file location, we had to perform the following configuration steps:
+\end{quote}
+This command brings up the Setup Assistant which asks for the file path to the previously created URDF description. After pointing the Setup Assistant to the correct file location, we had to perform the following configuration steps:
 
 \begin{itemize}
 
@@ -186,24 +188,62 @@ Each planning request in MoveIt requires to specify the end effector of the sele
 
 \item \textbf{Completing the Setup Assistant}
 
-The last step in the setup process was to generate a MoveIt configuration package based on the previously explained configuration steps. Therefore the Setup Assistant required to specify the desired package name which we set to \path{uibk_robot_moveit_config}. After triggering the package generation on the \emph{Configuration Files} page of the Setup Assistant, a new ROS package was created on the specified save location, containing  a large number of predefined configuration files. The package generated during this setup process was a prototype, which means that those configuration files still had to be extended manually, adding additional information about available robot controllers and the connection to the hardware. 
-
+The last step in the setup process was to generate a MoveIt configuration package based on the previously explained configuration steps. Therefore the Setup Assistant required to specify the desired package name which we set to \path{uibk_robot_moveit_config}. After triggering the package generation on the \emph{Configuration Files} page of the Setup Assistant, the resulting ROS package was created at the specified save location. 
+ 
 \end{itemize}
 
-Completing the last step results in a ROS package, containing necessary configuration and launch files for the given robot setup. The semantic robot description can be found in the \path{iis_robot.srdf} file. It contains previously defined parameters like the self-collision matrix, planning groups and end effectors. The configuration package can be tested, running the following command on the command line:
+The package that was generated during this setup process contains all the configuration and launch files that are necessary to make planning requests for our robot setup though it is not yet connected to the hardware. The configuration can be tested by running it in demo mode. This mode allows to plan and execute trajectories without being connected to the robot hardware. The demo mode is launched with the following command line statement:
 \begin{quote}
 \begin{verbatim}
 roslaunch uibk_robot_moveit_config demo.launch
 \end{verbatim}
 \end{quote}
-This commands launches a \path{move_group} node in demo mode, using the previously created configuration files and starts an instance of RViz with the motion planning plugin. There it is possible to switch between the planning groups, set start and target configurations, do planning requests and visualize the outcome. The setup can be modified by launching the Setup Assistant again, using the \path{setup_assistant.launch} file from this package.
+This command runs a \path{move_group} node using the previously created configuration and starts an instance of RViz with the motion planning plugin. There it is possible to switch between planning groups, set start and target configurations, do planning requests and visualize the resulting trajectories based on a graphical user interface. \\
+
+The launch files within the configuration package are responsible for uploading the configuration parameters to the parameter server and start the \path{move_group} node. Those parameters are defined in several configuration files, located in the \path{config} folder of the configuration package. The following paragraphs just give an overview about content of the most important files. Detailed information can be found in the MoveIt documentation\footnote{http://moveit.ros.org/documentation/concepts/}.
+
+\paragraph{\texttt{controllers.yaml}}
+The content of this file specifies the available controllers for the (simulated or real) hardware. The file is initially empty and has to be populated manually. This was done after implementing the required controller interface, which is described in section \ref{sec:hardware_adapter}.
+
+\paragraph{\texttt{fake\_controllers.yaml}}
+This file is populated by the Setup Assistant and contains the definitions for the \emph{fake} controllers. The fake controllers simulate a connection to the hardware by providing the required ROS interface. They are used in demo mode to visualize the commanded robot motions in RViz. Each fake controller is defined by its name and a list, containing the names of the controlled robot joints.
+
+\paragraph{\texttt{iis\_robot.srdf}}
+This file contains all the semantic information about the robot that was configured during the setup process. The content is specified using the SRDF\footnote{http://wiki.ros.org/srdf} format. It holds the definitions of the configured planning groups, end effectors and the generated self collision matrix entries.
+
+\paragraph{\texttt{joint\_limits.yaml}}
+This file holds the velocity and acceleration limits of all joints contained in the robot description. The initial values are taken from the URDF model but this configuration file allows to specify other limits if necessary. MoveIt uses the limits that are configured within this file for trajectory planning. We used that option to drastically reduce the maximum allowed velocity of all arm joints to achieve slower robot motions.
+
+\paragraph{\texttt{kinematics.yaml}}
+This file contains the definition of the IK solvers that should be utilized for the robot arms. Currently we use the KDL kinematics plugin that is part of the MoveIt distribution. Additional parameters specify the default timeout value that is used for each IK calculation attempt and the maximum amount of iterations.
+
+\paragraph{\texttt{ompl\_planning.yaml}}
+This file holds OMPL specific configuration parameters. It defines the allowed planning algorithms for each planning group. We left the content of that file at its default values. \\
+
+The configuration of this package can be adjusted by launching the Setup Assistant again, using the \path{setup_assistant.launch} file from this package.
 
 \section{Connecting MoveIt to the existing robot control interface}
 \label{sec:hardware_adapter}
 
-Now MoveIt is configured and ready to handle planning requests for the robot setup. But execution of the resulting trajectories is still impossible because of the missing connection between MoveIt and the involved robot hardware. Each component that is intended to be controlled by MoveIt needs to provide the \emph{FollowJointTrajectory} action interface, as defined in the \texttt{control\_msgs} package. This is a special kind of ROS interface that allows to send trajectories to robot components and monitor the execution status. As the existing control interface of the IIS robot components does not fulfil these requirements, an additional node is necessary that is capable of executing trajectories, using the existing infrastructure.\\
+After creating the configuration package it was necessary to find a way to connect MoveIt to the (simulated or real) hardware to allow the execution of the planned trajectories. This section explains the necessary steps in detail. \\
 
-The planning outcome of MoveIt is a time parametrized trajectory, expressed by the \emph{JointTrajectory} message type. This message consists of a set of waypoints. A waypoint is a joint configuration, described by the tuple $(p,v,a,t)$ where $p \in \mathbb{R}^n$ are the positions, $v \in \mathbb{R}^n$ the velocities and $a \in \mathbb{R}^n$ the accelerations at time $t$ and $n$ is the number of involved joints. Those waypoints mark the important points along the path, the manipulator has to move. The controller needs to be able to translate this trajectory into a sequence of suitable motor commands. Just sending the joint positions within the waypoints to the robot would not suffice as a trajectory is also constrained in terms of \emph{velocities} and \emph{accelerations} over \emph{time}. Therefore the controller needs to be able to interpolate between the subsequent waypoints and calculate intermediate joint positions based on the loop rate of the control cycle. This interpolation is a difficult task and the implementation would be beyond the scope of this project. But the required functionality is already available within the \path{ros_control} stack\footnote{http://wiki.ros.org/ros\_control}. Those packages are created to integrate and control robot hardware in a generalized way, facilitating the usage of existing controllers on different robots. 
+The connection to the hardware happens via the \path{FollowJointTrajectory} action interface. This is a special kind of ROS interface that builds upon the \emph{ROS action protocol}\footnote{http://wiki.ros.org/actionlib/DetailedDescription}. Each robot component that is intended to be controlled by MoveIt has to provide this interface. The interface comprises of the following topics:
+\begin{itemize}
+
+\item \path{follow_joint_trajectory/goal}
+
+This topic is used to send a \path{FollowJointTrajectoryActionGoal} message to the controller. This message describes a time parametrized trajectory that has to be executed along with allowed tolerance values for final joint positions and execution time. Those tolerances are used to determine whether the trajectory execution was successful or not.
+
+\item \path{follow_joint_trajectory/feedback}
+
+The controller uses this topic to continuously provide feedback about the current execution status. The feedback message contains information about the trajectory point the controller is currently processing.
+
+\item \path{follow_joint_trajectory/result}
+
+After finishing the trajectory execution the controller publishes the result to this topic. If the final joint positions lie within the specified tolerance values and the time constraints were met, the trajectory execution is considered to be successful. The message contains a status code and a status message.
+
+\end{itemize}
+As the existing control interface of the IIS robot components does not fulfil these requirements, it was necessary to implement an additional ROS node that is capable of executing the generated trajectories, using the existing infrastructure. There fore we utilized the functionality of the \path{ros_control} stack\footnote{http://wiki.ros.org/ros\_control}. Those packages are created to integrate and control robot hardware in a generalized way, facilitating the usage of existing controllers on different robots. The following section gives an overview about the \path{ros_control} stack.
 
 \subsection{ROS control stack overview}
 
@@ -230,54 +270,54 @@ The \emph{ControllerManager} is responsible to maintain a set of controllers. It
 
 \subsection{Designing the hardware adapter}
 
-The \emph{hardware adapter} is an independent ROS node that acts as connection between MoveIt and the simulated or real hardware. It provides the necessary infrastructure for using generic controllers from the \texttt{ros\_control} packages. Figure \ref{fig:hardware_adapter} gives an overview about the hardware adapter architecture. The \emph{UibkRobotHW} is a subclass of \emph{RobotHW} and represents the connection to the robot. It maintains the complete state of all joints in the connected components. Joints are represented by the \emph{Joint} datatype, consisting of a unique joint name, state parameters and a commanded target position. For controllers, the \emph{UibkRobotHW} class provides a \emph{JointStatesInterface} and a \emph{JointPositionInterface}. Active controllers use those interfaces to access the current state and for commanding target positions. 
-
-The \emph{UibkRobotHW} utilizes a set of \emph{JointStateAdapters}, each one representing a connection to one specific robot component. During the control cycle the \emph{JointStateAdapters} read current joint states from the appropriate topics and send commanded values back to the hardware.
 \begin{figure}[h]
 	\centering
   	\includegraphics[width=1.0\textwidth]{images/hardware_adapter.jpg}
 	\caption{Hardware adapter architecture}
 	\label{fig:hardware_adapter}
 \end{figure}
-The \emph{JointStateAdapters} are created during initialization, based on the configuration settings. After creation, each \emph{JointStateAdapter} waits a certain amount of time for an initial joint states message. If it does not receive such a message before timeout, it will automatically shut down for safety reasons and report an error. This is very important as the \emph{JointStateAdapter} imediately begins to send joint positions after initialization. The position to be sent is initially the currently known position, as long as no other values have been commanded by the controllers. Therefore the initial position always has to be known, otherwise dangerous and rapid robot motions could occur on startup. The adapter configuration happens via the parameter server. Available configuration parameters are:
+
+The \emph{hardware adapter} is an independent ROS node that we implemented to act as connection between MoveIt and the simulated or real hardware. It provides the necessary infrastructure for using generic controllers from the \path{ros_control} packages. Figure \ref{fig:hardware_adapter} gives an overview about the hardware adapter architecture. The \path{UibkRobotHW} is a subclass of \path{RobotHW} and represents the connection to the robot. It maintains the complete state of all joints in the connected robot components. Joints are represented by the \path{Joint} datatype, consisting of a unique joint name, state parameters and a commanded target position. For controllers, the \path{UibkRobotHW} class provides a \path{JointStatesInterface} and a \path{JointPositionInterface}. Active controllers use those interfaces to access the current state and for commanding target positions. \\ 
+
+The \path{UibkRobotHW} utilizes a set of \path{JointStateAdapters}. A \path{JointStateAdapter} represents the connection to one specific robot component, e.g. a robot arm or a gripper. During the control cycle the \path{JointStateAdapters} read current joint states from the appropriate topics and send commanded values back to the hardware. Our solution allows to configure the utilized topic names via the parameter server.\\
+
+On hardware adapter startup, an instance of the \path{UibkRobotHW} class is created and initialized by using the corresponding class method. It then searches the parameter server for the a parameter named \path{hardware_adapter/adapter_list}. This parameter specifies the names of the \path{JointStateAdapters} that need to be created. The \path{UibkRobotHW} class then creates a \path{JointStateAdapter} instance for each name it finds in the configured adapter list, based on the provided configuration settings. Listing \ref{lst:adapter_config} shows the current content of the corresponding configuration file. As the topic names, used by the \path{JointStateAdapters} can be configured it becomes clear that the hardware adapter is able to interact with the simulator and the real robot as well, as both of them provide exactly the same ROS interface. Available configuration parameters are:
 
 \begin{itemize}
 
-\item \textbf{\texttt{adapter\_list}} \
+\item \textbf{\path{adapter_list}} \\
+Contains a list of all \path{JointStatesAdapters} that have to be created. For each adapter name mentioned in this list a detailed configuration is required. The subsequent parameters have to be configured for each single adapter.
 
-Contains a list of all \emph{JointStatesAdapters} that have to be created. For each adapter name mentioned in this list a detailed configuration is required. The subsequent parameters have to be configured for each single adapter.
+\item \textbf{\path{joint_state_topic}} \\
+The name of the topic where a specific adapter listens for joint states. The expected message type  \path{sensor_msgs/JointStates}. This parameter is mandatory.
 
-\item \textbf{\texttt{joint\_state\_topic}} \
-
-The name of the topic where a specific adapter listens for joint states. The expected message type  \texttt{sensor\_msgs/JointStates}. This parameter is mandatory.
-
-\item \textbf{\texttt{readonly}} \
-
+\item \textbf{\path{readonly}} \\
 This parameter is optional. If true then the adapter will only listen for joint states but not publish commanded values.
 
-\item \textbf{\texttt{joint\_command\_topic}} \
+\item \textbf{\path{joint_command_topic}} \\
+The name of the topic the adapter should use to publish the commanded values to. The expected message type is \path{std_msgs/Float64MultiArray}. This parameter is mandatory if the adapter is not configured to be read only.
 
-The name of the topic the adapter should use to publish the commanded values to. The expected message type is \texttt{std\_msgs/Float64MultiArray}. This parameter is mandatory if the adapter is not configured to be read only.
-
-\item \textbf{\texttt{joints}} \
-
+\item \textbf{\path{joints}} \\
 A list of joint names that should be controlled by the adapter. The order in this list also determines the order of the values in the published message.
 
-\item \textbf{\texttt{joint\_name\_prefix}} \
-
-This parameter can be used to be able to uniquely identify joints. For example both arms are using the same joint names (\texttt{arm\_0\_joint}, \texttt{arm\_1\_joint},\ldots). But in a URDF model,  joint names have to be globally unique. Therefore the prefix can be used to prepend the original name to achieve uniqueness. A value of \texttt{right\_} for example will lead to the joint names \texttt{right\_arm\_0\_joint}, \texttt{right\_arm\_1\_joint},\ldots).
+\item \textbf{\path{joint_name_prefix}} \\
+This parameter can be used to be able to uniquely identify joints. For example both arms are using the same joint names (\path{arm_0_joint}, \path{arm_1_joint},\ldots). But in a URDF model, joint names have to be globally unique. Therefore the prefix can be used to prepend the original name to achieve uniqueness. A prefix value of \path{right_} for example will lead to the joint names \path{right_arm_0_joint}, \path{right_arm_1_joint},\ldots).
 
 \end{itemize}
 
-An example configuration can be found in Listing\ref{lst:adapter_config}. As the topic names, used by the \emph{JointStateAdapters} can be configured freely, the hardware adapter is able to interact with the simulator and the real robot as well, as both of them provide exactly the same ROS interface.
+After instantiation, each \path{JointStateAdapter} waits a certain amount of time for a message containing the initial joint states on its configured joint states topic. If it does not receive such a message before timeout, it will automatically shut down for safety reasons and report an error. This is very important as the \path{JointStateAdapter} imediately begins to send joint positions after initialization. The position to be sent is initially the currently known position, as long as no other values have been commanded by the controllers. Therefore the initial position always has to be known, otherwise dangerous and rapid robot motions could occur on startup.
 
 \begin{minipage}{\linewidth}
 \lstinputlisting[caption={Adapter configuration for left arm and gripper}, label=lst:adapter_config]{code/adapter_config.yaml}
 \end{minipage} \\
 
-During hardware adapter startup an instance of the \emph{UibkRobotHW} and \emph{ControllerManager} is created from configuration. As the control loop must not be interrupted by ROS callback functions, it is launched in a separate thread after completing initialization, using a loop rate of 100hz. On each iteration the exact time since the last step is calculated. The \emph{ControllerManager} then updates all registered controllers based on current state and time since last iteration. After handling the controllers, the \emph{JointStatesAdapters} are forced to send the commanded values to the hardware. The ROS callback functions are handled in the original thread.\\
+After the previously described initialization process a \path{ControllerManager} instance is created and the control loop is started. As the control loop must not be interrupted by ROS callback functions, it is launched in a separate thread. On each iteration the exact time since the last step is calculated. The \path{ControllerManager} then updates all registered controllers based on the time since last iteration. After handling the controllers, \path{JointStatesAdapters} are forced to send the commanded values to the hardware. This is done using the \path{publish} function of the \path{UibkRobotHW} class. Listing \ref{lst:control_loop} shows the code of the control loop thread. \\
 
-After starting the hardware adapter, the required controllers have to be loaded and started. This is usually done, by using the corresponding ROS services, provided by a running \emph{ControllerManager} instance, but the \texttt{controller\_manager} package contains a tool named \texttt{spawner} that simplifies the starting process. The configuration of each controller has to reside on the parameter server. Utilized controllers are the \emph{JointTrajectoryController} and the \emph{JointStateController}. The \emph{JointTrajectoryController} provides the required \emph{FollowJointTrajectory} action interface for a group of joints. For each robot component a separate \emph{JointTrajectoryController} is used. The \emph{JointStateController} publishes the collected states of all robot joints at once to the \texttt{joint\_states} topic, which is used by MoveIt to monitor the robot configuration.
+\begin{minipage}{\linewidth}
+\lstinputlisting[caption={Control loop thread}, label=lst:control_loop, style=customc]{code/control_loop.cpp}
+\end{minipage} \\
+
+After launching the hardware adapter node, the required controllers have to be loaded and started. This is usually done, by using the corresponding ROS services, provided by a running \path{ControllerManager} instance, but the \path{controller_manager} package contains a tool named \path{spawner} that simplifies the starting process. The configuration of each controller has to reside on the parameter server. Utilized controllers are the \path{JointTrajectoryController} and the \path{JointStateController}. The \path{JointTrajectoryController} provides the required \path{FollowJointTrajectory} action interface for a group of joints. For each robot component a separate \path{JointTrajectoryController} is used. The \path{JointStateController} publishes the collected states of all robot joints at once to the \path{joint_states} topic, which is used by the \path{move_group} node to monitor the robot state.
 
 \subsection{Launching the hardware adapter}
 \label{sec:launch_moveit}
