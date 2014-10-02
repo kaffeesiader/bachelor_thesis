@@ -61,13 +61,12 @@ language=C++
 \maketitle
 
 \chapternn{Abstract}
-Der erste Teil dieser Arbeit befasst sich mit der realitätsgetreuen Nachbildung der Versuchsanordnung im IIS-Lab in einer Simulationsumgebung und der Implementierung der entsprechenden Steuerungsschnittstelle. Anschließend wird die Integration und Konfiguration des Motion-Planning Frameworks MoveIt sowohl für den Simulator, als auch für den realen Roboter erläutert. Am Beispiel eines Referenz - 'Pick and Place' Tasks wird anschließend die Verwendung der Planungstools erläutert.
-Messungen (Kollisionen, IK-Tests, Vergleich verschiedener Planungsalgorithmen).
-MoveIt Konfigurationen für unterschiedliche Setups können sowohl für den Simulator, als auch mit dem richtigen Roboter verwendet werden.
+The first part of this thesis describes the design and implementation of a custom simulation solution for the robot setup in the IIS Lab. It describes the necessary modelling steps for the resulting simulation models and the implementation of a proper control interface based on the Robot Operating System (ROS). The resulting solution provides the same control interface as the real robot and can therefore be used to test high-level control code on the simulator before utilizing it on the real robot. Therefore it was necessary to determine the volumetric, kinematic and dynamic properties of the involved robot components and their exact placement relative to each other. The second part describes the integration of the motion planning framework MoveIt into the existing setup. The aim of this framework is to plan and execute complex robot motions without colliding with the environment. The proper functioning of the planning tools and the simulator is then shown on the example of a benchmark pick and place task that is planned and executed on the simulator and the real robot as well.
+
 
 \chapternn{Acknowledgements}
-Emre Ugur (Betreuer, Ideen)
-Alex Rietzler (Transformationen, Torso Modell, Technische Daten SDH)
+First I want to thank my supervisor Emre Ugur who always had an open ear for my questions and greatly supported this project with his ideas. I also want to thank Alex Rietzler for providing technical assistance and giving useful feedback. 
+
 Simon Hangl (Kukie Schnittstelle)
 Simon Haller (Technische Hilfestellung, System, Git)
 All other members of the IIS team that frequently provided very useful feedback.

@@ -1,0 +1,79 @@
+right_sdh:
+  type: "position_controllers/JointTrajectoryController"
+  joints:
+      - right_sdh_knuckle_joint 
+      - right_sdh_finger_12_joint
+      - right_sdh_finger_13_joint
+      - right_sdh_finger_22_joint
+      - right_sdh_finger_23_joint
+      - right_sdh_thumb_2_joint
+      - right_sdh_thumb_3_joint
+      
+  constraints:
+      goal_time: 2.0                   # Defaults to zero
+      stopped_velocity_tolerance: 0.1  # Defaults to 0.01
+      right_sdh_knuckle_joint:
+        trajectory: 0 
+        goal: 0.2       
+      right_sdh_finger_12_joint:
+        trajectory: 0 
+        goal: 0.2       
+      right_sdh_finger_13_joint:
+        trajectory: 0 
+        goal: 0.2       
+      right_sdh_finger_22_joint:
+        trajectory: 0 
+        goal: 0.2       
+      right_sdh_finger_23_joint:
+        trajectory: 0 
+        goal: 0.2       
+      right_sdh_thumb_2_joint:
+        trajectory: 0 
+        goal: 0.2       
+      right_sdh_thumb_3_joint:
+        trajectory: 0 
+        goal: 0.2       
+
+  state_publish_rate:  50 # Defaults to 50
+  action_monitor_rate: 20 # Defaults to 20
+  #hold_trajectory_duration: 0 # Defaults to 0.5
+  
+left_sdh:
+  type: "position_controllers/JointTrajectoryController"
+  joints:
+      - left_sdh_knuckle_joint 
+      - left_sdh_finger_12_joint
+      - left_sdh_finger_13_joint
+      - left_sdh_finger_22_joint
+      - left_sdh_finger_23_joint
+      - left_sdh_thumb_2_joint
+      - left_sdh_thumb_3_joint
+
+  constraints:
+      goal_time: 2.0                   # Defaults to zero
+      stopped_velocity_tolerance: 0.1  # Defaults to 0.01
+      left_sdh_knuckle_joint:
+        trajectory: 0 
+        goal: 0.2       
+      left_sdh_finger_12_joint:
+        trajectory: 0 
+        goal: 0.2       
+      left_sdh_finger_13_joint:
+        trajectory: 0 
+        goal: 0.2       
+      left_sdh_finger_22_joint:
+        trajectory: 0 
+        goal: 0.2       
+      left_sdh_finger_23_joint:
+        trajectory: 0 
+        goal: 0.2       
+      left_sdh_thumb_2_joint:
+        trajectory: 0 
+        goal: 0.2       
+      left_sdh_thumb_3_joint:
+        trajectory: 0 
+        goal: 0.2       
+
+  state_publish_rate:  50 # Defaults to 50
+  action_monitor_rate: 20 # Defaults to 20
+  #hold_trajectory_duration: 0 # Defaults to 0.5

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  1 OCT 2014 18:36
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.4.12)  2 OCT 2014 09:29
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -1046,12 +1046,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 282--283
  []
 
 [46 <./images/hardware_adapter.jpg>] (./code/adapter_config.yaml)
-Overfull \hbox (17.0pt too wide) in paragraph at lines 310--313
+Overfull \hbox (17.0pt too wide) in paragraph at lines 307--310
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 310--313
+Underfull \hbox (badness 10000) in paragraph at lines 307--310
 
  []
 
@@ -1059,7 +1059,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 310--313
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [47]
-Underfull \hbox (badness 10000) in paragraph at lines 314--315
+Underfull \hbox (badness 10000) in paragraph at lines 311--312
 
  []
 
@@ -1068,35 +1068,35 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [48]
 (./code/control_loop.cpp)
-Overfull \hbox (17.0pt too wide) in paragraph at lines 316--319
+Overfull \hbox (17.0pt too wide) in paragraph at lines 313--316
 []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 316--319
+Underfull \hbox (badness 10000) in paragraph at lines 313--316
 
  []
 
 
-Overfull \hbox (56.83975pt too wide) in paragraph at lines 320--321
+Overfull \hbox (56.83975pt too wide) in paragraph at lines 317--318
 \T1/lmtt/m/n/10.95 JointStateController$\T1/lmr/m/n/10.95 . The $\T1/lmtt/m/n/1
 0.95 JointTrajectoryController$ \T1/lmr/m/n/10.95 pro-vides the re-quired $\T1/
 lmtt/m/n/10.95 FollowJointTrajectory$
  []
 
 
-Overfull \hbox (36.49133pt too wide) in paragraph at lines 320--321
+Overfull \hbox (36.49133pt too wide) in paragraph at lines 317--318
 \T1/lmr/m/n/10.95 ac-tion in-ter-face for a group of joints. For each robot com
 -po-nent a sep-a-rate $\T1/lmtt/m/n/10.95 JointTrajectoryController$
  []
 
 [49]
-Underfull \hbox (badness 10000) in paragraph at lines 329--330
+Underfull \hbox (badness 10000) in paragraph at lines 326--327
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 335--336
+Underfull \hbox (badness 10000) in paragraph at lines 332--333
 
  []
 
@@ -1270,9 +1270,6 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
  10596 strings out of 495061
@@ -1397,7 +1394,7 @@ ic/lm/lmsso9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share
 lmsy9.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/
 fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.
 pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (90 pages, 6152793 bytes).
+Output written on thesis.pdf (90 pages, 6152140 bytes).
 PDF statistics:
  1810 PDF objects out of 2073 (max. 8388607)
  760 named destinations out of 1000 (max. 500000)
