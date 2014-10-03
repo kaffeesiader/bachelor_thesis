@@ -3,7 +3,7 @@
 \chapter{Robot simulation}
 \label{chap:simulation}
 
-This chapter focuses on the simulation part of the thesis. The objective is the creation of a simulation model, particularly designed for the IIS lab robot setup. This model needs to reflect the properties of the robot arms and the grippers as good as possible and provide physically similar behaviour. Certainly the simulated components have to provide the same control interface as their real counterparts, allowing to test and optimize control code on the simulator before utilizing it on the real robot. Preferably, the control code sees no difference about on which instance it is executed. The requirements to such a solution can be summarized as follows: 
+This chapter focuses on the simulation part of the thesis. The objective is the creation of a simulation model, particularly designed for the IIS lab robot setup. This model needs to reflect the properties of the robot arms and the grippers as good as possible and provide physically similar behaviour. Certainly the simulated components have to provide the same control interface as their real counterparts, allowing to test and optimize control code on the simulator before utilizing it on the real robot. Preferably the control code does not differentiate between the two runtime environments. The requirements to such a solution can be summarized as follows: 
 
 \begin{itemize}
 
@@ -17,7 +17,7 @@ The simulation solution has to provide exactly the same ROS control interface as
 The utilized simulation platform has to provide a graphical user interface that allows to visualize the motions of the robot and its interaction with the environment. Possibly accidental collisions of  robot parts have to be registered and should also be visualized.
 
 \item
-In order to be used by as many people as possible, it is very important that the solution is really easy to use and does not require a long lead time. Therefore we put particular focus on usability and documentation.
+In order to be used by as many people as possible, it is very important that the solution is really easy to use and does not require a long training. Therefore we put particular focus on usability and documentation.
 
 \end{itemize}
 
@@ -25,11 +25,11 @@ The following sections explain the realization of this simulation solution step 
 
 \section{Introduction}
 
-Realistic simulation requires models that exactly describe the physical properties of the involved objects. A robot is formed from rigid elements called \emph{links}, connected by \emph{joints}. A link is a 3 dimensional body with a specific mass and moment of inertia. The texture of its surface depends on the utilized material. Joints are the flexible connections between the links. They are usually actuated by motors with a certain strength. Properties like the velocity of the robot's motions or the maximum possible payload it is able to bear highly depend on the strength of those joint motors. The sum of those physical parameters describes the dynamic properties of the robot. \\
+Realistic simulation requires models that exactly describe the physical properties of the involved objects. A robot is formed from rigid elements called \emph{links}, connected by \emph{joints}. A link is a three-dimensional body with a specific mass and moment of inertia. The texture of its surface depends on the utilized material. Joints are the flexible connections between the links. They are usually actuated by motors with a certain strength. Properties like the velocity of the robot's motions or the maximum possible payload it is able to bear depend on the strength of its motors. The sum of those physical parameters describes the dynamic properties of the robot. \\
 
 The robot is used to perform motions and interact with objects within its environment. If the robot arm collides with an object it produces a collision reaction. The nature of this collision reaction depends on the physical parameters of the robot and the involved object. If the object is immovable, the robot motion will be stopped at a certain point. If the robot tries to grasp and lift a heavy object, it might slip through its fingers because the surface of the object may be to smooth and the gripper is not able to apply enough force to hold the object. \\
 
-The required solution should be able to provide a realistic simulation of such dynamic interactions and reflect the physical behaviour of the robot as good as possible. Therefore the utilized simulation platform has to make use of a \emph{physics engine}. A physics engine is a software component, that is capable of computing parameters of physical processes based on the dynamic properties of the involved objects. Examples for such engines are the Open Dynamics Engine\footnote{http://www.ode.org} (ODE) and Bullet physics\footnote{http://bulletphysics.org}. We selected the simulation platform by taking the following criteria into account:
+The required solution should be able to provide a realistic simulation of such dynamic interactions and reflect the physical behaviour of the robot as good as possible. Therefore the utilized simulation platform has to make use of a \emph{physics engine}. A physics engine is a software component, that is capable of computing parameters of physical processes based on the dynamic properties of the involved objects. Examples of such engines are the Open Dynamics Engine\footnote{http://www.ode.org} (ODE) and Bullet physics\footnote{http://bulletphysics.org}. We selected the simulation platform by taking the following criteria into account:
 
 \begin{itemize}
 \item
@@ -70,7 +70,7 @@ A joint is a flexible connection between two rigid parts of a robot. All the joi
 \begin{itemize}
 
 \item \textbf{Torque/force mode} \\
-The behaviour of a joint in \emph{torque/force} mode is simulated by the physics engine, based on the specified motor limits. The joint is operated by simulated controller that allows to set a target position. The controller then actuates the joint towards the commanded target position. This is the most realistic control mode as the dynamic parameters of the joint motor and the connected bodies are taken into account.
+The behaviour of a joint in \emph{torque/force} mode is simulated by the physics engine, based on the specified motor limits. The joint is operated by a simulated controller that allows to set a target position. The controller then actuates the joint towards the commanded target position. This is the most realistic control mode as the dynamic parameters of the joint motor and the connected bodies are taken into account.
 
 \item \textbf{Inverse kinematics mode} \\
 A joint in \emph{inverse kinematics mode} is controlled by V-Rep's IK calculation module. The configuration option \emph{hybrid operation} specifies, that the dynamic parameters of the joint are also taken into account.
@@ -82,7 +82,7 @@ Operating a joint in \emph{dependent mode} means that its position depends on th
 The configuration of the angular joint limits is defined based on a minimum position and the maximum possible opening angle. 
 
 \item \textbf{Vision sensor} \\
-A vision sensor is a simulated image capturing device. Each vision sensor captures images depending on its location within the scene and the configured opening angle and resolution. It is able to produce sequences of RGB and depth images as well.
+A vision sensor is a simulated image capturing device. Each vision sensor captures images depending on its location within the scene and the configured opening angle and resolution. It is able to produce sequences of RGB and depth images.
 
 \item \textbf{Force sensor} \\
 A force sensor in V-Rep is used to rigidly connect two non-static, respondable shapes. The force sensor then measures the linear forces and and angular torques that act upon this connection. It is also possible to define a maximum force the connection is able to bear. When this maximum value is exceeded, the connection will break.
@@ -96,7 +96,7 @@ Groups of scene objects can be organized in \emph{collections} and treated as on
 
 Scene objects can be loosely arranged within the scene hierarchy or be part of a \emph{model}. A model is a subtree of elements within this hierarchy that logically belong together, as they form a specific object like a robot arm or a table. The root element of this model tree is called the \emph{model base}. Models can be saved in model files and therefore be reused in various different scenes. Robot models are composed from rigid bodies called \emph{links}, connected by joints that allow to actuate the flexible parts of the simulated robot component. Each link is usually represented by two different shapes. The first one forms the visual geometry and is usually a non-respondable, complex shape. The second shape forms the collision geometry which has to be a simplified approximation of the visual geometry, composed from groups of primitive shapes. That shape states the respondable part of the robot link as it is seen by the physics engine and needs therefore appropriate configuration of the dynamic parameters. That part is usually invisible but very important as it applies realistic behaviour to the model and allows it to interact with other respondable objects within the scene. Without respondable parts, the model would just move through other bodies as only respondable shapes are able to produce collision reactions. \\
 
-This separation into visual and respondable part is necessary because V-Rep and the utilized physics engines are not able to use arbitrarily complex shapes for dynamics calculations. Utilized meshes have to fulfil at least the \emph{convex} criteria\footnote{A line between any two vertices of the mesh lies completely within the mesh boundaries}, but the V-Rep documentation recommends to use groups of primitive shapes for the collision geometry to increase the simulation performance. The V-Rep scene editor provides a special \emph{shape edit mode} that allows to edit and simplify meshes and to extract different types of primitive shapes from a selection of vertices. The shape edit mode can be entered by selecting the desired shape and then click the item \texttt{Tools -> shape edition} from the menu bar or the corresponding tool bar button.
+This separation into visual and respondable parts is necessary because V-Rep and the utilized physics engines are not able to use arbitrarily complex shapes for dynamics calculations. Utilized meshes have to fulfil at least the \emph{convex} criteria\footnote{A line between any two vertices of the mesh lies completely within the mesh boundaries}, but the V-Rep documentation recommends to use groups of primitive shapes for the collision geometry to increase the simulation performance. The V-Rep scene editor provides a special \emph{shape edit mode} that allows to edit and simplify meshes and to extract different types of primitive shapes from a selection of vertices. The shape edit mode can be entered by selecting the desired shape and then click the item \texttt{Tools -> shape edition} from the menu bar or the corresponding tool bar button.
 
 \begin{figure}[ht]
 	\centering
@@ -108,11 +108,11 @@ This separation into visual and respondable part is necessary because V-Rep and 
 
 \section{Designing the simulation scene}
 
-This section explains in detail the structure of the simulation scene and the contained models. The setup contains three types of robot component - the Kuka LWR4+ robot arm, the Schunk SDH-2 gripper and the Kinect camera. For each one of them, a simulation model was required in order to be able to build up the scene. V-Rep ships with realistic and fully functional model for the Kuka arm and also for the Kinect camera. But as there was no model for the Schunk SDH-2 robot hand available, we had to create it from scratch. The necessary steps of this modelling process are explained in the next section.
+This section explains in detail the structure of the simulation scene and the contained models. The setup contains three types of robot components - the Kuka LWR4+ robot arm, the Schunk SDH-2 gripper and the Kinect camera. For each one of them, a simulation model was required in order to be able to build up the scene. V-Rep ships with a realistic and fully functional model for the Kuka arm and the Kinect camera. But as there was no model for the Schunk SDH-2 robot hand available, we had to create it from scratch. The necessary steps of this modelling process are explained in the next section.
 
 \subsection{Modelling the Schunk SDH-2 gripper}
 
-Figure \ref{fig:sdh_sheet} shows the Schunk SDH-2 hand. The gripper has 3 fingers, each one containing two modular joints. The joints located closer to the wrist are called the \emph{proximal} finger joints whereas the joints, actuating the finger tips are called the \emph{distal} finger joints. The joints 1a and 1b in figure \ref{fig:sdh_sheet} can be rotated along their vertical axis though their rotation angles are codependent. That means if one finger rotates to the left, the other one is rotated to the right for the same angle, actually adding one additional degree of freedom. Those two joints are called the \emph{pivoting} joints. \\
+Figure \ref{fig:sdh_sheet} shows the Schunk SDH-2 hand. The gripper has 3 fingers, each one containing two modular joints. The joints located closer to the wrist are called the \emph{proximal} finger joints whereas the joints, actuating the finger tips are called the \emph{distal} finger joints. The joints 1a and 1b in figure \ref{fig:sdh_sheet} can be rotated along their vertical axis though their rotation angles are codependent. That means if one finger rotates to the left, the other one is rotated to the right by the same angle, actually adding one additional degree of freedom. Those two joints are called the \emph{pivoting} joints. \\
 
 \begin{figure}[t]
 	\centering
