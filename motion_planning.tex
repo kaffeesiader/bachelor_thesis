@@ -277,7 +277,7 @@ The \emph{ControllerManager} is responsible to maintain a set of controllers. It
 	\label{fig:hardware_adapter}
 \end{figure}
 
-The \emph{hardware adapter} is an independent ROS node that we implemented to act as connection between MoveIt and the simulated or real hardware. It provides the necessary infrastructure for using generic controllers from the \path{ros_control} packages. Figure \ref{fig:hardware_adapter} gives an overview about the hardware adapter architecture. The \path{UibkRobotHW} is a subclass of \path{RobotHW} and represents the connection to the robot. It maintains the complete state of all joints in the connected robot components. Joints are represented by the \path{Joint} datatype, consisting of a unique joint name, state parameters and a commanded target position. For controllers, the \path{UibkRobotHW} class provides a \path{JointStatesInterface} and a \path{JointPositionInterface}. Active controllers use those interfaces to access the current state and for commanding target positions. \\ 
+The \emph{hardware adapter} is an independent ROS node that we implemented to act as connection between MoveIt and the simulated or real hardware. The code and necessary configuration and launch files are located in the \path{uibk_moveit_adapter} package. The solution provides the necessary infrastructure for using generic controllers from the \path{ros_control} packages. Figure \ref{fig:hardware_adapter} gives an overview about the hardware adapter architecture. The \path{UibkRobotHW} is a subclass of \path{RobotHW} and represents the connection to the robot. It maintains the complete state of all joints in the connected robot components. Joints are represented by the \path{Joint} datatype, consisting of a unique joint name, state parameters and a commanded target position. For controllers, the \path{UibkRobotHW} class provides a \path{JointStatesInterface} and a \path{JointPositionInterface}. Active controllers use those interfaces to access the current state and for commanding target positions. \\ 
 
 The \path{UibkRobotHW} utilizes a set of \path{JointStateAdapters}. A \path{JointStateAdapter} represents the connection to one specific robot component, e.g. a robot arm or a gripper. During the control cycle the \path{JointStateAdapters} read current joint states from the appropriate topics and send commanded values back to the hardware. Our solution allows to configure the utilized topic names via the parameter server.\\
 
@@ -314,29 +314,39 @@ After instantiation, each \path{JointStateAdapter} waits a certain amount of tim
 After the previously described initialization process a \path{ControllerManager} instance is created and the control loop is started. As the control loop must not be interrupted by ROS callback functions, it is launched in a separate thread. On each iteration the exact time since the last step is calculated. The \path{ControllerManager} then updates all registered controllers based on the time since last iteration. After handling the controllers, \path{JointStatesAdapters} are forced to send the commanded values to the hardware. This is done using the \path{publish} function of the \path{UibkRobotHW} class. Listing \ref{lst:control_loop} shows the code of the control loop thread. \\
 
 \begin{minipage}{\linewidth}
-\lstinputlisting[caption={Control loop thread}, label=lst:control_loop, style=customc]{code/control_loop.cpp}
+\lstinputlisting[caption={Control loop thread}, label=lst:control_loop]{code/control_loop.cpp}
 \end{minipage} \\
 
 After launching the hardware adapter node, the required controllers have to be loaded and started. This is usually done, by using the corresponding ROS services, provided by a running \path{ControllerManager} instance, but the \path{controller_manager} package contains a tool named \path{spawner} that simplifies the starting process. The configuration of each controller has to reside on the parameter server. Utilized controllers are the \path{JointTrajectoryController} and the \path{JointStateController}. The \path{JointTrajectoryController} provides the required \path{FollowJointTrajectory} action interface for a group of joints. For each robot component a separate \path{JointTrajectoryController} is used. The \path{JointStateController} publishes the collected states of all robot joints at once to the \path{joint_states} topic, which is used by the \path{move_group} node to monitor the robot state.
 
+\begin{minipage}{\linewidth}
+\lstinputlisting[caption={Configuration of arm controllers (\texttt{arm\_controllers.yaml})}, label=lst:arm_controller]{code/arm_controllers.yaml}
+\end{minipage} \\
+
+\begin{minipage}{\linewidth}
+\lstinputlisting[caption={Launching controllers (\texttt{controllers.launch})}, label=lst:control_loop, style=customxml]{code/controllers.launch}
+\end{minipage} \\
+
 \subsection{Launching the hardware adapter}
 \label{sec:launch_moveit}
 
-The file \texttt{hardware\_adapter.launch}, located in the \texttt{uibk\_moveit\_adapter} package was created to handle the necessary configuration parameter upload and launch the hardware adapter node for the simulator and the real robot as well. As can be seen in Listing\ref{lst:adapter_config}, the configured topic names for the \emph{JointStateAdapters} are defined, using \emph{relative} graph resource names (i.e. without trailing slash). The required instance is than accessed by simply shifting the node into \texttt{simulation} or \texttt{real} namespace. This is realized, specifying the \texttt{config\_name} parameter of the launch file. The command line statement
+The file \path{hardware_adapter.launch}, located in the \path{uibk_moveit_adapter} package was created to handle the necessary configuration parameter upload and launch the hardware adapter node for the simulator and the real robot as well. As can be seen in listing \ref{lst:adapter_config}, the configured topic names for the \path{JointStateAdapters} are defined, using \emph{relative} graph resource names (i.e. without trailing slash). The required instance is than accessed by simply shifting the node into \path{simulation} or \path{real} namespace. This is realized, specifying the \path{config_name} parameter of the launch file. The command line statement
 \begin{verbatim}
 roslaunch uibk_moveit_adapter hardware_adapter.launch config_name:=simulation
 \end{verbatim}
-launches the hardware adapter in \texttt{simulation} namespace.\\
+launches the hardware adapter in \texttt{simulation} namespace. Listing \ref{lst:adapter_launch} shows the content of the launch file. After starting the hardware adapter node, the required controllers are loaded and started. The node provides feedback information about the state and errors during startup process on the console output. It is crucial that the joint state topics of simulator or real robot are available before launching the hardware adapter node, otherwise it will not be able to work because of missing initial joint states. After successful startup, the additional controller topics can be found in the corresponding namespace.
 
-After launching the hardware adapter node, the required controllers are loaded and started. The node provides feedback information about the state and errors during startup process on the console output. It is crucial that the joint state topics of simulator or real robot are available before launching the hardware adapter node, otherwise it will not be able to work because of missing initial joint states. After successful startup, the additional controller topics can be found in the corresponding namespace.
+\begin{minipage}{\linewidth}
+\lstinputlisting[caption={Launching the hardware adapter (\texttt{hardware\_adapter.launch})}, label=lst:adapter_launch, style=customxml]{code/hardware_adapter.launch}
+\end{minipage} \\
 
 \section{Adjusting the MoveIt configuration}
 
-The prerequisites are now made for connecting MoveIt to the (simulated or real) robot. The last remaining step is to adjust the MoveIt configuration for establishing a connection to the \emph{FollowJointTrajectory} controllers. Therefore the configuration file \path{controllers.yaml} was created in the \path{uibk_robot_moveit_config} package. It contains a list, describing the available controllers. Each controller description contains the name of the controller, it's action namespace, the controller type and a list, containing the names of the controlled joints.\\
+The prerequisites are now made for connecting MoveIt to the (simulated or real) robot. The last remaining step is to adjust the MoveIt configuration for establishing a connection to the \path{FollowJointTrajectory} controllers. Therefore we created the configuration file \path{controllers.yaml} in the \path{uibk_robot_moveit_config} package. It contains a list, describing the controllers that are made available by the hardware adapter. Each controller description contains the name of the controller, it's action namespace, the controller type and a list, containing the names of the controlled joints.\\
 
-For starting MoveIt, the launch file \path{moveit_planning_execution.launch} was created. This file is intended to launch a \texttt{move\_group} node either for simulated or real robot, together with the corresponding hardware adapter. The namespace can be selected using a boolean parameter named \texttt{simulation}. The statement
+For starting MoveIt we created the launch file \path{moveit_planning_execution.launch}. The aim of this file is to launch a \path{move_group} node either for simulated or real robot, together with the corresponding hardware adapter. The namespace can be selected using a boolean parameter named \path{simulation}. The statement
 {\small 
 \begin{verbatim}
 roslaunch uibk_robot_moveit_config moveit_planning_execution.launch simulation:=false
 \end{verbatim}}
-launches a MoveIt configuration, connecting the \texttt{move\_group} instance to the real robot. The launch file also starts RViz configured with the motion planning plugin. This is used for visualizing the planned trajectories and can also be used to test the connection to the robot by making planning requests and execute the resulting trajectories.
+launches a MoveIt configuration, connecting the \path{move_group} instance to the real robot. The launch file also starts RViz configured with the motion planning plugin. This is used for visualizing the planned trajectories and can also be used to test the connection to the robot by making planning requests and execute the resulting trajectories.

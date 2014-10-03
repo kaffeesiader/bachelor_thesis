@@ -10,33 +10,8 @@ right_arm:
       - right_arm_6_joint
       
   constraints:
-      goal_time: 2.0                   # Defaults to zero
-      stopped_velocity_tolerance: 0.1  # Defaults to 0.01
-      right_arm_0_joint:
-        trajectory: 0 
-        goal: 0.02       
-      right_arm_1_joint:
-        trajectory: 0 
-        goal: 0.02       
-      right_arm_2_joint:
-        trajectory: 0 
-        goal: 0.02       
-      right_arm_3_joint:
-        trajectory: 0 
-        goal: 0.02       
-      right_arm_4_joint:
-        trajectory: 0 
-        goal: 0.02       
-      right_arm_5_joint:
-        trajectory: 0 
-        goal: 0.02       
-      right_arm_6_joint:
-        trajectory: 0 
-        goal: 0.02       
-
-  state_publish_rate:  50 # Defaults to 50
-  action_monitor_rate: 20 # Defaults to 20
-  #hold_trajectory_duration: 0 # Defaults to 0.5
+      goal_time: 2.0
+      stopped_velocity_tolerance: 0.1
   
 left_arm:
   type: "position_controllers/JointTrajectoryController"
@@ -50,30 +25,5 @@ left_arm:
       - left_arm_6_joint
       
   constraints:
-      goal_time: 2.0                   # Defaults to zero
-      stopped_velocity_tolerance: 0.1  # Defaults to 0.01
-      left_arm_0_joint:
-        trajectory: 0 
-        goal: 0.02       
-      left_arm_1_joint:
-        trajectory: 0 
-        goal: 0.02       
-      left_arm_2_joint:
-        trajectory: 0 
-        goal: 0.02       
-      left_arm_3_joint:
-        trajectory: 0 
-        goal: 0.02       
-      left_arm_4_joint:
-        trajectory: 0 
-        goal: 0.02       
-      left_arm_5_joint:
-        trajectory: 0 
-        goal: 0.02       
-      left_arm_6_joint:
-        trajectory: 0 
-        goal: 0.02       
-
-  state_publish_rate:  50 # Defaults to 50
-  action_monitor_rate: 20 # Defaults to 20
-  #hold_trajectory_duration: 0 # Defaults to 0.5
+      goal_time: 2.0                  
+      stopped_velocity_tolerance: 0.1 

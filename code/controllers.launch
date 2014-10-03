@@ -1,0 +1,25 @@
+<launch>
+      
+  <!-- Load controller configurations to the parameter server -->
+  <rosparam command="load" 
+	    file="$(find uibk_moveit_adapter)/config/arm_controllers.yaml" />
+  
+  <rosparam command="load" 
+	    file="$(find uibk_moveit_adapter)/config/jointstates_controller.yaml" />
+  
+  <rosparam command="load" 
+	    file="$(find uibk_moveit_adapter)/config/gripper_controllers.yaml" />
+  
+  <arg name="spawn_controllers" default="true"/>
+  
+  <!-- Controllers that come up started -->
+  <!-- spawn controller -->
+  <node if="$(arg spawn_controllers)"
+	name="controller_spawner" 
+	pkg="controller_manager" 
+	type="spawner"
+	output="screen"
+	args="right_arm left_arm right_sdh left_sdh joint_state_controller" />
+  
+</launch>
+
