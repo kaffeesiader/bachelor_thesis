@@ -31,7 +31,7 @@
 \BOOKMARK [1][-]{section.3.5}{Creating the MoveIt configuration package}{chapter.3}
 \BOOKMARK [1][-]{section.3.6}{Connecting MoveIt to the existing robot control interface}{chapter.3}
 \BOOKMARK [2][-]{subsection.3.6.1}{ROS control stack overview}{section.3.6}
-\BOOKMARK [2][-]{subsection.3.6.2}{Designing the hardware adapter}{section.3.6}
+\BOOKMARK [2][-]{subsection.3.6.2}{Designing the hardware adapter node}{section.3.6}
 \BOOKMARK [2][-]{subsection.3.6.3}{Launching the hardware adapter}{section.3.6}
 \BOOKMARK [1][-]{section.3.7}{Adjusting the MoveIt configuration}{chapter.3}
 \BOOKMARK [0][-]{chapter.4}{Pick and place}{}
@@ -45,7 +45,7 @@
 \BOOKMARK [1][-]{section.4.4}{Running the benchmark task}{chapter.4}
 \BOOKMARK [1][-]{section.4.5}{Discussion}{chapter.4}
 \BOOKMARK [0][-]{chapter.5}{Conclusion}{}
-\BOOKMARK [0][-]{section*.86}{Bibliography}{}
+\BOOKMARK [0][-]{section*.87}{Bibliography}{}
 \BOOKMARK [0][-]{appendix.A}{Simulator documentation}{}
 \BOOKMARK [1][-]{section.A.1}{Installation and startup}{appendix.A}
 \BOOKMARK [1][-]{section.A.2}{Modifying the simulation scene}{appendix.A}

@@ -330,19 +330,6 @@ The V-Rep simulator provides various extension points, allowing to add custom fu
 
 One problem that arose during the implementation process was, how to identify simulation models that should be controlled by the plugin. V-Rep is a simulation environment that allows to load and simulate different environments and therefore the plugin functionality should not be tied to one specific scene. The current simulation scene contains the models of two Kuka arms and two Schunk grippers but the intended solution should be customizable. Maybe there should be another scene that only contains one arm model and no grippers at all. This requires the plugin to be able to detect known models in arbitrary simulation scenes and then provide the proper control interfaces. Section \ref{sec:comp_id} explains in detail how this problem was solved along with the utilized V-Rep functionality. \\
 
-%In the real world, each type of robot component has its own, clearly defined ROS control interface. Those interfaces are composed from sets of inbound and outbound ROS topics that allow to send commands and to retrieve state data. The simulated components need to provide exactly the same ROS interface as their real counterparts, using the same topic names and message types. The existing ROS interface that is part of the V-Rep distribution is not suitable as it only provides a very general approach for controlling joint values and reading state data. Therefore V-Rep provides various extension points, allowing to add custom functionality. The final solution was implemented as a simulator plugin, written in C++ and using V-Rep's \emph{regular API}\footnote{http://www.coppeliarobotics.com/helpFiles/en/apiOverview.htm}. A plugin is a compiled library file, written in C++ that has to follow V-Rep specific naming conventions and must reside in the V-Rep working directory. The library file gets automatically loaded on V-Rep startup and runs in the main simulation thread. The source code is located in the \emph{iis\_simulation} package that is part of the \emph{iis\_robot\_sw} repository. The following section describes the design of the plugin architecture and the most important components within the package.
-
-%The structure of this control flow can be seen in figure \ref{fig:control_flow}.
-
-%The first problem that arose when starting the implementation process was, how each type of robot component can be clearly identified within a simulation scene. V-Rep is a simulation environment that allows to load and simulate multiple scenes. A scene is a hierarchy of various scene objects, organized in a tree structure and those objects can be shapes, joints, sensors or even only dummies. The scene content can be modified by the user. Arbitrary objects can be added or removed, maybe a gripper gets replaced by another component, an arm gets removed or an additional Kinect camera gets installed. The required solution should be able to react to those changes. Parts of the hierarchy should be clearly identifiable as a specific simulation component. Each single part of a component should be identifiable (joints, sensors, dummies, IK groups, collision objects). Luckily V-Rep provides various extension points for programmers and is therefore highly customizable. 
-
-%\begin{figure}[ht]
-%	\centering
-%  	\includegraphics[width=1.0\textwidth]{images/handle_sim.jpg}
-%	\caption{Handling a simulation step}
-%	\label{fig:handle_sim}
-%\end{figure}
-
 \subsection{Plugin architecture}
 \label{sec:plugin_arch}
 
@@ -413,8 +400,17 @@ This function is called very often during the whole V-Rep lifecycle and is there
   \caption{Simulator messages}
   \label{tbl:sim_msg}
 \end{table}
-  
+
 \end{itemize}
+
+Each simulation step is handled by the \path{SimulatorPlugin} as shown in figure \ref{fig:handle_sim}. The plugin receives the \path{sim_message_eventcallback_modulehandle} message from the simulator. It first asks the \path{ComponentContainer} to handle the simulation step which propagates that event to all registered \path{SimulationComponent} instances. After that, the \path{SimulatorPlugin} invokes the \path{handleSimulation} method of the \path{ROSServer}. The server then handles ROS related callbacks and forces the registered controllers to publish their state data.
+
+\begin{figure}[ht]
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/handle_sim.jpg}
+	\caption{Handling a simulation step}
+	\label{fig:handle_sim}
+\end{figure}
 
 \subsection{Identifying simulation components}
 \label{sec:comp_id}
@@ -436,15 +432,13 @@ The plugin functionality should not be tied to a specific simulation scene but t
 	\label{fig:cust_dev_data}
 \end{figure}
 
-We solved this identification problem by using so called \emph{custom developer data tags}. V-Rep allows to put auxiliary data segments to each single object in the scene. Each data segment starts with a header number which is used to uniquely identify the tag data from a specific developer. We used the number `2497' for the data segments used in this project. A visualization of this concept can be seen in figure \ref{fig:cust_dev_data}. The format of those data segments can freely be chosen by the developer. We decided to use string representations of key/value pairs, separated by a colon (:). The key is an integer value that specifies the type of information the tag contains. The value segment can be used to provide additional information, e.g. the name of the arm. The left arm's model base for example is tagged with the data segment 
+We solved this identification problem by using so called \emph{custom developer data tags}. V-Rep allows to put auxiliary data segments to each single object in the scene. The data tags are configured in the scene object properties of the corresponding scene objects. This process is described in the documentation section in appendix \ref{app:sim_doc}. Each data segment starts with a header number which is used to uniquely identify the tag data from a specific developer. We used the number `2497' for the data segments used in this project. A visualization of this concept can be seen in figure \ref{fig:cust_dev_data}. The format of those data segments can freely be chosen by the developer. We decided to use string representations of key/value pairs, separated by a colon (:). The key is an integer value that specifies the type of information the tag contains. The value segment can be used to provide additional information, e.g. the name of the arm. The left arm's model base for example is tagged with the data segment 
 \begin{center}
 \texttt{2497,1:left\_arm}
 \end{center}
-The number 2497 is the header that identifies the data segment to belong to this plugin. The data segment identifies that scene object to be the model base of a Kuka arm model $(Key=1)$ with the name \path{left_arm}. Other tags are used to identify joints, force sensors and dummies that belong the the arm or gripper models. The available keys are explained in the sections that correspond to the specific simulation components. We have placed such developer data tags on all scene objects that are relevant to the plugin. The data tags are configured in the scene object properties of the corresponding scene objects. This process is described in the documentation section in appendix \ref{app:sim_doc} \\
+The number 2497 is the header that identifies the data segment to belong to this plugin. The data segment identifies that scene object to be the model base of a Kuka arm model $(Key=1)$ with the name \path{left_arm}. Other tags are used to identify joints, force sensors and dummies that belong the the arm or gripper models. The available keys are explained in the sections that correspond to the specific simulation components. We have placed such developer data tags on all scene objects that are relevant to the plugin. \\
 
 The plugin code was designed to react for scene content change. This happens when objects are added or removed from the current scene or when another scene gets loaded. When actualizing for scene content change, the \texttt{ComponentContainer} traverses the scene hierarchy and looks for objects, that are tagged as known components. On success, it creates the specific instance and adds it to the container. During initialization, the concrete \texttt{SimulationComponent} implementation then traverses the rest of the model subtree to extract all the remaining parts that belong to that specific model (joints, dummies, force sensors\ldots), also by looking for tagged objects. The implementations for arm and hand model provide feedback output on the console window about the status of this initialization process and provide meaningful error messages in case that not all necessary parts of a model could be successfully located.
-
-%A possible solution for the identification problem would therefore be to give each part a clearly defined, unique name and then search for those names within the scene. But this approach would require to hardcode each single object identifier and this is not a preferable solution for this problem. If a user accidentally changes a name inside the model tree then the solution is broken because the plugin looses connection to the underlying object and cannot control it any more. Here V-Rep's custom developer data functionality comes into play. The V-Rep API allows to retrieve object handles using the unique name of a scene object, which can be modified in the scene hierarchy view. If an object with the given name was found, the underlying object handle is returned. 
 
 
 \subsection{The LWRArmComponent}
@@ -517,7 +511,7 @@ We designed the follow mode to mirror the behaviour to the real robot arms. Ther
 
 \end{itemize}
 
-This section only covered the implemented control modes and the corresponding ROS topics but the controller also offers a number of topics that allow to retrieve state data like current joint positions, Cartesian position, the collision state and more. A complete interface description can be found in the documentation, located in appendix \ref{app:sim_doc}.
+This section only covered the implemented control modes and the corresponding ROS topics but the controller also offers a number of topics that allow to retrieve state data like current joint positions, Cartesian position, the collision state and more. A complete interface description, containing all available ROS topics and the corresponding message types can be found in the documentation, located in appendix \ref{app:sim_doc}.
 
 \subsection{The SchunkHandComponent}
 
@@ -548,7 +542,7 @@ The \path{SchunkHand} class states the abstraction of a simulated Schunk hand. T
 
 \paragraph{SchunkHandController}
 
-The \path{SchunkHandController} provides an implementation of the ROS interface for the Schunk gripper model. We designed this class to reflect the interface provided by the controller for the real hand. The basic topics are quite similar to those of the \path{LWRArmController}, as there are \path{joint_control/move} for setting joint target positions or \path{joint_control/get_state} for retrieving joint states. The controller allows to set the hand posture by setting target positions for all hand joints or based on 4 different \emph{grasps} (figure \ref{fig:grasp_types}). \\
+The \path{SchunkHandController} provides an implementation of the ROS interface for the Schunk gripper model. We designed this class to reflect the interface provided by the controller for the real hand. The basic topics are quite similar to those of the \path{LWRArmController}, as there are \path{joint_control/move} for setting joint target positions or \path{joint_control/get_state} for retrieving joint states. The controller allows to set the hand posture by setting target positions for all hand joints or based on different \emph{grasps} (figure \ref{fig:grasp_types}). \\
 
 A grasp is defined by the parameters \emph{grasp type} and \emph{close ratio}. Allowed grasp types are \emph{cylindrical}, \emph{spherical}, \emph{centrical} and \emph{parallel}. The desired close ratio is defined as a value between 0 and 1. The controller calculates the corresponding joint positions, based on those parameters and sends the desired target positions to the underlying \path{SchunkHand}. Each grasp can be expressed, using three functions -- one for the position of the pivoting joints and the other two for the positions of the distal and proximal finger joints. The utilized functions were taken from the original controller code for the real hand. The definitions are listed in table \ref{fig:grasp_defs}. The first column holds the name of the grasp type. The second column shows how the positions of the pivoting joints are calculated. It can be seen that they are not influenced by the close ratio $x$ in all 4 grasp types. The third and fourth columns show the equations that are used to calculate the target values of the proximal and distal finger joints based on close ratio $x$. \\
 

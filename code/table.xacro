@@ -15,7 +15,6 @@
     </joint>
     
     <link name="${name}_link">
-      
 		<visual>
 			<geometry>
 				<box size="${leg_width} -${leg_width} ${table_height - plate_thickness}"/>
@@ -28,10 +27,8 @@
 				<box size="${leg_width} -${leg_width} ${table_height - plate_thickness}"/>
 			</geometry>
 		</collision>
-		
     </link>
-    
-    
+  
   </macro>
     
   <macro name="model_table" params="parent name *origin length width">
@@ -43,7 +40,6 @@
     </joint>
 
     <link name="${name}_plate_link">
-
 		<visual>
 			<origin xyz="${1/2 * width} ${1/2 * length} ${-1/2 * plate_thickness}"/>
 			<geometry>
@@ -58,7 +54,6 @@
 				<box size="${width} ${length} ${plate_thickness}"/>
 			</geometry>
 		</collision>
-      
     </link>
     
     <xacro:table_leg parent="${name}_plate_link" name="leg_0">
@@ -86,7 +81,6 @@
 	 params="parent name *origin length width thickness">
 	 
     <link name="${name}_link">
-
 		<visual>
 			<origin xyz="${1/2 * width} ${1/2 * length} ${1/2 * thickness}"/>
 			<geometry>
@@ -103,7 +97,6 @@
 				<box size="${width + 0.05} ${length + 0.05} ${thickness + 0.01}"/>
 			</geometry>
 		</collision>
-      
     </link>
     
     <joint name="${name}_joint" type="fixed">

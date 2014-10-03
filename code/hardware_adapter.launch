@@ -3,24 +3,22 @@
     <arg name="config_name" default="real" />
     <!-- upload the robot description to the parameter server -->
     <include file="$(find iis_robot)/launch/upload.launch">
-	<arg name="file_name" value="iis_robot_table.xacro" />
+      <arg name="file_name" value="iis_robot_table.xacro" />
     </include>
-	    
+    
     <group ns="$(arg config_name)">
-	<!-- start an instance of our hardware_adapter -->
-	<node name="hardware_adapter" 
-	      pkg="uibk_moveit_adapter" 
-	      type="hardware_adapter" 
-	      output="screen">
-		
-	    <!-- upload the adapter configuration to the parameter server -->
-	    <rosparam command="load" 
-		      file="$(find uibk_moveit_adapter)/config/adapter_config.yaml" />
-	</node> 	
-	
-	<!-- launch controllers -->
-	<include file="$(find uibk_moveit_adapter)/launch/controllers.launch" />
- 
+      <!-- start an instance of our hardware_adapter -->
+      <node name="hardware_adapter" 
+        pkg="uibk_moveit_adapter" 
+        type="hardware_adapter" 
+        output="screen">
+
+        <!-- upload the adapter configuration to the parameter server -->
+        <rosparam command="load" 
+          file="$(find uibk_moveit_adapter)/config/adapter_config.yaml" />
+        </node> 	
+
+        <!-- launch controllers -->
+        <include file="$(find uibk_moveit_adapter)/launch/controllers.launch" />
     </group>
-	      
 </launch>

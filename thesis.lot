@@ -5,15 +5,15 @@
 \contentsline {table}{\numberline {2.3}{\ignorespaces Collection definitions\relax }}{18}{table.caption.23}
 \contentsline {table}{\numberline {2.4}{\ignorespaces IK group definitions\relax }}{21}{table.caption.25}
 \contentsline {table}{\numberline {2.5}{\ignorespaces Simulator messages\relax }}{25}{table.caption.33}
-\contentsline {table}{\numberline {2.6}{\ignorespaces Tag data items for LWRArmComponent\relax }}{27}{table.caption.37}
-\contentsline {table}{\numberline {2.7}{\ignorespaces Possible collision states\relax }}{28}{table.caption.38}
-\contentsline {table}{\numberline {2.8}{\ignorespaces Tag data items for SchunkHandComponent\relax }}{29}{table.caption.40}
-\contentsline {table}{\numberline {2.9}{\ignorespaces Joint position functions based on close ratio $x$\relax }}{31}{table.caption.44}
+\contentsline {table}{\numberline {2.6}{\ignorespaces Tag data items for LWRArmComponent\relax }}{28}{table.caption.38}
+\contentsline {table}{\numberline {2.7}{\ignorespaces Possible collision states\relax }}{29}{table.caption.39}
+\contentsline {table}{\numberline {2.8}{\ignorespaces Tag data items for SchunkHandComponent\relax }}{30}{table.caption.41}
+\contentsline {table}{\numberline {2.9}{\ignorespaces Joint position functions based on close ratio $x$\relax }}{31}{table.caption.45}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces End effector definitions\relax }}{41}{table.caption.54}
+\contentsline {table}{\numberline {3.1}{\ignorespaces End effector definitions\relax }}{41}{table.caption.55}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {A.1}{\ignorespaces Available topics of \emph {LWRArmController}\relax }}{71}{table.caption.89}
-\contentsline {table}{\numberline {A.2}{\ignorespaces Available topics of \emph {SchunkHandController}\relax }}{72}{table.caption.90}
+\contentsline {table}{\numberline {A.1}{\ignorespaces Available topics of \emph {LWRArmController}\relax }}{71}{table.caption.90}
+\contentsline {table}{\numberline {A.2}{\ignorespaces Available topics of \emph {SchunkHandController}\relax }}{72}{table.caption.91}
 \addvspace {10\p@ }

@@ -26,58 +26,58 @@
 \contentsline {paragraph}{SimulatorPlugin}{24}{section*.32}
 \contentsline {subsection}{\numberline {2.5.2}Identifying simulation components}{25}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}The LWRArmComponent}{27}{subsection.2.5.3}
-\contentsline {paragraph}{LWRArm}{27}{section*.36}
-\contentsline {paragraph}{LWRArmController}{28}{section*.39}
-\contentsline {subsection}{\numberline {2.5.4}The SchunkHandComponent}{29}{subsection.2.5.4}
-\contentsline {paragraph}{SchunkHand}{30}{section*.41}
-\contentsline {paragraph}{SchunkHandController}{30}{section*.43}
+\contentsline {paragraph}{LWRArm}{27}{section*.37}
+\contentsline {paragraph}{LWRArmController}{29}{section*.40}
+\contentsline {subsection}{\numberline {2.5.4}The SchunkHandComponent}{30}{subsection.2.5.4}
+\contentsline {paragraph}{SchunkHand}{30}{section*.42}
+\contentsline {paragraph}{SchunkHandController}{30}{section*.44}
 \contentsline {subsection}{\numberline {2.5.5}Publishing Kinect camera data}{31}{subsection.2.5.5}
 \contentsline {chapter}{\numberline {3}Motion planning}{33}{chapter.3}
 \contentsline {section}{\numberline {3.1}Introduction}{33}{section.3.1}
 \contentsline {section}{\numberline {3.2}Sampling-based motion planning}{34}{section.3.2}
-\contentsline {paragraph}{Probabilistic roadmaps}{34}{section*.45}
-\contentsline {paragraph}{Tree-based planners}{34}{section*.46}
+\contentsline {paragraph}{Probabilistic roadmaps}{34}{section*.46}
+\contentsline {paragraph}{Tree-based planners}{34}{section*.47}
 \contentsline {section}{\numberline {3.3}The MoveIt motion planning framework}{35}{section.3.3}
 \contentsline {section}{\numberline {3.4}Creating the URDF model of the robot setup}{37}{section.3.4}
 \contentsline {section}{\numberline {3.5}Creating the MoveIt configuration package}{40}{section.3.5}
-\contentsline {paragraph}{\texttt {controllers.yaml}}{43}{section*.55}
-\contentsline {paragraph}{\texttt {fake\_controllers.yaml}}{43}{section*.56}
-\contentsline {paragraph}{\texttt {iis\_robot.srdf}}{43}{section*.57}
-\contentsline {paragraph}{\texttt {joint\_limits.yaml}}{43}{section*.58}
-\contentsline {paragraph}{\texttt {kinematics.yaml}}{43}{section*.59}
-\contentsline {paragraph}{\texttt {ompl\_planning.yaml}}{43}{section*.60}
+\contentsline {paragraph}{\texttt {controllers.yaml}}{43}{section*.56}
+\contentsline {paragraph}{\texttt {fake\_controllers.yaml}}{43}{section*.57}
+\contentsline {paragraph}{\texttt {iis\_robot.srdf}}{43}{section*.58}
+\contentsline {paragraph}{\texttt {joint\_limits.yaml}}{43}{section*.59}
+\contentsline {paragraph}{\texttt {kinematics.yaml}}{43}{section*.60}
+\contentsline {paragraph}{\texttt {ompl\_planning.yaml}}{43}{section*.61}
 \contentsline {section}{\numberline {3.6}Connecting MoveIt to the existing robot control interface}{43}{section.3.6}
 \contentsline {subsection}{\numberline {3.6.1}ROS control stack overview}{44}{subsection.3.6.1}
-\contentsline {subsection}{\numberline {3.6.2}Designing the hardware adapter}{46}{subsection.3.6.2}
-\contentsline {subsection}{\numberline {3.6.3}Launching the hardware adapter}{51}{subsection.3.6.3}
-\contentsline {section}{\numberline {3.7}Adjusting the MoveIt configuration}{51}{section.3.7}
+\contentsline {subsection}{\numberline {3.6.2}Designing the hardware adapter node}{46}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}Launching the hardware adapter}{49}{subsection.3.6.3}
+\contentsline {section}{\numberline {3.7}Adjusting the MoveIt configuration}{52}{section.3.7}
 \contentsline {chapter}{\numberline {4}Pick and place}{53}{chapter.4}
 \contentsline {section}{\numberline {4.1}Overview}{53}{section.4.1}
 \contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{55}{section.4.2}
 \contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{57}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Creating the environment}{57}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{58}{subsection.4.3.2}
-\contentsline {paragraph}{Grasp ID}{59}{section*.69}
-\contentsline {paragraph}{Pre-grasp/grasp posture}{59}{section*.70}
-\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{59}{section*.71}
-\contentsline {paragraph}{Grasp pose}{59}{section*.72}
-\contentsline {paragraph}{Grasp quality}{60}{section*.74}
-\contentsline {paragraph}{Allowed touch objects}{60}{section*.75}
+\contentsline {paragraph}{Grasp ID}{59}{section*.70}
+\contentsline {paragraph}{Pre-grasp/grasp posture}{59}{section*.71}
+\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{59}{section*.72}
+\contentsline {paragraph}{Grasp pose}{59}{section*.73}
+\contentsline {paragraph}{Grasp quality}{60}{section*.75}
+\contentsline {paragraph}{Allowed touch objects}{60}{section*.76}
 \contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{60}{subsection.4.3.3}
-\contentsline {paragraph}{\texttt {target\_name}}{60}{section*.76}
-\contentsline {paragraph}{\texttt {group\_name}}{61}{section*.77}
-\contentsline {paragraph}{\texttt {end\_effector\_name}}{61}{section*.78}
-\contentsline {paragraph}{\texttt {possible\_grasps}}{61}{section*.79}
-\contentsline {paragraph}{\texttt {support\_surface\_name}}{61}{section*.80}
-\contentsline {paragraph}{\texttt {allow\_gripper\_support\_collision}}{61}{section*.81}
-\contentsline {paragraph}{\texttt {path\_constraints}}{61}{section*.82}
-\contentsline {paragraph}{\texttt {allowed\_planning\_time}}{61}{section*.83}
-\contentsline {paragraph}{\texttt {plan\_only}}{61}{section*.84}
+\contentsline {paragraph}{\texttt {target\_name}}{60}{section*.77}
+\contentsline {paragraph}{\texttt {group\_name}}{61}{section*.78}
+\contentsline {paragraph}{\texttt {end\_effector\_name}}{61}{section*.79}
+\contentsline {paragraph}{\texttt {possible\_grasps}}{61}{section*.80}
+\contentsline {paragraph}{\texttt {support\_surface\_name}}{61}{section*.81}
+\contentsline {paragraph}{\texttt {allow\_gripper\_support\_collision}}{61}{section*.82}
+\contentsline {paragraph}{\texttt {path\_constraints}}{61}{section*.83}
+\contentsline {paragraph}{\texttt {allowed\_planning\_time}}{61}{section*.84}
+\contentsline {paragraph}{\texttt {plan\_only}}{61}{section*.85}
 \contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{61}{subsection.4.3.4}
 \contentsline {section}{\numberline {4.4}Running the benchmark task}{62}{section.4.4}
 \contentsline {section}{\numberline {4.5}Discussion}{63}{section.4.5}
 \contentsline {chapter}{\numberline {5}Conclusion}{65}{chapter.5}
-\contentsline {chapter}{Bibliography}{67}{section*.86}
+\contentsline {chapter}{Bibliography}{67}{section*.87}
 \contentsline {chapter}{\numberline {A}Simulator documentation}{69}{appendix.A}
 \contentsline {section}{\numberline {A.1}Installation and startup}{69}{section.A.1}
 \contentsline {section}{\numberline {A.2}Modifying the simulation scene}{69}{section.A.2}
