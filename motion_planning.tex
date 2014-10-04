@@ -347,3 +347,30 @@ For starting MoveIt we created the launch file \path{moveit_planning_execution.l
 roslaunch uibk_robot_moveit_config moveit_planning_execution.launch simulation:=false
 \end{verbatim}}
 The launch file also starts the RViz visualization tool configured with the motion planning plugin. This is used for visualizing the planned trajectories and can also be used to test the connection to the robot by making planning requests and execute the resulting trajectories.
+
+\section{Testing the IK solver}
+
+Solving the inverse kinematics problem is an important issue when working with the robot arms. Many planning algorithms depend on an IK solution for a given Cartesian space goal before they are able to solve planning problems. So we decided to test the quality of the KDL inverse kinematics solver that is used by MoveIt. As a side effect we were able to use the test results to visualize the area in the robot workspace that can be reached by the robot the arms. \\
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}[h]{|l|c|c|c|} \hline
+	\textbf{Arm} & \textbf{Redundant IK} & \textbf{KDL solver} & \textbf{\%} \\ \hline
+	Left arm & $10.392$ & $15.474$ & $+48.9$ \\
+	Right arm & $10.025$ & $15.444$ & $+54.0$ \\ \hline
+  \end{tabular}
+  \caption{IK test results}
+  \label{tbl:ik_results}
+\end{table}
+
+First we computed a test set, composed from 3.500 sample locations within the robot workspace. The sample points are uniformly distributed throughout the area that should be reachable by at least one of the robot arms. The offset between the samples is 10 cm in $x$, $y$ and $z$ direction. For each sample point we computed 17 different orientations. That resulted in a set, containing 59.500 sample poses. During testing we assumed those test poses to be end effector target positions. The test utilized MoveIt's IK functionality (KDL) to compute a valid joint configuration for each single sample pose and counted the positive results. This was done for each arm separately. The outcome was a set of sample poses, the solver was able to find valid solutions for. The same test was repeated, using the pre-existing IK solver that was already available for the IIS Lab robot setup. This solution is based on the method described by \citep{moore2010}. The test results are listed in in table \ref{tbl:ik_results}. The table shows the comparison between both tested IK solvers. It can be seen that the success rate of the KDL solver is around $50 \%$ higher then the one of the pre-existing solution. \\
+
+The IK calculation results of the KDL solver were then used to visualize the area that is reachable by the robot arms. This visualization can be seen in figure \ref{fig:ik_visualization}. Each colored dot indicates a location that can be reached by one or both robot arms. The dot color range is between green and red. Green dots are locations where the solver was able to find solutions for all 17 orientations. Red dots are locations with a low number of positive results, that means they are only reachable at certain end effector orientations. The images (a) and (b) show the combined results for both robot arms. Images (c) and (d) show the reachable area for the left and (e) and (f) for the right robot arm.
+
+\begin{figure}[p]
+	\centering
+  	\includegraphics[width=1.0\textwidth]{images/results.jpg}
+	\caption{IK test result visualization}
+	\label{fig:ik_visualization}
+\end{figure}
+

@@ -51,43 +51,44 @@
 \contentsline {subsection}{\numberline {3.6.2}Designing the hardware adapter node}{46}{subsection.3.6.2}
 \contentsline {subsection}{\numberline {3.6.3}Launching the hardware adapter}{49}{subsection.3.6.3}
 \contentsline {section}{\numberline {3.7}Adjusting the MoveIt configuration}{52}{section.3.7}
-\contentsline {chapter}{\numberline {4}Pick and place}{53}{chapter.4}
-\contentsline {section}{\numberline {4.1}Overview}{53}{section.4.1}
-\contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{55}{section.4.2}
-\contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{57}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{57}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{58}{subsection.4.3.2}
-\contentsline {paragraph}{Grasp ID}{59}{section*.70}
-\contentsline {paragraph}{Pre-grasp/grasp posture}{59}{section*.71}
-\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{59}{section*.72}
-\contentsline {paragraph}{Grasp pose}{59}{section*.73}
-\contentsline {paragraph}{Grasp quality}{60}{section*.75}
-\contentsline {paragraph}{Allowed touch objects}{60}{section*.76}
-\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{60}{subsection.4.3.3}
-\contentsline {paragraph}{\texttt {target\_name}}{60}{section*.77}
-\contentsline {paragraph}{\texttt {group\_name}}{61}{section*.78}
-\contentsline {paragraph}{\texttt {end\_effector\_name}}{61}{section*.79}
-\contentsline {paragraph}{\texttt {possible\_grasps}}{61}{section*.80}
-\contentsline {paragraph}{\texttt {support\_surface\_name}}{61}{section*.81}
-\contentsline {paragraph}{\texttt {allow\_gripper\_support\_collision}}{61}{section*.82}
-\contentsline {paragraph}{\texttt {path\_constraints}}{61}{section*.83}
-\contentsline {paragraph}{\texttt {allowed\_planning\_time}}{61}{section*.84}
-\contentsline {paragraph}{\texttt {plan\_only}}{61}{section*.85}
-\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{61}{subsection.4.3.4}
-\contentsline {section}{\numberline {4.4}Running the benchmark task}{62}{section.4.4}
-\contentsline {section}{\numberline {4.5}Discussion}{63}{section.4.5}
-\contentsline {chapter}{\numberline {5}Conclusion}{65}{chapter.5}
-\contentsline {chapter}{Bibliography}{67}{section*.87}
-\contentsline {chapter}{\numberline {A}Simulator documentation}{69}{appendix.A}
-\contentsline {section}{\numberline {A.1}Installation and startup}{69}{section.A.1}
-\contentsline {section}{\numberline {A.2}Modifying the simulation scene}{69}{section.A.2}
-\contentsline {section}{\numberline {A.3}Modifying custom developer data tags}{70}{section.A.3}
-\contentsline {section}{\numberline {A.4}ROS interface}{70}{section.A.4}
-\contentsline {subsection}{\numberline {A.4.1}Arm control topics}{71}{subsection.A.4.1}
-\contentsline {subsection}{\numberline {A.4.2}Hand control topics}{72}{subsection.A.4.2}
-\contentsline {subsection}{\numberline {A.4.3}Kinect camera settings}{72}{subsection.A.4.3}
-\contentsline {chapter}{\numberline {B}URDF descriptions}{73}{appendix.B}
-\contentsline {section}{\numberline {B.1}Complete model with table}{73}{section.B.1}
-\contentsline {section}{\numberline {B.2}Adjusted gripper model}{74}{section.B.2}
-\contentsline {section}{\numberline {B.3}Torso model}{75}{section.B.3}
-\contentsline {section}{\numberline {B.4}Table model}{76}{section.B.4}
+\contentsline {section}{\numberline {3.8}Testing the IK solver}{52}{section.3.8}
+\contentsline {chapter}{\numberline {4}Pick and place}{55}{chapter.4}
+\contentsline {section}{\numberline {4.1}Overview}{55}{section.4.1}
+\contentsline {section}{\numberline {4.2}Pick and place tasks in MoveIt}{57}{section.4.2}
+\contentsline {section}{\numberline {4.3}Implementation of the benchmark task}{59}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Creating the environment}{59}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Generating possible grasps}{60}{subsection.4.3.2}
+\contentsline {paragraph}{Grasp ID}{61}{section*.72}
+\contentsline {paragraph}{Pre-grasp/grasp posture}{61}{section*.73}
+\contentsline {paragraph}{Pre-grasp approach and post-grasp retreat}{61}{section*.74}
+\contentsline {paragraph}{Grasp pose}{61}{section*.75}
+\contentsline {paragraph}{Grasp quality}{62}{section*.77}
+\contentsline {paragraph}{Allowed touch objects}{62}{section*.78}
+\contentsline {subsection}{\numberline {4.3.3}Planning and executing the pickup}{62}{subsection.4.3.3}
+\contentsline {paragraph}{\texttt {target\_name}}{62}{section*.79}
+\contentsline {paragraph}{\texttt {group\_name}}{63}{section*.80}
+\contentsline {paragraph}{\texttt {end\_effector\_name}}{63}{section*.81}
+\contentsline {paragraph}{\texttt {possible\_grasps}}{63}{section*.82}
+\contentsline {paragraph}{\texttt {support\_surface\_name}}{63}{section*.83}
+\contentsline {paragraph}{\texttt {allow\_gripper\_support\_collision}}{63}{section*.84}
+\contentsline {paragraph}{\texttt {path\_constraints}}{63}{section*.85}
+\contentsline {paragraph}{\texttt {allowed\_planning\_time}}{63}{section*.86}
+\contentsline {paragraph}{\texttt {plan\_only}}{63}{section*.87}
+\contentsline {subsection}{\numberline {4.3.4}Planning and executing the placement}{63}{subsection.4.3.4}
+\contentsline {section}{\numberline {4.4}Running the benchmark task}{64}{section.4.4}
+\contentsline {section}{\numberline {4.5}Discussion}{65}{section.4.5}
+\contentsline {chapter}{\numberline {5}Conclusion}{67}{chapter.5}
+\contentsline {chapter}{Bibliography}{69}{section*.89}
+\contentsline {chapter}{\numberline {A}Simulator documentation}{71}{appendix.A}
+\contentsline {section}{\numberline {A.1}Installation and startup}{71}{section.A.1}
+\contentsline {section}{\numberline {A.2}Modifying the simulation scene}{71}{section.A.2}
+\contentsline {section}{\numberline {A.3}Modifying custom developer data tags}{72}{section.A.3}
+\contentsline {section}{\numberline {A.4}ROS interface}{72}{section.A.4}
+\contentsline {subsection}{\numberline {A.4.1}Arm control topics}{73}{subsection.A.4.1}
+\contentsline {subsection}{\numberline {A.4.2}Hand control topics}{74}{subsection.A.4.2}
+\contentsline {subsection}{\numberline {A.4.3}Kinect camera settings}{74}{subsection.A.4.3}
+\contentsline {chapter}{\numberline {B}URDF descriptions}{75}{appendix.B}
+\contentsline {section}{\numberline {B.1}Complete model with table}{75}{section.B.1}
+\contentsline {section}{\numberline {B.2}Adjusted gripper model}{76}{section.B.2}
+\contentsline {section}{\numberline {B.3}Torso model}{77}{section.B.3}
+\contentsline {section}{\numberline {B.4}Table model}{78}{section.B.4}
